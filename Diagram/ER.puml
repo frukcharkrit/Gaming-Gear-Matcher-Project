@@ -1,0 +1,78 @@
+@startuml
+!theme plain
+skinparam monochrome true
+
+entity "USER" as user {
+    user_id : INT
+    --
+    username : VARCHAR(50)
+    email : VARCHAR(100)
+    password_hash : VARCHAR(255)
+    role_id : INT
+    created_at : DATETIME
+}
+
+entity "ROLE" as role {
+    role_id : INT
+    --
+    role_name : VARCHAR(20)
+}
+
+entity "Pro Player" as proplayer {
+    player_id : INT
+    --
+    name : VARCHAR(100)
+    game : VARCHAR(50)
+    image_url : VARCHAR(255)
+    created_at : DATETIME
+}
+
+entity "GamingGear" as gaminggear {
+    gear_id : INT
+    --
+    name : VARCHAR(100)
+    type : VARCHAR(50)
+    brand : VARCHAR(50)
+    specs : VARCHAR(100)
+    price : DECIMAL(10, 2)
+    store_url : VARCHAR(255)
+    image_url : VARCHAR(255)
+    created_at : DATETIME
+}
+
+entity "Preset" as preset {
+    preset_id : INT
+    --
+    name : VARCHAR(100)
+    user_id : INT
+    share_link : VARCHAR(255)
+    created_at : DATETIME
+}
+
+entity "ProPlayer_GamingGear" as progear_link {
+    player_id : INT
+    gear_id : INT
+}
+
+entity "Preset_GamingGear" as presetgear_link {
+    preset_id : INT
+    gear_id : INT
+    order : INT
+}
+
+' Define Relationships
+' User <-> Role
+user "0..*" -- "1" role
+
+' User <-> Preset
+user "1" -- "0..*" preset : has
+
+' Pro Player <-> GamingGear (Many-to-Many via progear_link)
+proplayer "1" -- "0..*" progear_link
+gaminggear "1" -- "0..*" progear_link
+
+' Preset <-> GamingGear (Many-to-Many via presetgear_link)
+preset "1" -- "0..*" presetgear_link
+gaminggear "1" -- "0..*" presetgear_link
+
+@enduml
