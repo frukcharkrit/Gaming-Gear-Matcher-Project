@@ -1,0 +1,59 @@
+@startuml
+left to right direction
+
+' Define Actors
+actor "General User\n(Guest)" as Guest
+actor "Member" as Member
+actor "Administrator\n(Admin)" as Admin
+
+' Main System Boundary
+rectangle "Gaming Gear Matcher System" {
+
+    ' Use Cases for all user types
+    (Match Physique) as UC_MatchPhysique
+    (View Match Result) as UC_ViewMatchResult
+    (Edit Temporary Preset) as UC_EditTempPreset
+    (Search Gear) as UC_SearchGear
+    (Search Pro Player) as UC_SearchProPlayer
+    (Register) as UC_Register
+    (Login) as UC_Login
+    (Save Preset) as UC_SavePreset
+    (Rate Match) as UC_RateMatch
+    (Edit Saved Preset) as UC_EditSavedPreset
+    (Share Preset) as UC_SharePreset
+    (Log out) as UC_Logout
+    (Manage Gear) as UC_ManageGear
+    (Manage Pro Player) as UC_ManageProPlayer
+    (Manage Member Accounts) as UC_ManageMember
+    (View Alerts) as UC_ViewAlerts
+}
+
+' Define Relationships
+' Guest can perform these actions
+Guest --> UC_MatchPhysique
+Guest --> UC_ViewMatchResult
+Guest --> UC_EditTempPreset
+Guest --> UC_SearchGear
+Guest --> UC_SearchProPlayer
+Guest --> UC_Register
+Guest --> UC_Login
+
+' Member inherits all Guest's functionalities and has more
+Member --|> Guest
+Member --> UC_SavePreset
+Member --> UC_RateMatch
+Member --> UC_EditSavedPreset
+Member --> UC_SharePreset
+Member --> UC_Logout
+
+' Admin has their own set of functionalities
+Admin --> UC_Login
+Admin --> UC_ManageGear
+Admin --> UC_ManageProPlayer
+Admin --> UC_ManageMember
+Admin --> UC_ViewAlerts
+
+' Dependencies between Use Cases (e.g., login required)
+UC_SavePreset .> UC_Login : <<include>>
+UC_SharePreset .> UC_Login : <<include>>
+@enduml
