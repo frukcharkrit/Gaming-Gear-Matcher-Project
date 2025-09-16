@@ -1,0 +1,14 @@
+django
+reportlab
+ipython
+faker
+pyaml
+pillow
+tailwind
+django-tailwind
+django-browser-reload
+opencv-python-headless
+numpy
+scikit-learn
+tensorflow
+keras

@@ -14,10 +14,27 @@ skinparam state {
 state "Start" as S_Start
 state "Home (Guest)\n(PG-H01)" as S_Home_Guest <<Guest>>
 state "Register\n(PG-A01)" as S_Register <<Guest>>
+note right of S_Register
+  **Alerts:**
+  - Registration failed: Email already exists / Password too weak / Fields are required.
+end note
 state "Login\n(PG-A02)" as S_Login <<Guest>>
+note right of S_Login
+  **Alerts:**
+  - Login fail: Incorrect username or password.
+end note
 state "Forgot Password\n(PG-A03)" as S_Forgot_Pwd <<Guest>>
 state "Upload Image\n(PG-M01)" as S_Upload
+note right of S_Upload
+  **Alerts:**
+  - Upload fail: Invalid file format / File size too large.
+end note
 state "Matching Result\n(PG-M02)" as S_Result
+note right of S_Result
+  **Alerts:**
+  - Guest: "Please login to save your preset."
+  - Member: "Preset saved successfully!"
+end note
 state "Gear Detail\n(PG-D02)" as S_Gear_Detail
 state "Pro Player Detail\n(PG-D01)" as S_Pro_Detail
 
@@ -26,12 +43,43 @@ state "Logged In" as S_Logged_In {
   state "Manage Presets\n(PG-U01)" as S_Manage_Presets <<Member>>
   state "Admin Dashboard\n(PG-ADM01)" as S_Admin_Dashboard <<Admin>>
   state "Manage Members\n(PG-ADM02)" as S_Admin_Members <<Admin>>
-  state "Manage Gears\n(PG-ADM03)" as S_Admin_Gears <<Admin>>
-  state "Manage Pro Players\n(PG-ADM04)" as S_Admin_Pro <<Admin>>
+
+  state "Manage Pro Players\n(PG-ADM04)" as S_Admin_Pro <<Admin>> {
+    state "Pro Player List" as S_Pro_List
+    note right of S_Pro_List
+      **Alerts:**
+      - "Pro Player deleted successfully."
+    end note
+    state "Add Pro Player\n(PG-ADM04-02)" as S_Add_Pro_Player
+    note right of S_Add_Pro_Player
+      **Alerts:**
+      - "New Pro Player added successfully!"
+      - "Error: Name field is required."
+    end note
+    state "Edit Pro Player\n(PG-ADM04-01)" as S_Edit_Pro_Player
+    note right of S_Edit_Pro_Player
+      **Alerts:**
+      - "Pro Player details updated successfully."
+      - "Error: Could not update details."
+    end note
+    state "Manage Gears (within Pro Player)\n(PG-ADM03)" as S_Admin_Gears <<Admin>>
+
+    [*] --> S_Pro_List
+
+    S_Pro_List --> S_Add_Pro_Player : Clicks Add New Pro Player
+    S_Add_Pro_Player --> S_Pro_List : Save / Cancel (Add)
+
+    S_Pro_List --> S_Edit_Pro_Player : Select Pro Player (Edit/Delete)
+    S_Edit_Pro_Player --> S_Admin_Gears : Clicks Manage Gears for Pro Player
+    S_Admin_Gears --> S_Edit_Pro_Player : Back to Edit Pro Player
+    S_Edit_Pro_Player --> S_Pro_List : Clicks Save / Cancel (Edit)
+    S_Edit_Pro_Player --> S_Pro_List : Clicks Delete Pro Player [Confirms Delete]
+  }
+
   state "Manage Models\n(PG-ADM05)" as S_Admin_Models <<Admin>>
 }
 
-S_Start --> S_Home_Guest : Enters application
+S_Start --> S_Home_Guest : Enters Web Application
 
 ' --- Guest Flow ---
 S_Home_Guest --> S_Login : Clicks Login
@@ -71,11 +119,8 @@ S_Home_Member --> [*] : Clicks Logout
 S_Admin_Dashboard --> S_Admin_Members : Select Manage Members
 S_Admin_Members --> S_Admin_Dashboard : Back
 
-S_Admin_Dashboard --> S_Admin_Gears : Select Manage Gears
-S_Admin_Gears --> S_Admin_Dashboard : Back
-
 S_Admin_Dashboard --> S_Admin_Pro : Select Manage Pro Players
-S_Admin_Pro --> S_Admin_Dashboard : Back
+S_Admin_Pro --> S_Admin_Dashboard : Back from Pro Player Management
 
 S_Admin_Dashboard --> S_Admin_Models : Select Manage Models
 S_Admin_Models --> S_Admin_Dashboard : Back

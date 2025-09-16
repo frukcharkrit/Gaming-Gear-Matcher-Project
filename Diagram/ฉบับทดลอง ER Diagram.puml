@@ -1,0 +1,106 @@
+@startuml
+!theme plain
+skinparam monochrome true
+
+entity "User" as User {
+    + user_id : INT <<PK>>
+    --
+    username : VARCHAR(50) <<Unique>>
+    email : VARCHAR(100) <<Unique>>
+    password_hash : VARCHAR(255)
+    role_id : INT <<FK>>
+    created_at : DATETIME
+}
+
+entity "Role" as Role {
+    + role_id : INT <<PK>>
+    --
+    role_name : VARCHAR(20) <<Unique>>
+}
+
+entity "ProPlayer" as ProPlayer {
+    + player_id : INT <<PK>>
+    --
+    name : VARCHAR(100)
+    game : VARCHAR(50)
+    physique_vector : TEXT 'เก็บผลการวิเคราะห์สรีระจากโมเดล'
+    image_url : VARCHAR(255)
+    created_at : DATETIME
+}
+
+entity "GamingGear" as GamingGear {
+    + gear_id : INT <<PK>>
+    --
+    name : VARCHAR(100)
+    type : VARCHAR(50) 'e.g., Mouse, Keyboard, Headset'
+    brand : VARCHAR(50)
+    specs : TEXT 'เก็บรายละเอียดสเปคของอุปกรณ์เป็น JSON'
+    price : DECIMAL(10, 2)
+    store_url : VARCHAR(255)
+    image_url : VARCHAR(255)
+    created_at : DATETIME
+}
+
+entity "Preset" as Preset {
+    + preset_id : INT <<PK>>
+    --
+    name : VARCHAR(100)
+    user_id : INT <<FK>>
+    share_link : VARCHAR(255) <<Unique>>
+    created_at : DATETIME
+}
+
+entity "ProPlayerGear" as ProPlayerGear {
+    + player_id : INT <<PK/FK>>
+    + gear_id : INT <<PK/FK>>
+}
+
+entity "PresetGear" as PresetGear {
+    + preset_id : INT <<PK/FK>>
+    + gear_id : INT <<PK/FK>>
+    order : INT 'ลำดับการแสดงผลของอุปกรณ์ใน Preset'
+}
+
+entity "Rating" as Rating {
+    + rating_id : INT <<PK>>
+    --
+    user_id : INT <<FK>>
+    proplayer_id : INT <<FK>>
+    feedback_score : VARCHAR(10) 'เก็บ 'Good', 'Neutral', 'Bad''
+    rated_at : DATETIME
+}
+
+entity "Alert" as Alert {
+    + alert_id : INT <<PK>>
+    --
+    message : TEXT
+    type : VARCHAR(50) 'ประเภทของการแจ้งเตือน (e.g., new_gear, new_proplayer, member_ban)'
+    created_at : DATETIME
+    is_read : BOOLEAN
+    related_entity_id : INT '(Optional) ID ของ Entity ที่เกี่ยวข้อง'
+    related_entity_type : VARCHAR(50) ' (Optional) ประเภทของ Entity ที่เกี่ยวข้อง (e.g., 'Gear', 'ProPlayer')'
+}
+
+entity "Model" as Model {
+    + model_id : INT <<PK>>
+    --
+    name : VARCHAR(100)
+    version : VARCHAR(20)
+    file_path : VARCHAR(255)
+    created_at : DATETIME
+    last_trained_at : DATETIME
+    is_active : BOOLEAN 'true ถ้าเป็นโมเดลที่ใช้งานอยู่ปัจจุบัน'
+}
+
+
+' Relationships
+User ||--o{ Role : has
+User ||--o{ Preset : creates
+ProPlayer ||--o{ ProPlayerGear : uses
+GamingGear ||--o{ ProPlayerGear : used by
+Preset ||--o{ PresetGear : contains
+GamingGear ||--o{ PresetGear : part of
+User ||--o{ Rating : gives
+ProPlayer ||--o{ Rating : receives
+
+@enduml

@@ -1,0 +1,127 @@
+@startuml
+title Entity-Relationship Diagram - Gaming Gear Matcher
+
+skinparam linetype ortho
+skinparam rectangle {
+    shadowing false
+    backgroundColor #FFFFFF
+    borderColor #333333
+}
+skinparam ArrowColor #333333
+' ---------------------------------------
+
+entity "Users" as Users {
+  + **user_id** {PK} : INT
+  --
+  * username : VARCHAR(50) <<Unique>>
+  * password_hash : VARCHAR(255)
+  * email : VARCHAR(100) <<Unique>>
+  * role_id : INT {FK}
+  * created_at : DATETIME
+}
+
+entity "Roles" as Roles {
+  + **role_id** {PK} : INT
+  --
+  * role_name : VARCHAR(20) <<Unique>>
+}
+
+entity "Pro_Players" as Pro_Players {
+  + **player_id** {PK} : INT
+  --
+  * name : VARCHAR(100)
+  * game : VARCHAR(50)
+  * physique_vector : TEXT 'เก็บผลการวิเคราะห์สรีระจากโมเดล'
+  * image_url : VARCHAR(255)
+  * created_at : DATETIME
+}
+
+entity "Gaming_Gears" as Gaming_Gears {
+  + **gear_id** {PK} : INT
+  --
+  * name : VARCHAR(100)
+  * type : VARCHAR(50) 'e.g., Mouse, Keyboard, Headset'
+  * brand : VARCHAR(50)
+  * specs : TEXT 'เก็บรายละเอียดสเปคของอุปกรณ์เป็น JSON'
+  * price : DECIMAL(10, 2)
+  * store_url : VARCHAR(255)
+  * image_url : VARCHAR(255)
+  * created_at : DATETIME
+}
+
+entity "Presets" as Presets {
+  + **preset_id** {PK} : INT
+  --
+  # user_id : INT {FK}
+  * name : VARCHAR(100)
+  * share_link : VARCHAR(255) <<Unique>>
+  * created_at : DATETIME
+}
+
+entity "Pro_Player_Gears" as Pro_Player_Gears {
+  + **player_id** {PK, FK} : INT
+  + **gear_id** {PK, FK} : INT
+}
+
+entity "Preset_Gears" as Preset_Gears {
+  + **preset_id** {PK, FK} : INT
+  + **gear_id** {PK, FK} : INT
+  * order : INT 'ลำดับการแสดงผลของอุปกรณ์ใน Preset'
+}
+
+entity "Match_Ratings" as Match_Ratings {
+    + **rating_id** {PK} : INT
+    --
+    # user_id : INT {FK}
+    # pro_player_id : INT {FK}
+    * feedback_score : VARCHAR(10) 'เก็บ 'Good', 'Neutral', 'Bad''
+    * rated_at : DATETIME
+}
+
+entity "Alerts" as Alerts {
+    + **alert_id** {PK} : INT
+    --
+    * message : TEXT
+    * type : VARCHAR(50) 'ประเภทของการแจ้งเตือน (e.g., new_gear, new_proplayer, member_ban)'
+    * created_at : DATETIME
+    * is_read : BOOLEAN
+    * related_entity_id : INT '(Optional) ID ของ Entity ที่เกี่ยวข้อง'
+    * related_entity_type : VARCHAR(50) ' (Optional) ประเภทของ Entity ที่เกี่ยวข้อง (e.g., 'Gear', 'ProPlayer')'
+}
+
+entity "Models" as Models {
+    + **model_id** {PK} : INT
+    --
+    * model_name : VARCHAR(100)
+    * version : VARCHAR(20)
+    * file_path : VARCHAR(255)
+    * created_at : DATETIME
+    * last_trained_at : DATETIME
+    * is_active : BOOLEAN 'true ถ้าเป็นโมเดลที่ใช้งานอยู่ปัจจุบัน'
+}
+
+
+' --- Relationships ---
+
+' Users and Roles (One-to-Many)
+Roles ||--o{ Users : "has"
+
+' Users and Presets (One-to-Many)
+Users ||--o{ Presets : "creates"
+
+' Users and Match_Ratings (One-to-Many)
+Users ||--o{ Match_Ratings : "gives"
+
+' Pro_Players and Gaming_Gears (Many-to-Many via Pro_Player_Gears)
+Pro_Players }o--o{ Pro_Player_Gears
+Pro_Player_Gears o--o{ Gaming_Gears
+
+' Presets and Gaming_Gears (Many-to-Many via Preset_Gears)
+Presets }o--o{ Preset_Gears
+Preset_Gears o--o{ Gaming_Gears
+
+' Pro_Players and Match_Ratings (One-to-Many, Pro_Player receives many ratings)
+Pro_Players ||--o{ Match_Ratings : "receives"
+
+
+@enduml

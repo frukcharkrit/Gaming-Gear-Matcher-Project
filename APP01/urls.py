@@ -1,0 +1,59 @@
+# APP01/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    # --- Guest & Common Features ---
+    path('', views.home_guest, name='home_guest'),
+    path('register/', views.register, name='register'),
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('upload-image/', views.upload_image_and_match, name='upload_image'),
+    path('matching-result/', views.matching_result, name='matching_result'),
+    path('gear/<int:gear_id>/', views.gear_detail, name='gear_detail'),
+    path('pro-player/<int:player_id>/', views.pro_player_detail, name='pro_player_detail'),
+    path('search/gear/', views.search_gear, name='search_gear'),
+    path('search/pro-player/', views.search_pro_player, name='search_pro_player'),
+
+    # --- Member Features ---
+    path('member/home/', views.home_member, name='home_member'),
+    path('preset/save/', views.save_preset, name='save_preset'),
+    path('match/rate/', views.rate_match, name='rate_match'),
+    path('presets/', views.manage_presets, name='manage_presets'),
+    path('preset/<int:preset_id>/', views.preset_detail, name='preset_detail'),
+    path('preset/<int:preset_id>/edit/', views.edit_preset, name='edit_preset'),
+    path('preset/<int:preset_id>/delete/', views.delete_preset, name='delete_preset'),
+    path('preset/<int:preset_id>/share/', views.share_preset, name='share_preset'),
+    path('share/<str:share_link>/', views.view_shared_preset, name='view_shared_preset'),
+    path('matching-result/edit-preset/<str:action>/<int:gear_id>/', views.edit_temp_preset, name='edit_temp_preset_with_id'),
+    path('matching-result/edit-preset/<str:action>/', views.edit_temp_preset, name='edit_temp_preset_no_id'),
+
+
+    # --- Admin Features ---
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin/members/', views.manage_members, name='manage_members'),
+    path('admin/member/<int:user_id>/edit/', views.edit_member, name='edit_member'),
+    path('admin/member/<int:user_id>/delete/', views.delete_member, name='delete_member'),
+
+    path('admin/pro-players/', views.manage_pro_players, name='manage_pro_players'),
+    path('admin/pro-player/add/', views.add_pro_player, name='add_pro_player'),
+    path('admin/pro-player/<int:player_id>/edit/', views.edit_pro_player, name='edit_pro_player'),
+    path('admin/pro-player/<int:player_id>/delete/', views.delete_pro_player, name='delete_pro_player'),
+    path('admin/pro-player/<int:player_id>/manage-gears/', views.manage_pro_player_gears, name='manage_pro_player_gears'), # Gear management specific to a Pro Player
+
+    path('admin/gears/', views.admin_manage_gears, name='admin_manage_gears'), # Global Gear management
+    path('admin/gear/add/', views.admin_add_gear, name='admin_add_gear'),
+    path('admin/gear/<int:gear_id>/edit/', views.admin_edit_gear, name='admin_edit_gear'),
+    path('admin/gear/<int:gear_id>/delete/', views.admin_delete_gear, name='admin_delete_gear'),
+
+    path('admin/ai-models/', views.manage_ai_models, name='manage_ai_models'),
+    path('admin/ai-model/add/', views.add_ai_model, name='add_ai_model'),
+    path('admin/ai-model/<int:model_id>/edit/', views.edit_ai_model, name='edit_ai_model'),
+    path('admin/ai-model/<int:model_id>/delete/', views.delete_ai_model, name='delete_ai_model'),
+    path('admin/ai-model/<int:model_id>/set-active/', views.set_active_ai_model, name='set_active_ai_model'),
+    path('admin/ai-model/<int:model_id>/train/', views.train_ai_model, name='train_ai_model'),
+
+    path('admin/alerts/', views.view_alerts, name='view_alerts'),
+    path('admin/alert/<int:alert_id>/mark-read/', views.mark_alert_read, name='mark_alert_read'),
+]

@@ -74,7 +74,7 @@ UC_ViewMatchResult <.. UC_EditTempPreset: <extend>
 UC_ShowGear ..> UC_SearchProPlayer: <extend>
 UC_ShowGear ..> UC_ViewMatchResult: <extend>
 UC_ShowGear ..> UC_SearchGear: <extend>
-UC_RateMatch ..>UC_ViewMatchResult: <include>
+UC_RateMatch ..>UC_ViewMatchResult: <extend>
 UC_ShowGear <.. UC_AddGear:<extend>
 UC_AddGear <.. UC_PSDetail:<extend>
 UC_SavePreset ..> UC_PSDetail:<extend>

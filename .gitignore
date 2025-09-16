@@ -1,0 +1,40 @@
+# Python
+*.pyc
+__pycache__/
+.Python/
+build/
+develop-eggs/
+dist/
+eggs/
+.egg-info/
+*.egg
+*.so
+*.mo
+*.pot
+*.log
+*.sqlite3 # <--- ไฟล์ฐานข้อมูล SQLite
+.env # <--- ไฟล์สำหรับ environment variables (ถ้ามี)
+.venv/ # <--- Virtual Environment ของคุณ
+
+# Django specific
+*.log
+local_settings.py # <--- ไฟล์ settings ที่มีข้อมูล sensitive เช่น SECRET_KEY
+media/ # <--- โฟลเดอร์ที่เก็บไฟล์ที่ผู้ใช้อัปโหลด
+staticfiles/ # <--- โฟลเดอร์ที่ Django รวบรวม static files สำหรับ Production
+
+# IDE specific (ถ้าใช้ VS Code, PyCharm ฯลฯ)
+.vscode/ # VS Code settings, tasks, etc.
+.idea/ # PyCharm project files
+
+# OS specific
+.DS_Store
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# AI Models (ถ้าโมเดลมีขนาดใหญ่และไม่อยากเก็บใน Git)
+ai_models/ # หรือโฟลเดอร์ที่คุณเก็บโมเดล AI
+*.h5
+*.keras
+*.onnx
+*.pb
