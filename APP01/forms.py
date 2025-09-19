@@ -1,7 +1,12 @@
 # APP01/forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm
-from .models import User, Role, ProPlayer, GamingGear, Preset, AIModel, Alert, Rating
+from .models import User, Role, ProPlayer, GamingGear, Preset, AIModel, Alert, Rating, ProPlayerGear # เพิ่ม ProPlayerGear
+
+# --- Custom Login Form ---
+class LoginForm(AuthenticationForm):
+    # ไม่จำเป็นต้องเพิ่ม field ใหม่, AuthenticationForm มี username และ password อยู่แล้ว
+    pass
 
 # --- Custom Registration Form ---
 class RegisterForm(UserCreationForm):
@@ -9,35 +14,77 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        # แก้ไขตรงนี้: เพิ่ม 'password' และ 'password2'
         fields = ('username', 'email', 'password', 'password2') 
     
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
-        # กำหนด Role เป็น Member โดยอัตโนมัติ
         member_role, created = Role.objects.get_or_create(role_name='Member')
         user.role = member_role
         if commit:
             user.save()
         return user
-    
-# --- ProPlayer Form ---
+
+# --- ProPlayer Form (ปรับปรุง) ---
 class ProPlayerForm(forms.ModelForm):
+    # เปลี่ยนจาก ModelMultipleChoiceField เป็น CharField เพื่อให้กรอกข้อความเองได้
+    gears_text = forms.CharField(
+        label='อุปกรณ์ Gaming Gear ที่ใช้',
+        required=False,
+        help_text='กรอกชื่ออุปกรณ์หลายชิ้นโดยคั่นด้วยเครื่องหมายจุลภาค (,)',
+        widget=forms.TextInput(attrs={'placeholder': 'เช่น Mouse, Keyboard, Headset', 'class': 'form-control'})
+    )
+
     class Meta:
         model = ProPlayer
-        fields = ['name', 'game', 'image_url', 'physique_vector'] # physique_vector อาจจะเป็น read-only หรือจัดการผ่าน AI backend
-        widgets = {
-            'physique_vector': forms.Textarea(attrs={'rows': 3, 'readonly': 'readonly'}), # อาจจะให้เป็น read-only
-        }
+        # เปลี่ยน 'gears' เป็น 'gears_text'
+        fields = ['name', 'game', 'image_url', 'gears_text']
         labels = {
             'name': 'ชื่อโปรเพลเยอร์',
-            'game': 'ชื่อเกม',
-            'image_url': 'URL รูปภาพ',
-            'physique_vector': 'ข้อมูลสรีระ (AI Vector)',
+            'game': 'เกมที่เล่น',
+            'image_url': 'URL รูปภาพโปรไฟล์',
         }
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'เช่น s1mple', 'class': 'form-control'}),
+            'game': forms.TextInput(attrs={'placeholder': 'เช่น Counter-Strike', 'class': 'form-control'}),
+            'image_url': forms.URLInput(attrs={'placeholder': 'เช่น http://example.com/s1mple.jpg', 'class': 'form-control'}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # ตั้งค่าคลาส 'form-control' ให้กับฟิลด์ที่ไม่ได้ใช้ widgets ใน Meta
+        self.fields['gears_text'].widget.attrs['class'] = 'form-control'
+        
+        if self.instance and self.instance.pk:
+            # สำหรับการแก้ไข: ดึงชื่อ Gears ที่ใช้อยู่มาแสดงผลในช่องข้อความ
+            gear_names = self.instance.proplayergear_set.values_list('gear__name', flat=True)
+            self.fields['gears_text'].initial = ', '.join(gear_names)
+        
+        # ลบฟิลด์ที่ไม่ต้องการให้แก้ไข
+        if 'physique_vector' in self.fields:
+            del self.fields['physique_vector']
 
-# --- GamingGear Form ---
+    def save(self, commit=True):
+        player = super().save(commit=False)
+        if commit:
+            player.save()
+            
+            # จัดการ Many-to-Many Relationship (ProPlayerGear)
+            if 'gears_text' in self.cleaned_data:
+                # แยกข้อความที่กรอกด้วยเครื่องหมายจุลภาคและลบช่องว่าง
+                gear_list = [name.strip() for name in self.cleaned_data['gears_text'].split(',') if name.strip()]
+                
+                # ลบ Gear เก่าทั้งหมดของ Pro Player นี้ก่อน
+                ProPlayerGear.objects.filter(player=player).delete()
+                
+                # เพิ่ม Gear ใหม่หรือใช้ที่มีอยู่แล้ว
+                for gear_name in gear_list:
+                    gear, created = GamingGear.objects.get_or_create(name=gear_name)
+                    ProPlayerGear.objects.create(player=player, gear=gear)
+
+        return player
+    
+# --- GamingGear Form (ปรับปรุง) ---
 class GamingGearForm(forms.ModelForm):
     class Meta:
         model = GamingGear
@@ -52,10 +99,24 @@ class GamingGearForm(forms.ModelForm):
             'image_url': 'URL รูปภาพ',
         }
         widgets = {
-            'specs': forms.Textarea(attrs={'rows': 4}), # ให้พื้นที่ใหญ่ขึ้นสำหรับ JSON
+            'name': forms.TextInput(attrs={'placeholder': 'เช่น Razer DeathAdder V3 Pro', 'class': 'form-control'}),
+            'type': forms.TextInput(attrs={'placeholder': 'เช่น Mouse, Keyboard, Headset', 'class': 'form-control'}),
+            'brand': forms.TextInput(attrs={'placeholder': 'เช่น Razer', 'class': 'form-control'}),
+            'specs': forms.Textarea(attrs={'placeholder': '{"sensor": "Optical", "dpi": "30000"}', 'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'placeholder': 'เช่น 5000', 'class': 'form-control'}),
+            'store_url': forms.URLInput(attrs={'placeholder': 'เช่น http://store.com/item', 'class': 'form-control'}),
+            'image_url': forms.URLInput(attrs={'placeholder': 'เช่น http://example.com/gear.jpg', 'class': 'form-control'}),
         }
 
-# --- Preset Form ---
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Ensure 'form-control' class is added to all fields for consistent styling
+        for field_name, field in self.fields.items():
+            if not isinstance(field.widget, forms.CheckboxSelectMultiple):
+                field.widget.attrs['class'] = 'form-control'
+
+# ... (ฟอร์มอื่นๆ) ...
+
 class PresetForm(forms.ModelForm):
     class Meta:
         model = Preset
@@ -64,10 +125,7 @@ class PresetForm(forms.ModelForm):
             'name': 'ชื่อ Preset',
         }
 
-# --- AIModel Form ---
 class AIModelForm(forms.ModelForm):
-    # อาจจะเพิ่ม ImageField สำหรับอัปโหลดไฟล์โมเดลจริง ถ้าเก็บในระบบไฟล์
-    # file_path อาจจะเป็น CharField เก็บชื่อไฟล์ หรือ FileField
     class Meta:
         model = AIModel
         fields = ['name', 'version', 'file_path', 'is_active']
@@ -78,7 +136,6 @@ class AIModelForm(forms.ModelForm):
             'is_active': 'ใช้งานอยู่',
         }
 
-# --- Rating Form (สำหรับให้คะแนนจาก Member) ---
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
@@ -91,9 +148,3 @@ class RatingForm(forms.ModelForm):
             'feedback_score': forms.RadioSelect(choices=Rating.feedback_score.field.choices),
             'comment': forms.Textarea(attrs={'rows': 3}),
         }
-
-# --- Alert Form (อาจไม่จำเป็นต้องมีฟอร์มถ้าสร้างจาก backend เท่านั้น) ---
-# class AlertForm(forms.ModelForm):
-#     class Meta:
-#         model = Alert
-#         fields = '__all__' # หรือเลือกบางฟิลด์

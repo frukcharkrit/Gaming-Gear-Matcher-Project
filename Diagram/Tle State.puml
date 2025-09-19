@@ -1,0 +1,75 @@
+@startuml
+skinparam state {
+  BackgroundColor<<current>> LightBlue
+}
+
+[*] --> Visitor
+
+state "ผู้เยี่ยมชม" as Visitor {
+  [*] --> Guest
+  Guest : ไม่เข้าสู่ระบบ
+  LoggedIn : เข้าสู่ระบบ
+  TournamentView : เข้าดูทัวร์นาเมนต์
+
+  Guest --> LoggedIn : กรอกข้อมูลถูกต้อง
+  Guest --> TournamentView : คลิกทัวร์นาเมนต์
+
+  state "เข้าดูทัวร์นาเมนต์" as TournamentView {
+    [*] --> Detail
+    Detail : หน้ารายละเอียด
+    Vote : โหวตการแข่งขัน
+    Result : ดูผลการแข่งขัน
+    Bracket : ดูสายการแข่งขัน (Bracket)
+
+    Detail --> Vote
+    Detail --> Result
+    Detail --> Bracket
+  }
+}
+
+Visitor --> Registered : เข้าสู่ระบบ
+
+state "ผู้ใช้ที่ลงทะเบียน" as Registered {
+  [*] --> Home
+  Home : หน้าแรก
+  Create : สร้างทัวร์นาเมนต์
+
+  Home --> Create : เลือกเมนู "สร้าง"
+
+  state "สร้างทัวร์นาเมนต์" as Create {
+    [*] --> Setup
+    Setup : ตั้งค่ารายละเอียด
+    AddPlayer : เพิ่มผู้เข้าแข่งขัน
+    Draft : ร่างทัวร์นาเมนต์พร้อมเผยแพร่
+    Publish : เผยแพร่
+
+    Setup --> AddPlayer : บันทึกข้อมูล
+    AddPlayer --> Draft
+    Draft --> Publish : กดปุ่ม "เผยแพร่"
+  }
+
+  Home --> TournamentView
+  TournamentView --> Comment : แสดงความคิดเห็น (เฉพาะผู้ใช้ที่ลงทะเบียน)
+
+  Publish --> OpenVote : เปิดการโหวต
+  OpenVote --> CloseVote : เจ้าของทัวร์สั่งปิด
+  CloseVote --> Summary : ระบบประกาศผู้ชนะ
+}
+
+Registered --> Admin : ได้สิทธิ์แอดมิน
+
+state "ผู้ดูแลระบบ" as Admin {
+  [*] --> Dashboard
+  Dashboard : แดชบอร์ด
+  ManageUser : จัดการผู้ใช้
+  ManageTournament : จัดการทัวร์นาเมนต์
+  ManageComment : จัดการความคิดเห็น
+
+  Dashboard --> ManageUser
+  Dashboard --> ManageTournament
+  Dashboard --> ManageComment
+}
+
+Summary : สรุปผลการแข่งขัน
+Summary --> [*]
+@enduml

@@ -18,9 +18,9 @@ urlpatterns = [
 
     # --- Member Features ---
     path('member/home/', views.home_member, name='home_member'),
-    path('preset/save/', views.save_preset, name='save_preset'),
     path('match/rate/', views.rate_match, name='rate_match'),
     path('presets/', views.manage_presets, name='manage_presets'),
+    path('preset/save/', views.save_preset, name='save_preset'),
     path('preset/<int:preset_id>/', views.preset_detail, name='preset_detail'),
     path('preset/<int:preset_id>/edit/', views.edit_preset, name='edit_preset'),
     path('preset/<int:preset_id>/delete/', views.delete_preset, name='delete_preset'),
@@ -29,31 +29,38 @@ urlpatterns = [
     path('matching-result/edit-preset/<str:action>/<int:gear_id>/', views.edit_temp_preset, name='edit_temp_preset_with_id'),
     path('matching-result/edit-preset/<str:action>/', views.edit_temp_preset, name='edit_temp_preset_no_id'),
 
-
     # --- Admin Features ---
-    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
-    path('admin/members/', views.manage_members, name='manage_members'),
-    path('admin/member/<int:user_id>/edit/', views.edit_member, name='edit_member'),
-    path('admin/member/<int:user_id>/delete/', views.delete_member, name='delete_member'),
+    path('admin/', views.admin_dashboard, name='admin_dashboard'),
 
-    path('admin/pro-players/', views.manage_pro_players, name='manage_pro_players'),
-    path('admin/pro-player/add/', views.add_pro_player, name='add_pro_player'),
-    path('admin/pro-player/<int:player_id>/edit/', views.edit_pro_player, name='edit_pro_player'),
-    path('admin/pro-player/<int:player_id>/delete/', views.delete_pro_player, name='delete_pro_player'),
-    path('admin/pro-player/<int:player_id>/manage-gears/', views.manage_pro_player_gears, name='manage_pro_player_gears'), # Gear management specific to a Pro Player
+    # Pro Players
+    path('admin/pro-players/', views.admin_pro_players, name='admin_pro_players'),
+    path('admin/pro-players/add/', views.admin_add_pro_player, name='admin_add_pro_player'),
+    path('admin/pro-players/<int:player_id>/edit/', views.admin_edit_pro_player, name='admin_edit_pro_player'),
+    path('admin/pro-players/<int:player_id>/delete/', views.admin_delete_pro_player, name='admin_delete_pro_player'),
 
-    path('admin/gears/', views.admin_manage_gears, name='admin_manage_gears'), # Global Gear management
-    path('admin/gear/add/', views.admin_add_gear, name='admin_add_gear'),
-    path('admin/gear/<int:gear_id>/edit/', views.admin_edit_gear, name='admin_edit_gear'),
-    path('admin/gear/<int:gear_id>/delete/', views.admin_delete_gear, name='admin_delete_gear'),
+    # Gaming Gears
+    path('admin/gaming-gears/', views.admin_gaming_gears, name='admin_gaming_gears'),
+    path('admin/gaming-gears/add/', views.admin_add_gaming_gear, name='admin_add_gaming_gear'),
+    path('admin/gaming-gears/<int:gear_id>/edit/', views.admin_edit_gaming_gear, name='admin_edit_gaming_gear'),
+    path('admin/gaming-gears/<int:gear_id>/delete/', views.admin_delete_gaming_gear, name='admin_delete_gaming_gear'),
+    
+    # AI Models
+    path('admin/ai-models/', views.admin_ai_models, name='admin_ai_models'),
+    path('admin/ai-models/add/', views.admin_add_ai_model, name='admin_add_ai_model'),
+    path('admin/ai-models/<int:model_id>/edit/', views.admin_edit_ai_model, name='admin_edit_ai_model'),
+    path('admin/ai-models/<int:model_id>/delete/', views.admin_delete_ai_model, name='admin_delete_ai_model'),
+    path('admin/ai-models/<int:model_id>/set-active/', views.admin_set_active_ai_model, name='admin_set_active_ai_model'),
+    path('admin/ai-models/<int:model_id>/train/', views.admin_train_ai_model, name='admin_train_ai_model'),
+    
+    # Users
+    # APP01/urls.py
+# ...
+    path('admin/users/', views.admin_users, name='admin_users'),
+    path('admin/users/<int:user_id>/edit/', views.admin_edit_user, name='admin_edit_user'),
+    path('admin/users/<int:user_id>/delete/', views.admin_delete_user, name='admin_delete_user'),
+# ...
 
-    path('admin/ai-models/', views.manage_ai_models, name='manage_ai_models'),
-    path('admin/ai-model/add/', views.add_ai_model, name='add_ai_model'),
-    path('admin/ai-model/<int:model_id>/edit/', views.edit_ai_model, name='edit_ai_model'),
-    path('admin/ai-model/<int:model_id>/delete/', views.delete_ai_model, name='delete_ai_model'),
-    path('admin/ai-model/<int:model_id>/set-active/', views.set_active_ai_model, name='set_active_ai_model'),
-    path('admin/ai-model/<int:model_id>/train/', views.train_ai_model, name='train_ai_model'),
-
+    # Alerts
     path('admin/alerts/', views.view_alerts, name='view_alerts'),
-    path('admin/alert/<int:alert_id>/mark-read/', views.mark_alert_read, name='mark_alert_read'),
+    path('admin/alerts/<int:alert_id>/mark-read/', views.mark_alert_read, name='mark_alert_read'),
 ]

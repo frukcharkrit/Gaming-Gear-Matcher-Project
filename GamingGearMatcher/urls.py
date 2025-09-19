@@ -21,8 +21,8 @@ from django.conf import settings # สำหรับ MEDIA
 from django.conf.urls.static import static # สำหรับ MEDIA
 
 urlpatterns = [
+    path('', include('APP01.urls')),
     path('admin/', admin.site.urls),
-    path('', include('APP01.urls')), # รวม URL ของ APP01 เข้ามา
 ]
 
 # สำหรับการแสดงผลไฟล์ Media (เช่นรูปภาพที่อัปโหลด) ในโหมด Development
