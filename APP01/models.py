@@ -163,6 +163,10 @@ class Rating(models.Model):
     proplayer = models.ForeignKey(ProPlayer, on_delete=models.CASCADE)
     feedback_score = models.CharField(max_length=10, choices=[('Good', 'Good'), ('Neutral', 'Neutral'), ('Bad', 'Bad')]) # 'Good', 'Neutral', 'Bad'
     comment = models.TextField(blank=True, null=True)
+    # Metadata to help improve matching models
+    match_image_url = models.CharField(max_length=512, blank=True, null=True)
+    selected_gears = models.TextField(blank=True, null=True)  # store JSON array of gear ids or names
+    match_distance = models.FloatField(blank=True, null=True)
     rated_at = models.DateTimeField(default=timezone.now)
 
     class Meta:

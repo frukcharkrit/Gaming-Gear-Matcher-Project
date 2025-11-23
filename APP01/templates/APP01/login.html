@@ -20,6 +20,9 @@
 
                 <form method="post">
                     {% csrf_token %}
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                    {% endif %}
                     
                     {# ฟิลด์ Username #}
                     <div class="mb-3">

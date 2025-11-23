@@ -1,88 +1,95 @@
 @startuml
 left to right direction
+skinparam packageStyle rectangle
 
-' Define Actors
 actor "General User\n(Guest)" as Guest
 actor "Member" as Member
 actor "Administrator\n(Admin)" as Admin
 
-' Main System Boundary
 rectangle "Gaming Gear Matcher System" {
-
-    ' Use Cases for all user types
+    
+    ' Authentication
+    (Register) as UC_Register
+    (Login) as UC_Login
     (Forget password) as UC_ForgotPWD
+    (Log out) as UC_Logout
+
+    ' Core Feature
     (Upload image) as UC_UpImg
-    (Match image vs Pro player) as UC_MatchPro2Img
-    (Pro player Matching) as UC_ViewMatchResult
+    (Process Matching) as UC_MatchPro2Img
+    (View Matching Result) as UC_ViewMatchResult
     (Edit Temporary Preset) as UC_EditTempPreset
+    (Rate Match Result) as UC_RateMatch
+
+    ' Search & Info
     (Search Gear) as UC_SearchGear
     (Show Gear detail) as UC_ShowGear
     (Search Pro Player) as UC_SearchProPlayer
-    (Register) as UC_Register
-    (Login) as UC_Login
-    (Preset detail) as UC_PSDetail
+    
+    ' Preset Management
+    (View Preset Detail) as UC_PSDetail
     (Save Preset) as UC_SavePreset
-    (Rate Match) as UC_RateMatch
     (Manage Preset) as UC_ManagePreset
     (Share Preset) as UC_SharePreset
-    (Log out) as UC_Logout
+    (Add Gear to Preset) as UC_AddGear
+    
+    ' Admin Functions
     (Manage Gear) as UC_ManageGear
     (Manage Pro Player) as UC_ManageProPlayer
     (Manage Member Accounts) as UC_ManageMember
     (View Alerts) as UC_ViewAlerts
-    (Add to active preset) as UC_AddGear
     (Show Dashboard) as UC_Dashboard
-    (Manage Model) as UC_ManageModel
+    
+    ' Model Management
+    (Manage AI Model) as UC_ManageModel
     (Train Model) as UC_TrainModel
     (Delete Model) as UC_DelModel
     (Set active model) as UC_SetActiveModel
-
 }
 
-' Define Relationships
-' Guest can perform these actions
+' --- Relationships ---
 
-Guest -- UC_ViewMatchResult
-
-Guest -- UC_SearchGear
-Guest -- UC_SearchProPlayer
 Guest -- UC_Register
 Guest -- UC_Login
-Guest -- UC_ForgotPWD
+Guest -- UC_ViewMatchResult
+Guest -- UC_SearchGear
+Guest -- UC_SearchProPlayer
 
-' Member inherits all Guest's functionalities and has more
 Member --|> Guest
+Member -- UC_Logout
 Member -- UC_SavePreset
-Member -- UC_RateMatch
 Member -- UC_ManagePreset
 Member -- UC_SharePreset
-Member -- UC_Logout
+Member -- UC_RateMatch
 
-' Admin has their own set of functionalities
-
+Admin -- UC_Logout
 Admin -- UC_ManageGear
 Admin -- UC_ManageProPlayer
 Admin -- UC_ManageMember
 Admin -- UC_ViewAlerts
-Admin -- UC_Logout
-Admin -- UC_ManageModel
 Admin -- UC_Dashboard
+Admin -- UC_ManageModel
 
-UC_MatchPro2Img ..> UC_UpImg:<include>
-UC_ViewMatchResult ..> UC_MatchPro2Img:<include>
-UC_ViewMatchResult <.. UC_EditTempPreset: <extend>
-UC_ShowGear ..> UC_SearchProPlayer: <extend>
-UC_ShowGear ..> UC_ViewMatchResult: <extend>
-UC_ShowGear ..> UC_SearchGear: <extend>
-UC_RateMatch ..>UC_ViewMatchResult: <extend>
-UC_ShowGear <.. UC_AddGear:<extend>
-UC_AddGear <.. UC_PSDetail:<extend>
-UC_SavePreset ..> UC_PSDetail:<extend>
-UC_PSDetail ..> UC_ViewMatchResult:<extend>
-UC_PSDetail ..> UC_ManagePreset:<extend>
-UC_SharePreset ..> UC_PSDetail:<extend>
-UC_ManageModel <.. UC_TrainModel:<extend>
-UC_ManageModel <..UC_DelModel:<extend>
-UC_ManageModel <.. UC_SetActiveModel:<extend>
+UC_Login <.. UC_ForgotPWD : <<extend>>
+
+UC_ViewMatchResult ..> UC_MatchPro2Img : <<include>>
+UC_MatchPro2Img ..> UC_UpImg : <<include>>
+
+UC_ViewMatchResult <.. UC_EditTempPreset : <<extend>>
+UC_ViewMatchResult <.. UC_RateMatch : <<extend>>
+
+UC_SearchGear <.. UC_ShowGear : <<extend>>
+UC_SearchProPlayer <.. UC_ShowGear : <<extend>>
+
+UC_ManagePreset ..> UC_PSDetail : <<include>>
+UC_SavePreset ..> UC_PSDetail : <<include>>
+UC_SharePreset ..> UC_PSDetail : <<extend>>
+
+UC_ShowGear <.. UC_AddGear : <<extend>>
+UC_PSDetail <.. UC_AddGear : <<extend>>
+
+UC_ManageModel <.. UC_TrainModel : <<extend>>
+UC_ManageModel <.. UC_DelModel : <<extend>>
+UC_ManageModel <.. UC_SetActiveModel : <<extend>>
+
 @enduml
-

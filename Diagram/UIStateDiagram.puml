@@ -16,115 +16,121 @@ state "Home (Guest)\n(PG-H01)" as S_Home_Guest <<Guest>>
 state "Register\n(PG-A01)" as S_Register <<Guest>>
 note right of S_Register
   **Alerts:**
-  - Registration failed: Email already exists / Password too weak / Fields are required.
+  - Registration failed
 end note
 state "Login\n(PG-A02)" as S_Login <<Guest>>
 note right of S_Login
   **Alerts:**
-  - Login fail: Incorrect username or password.
+  - Login fail
 end note
 state "Forgot Password\n(PG-A03)" as S_Forgot_Pwd <<Guest>>
 state "Upload Image\n(PG-M01)" as S_Upload
 note right of S_Upload
   **Alerts:**
-  - Upload fail: Invalid file format / File size too large.
+  - Upload fail (File size/Format)
 end note
+
+state "Search & Browse\n(PG-S01)" as S_Search <<Guest>>
+
 state "Matching Result\n(PG-M02)" as S_Result
 note right of S_Result
+  **Actions:**
+  - View Result
+  - Rate Match (Give Star/Score)
   **Alerts:**
-  - Guest: "Please login to save your preset."
-  - Member: "Preset saved successfully!"
+  - Guest: "Please login to save."
+  - Member: "Preset saved!"
+  - "Thank you for rating!"
 end note
+
 state "Gear Detail\n(PG-D02)" as S_Gear_Detail
 state "Pro Player Detail\n(PG-D01)" as S_Pro_Detail
 
 state "Logged In" as S_Logged_In {
   state "Home (Member)\n(PG-H02)" as S_Home_Member <<Member>>
   state "Manage Presets\n(PG-U01)" as S_Manage_Presets <<Member>>
+  
   state "Admin Dashboard\n(PG-ADM01)" as S_Admin_Dashboard <<Admin>>
   state "Manage Members\n(PG-ADM02)" as S_Admin_Members <<Admin>>
+  
+  ' แยก Manage Gear ออกมาเป็น Global State
+  state "Manage All Gears\n(PG-ADM03)" as S_Admin_Gears <<Admin>>
 
   state "Manage Pro Players\n(PG-ADM04)" as S_Admin_Pro <<Admin>> {
     state "Pro Player List" as S_Pro_List
-    note right of S_Pro_List
-      **Alerts:**
-      - "Pro Player deleted successfully."
-    end note
-    state "Add Pro Player\n(PG-ADM04-02)" as S_Add_Pro_Player
-    note right of S_Add_Pro_Player
-      **Alerts:**
-      - "New Pro Player added successfully!"
-      - "Error: Name field is required."
-    end note
-    state "Edit Pro Player\n(PG-ADM04-01)" as S_Edit_Pro_Player
-    note right of S_Edit_Pro_Player
-      **Alerts:**
-      - "Pro Player details updated successfully."
-      - "Error: Could not update details."
-    end note
-    state "Manage Gears (within Pro Player)\n(PG-ADM03)" as S_Admin_Gears <<Admin>>
-
+    state "Add/Edit Pro Player" as S_Edit_Pro_Player
+    
     [*] --> S_Pro_List
-
-    S_Pro_List --> S_Add_Pro_Player : Clicks Add New Pro Player
-    S_Add_Pro_Player --> S_Pro_List : Save / Cancel (Add)
-
-    S_Pro_List --> S_Edit_Pro_Player : Select Pro Player (Edit/Delete)
-    S_Edit_Pro_Player --> S_Admin_Gears : Clicks Manage Gears for Pro Player
-    S_Admin_Gears --> S_Edit_Pro_Player : Back to Edit Pro Player
-    S_Edit_Pro_Player --> S_Pro_List : Clicks Save / Cancel (Edit)
-    S_Edit_Pro_Player --> S_Pro_List : Clicks Delete Pro Player [Confirms Delete]
+    S_Pro_List --> S_Edit_Pro_Player : Add / Edit
+    S_Edit_Pro_Player --> S_Pro_List : Save / Cancel
   }
 
   state "Manage Models\n(PG-ADM05)" as S_Admin_Models <<Admin>>
 }
 
-S_Start --> S_Home_Guest : Enters Web Application
+S_Start --> S_Home_Guest : Enters App
 
 ' --- Guest Flow ---
 S_Home_Guest --> S_Login : Clicks Login
 S_Home_Guest --> S_Register : Clicks Register
 S_Home_Guest --> S_Upload : Clicks Start Matching
+S_Home_Guest --> S_Search : Clicks Search Gear/Pro
+
+S_Search --> S_Gear_Detail : Select Gear
+S_Search --> S_Pro_Detail : Select Pro Player
+S_Gear_Detail --> S_Search : Back
+S_Pro_Detail --> S_Search : Back
 
 S_Login --> S_Forgot_Pwd : Clicks Forgot Password
 S_Forgot_Pwd --> S_Login : Submits email
 
 S_Register --> S_Login : Registration success
-S_Register --> S_Register : Registration fail
+S_Register --> S_Register : Fail
 
 S_Login --> S_Home_Member : Login success (Member)
 S_Login --> S_Admin_Dashboard : Login success (Admin)
-S_Login --> S_Login : Login fail
+S_Login --> S_Login : Fail
 
-' --- Matching Flow (Guest & Member) ---
-S_Upload --> S_Result : Image upload & analysis success
-S_Upload --> S_Upload : Upload fail
-S_Home_Member --> S_Upload : Clicks Start Matching
+' --- Matching Flow ---
+S_Upload --> S_Result : Success
+S_Upload --> S_Upload : Fail
 
-S_Result --> S_Gear_Detail : Selects a gear
+S_Result --> S_Gear_Detail : Select gear
 S_Gear_Detail --> S_Result : Back
 
-S_Result --> S_Pro_Detail : Selects a pro player
+S_Result --> S_Pro_Detail : Select pro player
 S_Pro_Detail --> S_Result : Back
+
+' --- Rating & Saving Flow ---
+S_Result --> S_Result : Rate Match Result (Ajax/Popup)
+
+S_Result --> S_Login : Guest clicks Save Preset
+' จุดสำคัญ: Login เสร็จแล้ว Redirect กลับมาหน้า Result เพื่อ Save ต่อ
+S_Login --> S_Result : Redirect back after Login (if from Save)
+
+S_Result --> S_Manage_Presets : Member clicks Save Preset
 
 ' --- Member Flow ---
 S_Home_Member --> S_Manage_Presets : Clicks My Presets
 S_Manage_Presets --> S_Home_Member : Back
-
-S_Result --> S_Login : Guest clicks Save Preset
-S_Result --> S_Manage_Presets : Member clicks Save Preset
-S_Home_Member --> [*] : Clicks Logout
+S_Home_Member --> S_Upload : Clicks Start Matching
+S_Home_Member --> S_Search : Clicks Search
 
 ' --- Admin Flow ---
-S_Admin_Dashboard --> S_Admin_Members : Select Manage Members
+S_Admin_Dashboard --> S_Admin_Members
 S_Admin_Members --> S_Admin_Dashboard : Back
 
-S_Admin_Dashboard --> S_Admin_Pro : Select Manage Pro Players
-S_Admin_Pro --> S_Admin_Dashboard : Back from Pro Player Management
+S_Admin_Dashboard --> S_Admin_Pro
+S_Admin_Pro --> S_Admin_Dashboard : Back
 
-S_Admin_Dashboard --> S_Admin_Models : Select Manage Models
+' เพิ่ม Admin Gear Flow
+S_Admin_Dashboard --> S_Admin_Gears : Manage All Gears
+S_Admin_Gears --> S_Admin_Dashboard : Back
+
+S_Admin_Dashboard --> S_Admin_Models
 S_Admin_Models --> S_Admin_Dashboard : Back
 
-S_Admin_Dashboard --> [*] : Clicks Logout
+' Global Logout
+S_Logged_In --> S_Home_Guest : Logout
 
 @enduml

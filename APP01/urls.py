@@ -9,8 +9,18 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('forgot-password/', views.forgot_password, name='forgot_password'),
+    
+    # Matching Core
     path('upload-image/', views.upload_image_and_match, name='upload_image'),
+    path('upload-image-ajax/', views.upload_image_ajax, name='upload_image_ajax'),
     path('matching-result/', views.matching_result, name='matching_result'),
+    path('matching-result/submit-rating/', views.submit_rating, name='submit_rating'), # ใช้ตัวนี้แทน rate_match
+    
+    # Temporary Preset Editing (Session based)
+    path('matching-result/edit-preset/<str:action>/<int:gear_id>/', views.edit_temp_preset, name='edit_temp_preset_with_id'),
+    path('matching-result/edit-preset/<str:action>/', views.edit_temp_preset, name='edit_temp_preset_no_id'),
+
+    # Information & Search
     path('gear/<int:gear_id>/', views.gear_detail, name='gear_detail'),
     path('pro-player/<int:player_id>/', views.pro_player_detail, name='pro_player_detail'),
     path('search/gear/', views.search_gear, name='search_gear'),
@@ -18,49 +28,47 @@ urlpatterns = [
 
     # --- Member Features ---
     path('member/home/', views.home_member, name='home_member'),
-    path('match/rate/', views.rate_match, name='rate_match'),
+    
+    # Presets Management (Database)
     path('presets/', views.manage_presets, name='manage_presets'),
     path('preset/save/', views.save_preset, name='save_preset'),
     path('preset/<int:preset_id>/', views.preset_detail, name='preset_detail'),
     path('preset/<int:preset_id>/edit/', views.edit_preset, name='edit_preset'),
+    path('preset/<int:preset_id>/edit-name/', views.edit_preset_name, name='edit_preset_name'),
     path('preset/<int:preset_id>/delete/', views.delete_preset, name='delete_preset'),
+    path('preset/use-all/<int:player_id>/', views.use_all_gears, name='use_all_gears'),
+    
+    # Share Preset
     path('preset/<int:preset_id>/share/', views.share_preset, name='share_preset'),
     path('share/<str:share_link>/', views.view_shared_preset, name='view_shared_preset'),
-    path('matching-result/edit-preset/<str:action>/<int:gear_id>/', views.edit_temp_preset, name='edit_temp_preset_with_id'),
-    path('matching-result/edit-preset/<str:action>/', views.edit_temp_preset, name='edit_temp_preset_no_id'),
 
     # --- Admin Features ---
     path('admin/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin/users/', views.admin_users, name='admin_users'),
+    path('admin/users/edit/<int:user_id>/', views.admin_edit_user, name='admin_edit_user'),
 
-    # Pro Players
+    # Admin: Pro Players
     path('admin/pro-players/', views.admin_pro_players, name='admin_pro_players'),
     path('admin/pro-players/add/', views.admin_add_pro_player, name='admin_add_pro_player'),
     path('admin/pro-players/<int:player_id>/edit/', views.admin_edit_pro_player, name='admin_edit_pro_player'),
     path('admin/pro-players/<int:player_id>/delete/', views.admin_delete_pro_player, name='admin_delete_pro_player'),
 
-    # Gaming Gears
-    path('admin/gaming-gears/', views.admin_gaming_gears, name='admin_gaming_gears'),
-    path('admin/gaming-gears/add/', views.admin_add_gaming_gear, name='admin_add_gaming_gear'),
-    path('admin/gaming-gears/<int:gear_id>/edit/', views.admin_edit_gaming_gear, name='admin_edit_gaming_gear'),
-    path('admin/gaming-gears/<int:gear_id>/delete/', views.admin_delete_gaming_gear, name='admin_delete_gaming_gear'),
+    # Admin: Gaming Gears (แก้ไขชื่อให้ตรงกับ views.py)
+    path('admin/gears/', views.admin_gears, name='admin_gears'),
+    path('admin/gears/add/', views.admin_add_gear, name='admin_add_gear'),
+    path('admin/gears/<int:gear_id>/edit/', views.admin_edit_gear, name='admin_edit_gear'),
+    path('admin/gears/<int:gear_id>/delete/', views.admin_delete_gear, name='admin_delete_gear'),
     
-    # AI Models
-    path('admin/ai-models/', views.admin_ai_models, name='admin_ai_models'),
-    path('admin/ai-models/add/', views.admin_add_ai_model, name='admin_add_ai_model'),
-    path('admin/ai-models/<int:model_id>/edit/', views.admin_edit_ai_model, name='admin_edit_ai_model'),
-    path('admin/ai-models/<int:model_id>/delete/', views.admin_delete_ai_model, name='admin_delete_ai_model'),
-    path('admin/ai-models/<int:model_id>/set-active/', views.admin_set_active_ai_model, name='admin_set_active_ai_model'),
-    path('admin/ai-models/<int:model_id>/train/', views.admin_train_ai_model, name='admin_train_ai_model'),
+    # Admin: AI Models (แก้ไขชื่อให้ตรงกับ views.py)
+    path('admin/models/', views.admin_models, name='admin_models'),
+    path('admin/models/add/', views.admin_add_model, name='admin_add_model'),
+    path('admin/models/<int:model_id>/delete/', views.admin_delete_model, name='admin_delete_model'),
+    path('admin/models/<int:model_id>/set-active/', views.admin_set_active_model, name='admin_set_active_model'),
     
-    # Users
-    # APP01/urls.py
-# ...
-    path('admin/users/', views.admin_users, name='admin_users'),
-    path('admin/users/<int:user_id>/edit/', views.admin_edit_user, name='admin_edit_user'),
-    path('admin/users/<int:user_id>/delete/', views.admin_delete_user, name='admin_delete_user'),
-# ...
+    # Admin: Members Management (แก้ไขให้ตรงกับ views.py)
+    path('admin/members/', views.admin_members, name='admin_members'),
+    path('admin/members/<int:user_id>/toggle-status/', views.admin_toggle_user_status, name='admin_toggle_user_status'),
 
-    # Alerts
-    path('admin/alerts/', views.view_alerts, name='view_alerts'),
+    # Admin: Alerts
     path('admin/alerts/<int:alert_id>/mark-read/', views.mark_alert_read, name='mark_alert_read'),
 ]

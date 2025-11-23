@@ -33,10 +33,10 @@
         </div>
 
         <div class="card p-5 border-2 border-primary border-dashed position-relative d-flex flex-column justify-content-center align-items-center"
-             style="height: 300px; max-width: 600px; margin: 0 auto; cursor: pointer;"
+             style="height: 300px; max-width: 600px; margin: 0 auto; cursor: pointer; transition: all 0.3s ease;"
              id="uploadArea">
             
-            <input type="file" name="image" id="imageUpload" accept="image/*" class="position-absolute w-100 h-100 opacity-0 cursor-pointer" style="left: 0; top: 0;" required>
+            <input type="file" name="image" id="imageUpload" accept="image/*" class="position-absolute w-100 h-100 opacity-0 cursor-pointer" style="left: 0; top: 0; z-index: 10;" required>
             
             <div id="uploadContent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#007bff" class="bi bi-cloud-upload-fill mb-3" viewBox="0 0 16 16">
@@ -46,15 +46,15 @@
                 <p class="text-primary fw-bold">UPLOAD YOUR PHOTO HERE</p>
             </div>
             
-            <img id="imagePreview" src="#" alt="Image Preview" class="img-fluid rounded position-absolute w-100 h-100 object-fit-cover" style="display: none; left: 0; top: 0;">
-            <div id="loadingSpinner" class="spinner-border text-primary position-absolute" role="status" style="display: none;">
+            <img id="imagePreview" src="#" alt="Image Preview" class="img-fluid rounded position-absolute w-100 h-100 object-fit-cover" style="display: none; left: 0; top: 0; z-index: 5;">
+            
+            <div id="loadingSpinner" class="spinner-border text-primary position-absolute" role="status" style="display: none; z-index: 15;">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
         
         <p class="text-muted mt-3 mb-4">โปรดอัปโหลดรูปภาพที่แสดงสรีระของคุณอย่างชัดเจน</p>
         
-        {# ปุ่ม Submit ที่อยู่ตรงกลางและข้อความเปลี่ยน #}
         <div class="d-grid col-6 mx-auto">
             <button type="submit" class="btn btn-primary btn-lg mt-3" id="submitButton" style="display: none;">START MATCHING</button>
         </div>
@@ -70,7 +70,7 @@
         const submitButton = document.getElementById('submitButton');
         const loadingSpinner = document.getElementById('loadingSpinner');
 
-        // Function to reset the upload area
+        // Reset state
         function resetUploadArea() {
             imagePreview.src = '#';
             imagePreview.style.display = 'none';
@@ -78,17 +78,14 @@
             submitButton.style.display = 'none';
             uploadArea.classList.add('border-dashed');
             loadingSpinner.style.display = 'none';
-            uploadArea.style.pointerEvents = 'auto'; // Re-enable click
-            uploadArea.style.opacity = '1'; // Reset opacity
-            imageUpload.value = ''; // Clear the selected file
-            // Optionally uncheck checkboxes here if needed
-            // document.querySelectorAll('input[name="gear_types"]').forEach(checkbox => checkbox.checked = false);
+            uploadArea.style.opacity = '1';
+            imageUpload.value = ''; 
         }
 
-        uploadArea.addEventListener('click', () => {
-            imageUpload.click();
-        });
+        // --- จุดที่แก้ไข: ลบ Event Listener 'click' ของ uploadArea ออกไปเลย ---
+        // เพราะ input มันวางทับอยู่แล้ว การคลิกที่ input จะเปิด dialog เองโดยอัตโนมัติ
 
+        // Handle Image Preview
         imageUpload.addEventListener('change', function(event) {
             if (event.target.files && event.target.files[0]) {
                 const reader = new FileReader();
@@ -96,24 +93,60 @@
                     imagePreview.src = e.target.result;
                     imagePreview.style.display = 'block';
                     uploadContent.style.display = 'none';
-                    submitButton.style.display = 'block'; // Show submit button after image is selected
-                    uploadArea.classList.remove('border-dashed'); // Remove dashed border
+                    submitButton.style.display = 'block';
+                    uploadArea.classList.remove('border-dashed');
                 };
                 reader.readAsDataURL(event.target.files[0]);
             } else {
-                resetUploadArea(); // Reset if no file selected
+                resetUploadArea();
             }
         });
 
-        // Show loading spinner on form submission
-        document.querySelector('form').addEventListener('submit', function() {
+        // AJAX Submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault(); // ป้องกันการ Submit ปกติ
+            
+            const form = e.target;
+            const fd = new FormData(form);
+
+            // Show loading state
             submitButton.style.display = 'none';
-            loadingSpinner.style.display = 'block'; // Show spinner
-            uploadArea.style.pointerEvents = 'none'; // Disable click on upload area during submission
-            uploadArea.style.opacity = '0.7'; // Dim upload area
+            loadingSpinner.style.display = 'block';
+            uploadArea.style.opacity = '0.7';
+            
+            // Disable input while uploading
+            imageUpload.disabled = true; 
+
+            fetch('{% url "upload_image_ajax" %}', {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: fd
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.ok && data.redirect) {
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.error || 'Upload failed');
+                    // Reset UI on error
+                    loadingSpinner.style.display = 'none';
+                    uploadArea.style.opacity = '1';
+                    submitButton.style.display = 'block';
+                    imageUpload.disabled = false;
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('An error occurred during upload.');
+                loadingSpinner.style.display = 'none';
+                uploadArea.style.opacity = '1';
+                submitButton.style.display = 'block';
+                imageUpload.disabled = false;
+            });
         });
         
-        // Ensure initial state is correct (e.g., if page is refreshed)
         resetUploadArea();
     });
 </script>

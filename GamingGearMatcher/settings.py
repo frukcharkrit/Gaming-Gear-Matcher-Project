@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-zwb0i^j29_@u$!h6=%uugt9l46-mx5jxi2gd6m^ezi)ngc_yro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.ngrok-free.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.app']
 
 
 # Application definition
@@ -117,7 +119,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+# 1. กำหนด URL พื้นฐานสำหรับไฟล์ Static
 STATIC_URL = 'static/'
+
+# 2. (ไม่จำเป็นเสมอไป แต่แนะนำ) กำหนด PATH สำหรับการค้นหาไฟล์ Static ในแต่ละ App
+STATICFILES_DIRS = [
+    # เพิ่ม PATH ไปยังโฟลเดอร์ Static ระดับโปรเจกต์ ถ้าคุณสร้างขึ้นมา
+     BASE_DIR / "static", 
+]
+
+# 3. กำหนด PATH สำหรับการรวบรวมไฟล์ Static เมื่อ Deploy (สำคัญสำหรับการ Deploy จริง)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

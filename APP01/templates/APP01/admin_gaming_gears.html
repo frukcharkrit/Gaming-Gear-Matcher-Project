@@ -8,7 +8,7 @@
         <input type="text" class="form-control" placeholder="Search..." aria-label="Search" id="gearSearchInput">
         <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
     </div>
-    <a href="{% url 'admin_add_gaming_gear' %}" class="btn btn-primary">Add Gaming Gear</a>
+    <a href="{% url 'admin_add_gear' %}" class="btn btn-primary">Add Gaming Gear</a>
 </div>
 
 <div class="card p-3">
@@ -33,8 +33,8 @@
                     <td>{{ gear.brand }}</td>
                     <td>{{ gear.price|default:"N/A" }}</td>
                     <td>
-                        <a href="{% url 'admin_edit_gaming_gear' gear.gear_id %}" class="btn btn-sm btn-info me-2">Edit</a>
-                        <form action="{% url 'admin_delete_gaming_gear' gear.gear_id %}" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete {{ gear.name }}?');">
+                        <a href="{% url 'admin_edit_gear' gear.gear_id %}" class="btn btn-sm btn-info me-2">Edit</a>
+                        <form action="{% url 'admin_delete_gear' gear.gear_id %}" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete {{ gear.name }}?');">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
