@@ -10,12 +10,27 @@ class LoginForm(AuthenticationForm):
 
 # --- Custom Registration Form ---
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(max_length=100, help_text='')
-
+    # 1. กำหนดฟิลด์ email ขึ้นมาใหม่เพื่อควบคุมการแสดงผลและการตรวจสอบ
+    email = forms.EmailField(
+        max_length=100, 
+        required=True, 
+        help_text='กรุณากรอกอีเมลที่ถูกต้อง',
+    )
+    
+    # 🚨 2. แก้ไข Meta.fields ให้รวม username, email, password และ password2 🚨
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'password2') 
-    
+        # ต้องระบุฟิลด์รหัสผ่านทั้งสองตัว (`password1`, `password2`) เพื่อให้ UserCreationForm สร้างช่องให้กรอก
+        fields = ('username', 'email', 'password1', 'password2') 
+
+    # 3. เพิ่ม clean_email เพื่อตรวจสอบ Email ซ้ำ
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError("อีเมลนี้ถูกใช้ในการลงทะเบียนแล้ว กรุณาใช้อีเมลอื่น")
+        return email
+
+    # 4. save method ยังคงถูกต้อง
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']

@@ -5,6 +5,8 @@ from django.utils import timezone
 import uuid # สำหรับ share_link ที่ไม่ซ้ำกัน
 
 # --- Custom User Manager ---
+# models.py
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
         if not email:
@@ -12,6 +14,17 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, username=username, **extra_fields)
         user.set_password(password) # <--- บรรทัดนี้สำคัญมาก
+        
+        # 🚨 การแก้ไขที่สำคัญ: กำหนดบทบาท 'Member' 🚨
+        try:
+            member_role = Role.objects.get(role_name='Member')
+        except Role.DoesNotExist:
+            # สร้าง Role 'Member' ถ้ายังไม่มี
+            member_role = Role.objects.create(role_name='Member')
+        
+        # กำหนด Role ให้กับ User
+        user.role = member_role 
+        
         user.save(using=self._db)
         return user
 
@@ -25,13 +38,14 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
-        # เพิ่มบรรทัดนี้เพื่อกำหนดบทบาท Admin ให้กับ Superuser
+        # ส่วนนี้จัดการ Role Admin ได้ถูกต้องแล้ว
         try:
             admin_role = Role.objects.get(role_name='Admin')
         except Role.DoesNotExist:
-            # สร้าง Role 'Admin' ถ้ายังไม่มี
             admin_role = Role.objects.create(role_name='Admin')
-        extra_fields['role'] = admin_role
+        
+        # กำหนด Role 'Admin' ใน extra_fields ก่อนเรียก create_user
+        extra_fields['role'] = admin_role 
 
         return self.create_user(email, username, password, **extra_fields)
 
