@@ -1,0 +1,56 @@
+@startuml Activity_Diagram_Wizard
+start
+:Home Page;
+:Select Category (Mouse, Keyboard, etc.);
+
+partition "Gear Selection Flow" {
+  :Select Specific Gear;
+  if (Same Category Item Exists?) then (yes)
+    :Alert: 1 Item Per Category;
+    :Remove Old Item;
+    :Add New Item;
+  else (no)
+    :Add Item to Session;
+  endif
+}
+
+:Update Widget Display;
+:View Matching Results;
+
+split
+  :Add More Gear (Continue Selection);
+  detach
+split again
+  :Click 'Next: Review & Save';
+  if (Is Logged In?) then (no)
+    :Redirect to Login Page;
+    :User Authenticates;
+    :Redirect back to Save Preset;
+  else (yes)
+  endif
+  
+  :Display Save Preset Form;
+  :Enter Preset Name;
+  :Submit Form;
+  
+  partition "System Process" {
+    :Create Preset Record;
+    :Save Gear Associations;
+    :Clear Temporary Wizard Session;
+  }
+  
+  :Redirect to Preset Detail Page;
+  :View Saved Setup;
+  
+  if (User wants to rate?) then (yes)
+    :Click Star Rating;
+    :Enter Optional Comment;
+    :Submit Rating;
+    :Save to PresetRating;
+    :Display Thank You Message;
+  else (no)
+  endif
+end split
+
+stop
+@enduml

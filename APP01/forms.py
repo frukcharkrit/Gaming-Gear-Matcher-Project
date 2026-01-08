@@ -53,16 +53,17 @@ class ProPlayerForm(forms.ModelForm):
     class Meta:
         model = ProPlayer
         # เปลี่ยน 'gears' เป็น 'gears_text'
-        fields = ['name', 'game', 'image_url', 'gears_text']
+        fields = ['name', 'game', 'bio', 'image', 'gears_text']
         labels = {
             'name': 'ชื่อโปรเพลเยอร์',
             'game': 'เกมที่เล่น',
-            'image_url': 'URL รูปภาพโปรไฟล์',
+            'bio': 'ประวัติ',
+            'image': 'รูปภาพโปรไฟล์',
         }
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'เช่น s1mple', 'class': 'form-control'}),
             'game': forms.TextInput(attrs={'placeholder': 'เช่น Counter-Strike', 'class': 'form-control'}),
-            'image_url': forms.URLInput(attrs={'placeholder': 'เช่น http://example.com/s1mple.jpg', 'class': 'form-control'}),
+            'bio': forms.Textarea(attrs={'placeholder': 'ประวัติของโปรเพลเยอร์', 'class': 'form-control', 'rows': 3}),
         }
     
     def __init__(self, *args, **kwargs):
@@ -103,7 +104,7 @@ class ProPlayerForm(forms.ModelForm):
 class GamingGearForm(forms.ModelForm):
     class Meta:
         model = GamingGear
-        fields = ['name', 'type', 'brand', 'specs', 'price', 'store_url', 'image_url']
+        fields = ['name', 'type', 'brand', 'specs', 'price', 'store_url', 'image']
         labels = {
             'name': 'ชื่ออุปกรณ์',
             'type': 'ประเภท',
@@ -111,7 +112,7 @@ class GamingGearForm(forms.ModelForm):
             'specs': 'สเปค (JSON)',
             'price': 'ราคา',
             'store_url': 'ลิงก์ร้านค้า',
-            'image_url': 'URL รูปภาพ',
+            'image': 'รูปภาพ',
         }
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'เช่น Razer DeathAdder V3 Pro', 'class': 'form-control'}),
@@ -120,7 +121,6 @@ class GamingGearForm(forms.ModelForm):
             'specs': forms.Textarea(attrs={'placeholder': '{"sensor": "Optical", "dpi": "30000"}', 'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'placeholder': 'เช่น 5000', 'class': 'form-control'}),
             'store_url': forms.URLInput(attrs={'placeholder': 'เช่น http://store.com/item', 'class': 'form-control'}),
-            'image_url': forms.URLInput(attrs={'placeholder': 'เช่น http://example.com/gear.jpg', 'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -162,4 +162,26 @@ class RatingForm(forms.ModelForm):
         widgets = {
             'feedback_score': forms.RadioSelect(choices=Rating.feedback_score.field.choices),
             'comment': forms.Textarea(attrs={'rows': 3}),
+        }
+
+class UserEditForm(forms.ModelForm):
+    role = forms.ModelChoiceField(
+        queryset=Role.objects.all(),
+        required=False,
+        label='Role',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'role', 'is_active']
+        labels = {
+            'username': 'Username',
+            'email': 'Email Address',
+            'role': 'User Role',
+            'is_active': 'Active Status (Uncheck to Ban)',
+        }
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }

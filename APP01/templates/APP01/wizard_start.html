@@ -1,0 +1,49 @@
+{% extends 'APP01/base.html' %}
+
+{% block title %}Start Building Your Setup - GamingGearMatcher{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="mb-4" style="font-weight: 800;">Build Your Dream Setup</h1>
+            <p class="lead mb-5">Start by selecting your first piece of gear. Our AI will recommend the rest based on what pros use together.</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm hover-elevate">
+                        <div class="card-body py-5">
+                            <i class="fas fa-mouse fa-4x mb-3 text-primary"></i>
+                            <h3 class="h5 fw-bold">Gaming Mouse</h3>
+                            <a href="{% url 'wizard_select_gear' 'Mouse' %}" class="btn btn-outline-primary mt-3 stretched-link">Start with Mouse</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm hover-elevate">
+                        <div class="card-body py-5">
+                            <i class="fas fa-keyboard fa-4x mb-3 text-success"></i>
+                            <h3 class="h5 fw-bold">Keyboard</h3>
+                            <a href="{% url 'wizard_select_gear' 'Keyboard' %}" class="btn btn-outline-success mt-3 stretched-link">Start with Keyboard</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm hover-elevate">
+                        <div class="card-body py-5">
+                            <i class="fas fa-headphones fa-4x mb-3 text-danger"></i>
+                            <h3 class="h5 fw-bold">Headset</h3>
+                            <a href="{% url 'wizard_select_gear' 'Headset' %}" class="btn btn-outline-danger mt-3 stretched-link">Start with Headset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.hover-elevate { transition: transform 0.2s; }
+.hover-elevate:hover { transform: translateY(-5px); }
+</style>
+{% endblock %}

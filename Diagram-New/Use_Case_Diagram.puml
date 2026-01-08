@@ -1,0 +1,99 @@
+@startuml Use_Case_Diagram
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Guest" as Guest
+actor "Member" as Member
+actor "Admin" as Admin
+
+rectangle "Gaming Gear Matcher System" {
+    
+    ' --- Authentication ---
+    (Register) as UC_Register
+    (Login) as UC_Login
+    (Logout) as UC_Logout
+    (Edit Profile) as UC_EditProfile
+    (Verify Password) as UC_VerifyPwd
+
+    ' --- Gear Selection & Wizard ---
+    (Select Gear Category) as UC_SelCat
+    (Select Specific Gear) as UC_SelGear
+    (View Gear Detail) as UC_ViewGearDetail
+    (View Recommendations) as UC_ViewRec
+    (Autofill from Pro Player) as UC_Autofill
+
+    ' --- Preset Management ---
+    (Save Preset) as UC_SavePreset
+    (Enter Preset Name) as UC_EnterName
+    (View Preset Detail) as UC_ViewPreset
+    (Manage Presets) as UC_ManagePreset
+    (Delete Preset) as UC_DelPreset
+    (Edit Preset Name) as UC_EditPresetName
+    (Replace Gear in Preset) as UC_ReplaceGear
+    (Share Preset) as UC_SharePreset
+    (View Shared Preset) as UC_ViewShared
+    
+    ' --- Rating System ---
+    (Rate Preset) as UC_RatePreset
+    (Write Comment) as UC_WriteComment
+
+    ' --- Admin Functions ---
+    (Manage Users) as UC_ManageUsers
+    (Manage Gaming Gear) as UC_ManageGear
+    (Manage Pro Players) as UC_ManagePro
+    (View Dashboard) as UC_Dashboard
+    (Import/Export Data) as UC_ImportExport
+}
+
+' --- Relationships ---
+
+' Guest Actions
+Guest -- UC_Register
+Guest -- UC_Login
+Guest -- UC_SelCat
+Guest -- UC_SelGear
+Guest -- UC_ViewShared
+
+' Member Actions (Inherits Guest)
+Member --|> Guest
+Member -- UC_Logout
+Member -- UC_EditProfile
+Member -- UC_SavePreset
+Member -- UC_ManagePreset
+
+' Admin Actions (Inherits Member)
+Admin --|> Member
+Admin -- UC_Dashboard
+Admin -- UC_ManageUsers
+Admin -- UC_ManageGear
+Admin -- UC_ManagePro
+
+' --- Interaction Relationships (Include/Extend) ---
+
+' Authentication Logic
+UC_Login ..> UC_VerifyPwd : <<include>>
+
+' Wizard Flow Logic
+UC_SelCat <.. UC_SelGear : <<include>>
+UC_SelGear <.. UC_ViewGearDetail : <<extend>>
+UC_ViewRec ..> UC_SelGear : <<include>>
+UC_ViewRec <.. UC_Autofill : <<extend>>
+
+' Preset Logic
+UC_SavePreset ..> UC_EnterName : <<include>>
+UC_SavePreset ..> UC_ViewPreset : <<include>>
+UC_ManagePreset ..> UC_ViewPreset : <<include>>
+UC_ManagePreset <.. UC_DelPreset : <<extend>>
+UC_ViewPreset <.. UC_EditPresetName : <<extend>>
+UC_ViewPreset <.. UC_ReplaceGear : <<extend>>
+UC_ViewPreset <.. UC_SharePreset : <<extend>>
+
+' Rating Logic
+UC_ViewPreset <.. UC_RatePreset : <<extend>>
+UC_RatePreset <.. UC_WriteComment : <<extend>>
+
+' Admin Logic
+UC_ManageGear <.. UC_ImportExport : <<extend>>
+UC_ManagePro <.. UC_ImportExport : <<extend>>
+
+@enduml

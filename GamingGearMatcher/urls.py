@@ -17,14 +17,13 @@ Including another URLconf
 # GamingGearMatcher/urls.py
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.conf import settings # สำหรับ MEDIA
 from django.conf.urls.static import static # สำหรับ MEDIA
 
 urlpatterns = [
-    path('', include('APP01.urls')),
     path('admin/', admin.site.urls),
-]
-
-# สำหรับการแสดงผลไฟล์ Media (เช่นรูปภาพที่อัปโหลด) ในโหมด Development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('accounts/', include('allauth.urls')),  # Social auth & password reset URLs
+    path('', include('APP01.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

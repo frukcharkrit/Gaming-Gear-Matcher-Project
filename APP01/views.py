@@ -10,12 +10,16 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage # สำหรับอัปโหลดไฟล์
 from django.conf import settings # สำหรับเข้าถึง MEDIA_ROOT
-from django.utils import timezone # เพิ่ม import นี้
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models import Count
+from django.db.models.functions import TruncDate # เพิ่ม import นี้
 
 import json # เพิ่ม import นี้สำหรับ json.loads
 
 from .models import User, Role, ProPlayer, GamingGear, Preset, Rating, AIModel, Alert, ProPlayerGear, PresetGear # นำเข้า Models ของคุณ
 from .forms import RegisterForm, ProPlayerForm, GamingGearForm, PresetForm, AIModelForm, RatingForm, LoginForm # เพิ่ม RatingForm
+from .forms import UserEditForm
 
 # สำหรับ AI และ Image Processing
 import os
@@ -67,7 +71,7 @@ def register(request):
     return render(request, 'APP01/register.html', {'form': form})
 
 def is_admin(user):
-    return user.is_authenticated and user.role and user.role.role_name == 'Admin'
+    return user.is_authenticated and (user.is_superuser or (user.role and user.role.role_name == 'Admin'))
 
 def user_login(request):
     next_url = request.POST.get('next') or request.GET.get('next')
@@ -84,12 +88,30 @@ def user_login(request):
                 if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
                     return redirect(next_url)
                 if is_admin(user):
-                    return redirect('/admin/')
+                    return redirect('admin_dashboard')
                 return redirect('home_member')
             else:
-                messages.error(request, 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
+                 messages.error(request, 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
         else:
-            messages.error(request, 'โปรดกรอกข้อมูลให้ครบถ้วน')
+             # กรณีที่ Validation ไม่ผ่าน (อาจเพราะบัญชีถูกแบน หรือกรอกผิด)
+             username_input = request.POST.get('username')
+             
+             if username_input:
+                try:
+                    existing_user = User.objects.get(username=username_input)
+                    if not existing_user.is_active:
+                        banned_msg = "บัญชีของคุณถูกระงับการใช้งาน"
+                        if existing_user.banned_at:
+                            formatted_time = timezone.localtime(existing_user.banned_at).strftime('%d/%m/%Y %H:%M')
+                            banned_msg += f" เมื่อวันที่ {formatted_time}"
+                        
+                        messages.error(request, banned_msg)
+                    else:
+                        messages.error(request, 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
+                except User.DoesNotExist:
+                     messages.error(request, 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
+             else:
+                messages.error(request, 'โปรดกรอกข้อมูลให้ครบถ้วน')
     else:
         form = LoginForm()
     context = {'form': form}
@@ -117,8 +139,87 @@ def forgot_password(request):
 
 # APP01/views.py (แก้ไขทับฟังก์ชันเดิม)
 
+# --- New Recommendation Flow (Wizard Style) ---
+
+def start_matching(request):
+    """
+    Step 1: Start finding gears.
+    User selects their first gear (usually Mouse or Keyboard) manually.
+    Then we recommend the rest.
+    """
+    # Clear previous session data
+    if 'match_result' in request.session:
+        del request.session['match_result']
+    if 'temp_preset_gears' in request.session:
+        del request.session['temp_preset_gears']
+
+    # Redirect to gear search/selection page
+    # For now, let's redirect to a page where they pick a category to start
+    # Or simplified: Start by picking a Mouse
+    return render(request, 'APP01/wizard_start.html')
+
+def wizard_select_gear(request, category):
+    """
+    Step 2: User selects a specific gear from a category.
+    """
+    gears = GamingGear.objects.filter(type=category)
+    return render(request, 'APP01/wizard_select_gear.html', {'gears': gears, 'category': category})
+
+def wizard_add_gear(request, gear_id):
+    """
+    Step 3: Add selected gear to session and show recommendations.
+    Enforces 1 item per category - replaces if category already exists.
+    """
+    gear = get_object_or_404(GamingGear, gear_id=gear_id)
+    
+    # Initialize session for wizard if not exists
+    if 'wizard_preset' not in request.session:
+        request.session['wizard_preset'] = []
+    
+    wizard_preset = request.session['wizard_preset']
+    
+    # Remove any existing gear of the same type
+    existing_gears = GamingGear.objects.filter(gear_id__in=wizard_preset)
+    replaced = False
+    for existing in existing_gears:
+        if existing.type == gear.type:
+            wizard_preset.remove(existing.gear_id)
+            replaced = True
+            messages.info(request, f'Replaced {existing.type}: {existing.name} → {gear.name}')
+            break
+    
+    # Add the new gear
+    if gear_id not in wizard_preset:
+        wizard_preset.append(gear_id)
+        if not replaced:
+            messages.success(request, f'Added {gear.type}: {gear.name}')
+        request.session['wizard_preset'] = wizard_preset
+        request.session.modified = True
+    
+    return redirect('matching_result')
+
+def wizard_remove_gear(request, gear_id):
+    """Remove a gear from wizard preset"""
+    if 'wizard_preset' in request.session:
+        wizard_preset = request.session['wizard_preset']
+        if gear_id in wizard_preset:
+            wizard_preset.remove(gear_id)
+            request.session['wizard_preset'] = wizard_preset
+            request.session.modified = True
+            
+            # Get gear name for message
+            try:
+                gear = GamingGear.objects.get(gear_id=gear_id)
+                messages.success(request, f'Removed {gear.type}: {gear.name}')
+            except GamingGear.DoesNotExist:
+                messages.success(request, 'Gear removed')
+    
+    return redirect('matching_result')
+
 def upload_image_and_match(request):
-    return _handle_upload(request, is_ajax=False)
+    # API Legacy - Redirect to new flow
+    return redirect('start_matching')
+
 
 def upload_image_ajax(request):
     return _handle_upload(request, is_ajax=True)
@@ -156,48 +257,43 @@ def _handle_upload(request, is_ajax):
                     'temp_preset_gears': []
                 }
             else:
-                # === [แก้ไข] กรณี Demo: สร้าง 3 คน ===
-                demo_players_list = [
-                    {
-                        'player_id': 1,
-                        'name': 'Faker (Demo)',
-                        'bio': 'The Unkillable Demon King. T1 Mid Laner.',
-                        'image_url': 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/f75586c584d20160299944d3d61e8bc715253c9d-1232x1232.jpg',
-                        'gears': [
-                            {'gear_id': 101, 'name': 'Razer DeathAdder V3', 'category': 'Mouse', 'image_url': 'https://m.media-amazon.com/images/I/61p2-hsvjFL.jpg'},
-                            {'gear_id': 102, 'name': 'Razer Huntsman V3', 'category': 'Keyboard', 'image_url': 'https://m.media-amazon.com/images/I/71X8gC6qJAL.jpg'},
-                        ]
-                    },
-                    {
-                        'player_id': 2,
-                        'name': 'TenZ (Demo)',
-                        'bio': 'Valorant Superstar. Known for crisp aim.',
-                        'image_url': 'https://liquipedia.net/commons/images/thumb/6/62/Sentinels_TenZ_at_Champions_Madrid_2024.jpg/600px-Sentinels_TenZ_at_Champions_Madrid_2024.jpg',
-                        'gears': [
-                            {'gear_id': 201, 'name': 'Endgame Gear XM2we', 'category': 'Mouse', 'image_url': 'https://m.media-amazon.com/images/I/51w+KkL-tDL._AC_UF1000,1000_QL80_.jpg'},
-                            {'gear_id': 202, 'name': 'Wooting 60HE', 'category': 'Keyboard', 'image_url': 'https://m.media-amazon.com/images/I/51u8u-YKx2L._AC_UF894,1000_QL80_.jpg'},
-                            {'gear_id': 203, 'name': 'HyperX Cloud II', 'category': 'Headset', 'image_url': 'https://m.media-amazon.com/images/I/71M-r6V1q+L.jpg'},
-                        ]
-                    },
-                    {
-                        'player_id': 3,
-                        'name': 'S1mple (Demo)',
-                        'bio': 'CS:GO/CS2 GOAT. AWPer Legend.',
-                        'image_url': 'https://liquipedia.net/commons/images/thumb/e/e3/S1mple_at_IEM_Katowice_2020.jpg/600px-S1mple_at_IEM_Katowice_2020.jpg',
-                        'gears': [
-                            {'gear_id': 301, 'name': 'Logitech G Pro X Superlight', 'category': 'Mouse', 'image_url': 'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1'},
-                            {'gear_id': 302, 'name': 'Logitech G Pro X 2', 'category': 'Headset', 'image_url': 'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-2-lightspeed/gallery/pro-x-2-lightspeed-black-gallery-1.png?v=1'},
-                        ]
-                    }
-                ]
+                # === ดึงข้อมูล Pro Player จริงจาก Database ===
+                # === Real Matching Logic ===
+                # Simple matching: Select a ProPlayer from database
+                # Future enhancement: Use ML/CV to analyze hand size and match to similar ProPlayers
                 
+                from random import choice
+                
+                # Get all ProPlayers with images and gears
+                available_players = ProPlayer.objects.filter(
+                    image__isnull=False,
+                    proplayergear__isnull=False
+                ).exclude(image='').distinct()
+                
+                if not available_players.exists():
+                    # Fallback: Get any player with image
+                    available_players = ProPlayer.objects.filter(
+                        image__isnull=False
+                    ).exclude(image='')
+                
+                if not available_players.exists():
+                    messages.error(request, 'No Pro Players available in database. Please import player data first.')
+                    return redirect('upload_image')
+                
+                # Simple matching: Choose random ProPlayer
+                # TODO: Implement real matching based on hand size analysis
+                matched_player = choice(list(available_players))
+                
+                # Store match result in session
                 request.session['match_result'] = {
-                    'mode': 'demo', # ระบุ Mode
+                    'mode': 'real',
+                    'matched_player_id': matched_player.player_id,
                     'uploaded_image_url': uploaded_file_url,
-                    'demo_players_data': demo_players_list, # เก็บเป็น List
                     'selected_gears': selected_gears,
-                    'temp_preset_gears': []
+                    'temp_preset_gears': [],
+                    'min_distance': 0.0  # Placeholder for future ML distance metric
                 }
+
 
             if is_ajax:
                 return JsonResponse({'ok': True, 'redirect': reverse('matching_result'), 'uploaded_image_url': uploaded_file_url})
@@ -217,53 +313,58 @@ def _handle_upload(request, is_ajax):
 
 
 def matching_result(request):
-    match_result = request.session.get('match_result')
-    if not match_result:
-        return redirect('upload_image')
-
-    # เตรียมตัวแปรสำหรับส่งไป Template
-    # เราจะแปลงข้อมูลให้อยู่ในรูปแบบ List เสมอ (แม้เจอคนเดียว) เพื่อให้ HTML วนลูปได้ง่าย
-    match_candidates = []
-
-    if match_result.get('mode') == 'real':
-        # กรณี Real DB (แปลงคนเดียวให้เป็น List)
-        matched_player = get_object_or_404(ProPlayer, player_id=match_result['matched_player_id'])
-        gears_qs = GamingGear.objects.filter(proplayergear__player=matched_player)
-        
-        gears_list = []
-        for g in gears_qs:
-            gears_list.append({
-                'gear_id': g.gear_id,
-                'name': g.name,
-                'category': getattr(g, 'category', 'Gear'),
-                'image_url': g.image.url if g.image else None,
-            })
-            
-        match_candidates.append({
-            'player': matched_player, # DB Object
-            'gears': gears_list,
-            'is_demo': False
-        })
-        
-    elif match_result.get('mode') == 'demo':
-        # === [แก้ไข] กรณี Demo: รับ List มาใช้เลย ===
-        demo_list = match_result.get('demo_players_data', [])
-        for demo_p in demo_list:
-            match_candidates.append({
-                'player': demo_p, # Dict
-                'gears': demo_p['gears'], # List of Dicts
-                'is_demo': True
-            })
-
-    # จัดการ Selected Gears (Checkbox)
-    selected_gears = match_result.get('selected_gears', [])
+    # DEBUG
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.warning(f"🔥 matching_result - wizard_preset session: {request.session.get('wizard_preset', 'NONE')}")
     
-    # จัดการ Temp Preset (สำหรับปุ่ม Add/Remove)
+    """
+    Display current selected gears and recommendations based on Association Rules.
+    """
+    # Get selected gears from session (Wizard flow)
+    # OR from temp_preset (Legacy flow compatibility)
+    selected_gear_ids = request.session.get('wizard_preset', [])
+    
+    # Should have at least one gear selected to show recommendations
+    if not selected_gear_ids:
+        # If no gears selected, maybe redirect to start?
+        # Or show empty state?
+        pass
+
+    selected_gears = GamingGear.objects.filter(gear_id__in=selected_gear_ids)
+    
+    # === Get Recommendations via Association Rules ===
+    from APP01.association_rules import get_gear_recommendations
+    
+    # Get top 5 recommendations, excluding types we already have?
+    # For now, just get general recommendations
+    recommendations = get_gear_recommendations(selected_gear_ids, top_n=5)
+    
+    context = {
+        'selected_gears': selected_gears,
+        'recommendations': recommendations,
+    }
+    return render(request, 'APP01/matching_result.html', context)
+    
+    # Get all gears for this ProPlayer
+    gears_qs = GamingGear.objects.filter(proplayergear__player=matched_player)
+    gears_list = []
+    for g in gears_qs:
+        gears_list.append({
+            'gear_id': g.gear_id,
+            'name': g.name,
+            'category': getattr(g, 'type', 'Gear'),
+            'image_url': g.image.url if g.image else None,
+        })
+    
+    # Prepare context
+    selected_gears = match_result.get('selected_gears', [])
     temp_preset_ids = match_result.get('temp_preset_gears', [])
 
     context = {
         'uploaded_image_url': match_result['uploaded_image_url'],
-        'match_candidates': match_candidates, # ส่งเป็น List ไปแทน
+        'matched_player': matched_player,
+        'matched_gears': gears_list,
         'selected_gears': selected_gears,
         'temp_preset_ids': temp_preset_ids,
         'is_member': request.user.is_authenticated and request.user.role and request.user.role.role_name == 'Member',
@@ -302,6 +403,9 @@ def edit_temp_preset(request, action, gear_id=None):
         # ถ้ามีในลิสต์ ให้ลบออก
         if gear_id in current_temp_gears:
             current_temp_gears.remove(gear_id)
+            # ถ้าลบจนหมด ให้ตั้ง flag เพื่อไม่ให้ autofill
+            if not current_temp_gears:
+                match_result['user_cleared_preset'] = True
             # messages.success(request, 'Item removed.')
 
     # 4. บันทึกค่าใหม่กลับลง Session
@@ -329,22 +433,35 @@ def gear_detail(request, gear_id):
     try:
         gear_obj = GamingGear.objects.get(gear_id=gear_id)
         
-        # แปลงเป็น Dict
+        # แปลงเป็น Dict พร้อม specs ทั้งหมด
+        import json
+        specs_dict = {}
+        try:
+            if gear_obj.specs:
+                specs_dict = json.loads(gear_obj.specs)
+        except:
+            pass
+            
         gear = {
             'gear_id': gear_obj.gear_id,
             'name': gear_obj.name,
-            'category': getattr(gear_obj, 'category', 'Gaming Gear'),
+            'type': gear_obj.type,
+            'brand': gear_obj.brand,
+            'category': gear_obj.type,  # type ใช้เป็น category
             'image_url': gear_obj.image.url if gear_obj.image else None,
             'description': getattr(gear_obj, 'description', ''),
+            'price': gear_obj.price,
+            'store_url': gear_obj.store_url,
+            'specs': specs_dict,  # เก็บเป็น dict
         }
 
         # หาอุปกรณ์อื่นๆ ในประเภทเดียวกัน (ไม่รวมตัวเอง)
-        related_qs = GamingGear.objects.filter(category=gear_obj.category).exclude(gear_id=gear_id)[:4]
+        related_qs = GamingGear.objects.filter(type=gear_obj.type).exclude(gear_id=gear_id)[:4]
         for r in related_qs:
             related_gears.append({
                 'gear_id': r.gear_id,
                 'name': r.name,
-                'category': getattr(r, 'category', 'Gaming Gear'),
+                'category': r.type,
                 'image_url': r.image.url if r.image else None,
             })
 
@@ -399,8 +516,9 @@ def pro_player_detail(request, player_id):
         
         # จัด Format ข้อมูลให้ Template ใช้ง่าย
         pro_player = {
-            'id': pro_player_obj.player_id,
+            'player_id': pro_player_obj.player_id,
             'name': pro_player_obj.name,
+            'game': pro_player_obj.game,
             'bio': getattr(pro_player_obj, 'bio', ''),
             'image_url': pro_player_obj.image.url if pro_player_obj.image else None,
             'game_logo': 'https://upload.wikimedia.org/wikipedia/commons/1/14/Valorant_logo_-_pink_color_version.svg' # ตัวอย่างใส่ default
@@ -473,6 +591,24 @@ def pro_player_detail(request, player_id):
     }
     return render(request, 'APP01/pro_player_detail.html', context)
 
+def global_search(request):
+    """ค้นหาทั้ง Pro Player และ Gaming Gear พร้อมกัน"""
+    query = request.GET.get('q', '').strip()
+    
+    pro_players = []
+    gears = []
+    
+    if query:
+        pro_players = ProPlayer.objects.filter(name__icontains=query)[:10]
+        gears = GamingGear.objects.filter(name__icontains=query)[:10]
+    
+    context = {
+        'query': query,
+        'pro_players': pro_players,
+        'gears': gears,
+    }
+    return render(request, 'APP01/search_results.html', context)
+
 def search_gear(request):
     query = request.GET.get('q')
     gears = GamingGear.objects.all()
@@ -505,70 +641,259 @@ def home_member(request):
     return render(request, 'APP01/home_member.html', context)
 
 @login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
-def save_preset(request):
-    # NOTE: save_preset implementation was moved/updated later in this file.
-    # This placeholder ensures older references won't break if the function
-    # is imported from other places in the code during development.
-    messages.error(request, 'Preset saving is handled on the next step. Please try again from the match result.')
-    return redirect('matching_result')
+def user_profile(request):
+    """แสดงโปรไฟล์ของ User พร้อม Dashboard Analytics"""
+    from django.db.models import Count
+    from django.db.models.functions import TruncMonth
+    from datetime import datetime, timedelta
+    import json
+    
+    # Basic data
+    user_presets = Preset.objects.filter(user=request.user).order_by('-created_at')[:5]
+    user_ratings = Rating.objects.filter(user=request.user).order_by('-rated_at')[:5]
+    
+    # Dashboard Analytics
+    total_presets = Preset.objects.filter(user=request.user).count()
+    total_ratings = Rating.objects.filter(user=request.user).count()
+    
+    # Preset creation timeline (by month) for chart
+    preset_timeline = (
+        Preset.objects.filter(user=request.user)
+        .annotate(month=TruncMonth('created_at'))
+        .values('month')
+        .annotate(count=Count('preset_id'))
+        .order_by('month')
+    )
+    
+    # Format data for Chart.js
+    chart_labels = []
+    chart_data = []
+    for item in preset_timeline:
+        if item['month']:
+            chart_labels.append(item['month'].strftime('%b %Y'))
+            chart_data.append(item['count'])
+    
+    # Recent activity stats
+    now = datetime.now()
+    last_7_days = now - timedelta(days=7)
+    last_30_days = now - timedelta(days=30)
+    
+    presets_last_7_days = Preset.objects.filter(
+        user=request.user,
+        created_at__gte=last_7_days
+    ).count()
+    
+    presets_last_30_days = Preset.objects.filter(
+        user=request.user,
+        created_at__gte=last_30_days
+    ).count()
+    
+    # Latest preset date
+    latest_preset = Preset.objects.filter(user=request.user).order_by('-created_at').first()
+    
+    # Rating stats
+    good_ratings = Rating.objects.filter(user=request.user, feedback_score='Good').count()
+    neutral_ratings = Rating.objects.filter(user=request.user, feedback_score='Neutral').count()
+    bad_ratings = Rating.objects.filter(user=request.user, feedback_score='Bad').count()
+    
+    context = {
+        'user_presets': user_presets,
+        'user_ratings': user_ratings,
+        # Dashboard stats
+        'total_presets': total_presets,
+        'total_ratings': total_ratings,
+        'presets_last_7_days': presets_last_7_days,
+        'presets_last_30_days': presets_last_30_days,
+        'latest_preset': latest_preset,
+        # Chart data
+        'chart_labels_json': json.dumps(chart_labels),
+        'chart_data_json': json.dumps(chart_data),
+        # Rating breakdown
+        'good_ratings': good_ratings,
+        'neutral_ratings': neutral_ratings,
+        'bad_ratings': bad_ratings,
+    }
+    return render(request, 'APP01/profile.html', context)
 
 @login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
-@login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
-def submit_rating(request): # เปลี่ยนจาก rate_match เป็น submit_rating
-    match_result = request.session.get('match_result')
-    if not match_result:
-        messages.error(request, 'No match result to rate.')
-        return redirect('upload_image')
-
-    # Only allow rating when we have a real matched pro (not demo)
-    matched_player_id = match_result.get('matched_player_id')
-    if not matched_player_id:
-        messages.error(request, 'Cannot rate a demo match. Please perform a real match to rate.')
-        return redirect('matching_result')
-
-    matched_player = get_object_or_404(ProPlayer, player_id=matched_player_id)
-
+def edit_profile(request):
+    """แก้ไขโปรไฟล์ของ User"""
     if request.method == 'POST':
-        form = RatingForm(request.POST)
-        if form.is_valid():
-            # ตรวจสอบว่าผู้ใช้เคยให้คะแนน ProPlayer นี้แล้วหรือยัง
-            existing_rating = Rating.objects.filter(user=request.user, proplayer=matched_player).first()
-            if existing_rating:
-                messages.warning(request, 'You have already rated this Pro Player for a previous match.')
-            else:
-                rating = form.save(commit=False)
-                rating.user = request.user
-                rating.proplayer = matched_player # กำหนด ProPlayer ที่ถูกให้คะแนน
-                # Attach metadata from session for later analysis/training
-                try:
-                    rating.match_image_url = match_result.get('uploaded_image_url')
-                except Exception:
-                    rating.match_image_url = None
-                try:
-                    # store selected gear ids as JSON string
-                    rating.selected_gears = json.dumps(match_result.get('temp_preset_gears', []))
-                except Exception:
-                    rating.selected_gears = None
-                try:
-                    rating.match_distance = float(match_result.get('min_distance')) if match_result.get('min_distance') is not None else None
-                except Exception:
-                    rating.match_distance = None
-                rating.save()
-                messages.success(request, 'Thank you for your feedback!')
+        # รับค่าจากฟอร์ม
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        
+        # ตรวจสอบว่า username ซ้ำกับคนอื่นหรือไม่
+        if User.objects.filter(username=username).exclude(user_id=request.user.user_id).exists():
+            messages.error(request, 'Username นี้ถูกใช้แล้ว')
+            return redirect('edit_profile')
+        
+        # ตรวจสอบว่า email ซ้ำกับคนอื่นหรือไม่
+        if User.objects.filter(email=email).exclude(user_id=request.user.user_id).exists():
+            messages.error(request, 'Email นี้ถูกใช้แล้ว')
+            return redirect('edit_profile')
+        
+        # อัพเดทข้อมูล
+        request.user.username = username
+        request.user.email = email
+        
+        # จัดการรูปโปรไฟล์
+        if request.FILES.get('profile_image'):
+            request.user.profile_image = request.FILES['profile_image']
+        
+        request.user.save()
+        
+        messages.success(request, 'อัพเดทโปรไฟล์สำเร็จ!')
+        return redirect('user_profile')
+    
+    return render(request, 'APP01/edit_profile.html')
 
-            # Clear match_result session after rating
-            if 'match_result' in request.session:
-                del request.session['match_result']
-            return redirect('home_member')
-        else:
-            messages.error(request, 'Error submitting your rating. Please check your input.')
-    return redirect('matching_result') # ถ้าไม่ใช่ POST หรือมีข้อผิดพลาด ให้กลับไปหน้าผลลัพธ์
+from django.utils import timezone # Added this import for timezone.now()
+
+# @login_required(login_url='login')  # TEMPORARY DISABLE FOR DEBUG
+def save_preset(request):
+    import logging
+    logger = logging.getLogger(__name__)
+    # DEBUG: Write to file to verify function execution
+    with open('/tmp/debug_save_preset.txt', 'a') as f:
+        f.write("=" * 50 + "\n")
+        f.write(f"Time: {timezone.now()}\n")
+        f.write(f"User: {request.user.username}\n")
+        f.write(f"Session keys: {list(request.session.keys())}\n")
+        f.write(f"wizard_preset: {request.session.get('wizard_preset', 'NOT FOUND')}\n")
+        f.write(f"match_result: {request.session.get('match_result', 'NOT FOUND')}\n")
+        f.write("=" * 50 + "\n")
+    logger.warning("🔥 ENTERED save_preset function!")
+    logger.warning(f"User authenticated: {request.user.is_authenticated}")
+    
+    """
+    แสดงหน้าบันทึก Preset โดยดึงอุปกรณ์จาก Session
+    - ดึง wizard_preset จาก Session (ใหม่)
+    - แสดงรายการอุปกรณ์ที่เลือกไว้
+    - บันทึกเป็น Preset เมื่อกด Submit
+    """
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    # DEBUG: Log session data
+    logger.warning("=" * 50)
+    logger.warning("DEBUG save_preset:")
+    logger.warning(f"Session keys: {list(request.session.keys())}")
+    logger.warning(f"wizard_preset: {request.session.get('wizard_preset', 'NOT FOUND')}")
+    logger.warning(f"match_result: {request.session.get('match_result', 'NOT FOUND')}")
+    logger.warning("=" * 50)
+    
+    # Get from wizard flow first, fallback to old match_result
+    wizard_gear_ids = request.session.get('wizard_preset', [])
+    
+    if not wizard_gear_ids:
+        # Fallback to old flow
+        match_result = request.session.get('match_result', {})
+        wizard_gear_ids = match_result.get('temp_preset_gears', [])
+    
+    # ถ้าไม่มีอุปกรณ์ใน Session ให้กลับไปหน้า Matching Result
+    if not wizard_gear_ids:
+        messages.warning(request, 'No gears selected. Please select gears from the matching result page.')
+        return redirect('matching_result')
+    
+    # ดึงข้อมูลอุปกรณ์จาก Database
+    gears = GamingGear.objects.filter(gear_id__in=wizard_gear_ids)
+    
+    # สร้าง list ของ dict เพื่อส่งไปแสดงในหน้า Template
+    display_gears = []
+    for gear in gears:
+        display_gears.append({
+            'gear_id': gear.gear_id,
+            'name': gear.name,
+            'category': gear.type,  # ใช้ .type เนื่องจาก model ใช้ field นี้
+            'image_url': gear.image.url if gear.image else None,
+        })
+    
+    if request.method == 'POST':
+        # รับชื่อ Preset จาก Form
+        preset_name = request.POST.get('name', '').strip()
+        
+        if not preset_name:
+            messages.error(request, 'Preset name is required.')
+            return render(request, 'APP01/save_preset.html', {
+                'display_gears': display_gears,
+                'form': {'name': preset_name},
+            })
+        
+        # สร้าง Preset ใหม่
+        new_preset = Preset.objects.create(
+            user=request.user,
+            name=preset_name
+        )
+        
+        # เพิ่มอุปกรณ์เข้า Preset
+        for idx, gear in enumerate(gears, start=1):
+            PresetGear.objects.create(
+                preset=new_preset,
+                gear=gear,
+                order=idx
+            )
+        
+        # ล้างข้อมูล session
+        if 'wizard_preset' in request.session:
+            del request.session['wizard_preset']
+        request.session.modified = True
+        
+        messages.success(request, f'Preset "{preset_name}" saved successfully!')
+        return redirect('preset_detail', preset_id=new_preset.preset_id)
+    
+    # GET request - show form
+    from APP01.forms import PresetForm
+    form = PresetForm()
+    gear_ids_string = ','.join([str(gid) for gid in wizard_gear_ids])
+    
+    context = {
+        'display_gears': display_gears,
+        'form': form,
+        'gear_ids_string': gear_ids_string,
+    }
+    
+    return render(request, 'APP01/save_preset.html', context)
 
 @login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
+def submit_rating(request):
+    """Submit rating for a preset with optional comment"""
+    if request.method != 'POST':
+        messages.error(request, 'Invalid request method.')
+        return redirect('home_member')
+    
+    preset_id = request.POST.get('preset_id')
+    score = request.POST.get('score')
+    comment = request.POST.get('comment', '').strip()
+    
+    if not preset_id or not score:
+        messages.error(request, 'Missing required rating information.')
+        return redirect('home_member')
+    
+    try:
+        preset = Preset.objects.get(preset_id=preset_id, user=request.user)
+    except Preset.DoesNotExist:
+        messages.error(request, 'Preset not found.')
+        return redirect('home_member')
+    
+    # Map score to feedback_score
+    score_int = int(score)
+    if score_int >= 4:
+        feedback_score = 'Good'
+    elif score_int == 3:
+        feedback_score = 'Neutral'
+    else:
+        feedback_score = 'Bad'
+    
+    # Store feedback (For now, just show in messages)
+    # TODO: Create PresetRating model to store ratings properly
+    messages.success(request, f'Thank you for your {score}/5 star rating!')
+    if comment:
+        messages.info(request, f'Your feedback: "{comment[:100]}"')
+    
+    return redirect('preset_detail', preset_id=preset.preset_id)
+
+@login_required(login_url='login')
 def manage_presets(request):
     """ดึงรายการ Presets ทั้งหมดของ User ปัจจุบันมาแสดงผล"""
     # ดึง Presets ทั้งหมดของ User ปัจจุบัน เรียงตามวันที่สร้างล่าสุด
@@ -581,7 +906,6 @@ def manage_presets(request):
     return render(request, 'APP01/manage_presets.html', context)
 
 @login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
 def preset_detail(request, preset_id):
     # ดึงข้อมูล Preset (ต้องเป็นของ User คนปัจจุบันเท่านั้น)
     preset = get_object_or_404(Preset, preset_id=preset_id, user=request.user)
@@ -609,14 +933,41 @@ def preset_detail(request, preset_id):
             'pro_img_url': pro_img_url
         })
 
+    
+    # Check if user has already rated this preset
+    from APP01.models import PresetRating
+    user_rating = PresetRating.objects.filter(user=request.user, preset=preset).first()
+
     context = {
         'preset': preset,
         'detailed_items': detailed_items,
+        'user_rating': user_rating,
     }
     return render(request, 'APP01/preset_detail.html', context)
 
+
 @login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
+def submit_preset_rating(request, preset_id):
+    """Submit rating for a preset"""
+    if request.method != 'POST':
+        return redirect('preset_detail', preset_id=preset_id)
+    
+    preset = get_object_or_404(Preset, preset_id=preset_id, user=request.user)
+    score = request.POST.get('score')
+    comment = request.POST.get('comment', '').strip()
+    
+    if score:
+        from APP01.models import PresetRating
+        PresetRating.objects.update_or_create(
+            user=request.user,
+            preset=preset,
+            defaults={'score': int(score), 'comment': comment, 'created_at': timezone.now()}
+        )
+        messages.success(request, 'Thank you for rating your preset!')
+    
+    return redirect('preset_detail', preset_id=preset_id)
+
+@login_required(login_url='login')
 def edit_preset(request, preset_id):
     preset = get_object_or_404(Preset, preset_id=preset_id, user=request.user)
     current_gears = list(PresetGear.objects.filter(preset=preset).order_by('order'))
@@ -666,7 +1017,6 @@ def edit_preset(request, preset_id):
 # APP01/views.py (เพิ่มฟังก์ชันนี้)
 
 @login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
 def edit_preset_name(request, preset_id):
     """ฟังก์ชันสำหรับแก้ไขชื่อ Preset โดยเฉพาะ (ใช้จาก Modal ในหน้า Detail)"""
     
@@ -746,12 +1096,50 @@ def admin_dashboard(request):
     # ดึง Alert ที่ยังไม่อ่าน
     unread_alerts = Alert.objects.filter(is_read=False).order_by('-created_at')[:10]
 
+    # --- Analytics Graph Data (Last 30 Days) ---
+    days = 30
+    today = timezone.now().date()
+    start_date = today - timedelta(days=days-1)
+
+    # Aggregate daily new users
+    users_daily = User.objects.filter(created_at__date__gte=start_date)\
+        .annotate(date=TruncDate('created_at'))\
+        .values('date')\
+        .annotate(count=Count('user_id'))\
+        .order_by('date')
+    
+    # Aggregate daily presets (Movement activity)
+    presets_daily = Preset.objects.filter(created_at__date__gte=start_date)\
+        .annotate(date=TruncDate('created_at'))\
+        .values('date')\
+        .annotate(count=Count('preset_id'))\
+        .order_by('date')
+
+    # Map to dictionaries
+    user_dict = {item['date']: item['count'] for item in users_daily}
+    preset_dict = {item['date']: item['count'] for item in presets_daily}
+
+    # Prepare lists for Chart.js
+    chart_labels = []
+    chart_user_data = []
+    chart_preset_data = []
+
+    for i in range(days):
+        current_date = start_date + timedelta(days=i)
+        formatted_date = current_date.strftime('%d %b') # e.g. "25 Dec"
+        chart_labels.append(formatted_date)
+        chart_user_data.append(user_dict.get(current_date, 0))
+        chart_preset_data.append(preset_dict.get(current_date, 0))
+
     context = {
         'total_users': total_users,
         'total_pro_players': total_pro_players,
         'total_gears': total_gears,
         'total_presets': total_presets,
         'unread_alerts': unread_alerts,
+        'chart_labels': chart_labels,
+        'chart_user_data': chart_user_data,
+        'chart_preset_data': chart_preset_data,
     }
     return render(request, 'APP01/admin_dashboard.html', context)
 
@@ -877,26 +1265,24 @@ def admin_users(request): # เปลี่ยนชื่อจาก manage_me
 
 @login_required(login_url='login')
 @user_passes_test(is_admin, login_url='home_member')
-def admin_edit_user(request, user_id): # ฟังก์ชันต้องรับ user_id
-    """
-    หน้าสำหรับแก้ไขข้อมูลผู้ใช้งาน
-    """
-    try:
-        user_to_edit = User.objects.get(pk=user_id)
-    except User.DoesNotExist:
-        # หากหา user ไม่เจอ ให้จัดการตามความเหมาะสม เช่น Redirect หรือแสดง 404
-        return redirect('admin_users') # หรือ render(request, '404.html')
-        
-    # หากมีการ submit form POST
+def admin_edit_user(request, user_id):
+    user_to_edit = get_object_or_404(User, pk=user_id)
+
     if request.method == 'POST':
-        # ... Logic การบันทึกข้อมูลที่ถูกแก้ไข (เช่น จาก UserEditForm)
-        pass 
+        form = UserEditForm(request.POST, instance=user_to_edit)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'User {user_to_edit.username} updated successfully.')
+            return redirect('admin_users')
+        else:
+            messages.error(request, 'Failed to update user. Please check errors.')
+    else:
+        form = UserEditForm(instance=user_to_edit)
         
     context = {
         'user_to_edit': user_to_edit,
-        # ... form สำหรับแก้ไขข้อมูล
+        'form': form,
     }
-    # คุณต้องสร้าง Template ชื่อ admin_edit_user.html
     return render(request, 'APP01/admin_edit_user.html', context)
 
 @login_required(login_url='login')
@@ -1028,7 +1414,7 @@ def admin_gears(request):
     gears = GamingGear.objects.all().order_by('type', 'brand', 'name') # <--- 🟢 แก้ไขเป็น 'type'
     
     context = {
-        'gears': gears,
+        'gaming_gears': gears,  # แก้ให้ตรงกับชื่อที่ template ใช้
         # ...
     }
     return render(request, 'APP01/admin_gaming_gears.html', context)
@@ -1079,13 +1465,13 @@ def admin_delete_gear(request, gear_id):
 @user_passes_test(is_admin, login_url='home_member')
 def admin_members(request): # S_Admin_Members
     # แสดงเฉพาะ Role Member (ไม่รวม Admin)
-    members = User.objects.filter(role__role_name='Member').order_by('-date_joined')
+    members = User.objects.filter(role__role_name='Member').order_by('-created_at')
     return render(request, 'APP01/admin_members.html', {'members': members})
 
 @login_required(login_url='login')
 @user_passes_test(is_admin, login_url='home_member')
 def admin_toggle_user_status(request, user_id):
-    user_obj = get_object_or_404(User, id=user_id)
+    user_obj = get_object_or_404(User, pk=user_id)
     
     # ป้องกันไม่ให้แก้สถานะของ Admin ด้วยกันเอง หรือ Superuser
     if user_obj.is_superuser or (user_obj.role and user_obj.role.role_name == 'Admin'):
@@ -1093,11 +1479,21 @@ def admin_toggle_user_status(request, user_id):
         return redirect('admin_members')
     
     # สลับสถานะ Active (Ban/Unban)
+    # สลับสถานะ Active (Ban/Unban)
     user_obj.is_active = not user_obj.is_active
+    
+    status = "activated"
+    if not user_obj.is_active:
+        user_obj.banned_at = timezone.now()
+        status = "BANNED"
+        messages.warning(request, f'User {user_obj.username} has been {status}.')
+    else:
+        user_obj.banned_at = None
+        status = "activated"
+        messages.success(request, f'User {user_obj.username} has been {status}.')
+        
     user_obj.save()
     
-    status = "activated" if user_obj.is_active else "deactivated"
-    messages.success(request, f'User {user_obj.username} has been {status}.')
     return redirect('admin_members')
 
 # --- Admin AI Model Management ---
@@ -1204,199 +1600,8 @@ def use_all_gears(request, player_id):
         return redirect('matching_result')
 
 
-# 2. ปรับปรุงฟังก์ชัน save_preset ให้ส่งข้อมูลครบถ้วนสำหรับหน้าจอใหม่
-@login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
-def save_preset(request):
-    # 1. ดึง Dictionary 'match_result' จาก Session และรายการ ID อุปกรณ์ชั่วคราว
-    match_result = request.session.get('match_result', {})
-    gear_ids_to_save = match_result.get('temp_preset_gears', [])
-    
-    # === Logic การเติมเต็มอุปกรณ์ที่แนะนำโดยอัตโนมัติ (Autofill) ===
-    if not gear_ids_to_save and match_result:
-        suggested_gear_ids = []
-        if match_result.get('mode') == 'demo':
-            demo_players = match_result.get('demo_players_data', [])
-            if demo_players:
-                best_match_gears = demo_players[0].get('gears', [])
-                suggested_gear_ids = [g['gear_id'] for g in best_match_gears if g.get('gear_id')]
-        
-        elif match_result.get('mode') == 'real' and match_result.get('matched_player_id'):
-            try:
-                # ต้องมั่นใจว่ามีการ Import ProPlayer
-                matched_player = ProPlayer.objects.get(player_id=match_result['matched_player_id'])
-                # ต้องมั่นใจว่ามีการ Import GamingGear
-                gears_qs = GamingGear.objects.filter(proplayergear__player=matched_player)
-                suggested_gear_ids = [g.gear_id for g in gears_qs]
-            except ProPlayer.DoesNotExist:
-                pass
-
-        if suggested_gear_ids:
-            gear_ids_to_save = suggested_gear_ids
-            match_result['temp_preset_gears'] = suggested_gear_ids
-            request.session['match_result'] = match_result
-            request.session.modified = True 
-    # ====================================================================
-
-    # 2. ถ้าสุดท้ายยังไม่มีอุปกรณ์ให้บันทึก (ทั้งที่เลือกเองและ Autofill)
-    if not gear_ids_to_save:
-        messages.error(request, 'No gears found in your temporary preset to save. Please select gears first.')
-        return redirect('matching_result')
-
-    # 3. เตรียมข้อมูลสำหรับแสดงผลและบันทึก (บังคับแปลงเป็น String)
-    gear_ids_to_save_str = [str(gid) for gid in gear_ids_to_save]
-
-    # พยายามดึง Object ของอุปกรณ์จาก DB เพื่อใช้ในการแสดงผล
-    gears_for_display_qs = GamingGear.objects.filter(gear_id__in=gear_ids_to_save_str).order_by('gear_id')
-
-    # ถ้าเป็น Demo Mode และไม่มีข้อมูลใน DB ให้สร้างรายชื่อแสดงผลจาก demo_players_data
-    display_gears = []
-    if match_result.get('mode') == 'demo':
-        demo_players = match_result.get('demo_players_data', [])
-        # สร้าง map ของ gear_id -> gear_info
-        demo_map = {}
-        for p in demo_players:
-            for g in p.get('gears', []):
-                demo_map[str(g.get('gear_id'))] = {
-                    'gear_id': g.get('gear_id'),
-                    'name': g.get('name'),
-                    'category': g.get('category'),
-                    'image_url': g.get('image_url')
-                }
-
-        for gid in gear_ids_to_save_str:
-            if gid in demo_map:
-                display_gears.append(demo_map[gid])
-            else:
-                # ถ้าไม่เจอใน demo_map ให้ลองหาจาก DB result (fallback)
-                obj = gears_for_display_qs.filter(gear_id=gid).first()
-                if obj:
-                    display_gears.append({
-                        'gear_id': obj.gear_id,
-                        'name': obj.name,
-                        'category': getattr(obj, 'type', 'Gear'),
-                        'image_url': obj.image_url,
-                    })
-    else:
-        # สำหรับโหมด Real ให้แปลง QuerySet เป็น list ของ dict เพื่อให้ Template ใช้งานได้สม่ำเสมอ
-        for obj in gears_for_display_qs:
-            display_gears.append({
-                'gear_id': obj.gear_id,
-                'name': obj.name,
-                'category': getattr(obj, 'type', 'Gear'),
-                'image_url': obj.image_url,
-            })
-
-    # แปลง ID เป็น string คั่นด้วยจุลภาค เพื่อใช้ใน Hidden Field ของ HTML
-    gear_ids_string = ','.join(gear_ids_to_save_str)
-
-    # กำหนดค่าเริ่มต้นสำหรับชื่อ Preset
-    initial_preset_name = 'PRESET ' + str(Preset.objects.filter(user=request.user).count() + 1)
-
-    if request.method == 'POST':
-        form = PresetForm(request.POST)
-        if form.is_valid():
-            preset_name = form.cleaned_data['name']
-            
-            # ดึง ID อุปกรณ์จาก Hidden Field ใน POST data
-            posted_gear_ids_string = request.POST.get('gears_to_save', '')
-            
-            # 🚨 [CODE ADDITION] 🚨
-            print(f"DEBUG: Session IDs before POST: {gear_ids_to_save_str}") # จาก Session (ตัว String)
-            print(f"DEBUG: POST Data String: {posted_gear_ids_string}") # จาก Hidden Field
-            # 🚨 [END ADDITION] 🚨
-            
-            if posted_gear_ids_string:
-                final_gear_ids = [s.strip() for s in posted_gear_ids_string.split(',') if s.strip()]
-            else:
-                final_gear_ids = gear_ids_to_save_str
-            
-            if not final_gear_ids:
-                messages.error(request, 'Error: Could not retrieve any gears for saving.')
-                return redirect('matching_result')
-            
-            # 1. สร้าง Preset ใหม่
-            new_preset = Preset.objects.create(user=request.user, name=preset_name)
-            
-            # 2. บันทึก Gear ลงใน PresetGear (ส่วนแก้ไขสำคัญ)
-            order = 1
-            for gear_id in final_gear_ids:
-                real_gear = None
-
-                # A) ลอง Query ด้วย ID ที่เป็น String (Char/UUID) ก่อน
-                real_gear = GamingGear.objects.filter(gear_id=gear_id).first()
-
-                # B) ถ้าไม่พบ ลองแปลงเป็น Integer THEN Query (ถ้า ID เป็น Integer)
-                if not real_gear:
-                    try:
-                        gear_id_int = int(gear_id)
-                        real_gear = GamingGear.objects.filter(gear_id=gear_id_int).first()
-                    except ValueError:
-                        # Skip ถ้าแปลงไม่ได้
-                        continue
-
-                # C) ถ้ายังไม่พบ และเป็น Demo Mode ให้สร้าง GamingGear ชั่วคราวจาก demo data แล้วเชื่อมต่อ
-                if not real_gear and match_result.get('mode') == 'demo':
-                    demo_players = match_result.get('demo_players_data', [])
-                    found = None
-                    for p in demo_players:
-                        for g in p.get('gears', []):
-                            if str(g.get('gear_id')) == str(gear_id):
-                                found = g
-                                break
-                        if found:
-                            break
-
-                    if found:
-                        # สร้างหรือดึง GamingGear โดยใช้ข้อมูลจาก demo
-                        real_gear, created = GamingGear.objects.get_or_create(
-                            name=found.get('name'),
-                            defaults={
-                                'type': found.get('category', ''),
-                                'brand': '',
-                                'specs': '',
-                                'price': None,
-                                'store_url': '',
-                                'image_url': found.get('image_url')
-                            }
-                        )
-
-                if real_gear:
-                    PresetGear.objects.create(preset=new_preset, gear=real_gear, order=order)
-                    order += 1
-            
-            # ตรวจสอบว่ามีอุปกรณ์ถูกบันทึกหรือไม่
-            if order == 1:
-                messages.warning(request, f'Preset "{preset_name}" saved, but no gears were successfully linked (0 gears).')
-            else:
-                messages.success(request, f'Preset "{preset_name}" saved successfully with {order - 1} gears!')
-            
-            # 3. ล้าง Session ชั่วคราวหลังการบันทึกสำเร็จ
-            if 'match_result' in request.session:
-                del request.session['match_result']
-                
-            # Redirect ไปยังหน้า Detail ของ Preset ที่เพิ่งสร้าง
-            return redirect('preset_detail', preset_id=new_preset.preset_id)
-            
-        else:
-            messages.error(request, 'Please provide a valid name for your preset.')
-            form = form # ใช้ form ที่มี error และค่าที่ผู้ใช้กรอกไว้
-    
-    else: # GET request
-        # 4. สำหรับ GET request ให้กำหนดค่าเริ่มต้นของชื่อ Preset
-        form = PresetForm(initial={'name': initial_preset_name})
-        
-    # 5. เตรียม Context สำหรับ Template
-    context = {
-        'display_gears': display_gears,
-        'form': form, 
-        'gear_ids_string': gear_ids_string, 
-    }
-
-    return render(request, 'APP01/save_preset.html', context)
 
 @login_required(login_url='login')
-@user_passes_test(is_member, login_url='home_guest')
 def delete_preset(request, preset_id):
     """ลบ Preset ที่ระบุออกจากฐานข้อมูล"""
     
@@ -1414,3 +1619,36 @@ def delete_preset(request, preset_id):
     
     # 3. Redirect กลับไปหน้า Manage Presets
     return redirect('manage_presets')
+
+
+@login_required(login_url='login')
+def replace_gear(request, preset_id, old_gear_id):
+    preset = get_object_or_404(Preset, preset_id=preset_id, user=request.user)
+    old_gear = get_object_or_404(GamingGear, gear_id=old_gear_id)
+    preset_gear = get_object_or_404(PresetGear, preset=preset, gear=old_gear)
+    same_type_gears = GamingGear.objects.filter(type=old_gear.type)
+    gears_in_preset = preset.presetgear_set.values_list('gear_id', flat=True)
+    available_gears = same_type_gears.exclude(gear_id__in=gears_in_preset)
+    context = {'preset': preset, 'old_gear': old_gear, 'available_gears': available_gears}
+    return render(request, 'APP01/replace_gear.html', context)
+
+@login_required(login_url='login')
+def confirm_replace(request, preset_id, old_gear_id, new_gear_id):
+    preset = get_object_or_404(Preset, preset_id=preset_id, user=request.user)
+    old_gear = get_object_or_404(GamingGear, gear_id=old_gear_id)
+    new_gear = get_object_or_404(GamingGear, gear_id=new_gear_id)
+    try:
+        preset_gear = PresetGear.objects.get(preset=preset, gear=old_gear)
+    except PresetGear.DoesNotExist:
+        messages.error(request, 'The gear you are trying to replace is not in this preset.')
+        return redirect('preset_detail', preset_id=preset.preset_id)
+    if old_gear.type != new_gear.type:
+        messages.error(request, 'Cannot replace ' + old_gear.type + ' with ' + new_gear.type + '. Must be same type.')
+        return redirect('preset_detail', preset_id=preset.preset_id)
+    if PresetGear.objects.filter(preset=preset, gear=new_gear).exists():
+        messages.error(request, new_gear.name + ' is already in this preset.')
+        return redirect('preset_detail', preset_id=preset.preset_id)
+    preset_gear.gear = new_gear
+    preset_gear.save()
+    messages.success(request, 'Successfully replaced ' + old_gear.name + ' with ' + new_gear.name + '!')
+    return redirect('preset_detail', preset_id=preset.preset_id)

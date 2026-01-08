@@ -1,0 +1,31 @@
+{% extends 'APP01/base.html' %}
+
+{% block title %}Select {{ category }} - GamingGearMatcher{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Select a {{ category }}</h2>
+
+    <div class="row">
+        {% for gear in gears %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if gear.image %}
+                <img src="{{ gear.image.url }}" class="card-img-top p-3" alt="{{ gear.name }}"
+                    style="height: 200px; object-fit: contain;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ gear.brand }} {{ gear.name }}</h5>
+                    <p class="card-text fw-bold text-primary">฿{{ gear.price }}</p>
+                    <a href="{% url 'wizard_add_gear' gear.gear_id %}" class="btn btn-primary mt-auto">Select</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No gears found in this category.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

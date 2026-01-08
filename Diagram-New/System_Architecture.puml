@@ -1,0 +1,24 @@
+@startuml System_Architecture
+!theme plain
+title System Architecture
+
+node "Client Side" {
+    [Browser] as Client
+}
+
+node "Docker Host" {
+    node "Web Container" {
+        [Django Web Server] as Django
+        [Business Logic & AI] as Logic
+    }
+    
+    node "Database Container" {
+        database "PostgreSQL" as DB
+    }
+}
+
+Client --> Django : HTTP/HTTPS
+Django --> DB : SQL Queries
+Logic --> DB : Read/Write Training Data
+
+@enduml

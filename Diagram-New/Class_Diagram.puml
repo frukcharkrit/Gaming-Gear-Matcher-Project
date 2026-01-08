@@ -1,0 +1,105 @@
+@startuml Class_Diagram
+!theme plain
+title Class Diagram (Django Models)
+
+class User {
+    +user_id : int
+    +username : string
+    +email : string
+    +password : string
+    +profile_image : ImageField
+    +role_id : int
+    +created_at : datetime
+    +is_active : bool
+    +is_staff : bool
+    __str__()
+}
+
+class Role {
+    +role_id : int
+    +role_name : string
+    __str__()
+}
+
+class ProPlayer {
+    +player_id : int
+    +name : string
+    +game : string
+    +bio : text
+    +image : ImageField
+    +settings : json
+    __str__()
+}
+
+class GamingGear {
+    +gear_id : int
+    +name : string
+    +type : string
+    +brand : string
+    +price : decimal
+    +image : ImageField
+    +specs : text
+    __str__()
+}
+
+class Preset {
+    +preset_id : int
+    +name : string
+    +user_id : int
+    +share_link : string
+    +created_at : datetime
+    __str__()
+    +save()
+}
+
+class PresetGear {
+    +id : int
+    +preset_id : int
+    +gear_id : int
+    +order : int
+    __str__()
+}
+
+class ProPlayerGear {
+    +id : int
+    +player_id : int
+    +gear_id : int
+    __str__()
+}
+
+class Rating {
+    +rating_id : int
+    +user_id : int
+    +proplayer_id : int
+    +feedback_score : string
+    +comment : text
+    +rated_at : datetime
+    __str__()
+}
+
+class PresetRating {
+    +id : int
+    +user_id : int
+    +preset_id : int
+    +score : int
+    +comment : text
+    +created_at : datetime
+    __str__()
+}
+
+' Relationships
+User "1" *-- "1" Role : has >
+User "1" *-- "0..*" Preset : creates >
+User "1" *-- "0..*" Rating : gives >
+User "1" *-- "0..*" PresetRating : gives >
+
+Preset "1" *-- "0..*" PresetGear : contains >
+PresetGear "0..*" o-- "1" GamingGear : refers to >
+
+ProPlayer "1" *-- "0..*" ProPlayerGear : uses >
+ProPlayerGear "0..*" o-- "1" GamingGear : refers to >
+
+Rating "0..*" o-- "1" ProPlayer : rates >
+PresetRating "0..*" o-- "1" Preset : rates >
+
+@enduml

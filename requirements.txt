@@ -12,3 +12,15 @@ numpy
 scikit-learn
 tensorflow
 keras
+django-allauth==65.13.1
+PyJWT==2.10.1
+cryptography==46.0.3
+
+# Production Dependencies
+psycopg2-binary==2.9.9
+gunicorn==21.2.0
+mlxtend==0.23.0
+pandas
+django-environ==0.11.2
+whitenoise==6.6.0
+openpyxl

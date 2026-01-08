@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: gaming_gear_db
+    restart: always
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - gaming_gear_network
+
+  # Django Application
+  web:
+    build: .
+    container_name: gaming_gear_web
+    # Development mode: Use runserver for auto-reload
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    volumes:
+      # Mount entire codebase for live editing
+      - .:/app
+      - ./media:/app/media
+      - ./staticfiles:/app/staticfiles
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - gaming_gear_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  gaming_gear_network:
+    driver: bridge

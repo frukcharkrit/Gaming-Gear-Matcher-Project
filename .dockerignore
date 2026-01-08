@@ -1,0 +1,45 @@
+.git
+.gitignore
+.idea
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# Database
+db.sqlite3
+*.sqlite3
+
+# Environment
+.env
+.env.local
+
+# Static/Media files (will be volumes)
+media/
+staticfiles/
+
+# Documentation
+*.md
+README.md
+doc/
+Diagram/
+loc/
+
+# Test files
+pytest.ini
+.pytest_cache
+*.cover
+.coverage
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~

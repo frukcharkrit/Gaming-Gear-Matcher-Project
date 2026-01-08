@@ -1,0 +1,101 @@
+@startuml ER_Diagram
+!theme plain
+hide circle
+skinparam linetype ortho
+
+entity User {
+    *user_id : int <<PK>>
+    --
+    username : string
+    email : string
+    password : string
+    created_at : datetime
+    profile_image : string
+    role_id : int <<FK>>
+}
+
+entity Role {
+    *role_id : int <<PK>>
+    --
+    role_name : string
+}
+
+entity Preset {
+    *preset_id : int <<PK>>
+    --
+    name : string
+    share_link : string
+    created_at : datetime
+    user_id : int <<FK>>
+}
+
+entity GamingGear {
+    *gear_id : int <<PK>>
+    --
+    name : string
+    type : string
+    brand : string
+    price : decimal
+    image : string
+    specs : json
+}
+
+entity ProPlayer {
+    *player_id : int <<PK>>
+    --
+    name : string
+    game : string
+    bio : string
+    image : string
+}
+
+entity Rating {
+    *rating_id : int <<PK>>
+    --
+    feedback_score : string
+    comment : string
+    rated_at : datetime
+    user_id : int <<FK>>
+    proplayer_id : int <<FK>>
+}
+
+entity PresetRating {
+    *id : int <<PK>>
+    --
+    score : int
+    comment : string
+    created_at : datetime
+    user_id : int <<FK>>
+    preset_id : int <<FK>>
+}
+
+entity PresetGear {
+    *id : int <<PK>>
+    --
+    order : int
+    preset_id : int <<FK>>
+    gear_id : int <<FK>>
+}
+
+entity ProPlayerGear {
+    *id : int <<PK>>
+    --
+    player_id : int <<FK>>
+    gear_id : int <<FK>>
+}
+
+' Relationships
+User }|..|| Role : has
+User ||..|{ Preset : creates
+User ||..|{ Rating : gives
+User ||..|{ PresetRating : gives
+
+Preset ||..|{ PresetGear : contains
+PresetGear }|..|| GamingGear : references
+Preset ||..|{ PresetRating : receives
+
+ProPlayer ||..|{ ProPlayerGear : uses
+ProPlayerGear }|..|| GamingGear : references
+Rating }|..|| ProPlayer : rates
+
+@enduml

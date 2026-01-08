@@ -63,7 +63,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=100, unique=True)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
+    profile_image = models.ImageField(upload_to='user_profiles/', blank=True, null=True) # รูปโปรไฟล์
     created_at = models.DateTimeField(default=timezone.now)
+    banned_at = models.DateTimeField(null=True, blank=True) # เวลาที่ถูกแบน
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -108,8 +110,10 @@ class ProPlayer(models.Model):
     player_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     game = models.CharField(max_length=50)
-    physique_vector = models.TextField(blank=True, null=True) # เก็บผลการวิเคราะห์สรีระจากโมเดล (JSON string)
-    image_url = models.CharField(max_length=255, blank=True, null=True) # URL รูปภาพ
+    bio = models.TextField(blank=True, null=True) # เพิ่ม Bio
+    settings = models.JSONField(default=dict, blank=True) # เพิ่ม Settings (JSON)
+    physique_vector = models.TextField(blank=True, null=True) 
+    image = models.ImageField(upload_to='pro_players/', blank=True, null=True) # เปลี่ยนจาก URL เป็น ImageField
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -122,9 +126,10 @@ class GamingGear(models.Model):
     type = models.CharField(max_length=50) # e.g., Mouse, Keyboard, Headset
     brand = models.CharField(max_length=50)
     specs = models.TextField(blank=True, null=True) # เก็บรายละเอียดสเปคเป็น JSON string
+    description = models.TextField(blank=True, null=True) # คำอธิบายอุปกรณ์
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     store_url = models.CharField(max_length=255, blank=True, null=True)
-    image_url = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to='gaming_gears/', blank=True, null=True) # เปลี่ยนจาก URL เป็น ImageField
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -188,6 +193,21 @@ class Rating(models.Model):
 
     def __str__(self):
         return f"Rating by {self.user.username} for {self.proplayer.name}: {self.feedback_score}"
+
+# --- Preset Rating Model ---
+class PresetRating(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    preset = models.ForeignKey(Preset, on_delete=models.CASCADE)
+    score = models.IntegerField(default=5) # 1-5 Stars
+    comment = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        unique_together = ('user', 'preset')
+
+    def __str__(self):
+        return f"Rating for {self.preset.name} by {self.user.username} ({self.score}/5)"
 
 # --- Alert Model ---
 class Alert(models.Model):
