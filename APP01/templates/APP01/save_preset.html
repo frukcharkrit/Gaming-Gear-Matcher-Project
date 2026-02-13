@@ -222,10 +222,17 @@
 
                     {# 🚨 FIX 2: ใช้ gear.gear_id ที่ตรงกับ Model field ID #}
                     {% if gear.gear_id %}
-                    <a href="{% url 'edit_temp_preset_with_id' 'remove' gear.gear_id %}?next={{ request.path }}"
-                        class="btn-remove-circle">
-                        <i class="fas fa-minus"></i>
-                    </a>
+                    <div class="d-flex flex-column gap-2 align-items-center">
+                        <a href="{% url 'wizard_select_gear' gear.category %}?next={% url 'save_preset' %}"
+                            class="btn-remove-circle" style="border-color: #0d6efd; color: #0d6efd;"
+                            title="Replace {{ gear.category }}">
+                            <i class="fas fa-exchange-alt" style="font-size: 1rem;"></i>
+                        </a>
+                        <a href="{% url 'wizard_remove_gear' gear.gear_id %}?next={% url 'save_preset' %}"
+                            class="btn-remove-circle" title="Remove">
+                            <i class="fas fa-minus"></i>
+                        </a>
+                    </div>
                     {% endif %}
                 </div>
             </div>

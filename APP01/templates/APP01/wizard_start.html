@@ -7,15 +7,31 @@
     <div class="row justify-content-center">
         <div class="col-md-8 text-center">
             <h1 class="mb-4" style="font-weight: 800;">Build Your Dream Setup</h1>
-            <p class="lead mb-5">Start by selecting your first piece of gear. Our AI will recommend the rest based on what pros use together.</p>
-            
+            <p class="lead mb-5">Start by selecting your first piece of gear. Our AI will recommend the rest based on
+                what pros use together.</p>
+            <div class="card shadow-lg border-0 mb-5 bg-gradient-primary text-white"
+                style="background: linear-gradient(45deg, #4e54c8, #8f94fb);">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold mb-3"><i class="fas fa-brain me-2"></i>AI Playstyle Analysis</h2>
+                    <p class="lead mb-4">Don't know what to pick? Let our Hybrid AI analyze your gaming style (FPS,
+                        MOBA, Hand Size) and scientifically recommend the perfect gear for you.</p>
+                    <a href="{% url 'wizard_quiz' %}"
+                        class="btn btn-light btn-lg fw-bold px-5 py-3 rounded-pill shadow-sm text-primary">
+                        Start AI Analysis <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <h3 class="text-muted fw-bold mb-4">Or pick a category manually:</h3>
+
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm hover-elevate">
                         <div class="card-body py-5">
                             <i class="fas fa-mouse fa-4x mb-3 text-primary"></i>
                             <h3 class="h5 fw-bold">Gaming Mouse</h3>
-                            <a href="{% url 'wizard_select_gear' 'Mouse' %}" class="btn btn-outline-primary mt-3 stretched-link">Start with Mouse</a>
+                            <a href="{% url 'wizard_select_gear' 'Mouse' %}"
+                                class="btn btn-outline-primary mt-3 stretched-link">Start with Mouse</a>
                         </div>
                     </div>
                 </div>
@@ -24,7 +40,8 @@
                         <div class="card-body py-5">
                             <i class="fas fa-keyboard fa-4x mb-3 text-success"></i>
                             <h3 class="h5 fw-bold">Keyboard</h3>
-                            <a href="{% url 'wizard_select_gear' 'Keyboard' %}" class="btn btn-outline-success mt-3 stretched-link">Start with Keyboard</a>
+                            <a href="{% url 'wizard_select_gear' 'Keyboard' %}"
+                                class="btn btn-outline-success mt-3 stretched-link">Start with Keyboard</a>
                         </div>
                     </div>
                 </div>
@@ -33,7 +50,8 @@
                         <div class="card-body py-5">
                             <i class="fas fa-headphones fa-4x mb-3 text-danger"></i>
                             <h3 class="h5 fw-bold">Headset</h3>
-                            <a href="{% url 'wizard_select_gear' 'Headset' %}" class="btn btn-outline-danger mt-3 stretched-link">Start with Headset</a>
+                            <a href="{% url 'wizard_select_gear' 'Headset' %}"
+                                class="btn btn-outline-danger mt-3 stretched-link">Start with Headset</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +61,12 @@
 </div>
 
 <style>
-.hover-elevate { transition: transform 0.2s; }
-.hover-elevate:hover { transform: translateY(-5px); }
+    .hover-elevate {
+        transition: transform 0.2s;
+    }
+
+    .hover-elevate:hover {
+        transform: translateY(-5px);
+    }
 </style>
 {% endblock %}

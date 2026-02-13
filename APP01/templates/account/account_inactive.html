@@ -1,0 +1,43 @@
+{% extends "APP01/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-danger">
+                <div class="card-header bg-danger text-white text-center py-3">
+                    <h3 class="mb-0"><i class="fas fa-ban me-2"></i>Account Suspended</h3>
+                </div>
+                <div class="card-body text-center p-5">
+                    <div class="mb-4 text-danger">
+                        <i class="fas fa-user-slash fa-4x"></i>
+                    </div>
+
+                    <h4 class="card-title text-danger mb-4">You have been Banned</h4>
+
+                    <p class="card-text lead text-muted mb-4">
+                        Your account has been suspended due to violations of our terms of service.
+                    </p>
+
+                    {% if ban_date %}
+                    <div class="alert alert-warning d-inline-block px-4 py-2">
+                        <strong>Ban Date:</strong> {{ ban_date|date:"F d, Y H:i" }}
+                    </div>
+                    {% else %}
+                    <p class="text-muted small">(No suspension date details available)</p>
+                    {% endif %}
+
+                    <div class="mt-4">
+                        <a href="{% url 'home_guest' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-home me-1"></i> Return to Home
+                        </a>
+                        <a href="mailto:support@gaminggearmatcher.com" class="btn btn-outline-danger ms-2">
+                            <i class="fas fa-envelope me-1"></i> Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

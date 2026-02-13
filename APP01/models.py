@@ -105,6 +105,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_superuser # หรือตรวจสอบตาม role/permission ที่ซับซ้อนกว่านี้
 
 
+
+# --- Game Model ---
+class Game(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    logo = models.ImageField(upload_to='game_logos/', blank=True, null=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
+
 # --- ProPlayer Model ---
 class ProPlayer(models.Model):
     player_id = models.AutoField(primary_key=True)
@@ -112,12 +123,22 @@ class ProPlayer(models.Model):
     game = models.CharField(max_length=50)
     bio = models.TextField(blank=True, null=True) # เพิ่ม Bio
     settings = models.JSONField(default=dict, blank=True) # เพิ่ม Settings (JSON)
-    physique_vector = models.TextField(blank=True, null=True) 
+    # physique_vector removed
     image = models.ImageField(upload_to='pro_players/', blank=True, null=True) # เปลี่ยนจาก URL เป็น ImageField
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name
+
+    @property
+    def game_logo_url(self):
+        try:
+            game_obj = Game.objects.get(name__iexact=self.game)
+            if game_obj.logo:
+                return game_obj.logo.url
+        except Game.DoesNotExist:
+            return None
+        return None
 
 # --- GamingGear Model ---
 class GamingGear(models.Model):
@@ -175,24 +196,9 @@ class PresetGear(models.Model):
     def __str__(self):
         return f"{self.preset.name} includes {self.gear.name} (Order: {self.order})"
 
-# --- Rating Model ---
-class Rating(models.Model):
-    rating_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    proplayer = models.ForeignKey(ProPlayer, on_delete=models.CASCADE)
-    feedback_score = models.CharField(max_length=10, choices=[('Good', 'Good'), ('Neutral', 'Neutral'), ('Bad', 'Bad')]) # 'Good', 'Neutral', 'Bad'
-    comment = models.TextField(blank=True, null=True)
-    # Metadata to help improve matching models
-    match_image_url = models.CharField(max_length=512, blank=True, null=True)
-    selected_gears = models.TextField(blank=True, null=True)  # store JSON array of gear ids or names
-    match_distance = models.FloatField(blank=True, null=True)
-    rated_at = models.DateTimeField(default=timezone.now)
-
-    class Meta:
-        unique_together = ('user', 'proplayer') # ผู้ใช้ 1 คน ให้คะแนน Pro Player 1 คนได้แค่ครั้งเดียว
-
-    def __str__(self):
-        return f"Rating by {self.user.username} for {self.proplayer.name}: {self.feedback_score}"
+# --- Rating Model (For ProPlayer Match - DEPRECATED/REMOVED) ---
+# Removed Rating model as it was tied to Image Matching feature.
+# Using PresetRating instead.
 
 # --- Preset Rating Model ---
 class PresetRating(models.Model):
@@ -222,15 +228,16 @@ class Alert(models.Model):
     def __str__(self):
         return f"Alert ({self.type}): {self.message[:50]}..."
 
-# --- AIModel Model ---
-class AIModel(models.Model):
-    model_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
-    version = models.CharField(max_length=20)
-    file_path = models.CharField(max_length=255) # Path ไปยังไฟล์โมเดล
-    created_at = models.DateTimeField(default=timezone.now)
-    last_trained_at = models.DateTimeField(null=True, blank=True)
-    is_active = models.BooleanField(default=False) # true ถ้าเป็นโมเดลที่ใช้งานอยู่ปัจจุบัน
+
+
+
+# --- Admin Log Model ---
+class AdminLog(models.Model):
+    log_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    action = models.CharField(max_length=255) # e.g., "Added Pro Player", "Banned User"
+    target = models.CharField(max_length=255, blank=True, null=True) # e.g., "Faker", "user123"
+    timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.name} (v{self.version}) - {'Active' if self.is_active else 'Inactive'}"
+        return f"[{self.timestamp}] {self.user.username}: {self.action} ({self.target})"

@@ -17,15 +17,11 @@ from django.db.models.functions import TruncDate # เพิ่ม import นี
 
 import json # เพิ่ม import นี้สำหรับ json.loads
 
-from .models import User, Role, ProPlayer, GamingGear, Preset, Rating, AIModel, Alert, ProPlayerGear, PresetGear # นำเข้า Models ของคุณ
-from .forms import RegisterForm, ProPlayerForm, GamingGearForm, PresetForm, AIModelForm, RatingForm, LoginForm # เพิ่ม RatingForm
-from .forms import UserEditForm
+from .models import User, Role, ProPlayer, GamingGear, Preset, Alert, ProPlayerGear, PresetGear, AdminLog
+from .forms import RegisterForm, ProPlayerForm, GamingGearForm, PresetForm, LoginForm, UserEditForm
+from .recommender_hybrid import HybridRecommender
 
-# สำหรับ AI และ Image Processing
-import os
-import cv2
-import numpy as np
-# import tensorflow as tf
+
 # from tensorflow.keras.models import load_model # ตัวอย่างการโหลดโมเดล AI
 
 # สมมติฐาน: คุณมีโมเดล AI ที่โหลดได้
@@ -47,6 +43,29 @@ import numpy as np
 # Helper function เพื่อตรวจสอบว่าผู้ใช้เป็น Member
 def is_member(user):
     return user.is_authenticated and user.role and user.role.role_name == 'Member'
+
+def custom_account_inactive(request):
+    """Custom view for banned/inactive users - replaces allauth's default inactive page"""
+    from .models import AdminLog
+    
+    # Try to find the banned user's info
+    ban_date = None
+    banned_username = None
+    
+    # Check if user is still authenticated (before logout)
+    if request.user.is_authenticated:
+        banned_username = request.user.username
+        ban_log = AdminLog.objects.filter(
+            target=request.user.username,
+            action__icontains='Ban'
+        ).order_by('-timestamp').first()
+        if ban_log:
+            ban_date = ban_log.timestamp
+    
+    return render(request, 'account/account_inactive.html', {
+        'ban_date': ban_date,
+        'banned_username': banned_username,
+    })
 
 def home_guest(request):
     featured_pro_players = ProPlayer.objects.all()[:5]
@@ -158,12 +177,90 @@ def start_matching(request):
     # Or simplified: Start by picking a Mouse
     return render(request, 'APP01/wizard_start.html')
 
+def wizard_quiz(request):
+    """Render the detailed Playstyle Quiz."""
+    return render(request, 'APP01/quiz.html')
+
+def process_quiz(request):
+    """Process quiz results and run Hybrid Recommendation Logic."""
+    if request.method == 'POST':
+        user_prefs = {
+            'genre': request.POST.get('genre'),
+            'hand_size': request.POST.get('hand_size'),
+            'grip': request.POST.get('grip')
+        }
+        # Run Recommender
+        recommender = HybridRecommender()
+        variants = recommender.recommend_variant_setups(user_prefs)
+        
+        # We default to 'Performance' as the main preset
+        best_setup = variants.get('Performance', {})
+        
+        # Extract Best Matches for Default View
+        best_gears = []
+        ai_reasons = [] # We might need to fetch individual reasons again or refactor to get them from variant
+        
+        # Helper to extract list from setup dict
+        categories = ['Mouse', 'Keyboard', 'Headset', 'Monitor', 'Chair']
+        for cat in categories:
+            gear_entry = best_setup.get(cat)
+            if gear_entry:
+                best_gears.append(gear_entry['gear'])
+                # For reasons, we'd need to re-run or extract them. 
+                # For now, let's keep it simple or maybe we don't need explicit single-line reasons if we have full comparison.
+                ai_reasons.append(f"{cat}: Spec Match")
+
+        if best_gears:
+            # Setup session for matching_result
+            match_result = request.session.get('match_result', {})
+            if not match_result:
+                match_result = {}
+            
+            # 1. Store Default Performance Preset (IDs)
+            request.session['wizard_preset'] = [g.gear_id for g in best_gears]
+            
+            # 2. Store Variants (IDs) for Comparison Tab
+            variants_data = {}
+            for v_name, v_data in variants.items():
+                variants_data[v_name] = {
+                    'desc': v_data.get('desc', ''),
+                    'badge': v_data.get('badge', ''),
+                    'analysis': v_data.get('analysis', ''),
+                    'pros': v_data.get('pros', []),
+                    'cons': v_data.get('cons', []),
+                    'gears': {}
+                }
+                for cat in categories:
+                    g_entry = v_data.get(cat)
+                    if g_entry:
+                        variants_data[v_name]['gears'][cat] = g_entry['gear'].gear_id
+            
+            match_result['variants'] = variants_data
+
+            # Store AI Context
+            match_result['mode'] = 'hybrid_ai'
+            match_result['ai_reasons'] = ai_reasons
+            match_result['ai_score'] = 95 # Placeholder high confidence
+            match_result['uploaded_image_url'] = None 
+            
+            request.session['match_result'] = match_result
+            messages.success(request, f"AI generated 3 setups for you! Defaulting to Performance.")
+            return redirect('matching_result')
+        else:
+            messages.error(request, "Could not find suitable gear. Please try different options.")
+            return redirect('wizard_quiz')
+
 def wizard_select_gear(request, category):
     """
     Step 2: User selects a specific gear from a category.
     """
     gears = GamingGear.objects.filter(type=category)
-    return render(request, 'APP01/wizard_select_gear.html', {'gears': gears, 'category': category})
+    next_url = request.GET.get('next', '')
+    return render(request, 'APP01/wizard_select_gear.html', {
+        'gears': gears,
+        'category': category,
+        'next_url': next_url,
+    })
 
 def wizard_add_gear(request, gear_id):
     """
@@ -196,6 +293,10 @@ def wizard_add_gear(request, gear_id):
         request.session['wizard_preset'] = wizard_preset
         request.session.modified = True
     
+    # Redirect back to the referring page if ?next= is provided
+    next_url = request.GET.get('next')
+    if next_url:
+        return redirect(next_url)
     return redirect('matching_result')
 
 def wizard_remove_gear(request, gear_id):
@@ -214,102 +315,17 @@ def wizard_remove_gear(request, gear_id):
             except GamingGear.DoesNotExist:
                 messages.success(request, 'Gear removed')
     
+    # Redirect back to the referring page if ?next= is provided
+    next_url = request.GET.get('next')
+    if next_url:
+        return redirect(next_url)
     return redirect('matching_result')
+
 
 def upload_image_and_match(request):
     # API Legacy - Redirect to new flow
     return redirect('start_matching')
 
-
-def upload_image_ajax(request):
-    return _handle_upload(request, is_ajax=True)
-
-# สร้างฟังก์ชันกลางเพื่อลด code ซ้ำซ้อน
-def _handle_upload(request, is_ajax):
-    if request.method == 'POST' and request.FILES.get('image'):
-        uploaded_image = request.FILES['image']
-        fs = FileSystemStorage()
-        filename = fs.save(uploaded_image.name, uploaded_image)
-        uploaded_file_url = fs.url(filename)
-
-        try:
-            # --- AI Logic (จำลอง) ---
-            # ในระบบจริง Code ส่วนนี้จะหา Best Match 1 คนจาก DB
-            # แต่ในที่นี้เราจะโฟกัสที่กรณี Demo (Else)
-            user_physique_vector = [0.1, 0.2, 0.3, 0.4, 0.5]
-            best_match_player = None 
-            min_distance = float('inf')
-            
-            # ... (ข้ามส่วนค้นหา Real DB ไป หรือใส่ logic เดิมของคุณตรงนี้) ...
-            
-            # รับค่า Checkbox
-            selected_gears = request.POST.getlist('gear_types')
-            
-            # สร้าง Session Data
-            if best_match_player:
-                # กรณีเจอ Pro Player จริง (มีคนเดียว)
-                request.session['match_result'] = {
-                    'mode': 'real',
-                    'uploaded_image_url': uploaded_file_url,
-                    'matched_player_id': best_match_player.player_id,
-                    'min_distance': min_distance,
-                    'selected_gears': selected_gears,
-                    'temp_preset_gears': []
-                }
-            else:
-                # === ดึงข้อมูล Pro Player จริงจาก Database ===
-                # === Real Matching Logic ===
-                # Simple matching: Select a ProPlayer from database
-                # Future enhancement: Use ML/CV to analyze hand size and match to similar ProPlayers
-                
-                from random import choice
-                
-                # Get all ProPlayers with images and gears
-                available_players = ProPlayer.objects.filter(
-                    image__isnull=False,
-                    proplayergear__isnull=False
-                ).exclude(image='').distinct()
-                
-                if not available_players.exists():
-                    # Fallback: Get any player with image
-                    available_players = ProPlayer.objects.filter(
-                        image__isnull=False
-                    ).exclude(image='')
-                
-                if not available_players.exists():
-                    messages.error(request, 'No Pro Players available in database. Please import player data first.')
-                    return redirect('upload_image')
-                
-                # Simple matching: Choose random ProPlayer
-                # TODO: Implement real matching based on hand size analysis
-                matched_player = choice(list(available_players))
-                
-                # Store match result in session
-                request.session['match_result'] = {
-                    'mode': 'real',
-                    'matched_player_id': matched_player.player_id,
-                    'uploaded_image_url': uploaded_file_url,
-                    'selected_gears': selected_gears,
-                    'temp_preset_gears': [],
-                    'min_distance': 0.0  # Placeholder for future ML distance metric
-                }
-
-
-            if is_ajax:
-                return JsonResponse({'ok': True, 'redirect': reverse('matching_result'), 'uploaded_image_url': uploaded_file_url})
-            else:
-                return redirect('matching_result')
-
-        except Exception as e:
-            if is_ajax:
-                return JsonResponse({'ok': False, 'error': str(e)}, status=500)
-            messages.error(request, f"Error: {e}")
-            return redirect('upload_image')
-    
-    if is_ajax:
-        return JsonResponse({'ok': False, 'error': 'Invalid request'}, status=400)
-    messages.error(request, 'Please upload an image.')
-    return render(request, 'APP01/upload_image.html')
 
 
 def matching_result(request):
@@ -334,42 +350,72 @@ def matching_result(request):
     selected_gears = GamingGear.objects.filter(gear_id__in=selected_gear_ids)
     
     # === Get Recommendations via Association Rules ===
+    # === Get Recommendations via Association Rules ===
     from APP01.association_rules import get_gear_recommendations
     
     # Get top 5 recommendations, excluding types we already have?
     # For now, just get general recommendations
     recommendations = get_gear_recommendations(selected_gear_ids, top_n=5)
     
+    # === Inflate Variants (Multi-Preset) ===
+    match_result_session = request.session.get('match_result', {})
+    variants_data = match_result_session.get('variants', {})
+    variants_context = {}
+    
+    if variants_data:
+        # 1. Collect all IDs to fetch in one go
+        all_variant_ids = set()
+        for v_data in variants_data.values():
+            for gid in v_data.get('gears', {}).values():
+                if gid:
+                    all_variant_ids.add(gid)
+        
+        # 2. Fetch Objects
+        variant_gears = GamingGear.objects.filter(gear_id__in=all_variant_ids)
+        gear_map = {g.gear_id: g for g in variant_gears}
+        
+        # 3. Reconstruct Structure with Objects
+        for v_name, v_data in variants_data.items():
+            variants_context[v_name] = {
+                'desc': v_data.get('desc'),
+                'badge': v_data.get('badge'),
+                'analysis': v_data.get('analysis', ''),
+                'pros': v_data.get('pros', []),
+                'cons': v_data.get('cons', []),
+                'gears': {}
+            }
+            for cat, gid in v_data.get('gears', {}).items():
+                if gid in gear_map:
+                    variants_context[v_name]['gears'][cat] = gear_map[gid]
+    
+    # === Build "My Setup" from user's current wizard_preset ===
+    my_setup_gears = {}
+    my_setup_diff = False  # Track if user has customized from the original
+    if selected_gears.exists():
+        for gear in selected_gears:
+            my_setup_gears[gear.type] = gear
+        # Check if my_setup differs from any variant (i.e., user has customized)
+        if variants_context:
+            perf_gears = variants_context.get('Performance', {}).get('gears', {})
+            perf_ids = {g.gear_id for g in perf_gears.values() if g}
+            my_ids = {g.gear_id for g in my_setup_gears.values() if g}
+            my_setup_diff = (my_ids != perf_ids)
+    
     context = {
         'selected_gears': selected_gears,
         'recommendations': recommendations,
+        'variants': variants_context,
+        'my_setup_gears': my_setup_gears,
+        'my_setup_diff': my_setup_diff,
+        # AI hybrid features
+        'ai_reasons': match_result_session.get('ai_reasons'),
+        'ai_sentiment': match_result_session.get('ai_sentiment'),
+        'hybrid_mode': match_result_session.get('mode') == 'hybrid_ai',
     }
     return render(request, 'APP01/matching_result.html', context)
     
     # Get all gears for this ProPlayer
-    gears_qs = GamingGear.objects.filter(proplayergear__player=matched_player)
-    gears_list = []
-    for g in gears_qs:
-        gears_list.append({
-            'gear_id': g.gear_id,
-            'name': g.name,
-            'category': getattr(g, 'type', 'Gear'),
-            'image_url': g.image.url if g.image else None,
-        })
-    
-    # Prepare context
-    selected_gears = match_result.get('selected_gears', [])
-    temp_preset_ids = match_result.get('temp_preset_gears', [])
 
-    context = {
-        'uploaded_image_url': match_result['uploaded_image_url'],
-        'matched_player': matched_player,
-        'matched_gears': gears_list,
-        'selected_gears': selected_gears,
-        'temp_preset_ids': temp_preset_ids,
-        'is_member': request.user.is_authenticated and request.user.role and request.user.role.role_name == 'Member',
-    }
-    return render(request, 'APP01/matching_result.html', context)
 
 
 # ฟังก์ชันสำหรับแก้ไข Preset ชั่วคราวจากหน้าผลลัพธ์
@@ -495,14 +541,17 @@ def gear_detail(request, gear_id):
         # สร้าง Dummy ขึ้นมากัน Error หรือ Redirect ออก
         gear = {'gear_id': gear_id, 'name': 'Unknown Gear', 'category': 'Unknown', 'image_url': None}
 
-    # เช็ค Session สำหรับปุ่ม ADD
-    match_result = request.session.get('match_result', {})
-    temp_preset_ids = match_result.get('temp_preset_gears', [])
+    # เช็ค Session สำหรับปุ่ม ADD — use wizard_preset (the active session key)
+    wizard_preset_ids = request.session.get('wizard_preset', [])
+    
+    # Capture 'next' parameter for back navigation
+    next_url = request.GET.get('next')
 
     context = {
         'gear': gear,
         'related_gears': related_gears,
-        'temp_preset_ids': temp_preset_ids,
+        'wizard_preset_ids': wizard_preset_ids,
+        'next_url': next_url,
         'is_member': request.user.is_authenticated and request.user.role and request.user.role.role_name == 'Member',
     }
     return render(request, 'APP01/gear_detail.html', context)
@@ -587,7 +636,7 @@ def pro_player_detail(request, player_id):
         'pro_player': pro_player,
         'pro_player_gears': pro_player_gears,
         'temp_preset_ids': temp_preset_ids,
-        'is_member': request.user.is_authenticated and request.user.role and request.user.role.role_name == 'Member',
+        'is_member': request.user.is_authenticated,
     }
     return render(request, 'APP01/pro_player_detail.html', context)
 
@@ -611,23 +660,45 @@ def global_search(request):
 
 def search_gear(request):
     query = request.GET.get('q')
+    selected_type = request.GET.get('type')
+    
     gears = GamingGear.objects.all()
+    # Get all unique types for filter buttons
+    types = GamingGear.objects.values_list('type', flat=True).distinct().order_by('type')
+    
     if query:
-        gears = gears.filter(name__icontains=query) # ค้นหาจากชื่ออุปกรณ์
+        gears = gears.filter(name__icontains=query)
+    
+    if selected_type:
+        gears = gears.filter(type=selected_type)
+        
     context = {
         'gears': gears,
-        'query': query
+        'query': query,
+        'types': types,
+        'selected_type': selected_type
     }
     return render(request, 'APP01/search_gear.html', context)
 
 def search_pro_player(request):
     query = request.GET.get('q')
+    selected_game = request.GET.get('game')
+    
     pro_players = ProPlayer.objects.all()
+    # Get all unique games for filter buttons
+    games = ProPlayer.objects.values_list('game', flat=True).distinct().order_by('game')
+    
     if query:
-        pro_players = pro_players.filter(name__icontains=query) # ค้นหาจากชื่อ Pro Player
+        pro_players = pro_players.filter(name__icontains=query)
+    
+    if selected_game:
+        pro_players = pro_players.filter(game=selected_game)
+        
     context = {
         'pro_players': pro_players,
-        'query': query
+        'query': query,
+        'games': games,
+        'selected_game': selected_game
     }
     return render(request, 'APP01/search_pro_player.html', context)
 
@@ -643,18 +714,20 @@ def home_member(request):
 @login_required(login_url='login')
 def user_profile(request):
     """แสดงโปรไฟล์ของ User พร้อม Dashboard Analytics"""
-    from django.db.models import Count
+    from django.db.models import Count, Q
     from django.db.models.functions import TruncMonth
     from datetime import datetime, timedelta
     import json
+    from APP01.models import Preset, PresetRating
     
     # Basic data
     user_presets = Preset.objects.filter(user=request.user).order_by('-created_at')[:5]
-    user_ratings = Rating.objects.filter(user=request.user).order_by('-rated_at')[:5]
+    # Use PresetRating instead of Rating (ProPlayer rating)
+    user_ratings = PresetRating.objects.filter(user=request.user).order_by('-created_at')[:5]
     
     # Dashboard Analytics
     total_presets = Preset.objects.filter(user=request.user).count()
-    total_ratings = Rating.objects.filter(user=request.user).count()
+    total_ratings = PresetRating.objects.filter(user=request.user).count()
     
     # Preset creation timeline (by month) for chart
     preset_timeline = (
@@ -688,13 +761,14 @@ def user_profile(request):
         created_at__gte=last_30_days
     ).count()
     
-    # Latest preset date
+    # Latest preset
     latest_preset = Preset.objects.filter(user=request.user).order_by('-created_at').first()
     
-    # Rating stats
-    good_ratings = Rating.objects.filter(user=request.user, feedback_score='Good').count()
-    neutral_ratings = Rating.objects.filter(user=request.user, feedback_score='Neutral').count()
-    bad_ratings = Rating.objects.filter(user=request.user, feedback_score='Bad').count()
+    # Rating stats based on Score (1-5)
+    # Good: 4-5, Neutral: 3, Bad: 1-2
+    good_ratings = PresetRating.objects.filter(user=request.user, score__gte=4).count()
+    neutral_ratings = PresetRating.objects.filter(user=request.user, score=3).count()
+    bad_ratings = PresetRating.objects.filter(user=request.user, score__lte=2).count()
     
     context = {
         'user_presets': user_presets,
@@ -1071,10 +1145,17 @@ def share_preset(request, preset_id):
 def view_shared_preset(request, share_link):
     preset = get_object_or_404(Preset, share_link=share_link)
     preset_gears = PresetGear.objects.filter(preset=preset).order_by('order')
+    
+    # Fetch Owner's Rating to display
+    owner_rating = None
+    from APP01.models import PresetRating
+    owner_rating = PresetRating.objects.filter(user=preset.user, preset=preset).first()
+
     context = {
         'preset': preset,
         'preset_gears': preset_gears,
         'is_shared_view': True,
+        'owner_rating': owner_rating, # Pass owner's rating explicitly
     }
     return render(request, 'APP01/preset_detail.html', context) # ใช้ template เดียวกัน
 
@@ -1084,11 +1165,17 @@ def user_logout(request):
     messages.info(request, "You have been logged out.")
     return redirect('home_guest')
 
+# --- Helper Function for Admin Logging ---
+def log_admin_action(user, action, target=None):
+    from .models import AdminLog
+    AdminLog.objects.create(user=user, action=action, target=target)
+
 # --- Admin Views ---
 @login_required(login_url='login')
 @user_passes_test(is_admin, login_url='home_member') # Redirect non-admin to home_member
 def admin_dashboard(request):
     total_users = User.objects.count()
+    total_banned_users = User.objects.filter(is_active=False).count() # Add total banned users
     total_pro_players = ProPlayer.objects.count()
     total_gears = GamingGear.objects.count()
     total_presets = Preset.objects.count()
@@ -1124,6 +1211,10 @@ def admin_dashboard(request):
     chart_user_data = []
     chart_preset_data = []
 
+    # Fetch Recent Feedbacks (PresetRating)
+    from .models import PresetRating
+    recent_feedbacks = PresetRating.objects.select_related('user', 'preset').order_by('-created_at')[:10]
+
     for i in range(days):
         current_date = start_date + timedelta(days=i)
         formatted_date = current_date.strftime('%d %b') # e.g. "25 Dec"
@@ -1131,8 +1222,35 @@ def admin_dashboard(request):
         chart_user_data.append(user_dict.get(current_date, 0))
         chart_preset_data.append(preset_dict.get(current_date, 0))
 
+    # --- Recent Activity (Last 5 Presets) ---
+    recent_presets = Preset.objects.select_related('user').order_by('-created_at')[:5]
+
+    # --- Admin Logs (Last 10 Actions) ---
+    from .models import AdminLog
+    admin_logs = AdminLog.objects.select_related('user').order_by('-timestamp')[:10]
+
+    # --- System Status ---
+    import platform
+    import django
+    from django.db import connection
+    
+    try:
+        connection.ensure_connection()
+        db_status = "Connected"
+    except Exception:
+        db_status = "Disconnected"
+
+    system_status = {
+        'server_time': timezone.now(),
+        'db_status': db_status,
+        'django_version': django.get_version(),
+        'python_version': platform.python_version(),
+        'app_version': 'v1.0.0', # Example version
+    }
+
     context = {
         'total_users': total_users,
+        'total_banned_users': total_banned_users,
         'total_pro_players': total_pro_players,
         'total_gears': total_gears,
         'total_presets': total_presets,
@@ -1140,6 +1258,10 @@ def admin_dashboard(request):
         'chart_labels': chart_labels,
         'chart_user_data': chart_user_data,
         'chart_preset_data': chart_preset_data,
+        'recent_presets': recent_presets,
+        'admin_logs': admin_logs, 
+        'recent_feedbacks': recent_feedbacks,
+        'system_status': system_status,
     }
     return render(request, 'APP01/admin_dashboard.html', context)
 
@@ -1157,7 +1279,8 @@ def admin_add_pro_player(request): # S_Add_Pro_Player (เปลี่ยนช�
     if request.method == 'POST':
         form = ProPlayerForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save() # ProPlayerForm.save() จะจัดการ ProPlayerGear ให้
+            player = form.save() # ProPlayerForm.save() จะจัดการ ProPlayerGear ให้
+            log_admin_action(request.user, "Added Pro Player", player.name)
             messages.success(request, 'Pro Player added successfully!')
             return redirect('admin_pro_players')
         else:
@@ -1174,7 +1297,8 @@ def admin_edit_pro_player(request, player_id): # S_Edit_Pro_Player (เปลี
     if request.method == 'POST':
         form = ProPlayerForm(request.POST, request.FILES, instance=pro_player)
         if form.is_valid():
-            form.save() # ProPlayerForm.save() จะจัดการ ProPlayerGear ให้
+            player = form.save() # ProPlayerForm.save() จะจัดการ ProPlayerGear ให้
+            log_admin_action(request.user, "Edited Pro Player", player.name)
             messages.success(request, 'Pro Player updated successfully!')
             return redirect('admin_pro_players')
         else:
@@ -1202,6 +1326,7 @@ def admin_delete_pro_player(request, player_id): # (เปลี่ยนชื�
     if request.method == 'POST':
         name = pro_player.name
         pro_player.delete()
+        log_admin_action(request.user, "Deleted Pro Player", name)
         messages.success(request, f'Pro Player "{name}" deleted successfully.')
     return redirect('admin_pro_players')
     # return render(request, 'APP01/admin_confirm_delete_pro_player.html', {'pro_player': pro_player}) # ทำใน template list แล้ว
@@ -1219,7 +1344,8 @@ def admin_add_gaming_gear(request): # (เปลี่ยนชื่อจา�
     if request.method == 'POST':
         form = GamingGearForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            gear = form.save()
+            log_admin_action(request.user, "Added Gaming Gear", gear.name)
             messages.success(request, 'Gaming Gear added successfully!')
             return redirect('admin_gaming_gears')
         else:
@@ -1235,7 +1361,8 @@ def admin_edit_gaming_gear(request, gear_id): # (เปลี่ยนชื่�
     if request.method == 'POST':
         form = GamingGearForm(request.POST, request.FILES, instance=gaming_gear)
         if form.is_valid():
-            form.save()
+            gear = form.save()
+            log_admin_action(request.user, "Edited Gaming Gear", gear.name)
             messages.success(request, 'Gaming Gear updated successfully!')
             return redirect('admin_gaming_gears')
         else:
@@ -1251,6 +1378,7 @@ def admin_delete_gaming_gear(request, gear_id): # (เปลี่ยนชื�
     if request.method == 'POST':
         name = gaming_gear.name
         gaming_gear.delete()
+        log_admin_action(request.user, "Deleted Gaming Gear", name)
         messages.success(request, f'Gaming Gear "{name}" deleted successfully.')
     return redirect('admin_gaming_gears')
     # return render(request, 'APP01/admin_confirm_delete_gear.html', {'gear': gear}) # ทำใน template list แล้ว
@@ -1271,7 +1399,8 @@ def admin_edit_user(request, user_id):
     if request.method == 'POST':
         form = UserEditForm(request.POST, instance=user_to_edit)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            log_admin_action(request.user, "Edited User", user.username)
             messages.success(request, f'User {user_to_edit.username} updated successfully.')
             return redirect('admin_users')
         else:
@@ -1292,6 +1421,7 @@ def admin_delete_user(request, user_id): # เปลี่ยนชื่อจ�
     if request.method == 'POST':
         username = user_obj.username
         user_obj.delete()
+        log_admin_action(request.user, "Deleted User", username)
         messages.success(request, f'User {username} deleted successfully.')
     return redirect('admin_users')
     # return render(request, 'APP01/admin_confirm_delete_user.html', {'user_obj': user_obj})
@@ -1315,6 +1445,7 @@ def admin_add_ai_model(request): # เปลี่ยนชื่อจาก ad
             new_model.last_trained_at = timezone.now()
             new_model.is_active = False # Default to inactive, admin sets active later
             new_model.save()
+            log_admin_action(request.user, "Added AI Model", new_model.name)
             messages.success(request, f'AI Model "{new_model.name}" added successfully.')
             return redirect('admin_ai_models')
         else:
@@ -1330,7 +1461,8 @@ def admin_edit_ai_model(request, model_id): # เปลี่ยนชื่อ�
     if request.method == 'POST':
         form = AIModelForm(request.POST, request.FILES, instance=ai_model)
         if form.is_valid():
-            form.save()
+            model = form.save()
+            log_admin_action(request.user, "Edited AI Model", model.name)
             messages.success(request, f'AI Model "{ai_model.name}" updated successfully.')
             return redirect('admin_ai_models')
         else:
@@ -1346,6 +1478,7 @@ def admin_delete_ai_model(request, model_id): # เปลี่ยนชื่�
     if request.method == 'POST':
         name = ai_model.name
         ai_model.delete()
+        log_admin_action(request.user, "Deleted AI Model", name)
         messages.success(request, f'AI Model "{name}" deleted successfully.')
     return redirect('admin_ai_models')
     # return render(request, 'APP01/admin_confirm_delete_ai_model.html', {'ai_model': ai_model})
@@ -1425,7 +1558,8 @@ def admin_add_gear(request):
     if request.method == 'POST':
         form = GamingGearForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            gear = form.save()
+            log_admin_action(request.user, "Added Gaming Gear", gear.name)
             messages.success(request, 'Gaming Gear added successfully!')
             return redirect('admin_gears')
         else:
@@ -1441,7 +1575,8 @@ def admin_edit_gear(request, gear_id):
     if request.method == 'POST':
         form = GamingGearForm(request.POST, request.FILES, instance=gear)
         if form.is_valid():
-            form.save()
+            gear = form.save()
+            log_admin_action(request.user, "Edited Gaming Gear", gear.name)
             messages.success(request, 'Gaming Gear updated successfully!')
             return redirect('admin_gears')
         else:
@@ -1457,6 +1592,7 @@ def admin_delete_gear(request, gear_id):
     if request.method == 'POST':
         gear_name = gear.name
         gear.delete()
+        log_admin_action(request.user, "Deleted Gaming Gear", gear_name)
         messages.success(request, f'Gaming Gear "{gear_name}" deleted successfully.')
     return redirect('admin_gears')
 
@@ -1479,7 +1615,6 @@ def admin_toggle_user_status(request, user_id):
         return redirect('admin_members')
     
     # สลับสถานะ Active (Ban/Unban)
-    # สลับสถานะ Active (Ban/Unban)
     user_obj.is_active = not user_obj.is_active
     
     status = "activated"
@@ -1487,65 +1622,19 @@ def admin_toggle_user_status(request, user_id):
         user_obj.banned_at = timezone.now()
         status = "BANNED"
         messages.warning(request, f'User {user_obj.username} has been {status}.')
+        log_admin_action(request.user, "Banned User", user_obj.username) # Log Ban
     else:
         user_obj.banned_at = None
         status = "activated"
         messages.success(request, f'User {user_obj.username} has been {status}.')
+        log_admin_action(request.user, "Activated User", user_obj.username) # Log Unban
         
     user_obj.save()
     
     return redirect('admin_members')
 
 # --- Admin AI Model Management ---
-@login_required(login_url='login')
-@user_passes_test(is_admin, login_url='home_member')
-def admin_models(request): # S_Admin_Models
-    models = AIModel.objects.all().order_by('-created_at')
-    return render(request, 'APP01/admin_models.html', {'models': models})
 
-@login_required(login_url='login')
-@user_passes_test(is_admin, login_url='home_member')
-def admin_add_model(request): # S_Train_Model (Upload/Add new version)
-    if request.method == 'POST':
-        form = AIModelForm(request.POST, request.FILES)
-        if form.is_valid():
-            new_model = form.save(commit=False)
-            # ถ้าโมเดลใหม่ถูกตั้งเป็น active ให้ deactivate ตัวอื่นก่อน
-            if new_model.is_active:
-                AIModel.objects.update(is_active=False)
-            new_model.save()
-            messages.success(request, 'New AI Model uploaded successfully.')
-            return redirect('admin_models')
-        else:
-             messages.error(request, 'Failed to upload model. Please check the file.')
-    else:
-        form = AIModelForm()
-    return render(request, 'APP01/admin_model_form.html', {'form': form})
-
-@login_required(login_url='login')
-@user_passes_test(is_admin, login_url='home_member')
-def admin_set_active_model(request, model_id): # S_Set_Active_Model
-    target_model = get_object_or_404(AIModel, model_id=model_id)
-    
-    # Deactivate all, then activate target
-    AIModel.objects.update(is_active=False)
-    target_model.is_active = True
-    target_model.save()
-    
-    # หมายเหตุ: ในระบบจริงอาจต้องมีการ reload ตัวแปร AI_MODEL ใน memory ด้วย
-    messages.success(request, f'Model "{target_model.version_name}" is now active.')
-    return redirect('admin_models')
-
-@login_required(login_url='login')
-@user_passes_test(is_admin, login_url='home_member')
-def admin_delete_model(request, model_id): # S_Del_Model
-    model = get_object_or_404(AIModel, model_id=model_id)
-    if model.is_active:
-        messages.error(request, 'Cannot delete the active model. Please activate another model first.')
-    else:
-        model.delete()
-        messages.success(request, 'Model deleted successfully.')
-    return redirect('admin_models')
 
 # --- Admin Alerts ---
 @login_required(login_url='login')
@@ -1652,3 +1741,25 @@ def confirm_replace(request, preset_id, old_gear_id, new_gear_id):
     preset_gear.save()
     messages.success(request, 'Successfully replaced ' + old_gear.name + ' with ' + new_gear.name + '!')
     return redirect('preset_detail', preset_id=preset.preset_id)
+
+def wizard_load_preset(request, variant_name):
+    """
+    Switch the active selection to one of the AI variants (Performance, Balanced, Pro).
+    """
+    match_result = request.session.get('match_result', {})
+    variants = match_result.get('variants', {})
+    
+    target_variant = variants.get(variant_name)
+    if target_variant:
+        # Extract IDs
+        new_ids = []
+        for gid in target_variant.get('gears', {}).values():
+            if gid:
+                new_ids.append(gid)
+        
+        request.session['wizard_preset'] = new_ids
+        messages.success(request, f"Switched to {variant_name} Preset!")
+    else:
+        messages.error(request, "Preset not found.")
+        
+    return redirect('matching_result')

@@ -12,16 +12,18 @@ urlpatterns = [
     path('forgot-password/', views.forgot_password, name='forgot_password'),
     
     # Matching Core
-    path('upload-image/', views.upload_image_and_match, name='upload_image'),
-    path('upload-image-ajax/', views.upload_image_ajax, name='upload_image_ajax'),
+
     path('matching-result/', views.matching_result, name='matching_result'),
     path('matching-result/submit-rating/', views.submit_rating, name='submit_rating'),
     
     # Wizard Flow
     path('start-matching/', views.start_matching, name='start_matching'),
+    path('wizard/quiz/', views.wizard_quiz, name='wizard_quiz'),
+    path('wizard/process-quiz/', views.process_quiz, name='process_quiz'),
     path('wizard/select/<str:category>/', views.wizard_select_gear, name='wizard_select_gear'),
     path('wizard/add/<int:gear_id>/', views.wizard_add_gear, name='wizard_add_gear'),
     path('wizard/remove/<int:gear_id>/', views.wizard_remove_gear, name='wizard_remove_gear'),
+    path('wizard/load-preset/<str:variant_name>/', views.wizard_load_preset, name='wizard_load_preset'),
 
     
     # Temporary Preset Editing (Session based)
@@ -75,11 +77,7 @@ urlpatterns = [
     path('admin-dashboard/gears/<int:gear_id>/edit/', views.admin_edit_gear, name='admin_edit_gear'),
     path('admin-dashboard/gears/<int:gear_id>/delete/', views.admin_delete_gear, name='admin_delete_gear'),
     
-    # Admin: AI Models (แก้ไขชื่อให้ตรงกับ views.py)
-    path('admin-dashboard/models/', views.admin_models, name='admin_models'),
-    path('admin-dashboard/models/add/', views.admin_add_model, name='admin_add_model'),
-    path('admin-dashboard/models/<int:model_id>/delete/', views.admin_delete_model, name='admin_delete_model'),
-    path('admin-dashboard/models/<int:model_id>/set-active/', views.admin_set_active_model, name='admin_set_active_model'),
+
     
     # Admin: Members Management (แก้ไขให้ตรงกับ views.py)
     path('admin-dashboard/members/', views.admin_members, name='admin_members'),

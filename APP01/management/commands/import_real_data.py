@@ -68,7 +68,52 @@ class Command(BaseCommand):
             return f"Professional {category.lower()} designed for competitive gaming. " \
                    f"Features high-quality components and construction for peak performance."
 
+    def load_reviews(self, base_data_dir):
+        """Loads all review data and calculates sentiment scores."""
+        reviews = {}
+        review_files = {
+            'Mouse': 'mice_reviews_data.json',
+            'Keyboard': 'keyboards_reviews_data.json',
+            'Headset': 'headsets_reviews_data.json',
+            'Monitor': 'monitors_reviews_data.json',
+            'Mousepad': 'mousepads_reviews_data.json',
+            'Chair': 'chairs_reviews_data.json'
+        }
+
+        for category, filename in review_files.items():
+            filepath = os.path.join(base_data_dir, filename)
+            if not os.path.exists(filepath):
+                continue
+            
+            with open(filepath, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                
+            reviews[category] = {}
+            for item in data:
+                name = item.get('name')
+                if not name:
+                    continue
+                # Clean name: remove " Review" suffix for matching
+                clean_name = name.replace(' Review', '').strip()
+                
+                pros = item.get('pros', [])
+                cons = item.get('cons', [])
+                
+                # Simple NLP Sentiment Algorithm
+                # Pros are weighted more positively (1.5), Cons negatively (1.0)
+                score = (len(pros) * 1.5) - (len(cons) * 1.0)
+                
+                reviews[category][clean_name] = {
+                    'pros': pros,
+                    'cons': cons,
+                    'sentiment_score': score
+                }
+        return reviews
+
     def import_gear(self, base_data_dir):
+        # 1. Load Reviews Metadata
+        reviews_data = self.load_reviews(base_data_dir)
+        
         gear_files = {
             'Mouse': 'mice_data.json',
             'Keyboard': 'keyboards_data.json',
@@ -87,7 +132,7 @@ class Command(BaseCommand):
             with open(filepath, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 
-            self.stdout.write(f"Importing {category} from {filename}...")
+            self.stdout.write(f"Importing {category} from {filename} with Sentiment Analysis...")
             
             for item in data:
                 # Name key might vary slightly or be 'Name'
@@ -98,6 +143,22 @@ class Command(BaseCommand):
                 # Generate description
                 description = self.generate_description(category, item)
                 
+                # Merge Review Data (NLP)
+                specs_data = item.copy()
+                review_info = reviews_data.get(category, {}).get(name)
+                
+                # Try fuzzy match if exact match fails
+                if not review_info:
+                    for r_name, r_data in reviews_data.get(category, {}).items():
+                        if name in r_name or r_name in name:
+                            review_info = r_data
+                            break
+                
+                if review_info:
+                    specs_data['pros'] = review_info['pros']
+                    specs_data['cons'] = review_info['cons']
+                    specs_data['sentiment_score'] = review_info['sentiment_score']
+                
                 # Try to find existing gear or create
                 gear, created = GamingGear.objects.get_or_create(
                     name=name,
@@ -105,14 +166,32 @@ class Command(BaseCommand):
                         'type': category,
                         'brand': name.split(' ')[0], # Simple guess
                         'description': description,
-                        'specs': json.dumps(item) # Store all raw data in specs
+                        'specs': json.dumps(specs_data) # Store all raw data + sentiment in specs
                     }
                 )
                 
                 # Update description if gear already exists but has no description
-                if not created and not gear.description:
-                    gear.description = description
-                    gear.save()
+                if not created:
+                    needs_save = False
+                    if not gear.description:
+                        gear.description = description
+                        needs_save = True
+                    
+                    # Update specs with new review data if available
+                    if review_info:
+                        current_specs = json.loads(gear.specs) if gear.specs else {}
+                        # Only update if sentiment is missing or different
+                        if 'sentiment_score' not in current_specs:
+                            current_specs.update({
+                                'pros': review_info['pros'],
+                                'cons': review_info['cons'],
+                                'sentiment_score': review_info['sentiment_score']
+                            })
+                            gear.specs = json.dumps(current_specs)
+                            needs_save = True
+                    
+                    if needs_save:
+                        gear.save()
                 
                 # Image handling
                 # Images are in "Gaming Gear Pictures/{Category}/{Name}.png/jpg/etc"

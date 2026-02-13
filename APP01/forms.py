@@ -1,7 +1,7 @@
 # APP01/forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm
-from .models import User, Role, ProPlayer, GamingGear, Preset, AIModel, Alert, Rating, ProPlayerGear # เพิ่ม ProPlayerGear
+from .models import User, Role, ProPlayer, GamingGear, Preset, Alert, ProPlayerGear # เพิ่ม ProPlayerGear
 
 # --- Custom Login Form ---
 class LoginForm(AuthenticationForm):
@@ -140,29 +140,8 @@ class PresetForm(forms.ModelForm):
             'name': 'ชื่อ Preset',
         }
 
-class AIModelForm(forms.ModelForm):
-    class Meta:
-        model = AIModel
-        fields = ['name', 'version', 'file_path', 'is_active']
-        labels = {
-            'name': 'ชื่อโมเดล AI',
-            'version': 'เวอร์ชัน',
-            'file_path': 'ตำแหน่งไฟล์โมเดล',
-            'is_active': 'ใช้งานอยู่',
-        }
 
-class RatingForm(forms.ModelForm):
-    class Meta:
-        model = Rating
-        fields = ['feedback_score', 'comment']
-        labels = {
-            'feedback_score': 'คะแนนการจับคู่',
-            'comment': 'ความคิดเห็นเพิ่มเติม',
-        }
-        widgets = {
-            'feedback_score': forms.RadioSelect(choices=Rating.feedback_score.field.choices),
-            'comment': forms.Textarea(attrs={'rows': 3}),
-        }
+
 
 class UserEditForm(forms.ModelForm):
     role = forms.ModelChoiceField(

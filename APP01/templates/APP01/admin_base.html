@@ -61,7 +61,6 @@
         }
 
         .sidebar .logout-link {
-            margin-top: auto;
             color: #dc3545;
         }
 
@@ -223,7 +222,10 @@
 
             </nav>
 
-            <a class="nav-link logout-link mt-auto" href="{% url 'logout' %}">
+            <a class="nav-link mt-auto" href="{% url 'home_member' %}">
+                <i class="bi bi-globe"></i> View Site
+            </a>
+            <a class="nav-link logout-link" href="{% url 'logout' %}">
                 <i class="bi bi-box-arrow-right"></i> Log out
             </a>
         </div>

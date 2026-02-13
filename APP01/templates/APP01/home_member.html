@@ -6,10 +6,34 @@
 <div class="jumbotron mt-5 text-center">
     <h1 class="display-4">Welcome Back, {{ user.username }}!</h1>
     <p class="lead">This is your member dashboard. Explore your presets or start a new match.</p>
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <div class="card shadow border-0 bg-white">
+                <div class="card-body p-4 text-start">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 bg-primary bg-opacity-10 p-3 rounded-circle text-primary">
+                            <i class="fas fa-brain fa-2x"></i>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h4 class="fw-bold mb-1">New: AI Playstyle Recommendation</h4>
+                            <p class="mb-0 text-muted">Let our Hybrid AI design your setup based on your gaming style.
+                            </p>
+                        </div>
+                        <a href="{% url 'wizard_quiz' %}" class="btn btn-primary fw-bold px-4 rounded-pill">
+                            Start Analysis
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <hr class="my-4">
     <p class="lead">
-        <a class="btn btn-info btn-lg me-2" href="{% url 'manage_presets' %}" role="button">My Presets</a>
-        <a class="btn btn-success btn-lg" href="{% url 'upload_image' %}" role="button">New Match</a>
+        <a class="btn btn-outline-info me-2" href="{% url 'manage_presets' %}" role="button"><i
+                class="fas fa-list me-2"></i>My Presets</a>
+        <a class="btn btn-outline-success" href="{% url 'start_matching' %}" role="button"><i
+                class="fas fa-tools me-2"></i>Manual Build</a>
     </p>
 </div>
 {% endblock %}

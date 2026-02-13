@@ -1,0 +1,81 @@
+{% extends 'APP01/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4 display-5 fw-bold text-uppercase" style="letter-spacing: 2px;">Gaming Gears</h1>
+
+    <!-- Filter Buttons -->
+    <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+        <a href="{% url 'search_gear' %}"
+            class="btn {% if not selected_type %}btn-dark{% else %}btn-outline-dark{% endif %} rounded-pill px-4">
+            SELECT ALL
+        </a>
+        {% for type in types %}
+        <a href="{% url 'search_gear' %}?type={{ type }}"
+            class="btn {% if selected_type == type %}btn-primary{% else %}btn-outline-primary{% endif %} rounded-pill px-4">
+            {{ type }}
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Gears Grid -->
+    {% if gears %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        {% for gear in gears %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 hover-lift">
+                <div class="position-relative overflow-hidden" style="height: 200px;">
+                    {% if gear.image %}
+                    <img src="{{ gear.image.url }}"
+                        class="card-img-top w-100 h-100 object-fit-contain p-3 transition-transform"
+                        alt="{{ gear.name }}">
+                    {% else %}
+                    <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-light text-muted">
+                        <i class="fas fa-microchip fa-3x"></i>
+                    </div>
+                    {% endif %}
+                    <span class="position-absolute top-0 end-0 badge bg-primary m-2">{{ gear.type }}</span>
+                </div>
+
+                <div class="card-body text-center d-flex flex-column">
+                    <h5 class="card-title fw-bold text-truncate" title="{{ gear.name }}">{{ gear.name }}</h5>
+                    <p class="card-text text-muted small mb-3">{{ gear.brand }}</p>
+                    <a href="{% url 'gear_detail' gear.gear_id %}"
+                        class="btn btn-outline-dark mt-auto w-100 stretched-link">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+        <p class="h5 text-muted">No gaming gear found for this category.</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .hover-lift {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    }
+
+    .object-fit-contain {
+        object-fit: contain;
+    }
+
+    .transition-transform {
+        transition: transform 0.3s;
+    }
+
+    .card:hover .transition-transform {
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}

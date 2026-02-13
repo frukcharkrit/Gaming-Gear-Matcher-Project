@@ -43,9 +43,11 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'])
 
 # Add ngrok support if in dev
 if DEBUG:
-    ALLOWED_HOSTS.extend(['.ngrokfree.app'])
+    ALLOWED_HOSTS.extend(['.ngrok-free.app', 'ec51f3fe17f8.ngrok-free.app'])
+    # Trust the X-Forwarded-Proto header for ngrok (prevent redirect loops)
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.ngrok-free.app', 'https://ec51f3fe17f8.ngrok-free.app']
 
 
 # Application definition
@@ -95,7 +97,7 @@ ROOT_URLCONF = 'GamingGearMatcher.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Project-level templates (checked BEFORE app templates)
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,22 +136,8 @@ if not env('POSTGRES_PASSWORD', default=''):
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# Disabled for easier testing - any password is accepted
+AUTH_PASSWORD_VALIDATORS = []
 
 
 # Internationalization
@@ -162,6 +150,10 @@ TIME_ZONE = 'Asia/Bangkok'
 USE_I18N = True
 
 USE_TZ = True
+
+# Custom Allauth Adapters
+ACCOUNT_ADAPTER = 'APP01.adapter.MyAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'APP01.adapter.MySocialAccountAdapter'
 
 
 # Static files (CSS, JavaScript, Images)

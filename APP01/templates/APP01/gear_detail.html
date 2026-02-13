@@ -175,8 +175,10 @@
 
     <div class="row mb-2">
         <div class="col-12">
-            <a href="{% url 'save_preset' %}" class="btn-back-preset shadow-sm">
-                <i class="fas fa-arrow-left me-2"></i> BACK TO PRESET
+            <a href="{% if next_url %}{{ next_url }}{% else %}{% url 'save_preset' %}{% endif %}"
+                class="btn-back-preset shadow-sm">
+                <i class="fas fa-arrow-left me-2"></i> {% if next_url and 'matching' in next_url %}BACK TO ANALYSIS{%
+                else %}BACK TO PRESET{% endif %}
             </a>
         </div>
     </div>
@@ -198,11 +200,11 @@
                     <h2 class="fw-bold text-uppercase m-0 text-dark" style="line-height: 1.1;">{{ gear.name }}</h2>
                 </div>
 
-                {% if gear.gear_id in temp_preset_ids %}
-                <a href="{% url 'edit_temp_preset_with_id' 'remove' gear.gear_id %}?next={{ request.path }}"
+                {% if gear.gear_id in wizard_preset_ids %}
+                <a href="{% url 'wizard_remove_gear' gear.gear_id %}?next={{ request.get_full_path|urlencode }}"
                     class="btn-add-main btn-remove-main">REMOVE</a>
                 {% else %}
-                <a href="{% url 'edit_temp_preset_with_id' 'add' gear.gear_id %}?next={{ request.path }}"
+                <a href="{% url 'wizard_add_gear' gear.gear_id %}?next={{ request.get_full_path|urlencode }}"
                     class="btn-add-main">ADD</a>
                 {% endif %}
             </div>

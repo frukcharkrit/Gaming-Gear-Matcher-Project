@@ -59,21 +59,25 @@
 
     {# --- Header และปุ่ม Actions --- #}
     <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="preset-title">{{ preset.name }}</h1>
+        <h1 class="preset-title">
+            {{ preset.name }}
+            <small class="text-muted fs-4">by {{ preset.user.username }}</small>
+        </h1>
 
         <div>
-            {# ปุ่ม Share Preset #}
+            {% if request.user == preset.user %}
             {# ปุ่ม Share Preset (เปิด Modal) #}
             <button type="button" class="btn btn-sm btn-primary btn-share" data-bs-toggle="modal"
                 data-bs-target="#sharePresetModal">
                 <i class="fas fa-share-alt me-1"></i> Share Preset
             </button>
 
-            {# ปุ่ม Edit Name (เปิด Modal) #}
+            {# ปุ่ม Edit Name (เปิด Modal) - Only Owner #}
             <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                 data-bs-target="#editNameModal">
                 <i class="fas fa-edit me-1"></i> Edit Name
             </button>
+            {% endif %}
         </div>
     </div>
 
@@ -114,13 +118,15 @@
                     </div>
                 </a>
 
-                {# Replace Button #}
+                {# Replace Button - Only Owner #}
+                {% if request.user == preset.user %}
                 <div class="ms-auto">
                     <a href="{% url 'replace_gear' preset.preset_id preset_gear.gear.gear_id %}"
                         class="btn btn-sm btn-outline-warning">
                         <i class="fas fa-exchange-alt me-1"></i>Replace
                     </a>
                 </div>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -134,14 +140,43 @@
 
     <hr class="my-5">
 
-    <!-- Rating Section (NEW) -->
+    <!-- Rating Section -->
     <div class="card shadow-sm border-0 bg-light">
         <div class="card-body text-center p-5">
-            <h3 class="card-title fw-bold mb-3">Rate this Recommendation</h3>
+            <h3 class="card-title fw-bold mb-3">Owner's Rating</h3>
+
+            {% if is_shared_view %}
+            {# --- VISITOR VIEW: READ ONLY --- #}
+            {% if owner_rating %}
+            <div class="d-inline-block p-4 bg-white rounded shadow-sm border">
+                <div class="display-4 text-warning mb-2">
+                    {% for i in "12345"|make_list %}
+                    {% if forloop.counter <= owner_rating.score %} <i class="fas fa-star"></i>
+                        {% else %}<i class="far fa-star"></i>{% endif %}
+                        {% endfor %}
+                </div>
+                <div class="fw-bold text-success mb-2">
+                    <i class="fas fa-user-check me-1"></i> Rated by Owner
+                </div>
+                {% if owner_rating.comment %}
+                <div
+                    class="mt-3 p-3 bg-light rounded text-muted fst-italic border-start border-4 border-warning text-start">
+                    "{{ owner_rating.comment }}"
+                </div>
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="alert alert-secondary d-inline-block">
+                <i class="fas fa-info-circle me-1"></i> This preset has not been rated by the owner yet.
+            </div>
+            {% endif %}
+
+            {% else %}
+            {# --- OWNER VIEW: CAN RATE --- #}
             <p class="text-muted mb-4">How satisfied are you with this gear setup?</p>
 
             {% if user_rating %}
-            <div class="d-inline-block p-4 bg-white rounded shadow-sm border">
+            <div id="userRatingDisplay" class="d-inline-block p-4 bg-white rounded shadow-sm border position-relative">
                 <div class="display-4 text-warning mb-2">
                     {% for i in "12345"|make_list %}
                     {% if forloop.counter <= user_rating.score %} <i class="fas fa-star"></i>
@@ -159,6 +194,40 @@
                     "{{ user_rating.comment }}"
                 </div>
                 {% endif %}
+
+                <button onclick="toggleRatingEdit()" class="btn btn-sm btn-outline-secondary mt-3">
+                    <i class="fas fa-edit me-1"></i> Edit Rating
+                </button>
+            </div>
+
+            {# --- Edit Form (Hidden by default) --- #}
+            <div id="ratingFormContainer" style="display: none;">
+                <form action="{% url 'rate_preset' preset.preset_id %}" method="POST" id="ratingForm">
+                    {% csrf_token %}
+
+                    <div class="rating-stars mb-4 display-5 text-warning" style="cursor: pointer;">
+                        {% for i in "12345"|make_list %}
+                        <i class="{% if forloop.counter <= user_rating.score %}fas{% else %}far{% endif %} fa-star star-icon"
+                            data-value="{{ forloop.counter }}"></i>
+                        {% endfor %}
+                    </div>
+
+                    <input type="hidden" name="score" id="rating-score" required value="{{ user_rating.score }}">
+
+                    <div class="mb-3 w-75 mx-auto">
+                        <textarea name="comment" class="form-control" rows="3"
+                            placeholder="Tell us what you like or dislike about this setup... (Optional)">{{ user_rating.comment }}</textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-2">
+                        <button type="button" onclick="toggleRatingEdit()" class="btn btn-secondary px-4 py-2">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary px-5 py-2 fw-bold" id="submitRatingBtn">
+                            Update Feedback
+                        </button>
+                    </div>
+                </form>
             </div>
             {% else %}
             <form action="{% url 'rate_preset' preset.preset_id %}" method="POST" id="ratingForm">
@@ -184,6 +253,22 @@
                 </button>
             </form>
             {% endif %}
+            {% endif %}
+
+            <script>
+                function toggleRatingEdit() {
+                    const displayDiv = document.getElementById('userRatingDisplay');
+                    const formDiv = document.getElementById('ratingFormContainer');
+
+                    if (displayDiv.style.display === 'none') {
+                        displayDiv.style.display = 'inline-block';
+                        formDiv.style.display = 'none';
+                    } else {
+                        displayDiv.style.display = 'none';
+                        formDiv.style.display = 'block';
+                    }
+                }
+            </script>
         </div>
     </div>
 
@@ -297,10 +382,9 @@
     var shareModal = document.getElementById('sharePresetModal');
     shareModal.addEventListener('show.bs.modal', function (event) {
         var input = document.getElementById('shareLinkInput');
-        // สร้าง Link จำลอง (Random ID)
-        var randomId = Math.floor(Math.random() * 100000) + 1;
-        var demoLink = window.location.origin + "/share/demo-link-" + randomId + "/";
-        input.value = demoLink;
+        // สร้าง Link จริงจาก preset.share_link
+        var realLink = "{{ request.scheme }}://{{ request.get_host }}{% url 'view_shared_preset' share_link=preset.share_link %}";
+        input.value = realLink;
 
         // Reset copy message
         document.getElementById('copySuccessMsg').style.display = 'none';

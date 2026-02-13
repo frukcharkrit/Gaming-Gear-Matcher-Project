@@ -1,0 +1,132 @@
+{% extends 'APP01/base.html' %}
+{% load static %}
+
+{% block title %}Playstyle Analysis - GamingGearMatcher{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold display-5">Quiz for Playstyle Analysis <i class="fas fa-brain text-primary"></i></h1>
+                <p class="lead text-muted">Tell us about your gaming style, and I will help you find a perfect starting
+                    gear.</p>
+            </div>
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <form method="POST" action="{% url 'process_quiz' %}">
+                        {% csrf_token %}
+
+                        <!-- Question 1: Game Genre -->
+                        <div class="mb-5">
+                            <h4 class="fw-bold mb-3"><i class="fas fa-gamepad text-success me-2"></i>What is your main
+                                game genre?</h4>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="genre" id="genre_fps" value="FPS"
+                                        required>
+                                    <label class="btn btn-outline-dark w-100 p-4 rounded-3 text-start h-100"
+                                        for="genre_fps">
+                                        <i class="fas fa-crosshairs fa-2x mb-2 d-block text-danger"></i>
+                                        <strong>FPS (Shooter)</strong><br>
+                                        <small class="text-muted">Valorant, CS2, Overwatch</small>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="genre" id="genre_moba" value="MOBA">
+                                    <label class="btn btn-outline-dark w-100 p-4 rounded-3 text-start h-100"
+                                        for="genre_moba">
+                                        <i class="fas fa-chess-knight fa-2x mb-2 d-block text-primary"></i>
+                                        <strong>MOBA / RTS</strong><br>
+                                        <small class="text-muted">LoL, Dota 2, Starcraft</small>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="genre" id="genre_mmo" value="MMO">
+                                    <label class="btn btn-outline-dark w-100 p-4 rounded-3 text-start h-100"
+                                        for="genre_mmo">
+                                        <i class="fas fa-dragon fa-2x mb-2 d-block text-warning"></i>
+                                        <strong>MMORPG / RPG</strong><br>
+                                        <small class="text-muted">WoW, FFXIV, Genshin</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Hand Size -->
+                        <div class="mb-5">
+                            <h4 class="fw-bold mb-3"><i class="fas fa-hand-paper text-info me-2"></i>What is your hand
+                                size?</h4>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="hand_size" id="hand_small" value="Small"
+                                        required>
+                                    <label class="btn btn-outline-secondary w-100 p-3 rounded-3" for="hand_small">
+                                        <strong>Small</strong> (< 17cm) </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="hand_size" id="hand_medium"
+                                        value="Medium">
+                                    <label class="btn btn-outline-secondary w-100 p-3 rounded-3" for="hand_medium">
+                                        <strong>Medium</strong> (17-19cm)
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="hand_size" id="hand_large"
+                                        value="Large">
+                                    <label class="btn btn-outline-secondary w-100 p-3 rounded-3" for="hand_large">
+                                        <strong>Large</strong> (> 19cm)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Grip Style -->
+                        <div class="mb-5">
+                            <h4 class="fw-bold mb-3"><i class="fas fa-mouse text-dark me-2"></i>How do you hold your
+                                mouse?</h4>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="grip" id="grip_palm" value="Palm"
+                                        required>
+                                    <label class="btn btn-outline-dark w-100 p-3 rounded-3" for="grip_palm">
+                                        <strong>Palm Grip</strong><br>
+                                        <small class="text-muted">Full hand contact, relaxed.</small>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="grip" id="grip_claw" value="Claw">
+                                    <label class="btn btn-outline-dark w-100 p-3 rounded-3" for="grip_claw">
+                                        <strong>Claw Grip</strong><br>
+                                        <small class="text-muted">Arched fingers, palm contact.</small>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="grip" id="grip_finger"
+                                        value="Fingertip">
+                                    <label class="btn btn-outline-dark w-100 p-3 rounded-3" for="grip_finger">
+                                        <strong>Fingertip Grip</strong><br>
+                                        <small class="text-muted">Only fingertips touch, agile.</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg py-3 fw-bold shadow-sm">
+                                <i class="fas fa-magic me-2"></i>Analyze & Recommend Gear
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{% url 'start_matching' %}" class="text-muted text-decoration-none"><i
+                        class="fas fa-arrow-left me-1"></i> Back to selection</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

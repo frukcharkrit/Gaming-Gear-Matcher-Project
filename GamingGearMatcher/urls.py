@@ -19,11 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf import settings # สำหรับ MEDIA
-from django.conf.urls.static import static # สำหรับ MEDIA
+from APP01 import views as app01_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Override accounts/inactive/ BEFORE allauth so our custom view takes priority
+    path('accounts/inactive/', app01_views.custom_account_inactive, name='account_inactive'),
     path('accounts/', include('allauth.urls')),  # Social auth & password reset URLs
     path('', include('APP01.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

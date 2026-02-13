@@ -135,6 +135,12 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{% url 'search_gear' %}">GAMING GEARS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{% url 'search_pro_player' %}">PRO PLAYERS</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link fw-bold text-primary" href="{% url 'save_preset' %}">
                             <i class="fas fa-history me-1"></i> TEMP PRESET
                         </a>
@@ -165,30 +171,32 @@
                     </div>
                 </form>
 
-                <ul class="navbar-nav">
+                <div class="ms-3 text-end d-flex align-items-center">
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_profile' %}">
-                            <i class="fas fa-user"></i> Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <span class="nav-link disabled text-dark">{{ user.username }}</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-danger me-2" href="{% url 'logout' %}">LOGOUT</a>
-                    </li>
+                    <a href="{% url 'user_profile' %}" class="text-decoration-none text-dark d-flex align-items-center">
+                        <div class="me-2 text-end d-none d-md-block">
+                            <small class="text-muted d-block" style="font-size: 0.75rem;">Welcome,</small>
+                            <span class="fw-bold">{{ user.username }}</span>
+                        </div>
+                        {% if user.profile_image %}
+                        <img src="{{ user.profile_image.url }}" alt="{{ user.username }}" class="rounded-circle border"
+                            style="width: 40px; height: 40px; object-fit: cover;">
+                        {% else %}
+                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white"
+                            style="width: 40px; height: 40px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </a>
+                    <a class="btn btn-outline-danger ms-3" href="{% url 'logout' %}">LOGOUT</a>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="btn btn-outline-primary me-2" href="{% url 'login' %}">LOGIN</a>
-                    </li>
                     <li class="nav-item">
                         <a class="btn btn-primary" href="{% url 'register' %}">SIGN UP</a>
                     </li>
                     {% endif %}
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
     </nav>
 
     <div class="container mt-4">

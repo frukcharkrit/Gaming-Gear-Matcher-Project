@@ -47,7 +47,7 @@
         <div class="col-md-9">
             <!-- Dashboard Overview Cards -->
             <h3 class="mb-4"><i class="fas fa-chart-bar"></i> Dashboard Overview</h3>
-            
+
             <div class="row mb-4">
                 <div class="col-md-3 mb-3">
                     <div class="card shadow-sm border-primary">
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3 mb-3">
                     <div class="card shadow-sm border-success">
                         <div class="card-body text-center">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3 mb-3">
                     <div class="card shadow-sm border-info">
                         <div class="card-body text-center">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3 mb-3">
                     <div class="card shadow-sm border-warning">
                         <div class="card-body text-center">
@@ -99,7 +99,8 @@
                     {% if total_presets > 0 %}
                     <canvas id="presetTimelineChart" style="max-height: 300px;"></canvas>
                     {% else %}
-                    <p class="text-muted text-center py-5">No preset data yet. <a href="{% url 'upload_image' %}">Create your first preset!</a></p>
+                    <p class="text-muted text-center py-5">No preset data yet. <a href="{% url 'upload_image' %}">Create
+                            your first preset!</a></p>
                     {% endif %}
                 </div>
             </div>
@@ -166,25 +167,28 @@
                     {% if user_ratings %}
                     <div class="list-group">
                         {% for rating in user_ratings %}
-                        <div class="list-group-item">
+                        <a href="{% url 'preset_detail' rating.preset.preset_id %}"
+                            class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">{{ rating.proplayer.name }}</h6>
-                                <small class="text-muted">{{ rating.rated_at|date:"M d, Y" }}</small>
+                                <h6 class="mb-1">{{ rating.preset.name }}</h6>
+                                <small class="text-muted">{{ rating.created_at|date:"M d, Y" }}</small>
                             </div>
-                            <p class="mb-1">
-                                <span
-                                    class="badge {% if rating.feedback_score == 'Good' %}bg-success{% elif rating.feedback_score == 'Neutral' %}bg-warning{% else %}bg-danger{% endif %}">
-                                    {{ rating.feedback_score }}
-                                </span>
-                            </p>
+                            <div class="mb-1 text-warning">
+                                {% for i in "12345"|make_list %}
+                                {% if forloop.counter <= rating.score %} <i class="fas fa-star"></i>
+                                    {% else %}
+                                    <i class="far fa-star"></i>
+                                    {% endif %}
+                                    {% endfor %}
+                            </div>
                             {% if rating.comment %}
-                            <small class="text-muted">{{ rating.comment|truncatewords:15 }}</small>
+                            <small class="text-muted d-block text-truncate">{{ rating.comment }}</small>
                             {% endif %}
-                        </div>
+                        </a>
                         {% endfor %}
                     </div>
                     {% else %}
-                    <p class="text-muted">No ratings yet.</p>
+                    <p class="text-muted text-center py-3">No ratings yet.</p>
                     {% endif %}
                 </div>
             </div>
@@ -198,9 +202,9 @@
     {% if total_presets > 0 %}
     // Preset Timeline Chart
     const ctx = document.getElementById('presetTimelineChart').getContext('2d');
-    const chartLabels = {{ chart_labels_json|safe }};
-    const chartData = {{ chart_data_json|safe }};
-    
+    const chartLabels = {{ chart_labels_json| safe }};
+    const chartData = {{ chart_data_json| safe }};
+
     new Chart(ctx, {
         type: 'bar',
         data: {
