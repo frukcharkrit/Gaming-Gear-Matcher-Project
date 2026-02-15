@@ -120,9 +120,15 @@ class Game(models.Model):
 class ProPlayer(models.Model):
     player_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    game = models.CharField(max_length=50)
+    # game = models.CharField(max_length=50) # Deprecated
+    game = models.ForeignKey(Game, on_delete=models.SET_NULL, null=True, related_name='pro_players')
     bio = models.TextField(blank=True, null=True) # เพิ่ม Bio
     settings = models.JSONField(default=dict, blank=True) # เพิ่ม Settings (JSON)
+    
+    # New Fields for Analysis (Extracted from settings)
+    edpi = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    sensitivity = models.DecimalField(max_digits=10, decimal_places=3, null=True, blank=True)
+    
     # physique_vector removed
     image = models.ImageField(upload_to='pro_players/', blank=True, null=True) # เปลี่ยนจาก URL เป็น ImageField
     created_at = models.DateTimeField(default=timezone.now)
@@ -132,21 +138,20 @@ class ProPlayer(models.Model):
 
     @property
     def game_logo_url(self):
-        try:
-            game_obj = Game.objects.get(name__iexact=self.game)
-            if game_obj.logo:
-                return game_obj.logo.url
-        except Game.DoesNotExist:
-            return None
+        if self.game and self.game.logo:
+            return self.game.logo.url
         return None
 
 # --- GamingGear Model ---
+# --- GamingGear Model ---
+from django.contrib.postgres.indexes import GinIndex
+
 class GamingGear(models.Model):
     gear_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=50) # e.g., Mouse, Keyboard, Headset
     brand = models.CharField(max_length=50)
-    specs = models.TextField(blank=True, null=True) # เก็บรายละเอียดสเปคเป็น JSON string
+    specs = models.JSONField(default=dict, blank=True) # เก็บรายละเอียดสเปคเป็น JSON Object
     description = models.TextField(blank=True, null=True) # คำอธิบายอุปกรณ์
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     store_url = models.CharField(max_length=255, blank=True, null=True)
@@ -155,6 +160,14 @@ class GamingGear(models.Model):
 
     def __str__(self):
         return f"{self.brand} {self.name} ({self.type})"
+
+    class Meta:
+        indexes = [
+            GinIndex(fields=['specs'], name='specs_gin_index'),
+        ]
+        constraints = [
+            models.CheckConstraint(check=models.Q(price__gte=0), name='price_gte_0'),
+        ]
 
 # --- Preset Model ---
 class Preset(models.Model):

@@ -569,23 +569,26 @@
                 {% for item in recommendations %}
                 <div class="gear-item-row shadow-sm border-start border-4 border-primary mb-3">
                     <div class="d-flex align-items-center flex-grow-1">
-                        <div class="me-3 bg-white rounded p-1 border"
+                        <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                            class="me-3 bg-white rounded p-1 border text-decoration-none"
                             style="width: 60px; height: 60px; display:flex; align-items:center; justify-content:center;">
                             {% if item.gear.image %}
                             <img src="{{ item.gear.image.url }}" style="max-width:100%; max-height:100%;">
                             {% else %}
                             <i class="fas fa-star text-warning fa-lg"></i>
                             {% endif %}
-                        </div>
+                        </a>
 
                         <div>
                             <small class="text-primary d-block fw-bold text-uppercase">
                                 {{ item.gear.type }} • CONFIDENCE: {{ item.confidence_percent|floatformat:0 }}%
                             </small>
-                            <span class="fw-bold text-dark d-block" style="font-size: 1.1rem;">
+                            <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                                class="fw-bold text-dark d-block text-decoration-none hover-underline"
+                                style="font-size: 1.1rem;">
                                 {% if item.gear.brand in item.gear.name %}{{ item.gear.name }}{% else %}{{
                                 item.gear.brand }} {{ item.gear.name }}{% endif %}
-                            </span>
+                            </a>
                             <small class="text-muted">
                                 Often used with your items (Lift: {{ item.lift|floatformat:2 }})
                             </small>
@@ -611,23 +614,26 @@
                 {% for item in popular_gears %}
                 <div class="gear-item-row shadow-sm border-start border-4 border-success mb-3">
                     <div class="d-flex align-items-center flex-grow-1">
-                        <div class="me-3 bg-white rounded p-1 border"
+                        <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                            class="me-3 bg-white rounded p-1 border text-decoration-none"
                             style="width: 60px; height: 60px; display:flex; align-items:center; justify-content:center;">
                             {% if item.gear.image %}
                             <img src="{{ item.gear.image.url }}" style="max-width:100%; max-height:100%;">
                             {% else %}
                             <i class="fas fa-fire text-danger fa-lg"></i>
                             {% endif %}
-                        </div>
+                        </a>
 
                         <div>
                             <small class="text-success d-block fw-bold text-uppercase">
                                 MOST POPULAR {{ item.type }} • USED BY {{ item.count }} PROS
                             </small>
-                            <span class="fw-bold text-dark d-block" style="font-size: 1.1rem;">
+                            <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                                class="fw-bold text-dark d-block text-decoration-none hover-underline"
+                                style="font-size: 1.1rem;">
                                 {% if item.gear.brand in item.gear.name %}{{ item.gear.name }}{% else %}{{
                                 item.gear.brand }} {{ item.gear.name }}{% endif %}
-                            </span>
+                            </a>
                         </div>
                     </div>
 

@@ -480,11 +480,13 @@ def gear_detail(request, gear_id):
         gear_obj = GamingGear.objects.get(gear_id=gear_id)
         
         # แปลงเป็น Dict พร้อม specs ทั้งหมด
-        import json
         specs_dict = {}
         try:
             if gear_obj.specs:
-                specs_dict = json.loads(gear_obj.specs)
+                if isinstance(gear_obj.specs, str):
+                    specs_dict = json.loads(gear_obj.specs)
+                else:
+                    specs_dict = gear_obj.specs
         except:
             pass
             
@@ -685,14 +687,15 @@ def search_pro_player(request):
     selected_game = request.GET.get('game')
     
     pro_players = ProPlayer.objects.all()
-    # Get all unique games for filter buttons
-    games = ProPlayer.objects.values_list('game', flat=True).distinct().order_by('game')
+    # Get all unique games for filter buttons - Use game__name since game is now FK
+    games = ProPlayer.objects.values_list('game__name', flat=True).distinct().order_by('game__name')
     
     if query:
         pro_players = pro_players.filter(name__icontains=query)
     
     if selected_game:
-        pro_players = pro_players.filter(game=selected_game)
+        # Filter using game__name
+        pro_players = pro_players.filter(game__name=selected_game)
         
     context = {
         'pro_players': pro_players,
@@ -829,14 +832,14 @@ def save_preset(request):
     import logging
     logger = logging.getLogger(__name__)
     # DEBUG: Write to file to verify function execution
-    with open('/tmp/debug_save_preset.txt', 'a') as f:
-        f.write("=" * 50 + "\n")
-        f.write(f"Time: {timezone.now()}\n")
-        f.write(f"User: {request.user.username}\n")
-        f.write(f"Session keys: {list(request.session.keys())}\n")
-        f.write(f"wizard_preset: {request.session.get('wizard_preset', 'NOT FOUND')}\n")
-        f.write(f"match_result: {request.session.get('match_result', 'NOT FOUND')}\n")
-        f.write("=" * 50 + "\n")
+    # DEBUG: Log session data instead of file write
+    logger.warning("=" * 50)
+    logger.warning(f"Time: {timezone.now()}")
+    logger.warning(f"User: {request.user.username}")
+    logger.warning(f"Session keys: {list(request.session.keys())}")
+    logger.warning(f"wizard_preset: {request.session.get('wizard_preset', 'NOT FOUND')}")
+    logger.warning(f"match_result: {request.session.get('match_result', 'NOT FOUND')}")
+    logger.warning("=" * 50)
     logger.warning("🔥 ENTERED save_preset function!")
     logger.warning(f"User authenticated: {request.user.is_authenticated}")
     
@@ -1185,7 +1188,7 @@ def admin_dashboard(request):
 
     # --- Analytics Graph Data (Last 30 Days) ---
     days = 30
-    today = timezone.now().date()
+    today = timezone.localtime().date()
     start_date = today - timedelta(days=days-1)
 
     # Aggregate daily new users

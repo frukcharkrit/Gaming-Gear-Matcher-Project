@@ -4,7 +4,7 @@ import shutil
 from django.core.management.base import BaseCommand
 from django.core.files import File
 from django.conf import settings
-from APP01.models import ProPlayer, GamingGear, ProPlayerGear
+from APP01.models import ProPlayer, GamingGear, ProPlayerGear, Game
 
 class Command(BaseCommand):
     help = 'Import real data from JSON files'
@@ -108,7 +108,59 @@ class Command(BaseCommand):
                     'cons': cons,
                     'sentiment_score': score
                 }
+
         return reviews
+
+    def estimate_price_smartly(self, name, category):
+        import random
+        
+        name_lower = name.lower()
+        price_tier = "mid" # low, mid, high, eagle (premium)
+
+        # 1. Determine Tier based on Keywords
+        if any(x in name_lower for x in ['pro', 'ultimate', 'signature', 'v3', 'superlight', 'oled', 'wireless', 'beast', 'finalmouse']):
+            price_tier = "high"
+            if any(x in name_lower for x in ['signature', 'finalmouse', 'beast x']):
+                price_tier = "eagle"
+        elif any(x in name_lower for x in ['mini', 'core', 'essential', 'wired']):
+            price_tier = "low"
+            if "wireless" in name_lower: # 'mini wireless' is usually mid-high
+                price_tier = "mid"
+
+        # 2. Category Baselines (Low, Mid, High, Eagle)
+        baselines = {
+            'Mouse':     [29.99, 59.99, 129.99, 189.99],
+            'Keyboard':  [49.99, 99.99, 179.99, 249.99],
+            'Headset':   [39.99, 79.99, 149.99, 299.99],
+            'Monitor':   [199.99, 349.99, 599.99, 999.99],
+            'Mousepad':  [14.99, 29.99, 59.99, 99.99],
+            'Chair':     [149.99, 299.99, 499.99, 899.99],
+            'Earphones': [19.99, 49.99, 149.99, 499.99]
+        }
+        
+        tiers = baselines.get(category, [19.99, 49.99, 99.99, 149.99])
+        
+        # 3. Pick base price from tier
+        if price_tier == 'low':
+            base = tiers[0]
+            variation = 10
+        elif price_tier == 'mid':
+            base = tiers[1]
+            variation = 20
+        elif price_tier == 'high':
+            base = tiers[2]
+            variation = 30
+        else: # eagle
+            base = tiers[3]
+            variation = 50
+
+        # 4. Add randomness
+        final_price = base + random.uniform(-variation, variation)
+        
+        # 5. Charm pricing (end in .99 or .00 roughly)
+        final_price = round(final_price) - 0.01
+        
+        return max(final_price, 9.99) # Ensure no negative/too low prices
 
     def import_gear(self, base_data_dir):
         # 1. Load Reviews Metadata
@@ -166,29 +218,42 @@ class Command(BaseCommand):
                         'type': category,
                         'brand': name.split(' ')[0], # Simple guess
                         'description': description,
-                        'specs': json.dumps(specs_data) # Store all raw data + sentiment in specs
+                        'specs': specs_data, # Store dict directly (JSONField)
+                        'price': self.estimate_price_smartly(name, category)
                     }
                 )
                 
                 # Update description if gear already exists but has no description
+                # Always update specs from source if available, or if current specs are empty
                 if not created:
                     needs_save = False
                     if not gear.description:
                         gear.description = description
                         needs_save = True
-                    
-                    # Update specs with new review data if available
-                    if review_info:
-                        current_specs = json.loads(gear.specs) if gear.specs else {}
-                        # Only update if sentiment is missing or different
+
+                    # Force update specs if it's empty or default
+                    if specs_data and (not gear.specs or gear.specs == {} or gear.specs == {'{}'}): 
+                        gear.specs = specs_data
+                        needs_save = True
+                    # Otherwise, if review_info is available, update existing specs with it
+                    elif review_info:
+                        current_specs = gear.specs if isinstance(gear.specs, dict) else {}
+                        if not current_specs and isinstance(gear.specs, str):
+                            try: current_specs = json.loads(gear.specs)
+                            except: current_specs = {}
+
                         if 'sentiment_score' not in current_specs:
                             current_specs.update({
                                 'pros': review_info['pros'],
                                 'cons': review_info['cons'],
                                 'sentiment_score': review_info['sentiment_score']
                             })
-                            gear.specs = json.dumps(current_specs)
+                            gear.specs = current_specs
                             needs_save = True
+                    # Force update price (Smart Estimation)
+                    # We overwrite to ensure pricing logic propagates (e.g. if we refine the algo)
+                    gear.price = self.estimate_price_smartly(name, category)
+                    needs_save = True
                     
                     if needs_save:
                         gear.save()
@@ -220,17 +285,57 @@ class Command(BaseCommand):
                 
             details = item.get('details', {})
             
+            # Find or Create Game
+            game_name = details.get('game', 'Unknown')
+            game_obj, _ = Game.objects.get_or_create(name=game_name)
+
+            # Extract Stats
+            mouse_settings = item.get('mouse_settings', {})
+            edpi_val = mouse_settings.get('eDPI')
+            sens_val = mouse_settings.get('Sensitivity')
+            
+            def clean_float(val):
+                if not val: return None
+                try: 
+                    # Handle "1,234" or "1.23"
+                    return float(str(val).replace(',', ''))
+                except: return None
+
+            settings_dict = {
+                'mouse_settings': mouse_settings,
+                'setup': item.get('setup', [])
+            }
+            
             player, created = ProPlayer.objects.get_or_create(
                 name=name,
                 defaults={
-                    'game': details.get('game', 'Unknown'),
+                    'game': game_obj,
                     'bio': details.get('bio', ''),
-                    'settings': json.dumps({
-                        'mouse_settings': item.get('mouse_settings', {}),
-                        'setup': item.get('setup', [])
-                    })
+                    'settings': settings_dict, # Pass dict
+                    'edpi': clean_float(edpi_val),
+                    'sensitivity': clean_float(sens_val),
                 }
             )
+            
+            # Update specific fields if already exists (for re-runs)
+            if not created:
+                needs_save = False
+                
+                # Always check/update Game link
+                if not player.game or player.game != game_obj:
+                    player.game = game_obj
+                    needs_save = True
+                
+                # Always check/update Stats
+                if edpi_val and player.edpi != clean_float(edpi_val):
+                    player.edpi = clean_float(edpi_val)
+                    needs_save = True
+                if sens_val and player.sensitivity != clean_float(sens_val):
+                    player.sensitivity = clean_float(sens_val)
+                    needs_save = True
+                    
+                if needs_save:
+                    player.save()
             
             # Image handling
             image_dir = os.path.join(base_data_dir, 'Pro Player Pictures')

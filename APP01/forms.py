@@ -1,7 +1,7 @@
 # APP01/forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm
-from .models import User, Role, ProPlayer, GamingGear, Preset, Alert, ProPlayerGear # เพิ่ม ProPlayerGear
+from .models import User, Role, ProPlayer, GamingGear, Preset, Alert, ProPlayerGear, Game # เพิ่ม ProPlayerGear
 
 # --- Custom Login Form ---
 class LoginForm(AuthenticationForm):
@@ -62,7 +62,6 @@ class ProPlayerForm(forms.ModelForm):
         }
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'เช่น s1mple', 'class': 'form-control'}),
-            'game': forms.TextInput(attrs={'placeholder': 'เช่น Counter-Strike', 'class': 'form-control'}),
             'bio': forms.Textarea(attrs={'placeholder': 'ประวัติของโปรเพลเยอร์', 'class': 'form-control', 'rows': 3}),
         }
     
@@ -118,7 +117,6 @@ class GamingGearForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'placeholder': 'เช่น Razer DeathAdder V3 Pro', 'class': 'form-control'}),
             'type': forms.TextInput(attrs={'placeholder': 'เช่น Mouse, Keyboard, Headset', 'class': 'form-control'}),
             'brand': forms.TextInput(attrs={'placeholder': 'เช่น Razer', 'class': 'form-control'}),
-            'specs': forms.Textarea(attrs={'placeholder': '{"sensor": "Optical", "dpi": "30000"}', 'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'placeholder': 'เช่น 5000', 'class': 'form-control'}),
             'store_url': forms.URLInput(attrs={'placeholder': 'เช่น http://store.com/item', 'class': 'form-control'}),
         }

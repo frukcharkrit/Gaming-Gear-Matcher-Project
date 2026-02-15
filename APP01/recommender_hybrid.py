@@ -18,10 +18,13 @@ class HybridRecommender:
         for gear in candidates:
             score = 0
             reasons = []
-            try:
-                specs = json.loads(gear.specs)
-            except:
-                continue
+            if isinstance(gear.specs, str):
+                try:
+                    specs = json.loads(gear.specs)
+                except:
+                    specs = {}
+            else:
+                specs = gear.specs
                 
             try:
                 max_weight_str = specs.get('Max weight', '100')
@@ -111,9 +114,12 @@ class HybridRecommender:
             if not gear_entry:
                 return default
             try:
-                specs = json.loads(gear_entry['gear'].specs)
+                if isinstance(gear_entry['gear'].specs, str):
+                    specs = json.loads(gear_entry['gear'].specs)
+                else:
+                    specs = gear_entry['gear'].specs
                 return specs.get(key, default)
-            except:
+            except (json.JSONDecodeError, AttributeError, TypeError): # Catch specific errors for robustness
                 return default
 
         # ======================================================
@@ -307,10 +313,13 @@ class HybridRecommender:
         for gear in candidates:
             score = 0
             reasons = []
-            try:
-                specs = json.loads(gear.specs)
-            except:
-                continue
+            if isinstance(gear.specs, str):
+                try:
+                    specs = json.loads(gear.specs)
+                except:
+                    specs = {}
+            else:
+                specs = gear.specs
                 
             # Content-Based Logic
             length = float(specs.get('L (cm)', 0))
@@ -392,10 +401,13 @@ class HybridRecommender:
         for gear in candidates:
             score = 0
             reasons = []
-            try:
-                specs = json.loads(gear.specs)
-            except:
-                continue
+            if isinstance(gear.specs, str):
+                try:
+                    specs = json.loads(gear.specs)
+                except:
+                    specs = {}
+            else:
+                specs = gear.specs
             
             form_factor = specs.get('Form Factor', '')
             
@@ -433,10 +445,13 @@ class HybridRecommender:
         for gear in candidates:
             score = 0
             reasons = []
-            try:
-                specs = json.loads(gear.specs)
-            except:
-                continue
+            if isinstance(gear.specs, str):
+                try:
+                    specs = json.loads(gear.specs)
+                except:
+                    specs = {}
+            else:
+                specs = gear.specs
                 
             audio_type = specs.get('Audio Output', '')
             
@@ -467,10 +482,13 @@ class HybridRecommender:
         for gear in candidates:
             score = 0
             reasons = []
-            try:
-                specs = json.loads(gear.specs)
-            except:
-                 continue
+            if isinstance(gear.specs, str):
+                try:
+                    specs = json.loads(gear.specs)
+                except:
+                    specs = {}
+            else:
+                specs = gear.specs
                  
             try:
                 hz = float(specs.get('Refresh Rate', '60').replace('Hz',''))

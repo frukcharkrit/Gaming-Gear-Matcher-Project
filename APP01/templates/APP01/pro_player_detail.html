@@ -241,6 +241,15 @@
                         <h6 class="fw-bold text-uppercase m-0">{{ gear.name }}</h6>
                     </a>
 
+                    <!-- Added Price Display -->
+                    <div class="mb-1">
+                        {% if gear.price %}
+                        <span class="fw-bold text-danger">${{ gear.price }}</span>
+                        {% else %}
+                        <span class="text-muted small">Price N/A</span>
+                        {% endif %}
+                    </div>
+
                     <div class="mt-2">
                         {% if gear.description %}
                         <p class="small text-muted mb-0">{{ gear.description|truncatechars:60 }}</p>

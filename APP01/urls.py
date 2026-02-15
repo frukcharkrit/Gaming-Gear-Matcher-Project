@@ -17,6 +17,7 @@ urlpatterns = [
     path('matching-result/submit-rating/', views.submit_rating, name='submit_rating'),
     
     # Wizard Flow
+    path('upload-image/', views.upload_image_and_match, name='upload_image'), # Legacy/Profile support
     path('start-matching/', views.start_matching, name='start_matching'),
     path('wizard/quiz/', views.wizard_quiz, name='wizard_quiz'),
     path('wizard/process-quiz/', views.process_quiz, name='process_quiz'),

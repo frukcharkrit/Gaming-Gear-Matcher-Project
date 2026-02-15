@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres', # Required for JSONField indexing (GIN)
     'django.contrib.sites',  # Required for allauth
     
     # Third-party apps

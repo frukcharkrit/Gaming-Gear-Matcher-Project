@@ -99,7 +99,8 @@
                     {% if total_presets > 0 %}
                     <canvas id="presetTimelineChart" style="max-height: 300px;"></canvas>
                     {% else %}
-                    <p class="text-muted text-center py-5">No preset data yet. <a href="{% url 'upload_image' %}">Create
+                    <p class="text-muted text-center py-5">No preset data yet. <a
+                            href="{% url 'start_matching' %}">Create
                             your first preset!</a></p>
                     {% endif %}
                 </div>
@@ -115,7 +116,8 @@
                         <div class="col-md-6">
                             <p><strong><i class="fas fa-clock"></i> Latest Activity:</strong></p>
                             {% if latest_preset %}
-                            <p class="text-muted">Created "{{ latest_preset.name }}" on {{ latest_preset.created_at|date:"M d, Y" }}</p>
+                            <p class="text-muted">Created "{{ latest_preset.name }}" on {{
+                                latest_preset.created_at|date:"M d, Y" }}</p>
                             {% else %}
                             <p class="text-muted">No presets created yet</p>
                             {% endif %}
@@ -152,7 +154,7 @@
                     </div>
                     <a href="{% url 'manage_presets' %}" class="btn btn-primary mt-3">View All Presets</a>
                     {% else %}
-                    <p class="text-muted">No presets yet. <a href="{% url 'upload_image' %}">Create your first
+                    <p class="text-muted">No presets yet. <a href="{% url 'start_matching' %}">Create your first
                             preset!</a></p>
                     {% endif %}
                 </div>

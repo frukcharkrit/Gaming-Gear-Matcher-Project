@@ -62,7 +62,8 @@
                     <td>{{ gear.name }}</td>
                     <td>{{ gear.type }}</td>
                     <td>{{ gear.brand }}</td>
-                    <td>{{ gear.price|default:"N/A" }}</td>
+                    <td>{% if gear.price %}${{ gear.price }}{% else %}<span class="text-muted">N/A</span>{% endif %}
+                    </td>
                     <td>
                         <a href="{% url 'admin_edit_gear' gear.gear_id %}" class="btn btn-sm btn-info me-2">Edit</a>
                         <form action="{% url 'admin_delete_gear' gear.gear_id %}" method="post" class="d-inline"
