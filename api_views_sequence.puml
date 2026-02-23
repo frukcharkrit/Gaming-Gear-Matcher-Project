@@ -1,0 +1,149 @@
+@startuml API Views - Sequence Diagram
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 0
+skinparam defaultFontName Segoe UI
+skinparam defaultFontColor #000000
+skinparam sequenceArrowColor #000000
+skinparam sequenceArrowFontColor #000000
+
+skinparam participant {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam actor {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam note {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam divider {
+    BorderColor #000000
+    FontColor #000000
+    BackgroundColor #FFFFFF
+}
+
+title API Views — Sequence Diagram
+
+actor Member as member
+actor Admin as admin
+participant "Browser\n(JS fetch)" as browser
+participant "BannedUser\nMiddleware" as mw
+participant "api_views.py" as api
+participant "association_rules.py\n(AssociationRuleMiner)" as miner
+participant "Django Cache" as cache
+database "PostgreSQL" as db
+
+== Flow 1: POST /api/recommendations/ (Member เลือก Gear ใน Wizard) ==
+
+member -> browser : เลือก Gear ชิ้นแรก\n(เช่น Mouse)
+browser -> mw : POST /api/recommendations/\nBody: { gear_ids: [42], top_n: 5 }
+note right of mw
+  @login_required
+  ตรวจสอบ session
+end note
+
+mw -> mw : ตรวจ is_active?
+alt user ถูกแบน
+    mw --> browser : redirect /login/
+else ผ่าน
+    mw -> api : api_gear_recommendations(request)
+end
+
+api -> api : json.loads(request.body)\ngear_ids = [42]\ntop_n = 5\nexclude_types = []
+
+api -> miner : get_gear_recommendations(\n  gear_ids, top_n, exclude_types)
+
+miner -> miner : get_miner()\n(singleton instance)
+
+miner -> cache : cache.get("association_rules_rules")
+note right of cache
+  TTL: 24 ชั่วโมง
+end note
+
+alt Cache HIT
+    cache --> miner : rules DataFrame
+else Cache MISS
+    cache --> miner : None
+    miner -> miner : mine_association_rules()
+    miner -> db : ProPlayer.objects\n.prefetch_related(\n  'proplayergear_set__gear')\n.all()
+    db --> miner : players + gears
+    miner -> miner : build_transaction_data()\nTransactionEncoder → one-hot DataFrame
+    note right of miner
+      transaction = Pro Player
+      item = gear_id
+      เอาเฉพาะ player ที่มี >= 2 gears
+    end note
+    miner -> miner : apriori(df, min_support=0.05)
+    miner -> miner : association_rules(\n  min_confidence=0.3)
+    miner -> miner : filter lift >= 1.0\nsort by confidence×lift
+    miner -> cache : cache.set(rules, TTL=86400s)
+end
+
+miner -> miner : หา rules ที่ antecedents\nเป็น subset ของ gear_ids
+miner -> db : GamingGear.objects\n.get(gear_id=...)
+db --> miner : GamingGear objects
+
+miner -> miner : คำนวณ realistic_confidence\n= 0.70 + (confidence × 0.25)
+
+alt ผลลัพธ์ < top_n (Fallback)
+    miner -> db : GamingGear.objects\n.annotate(usage_count=Count('proplayergear'))\n.exclude(gear_id__in=existing)\n.order_by('-usage_count')[:10]
+    db --> miner : popular gears
+    miner -> miner : เพิ่ม popular gears\nด้วย synthetic confidence 60-80%
+end
+
+miner --> api : List[Dict]\n[{gear, confidence, lift, score}, ...]
+
+api -> api : format response:\n{gear_id, name, type, brand,\nprice, image_url,\nconfidence%, lift, score}
+
+api --> browser : 200 OK\n{\n  success: true,\n  recommendations: [...],\n  count: N\n}
+
+browser -> member : แสดง Gear แนะนำ\nในหน้า Wizard
+
+|||
+
+== Flow 2: POST /api/admin/refresh-rules/ (Admin สั่ง refresh cache) ==
+
+admin -> browser : กด Refresh Rules
+browser -> mw : POST /api/admin/refresh-rules/
+note right of mw
+  @login_required
+  @user_passes_test(is_admin)
+end note
+
+mw -> mw : ตรวจ is_active?
+mw -> api : api_refresh_association_rules(request)
+
+api -> api : ตรวจ is_admin(user)\n(is_superuser or role='Admin')
+
+alt ไม่ใช่ Admin
+    api --> browser : 403 Forbidden
+else เป็น Admin
+    api -> miner : refresh_association_rules()
+    miner -> miner : get_miner() (singleton)
+    miner -> miner : refresh_cache()
+    miner -> db : ProPlayer + gears\n(เหมือน Flow 1)
+    db --> miner : data
+    miner -> miner : mine_association_rules()\nApriori → rules DataFrame
+    alt mine สำเร็จ (rules ไม่ว่าง)
+        miner -> cache : cache.set(\n  "association_rules_rules",\n  rules, TTL=86400s)
+        cache --> miner : OK
+        miner --> api : True
+        api --> browser : 200 OK\n{\n  success: true,\n  message: "Association rules\n  refreshed successfully"\n}
+    else ข้อมูลไม่เพียงพอ
+        miner --> api : False
+        api --> browser : 400 Bad Request\n{\n  success: false,\n  message: "Failed to refresh rules\n  - insufficient data"\n}
+    end
+end
+
+browser -> admin : แสดงผลลัพธ์
+
+@enduml

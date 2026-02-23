@@ -1,0 +1,146 @@
+@startuml HybridRecommender - Flowchart
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 0
+skinparam defaultFontName Segoe UI
+skinparam defaultFontColor #000000
+
+skinparam activity {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+    ArrowColor #000000
+    DiamondBackgroundColor #FFFFFF
+    DiamondBorderColor #000000
+    DiamondFontColor #000000
+    StartColor #000000
+    EndColor #000000
+    BarColor #000000
+}
+
+skinparam note {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+title HybridRecommender — recommend_variant_setups() Flowchart
+
+start
+
+:POST /wizard/process-quiz/\nrequest.POST → user_prefs;
+note right
+  genre, hand_size, grip
+end note
+
+:HybridRecommender()\n.recommend_variant_setups(user_prefs);
+
+fork
+    :recommend_mouse(user_prefs);
+    note right
+      Query: GamingGear.objects.filter(type='Mouse')
+    end note
+    :Loop ทุก Mouse ใน DB;
+    :Parse specs JSON\n(H/W/L, Weight, Shape);
+    split
+        :Score: Hand Size\n(ความยาว Mouse vs ขนาดมือ)\nmax +30;
+    split again
+        :Score: Grip Style\n(Palm→Ergo +25\nFingertip→สั้น +30)\nmax +30;
+    split again
+        :Score: Genre\n(FPS→น้ำหนัก<65g +35\nMOBA→60-90g +20)\nmax +35;
+    split again
+        :Score: Sentiment\n(specs.sentiment_score × 1.5)\nmax +15;
+    end split
+    :sort() desc → Top 5;
+
+fork again
+    :recommend_keyboard(user_prefs);
+    :Loop ทุก Keyboard ใน DB;
+    :Parse specs JSON\n(Form Factor);
+    split
+        :Score: Genre×FormFactor\n(FPS+60% +35\nMOBA+TKL +25\nMMO+Full +35)\nmax +35;
+    split again
+        :Score: Sentiment × 2\nmax +20;
+    end split
+    :sort() desc → Top 5;
+
+fork again
+    :recommend_headset(user_prefs);
+    :Loop ทุก Headset ใน DB;
+    :Score: Sentiment × 4\nmax +60;
+    :sort() desc → Top 5;
+
+fork again
+    :recommend_monitor(user_prefs);
+    :Loop ทุก Monitor ใน DB;
+    :Parse specs JSON\n(Refresh Rate, Resolution, Panel Tech);
+    split
+        :FPS?\nHz≥360 +40\nHz≥240 +30\n1080p +10;
+    split again
+        :MOBA/MMO/RPG?\n1440p/4K +35\nOLED/IPS +20;
+    end split
+    :Score: Sentiment × 2\nmax +20;
+    :sort() desc → Top 5;
+
+fork again
+    :recommend_chair(user_prefs);
+    :Loop ทุก Chair ใน DB;
+    :Parse specs JSON\n(Max weight, Material, Lumbar support);
+    split
+        :Hand Size (proxy ตัว)\nLarge+MaxWeight≥130 +20;
+    split again
+        :Material\nFabric +10\nReal Leather +15;
+    split again
+        :Adjustable Lumbar +10;
+    split again
+        :Sentiment × 2\nmax +30;
+    end split
+    :sort() desc → Top 5;
+
+end fork
+
+note right
+  ได้ candidates[0..4]
+  สำหรับทุก category
+end note
+
+partition "Build Variants" {
+
+    :=== Performance Variant ===\nใช้ Index[0] ของทุก category;
+    :วิเคราะห์ Mouse weight/shape\nKeyboard form factor\nMonitor Hz/Panel;
+    :สร้าง pros[] / cons[] / analysis text;
+    :calculate_variant_score()\nsum scores → normalize /305 × 100;
+    :variants["Performance"] = {\nMouse, Keyboard, Headset,\nMonitor, Chair,\ndesc, analysis, pros, cons,\nbadge="Best Match", score\n};
+
+    :=== Balanced Variant ===\nใช้ Index[1] ของทุก category\n(fallback Index[0] ถ้ามีแค่ตัวเดียว);
+    :เปรียบ brand vs Performance\nวิเคราะห์ alt form factor/panel;
+    :สร้าง pros[] / cons[];
+    :calculate_variant_score();
+    :variants["Balanced"] = {\n...\nbadge="Value Pick", score\n};
+
+    :=== Pro Variant ===;
+    :get_pro_choice(category) × 5;
+    note right
+      GamingGear.objects\n  .filter(type=category)\n  .annotate(p_count=Count('proplayergear'))\n  .order_by('-p_count')\n  .first()
+    end note
+    :ตรวจว่า Pro Mouse ซ้ำกับ\nPerformance Mouse หรือไม่;
+    if (ซ้ำกัน?) then (yes)
+        :pros: "Aligns with Performance too!";
+    else (no)
+        :cons: "May not match your hand/grip";
+    endif
+    :calculate_variant_score()\nscore=95 ต่อ gear (fixed);
+    :variants["Pro"] = {\n...\nbadge="Pro Choice", score\n};
+}
+
+:return variants\n{Performance, Balanced, Pro};
+
+:views.py: เก็บใน session\nrequest.session["wizard_preset"]\nrequest.session["variants_data"];
+
+:redirect → /matching-result/;
+
+:แสดงผล matching_result.html\nแต่ละ Variant tab;
+
+stop
+
+@enduml

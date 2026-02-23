@@ -190,6 +190,44 @@
             /* เปลี่ยนเป็นสีสว่างเพื่อให้อ่านได้บนพื้นหลังมืด */
             border-top: 1px solid #333;
         }
+
+        #btn-refresh-rules {
+            color: #ffffff;
+            padding: 10px 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #btn-refresh-rules:hover {
+            background-color: #198754 !important;
+            color: #ffffff;
+        }
+
+        #btn-refresh-rules i {
+            margin-right: 10px;
+            font-size: 1.3em;
+        }
+
+        #btn-refresh-rules.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
         </style>
     </head>
     <body>
@@ -223,6 +261,12 @@
                         <i class="bi bi-keyboard-fill"></i> Gaming Gears
                     </a>
                     {# URL Name ต้องตรงกับ urls.py #}
+                    <hr style="border-color: #444; margin: 10px 0;">
+                    <button class="nav-link text-start w-100 border-0 bg-transparent"
+                            id="btn-refresh-rules"
+                            onclick="refreshAssociationRules()">
+                        <i class="bi bi-arrow-repeat"></i> Refresh Rules
+                    </button>
                 </nav>
                 <a class="nav-link mt-auto" href="{% url 'home_member' %}">
                     <i class="bi bi-globe"></i> View Site
@@ -259,5 +303,50 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                 crossorigin="anonymous"></script>
+
+        <!-- Toast container -->
+        <div class="toast-container">
+            <div id="refresh-toast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body" id="refresh-toast-body"></div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        function refreshAssociationRules() {
+            const btn = document.getElementById('btn-refresh-rules');
+            btn.classList.add('loading');
+            btn.disabled = true;
+
+            fetch("{% url 'api_refresh_association_rules' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(res => res.json())
+            .then(data => {
+                showToast(data.success ? 'bg-success' : 'bg-warning', data.message);
+            })
+            .catch(() => {
+                showToast('bg-danger', 'เกิดข้อผิดพลาด ไม่สามารถเชื่อมต่อได้');
+            })
+            .finally(() => {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+            });
+        }
+
+        function showToast(bgClass, message) {
+            const toastEl = document.getElementById('refresh-toast');
+            const toastBody = document.getElementById('refresh-toast-body');
+            toastEl.className = 'toast align-items-center border-0 text-white ' + bgClass;
+            toastBody.textContent = message;
+            bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 4000 }).show();
+        }
+        </script>
     </body>
 </html>

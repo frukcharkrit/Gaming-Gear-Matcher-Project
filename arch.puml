@@ -1,0 +1,191 @@
+@startuml Gaming Gear Matcher - System Architecture
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam roundcorner 0
+skinparam linetype ortho
+skinparam defaultFontName Segoe UI
+skinparam defaultFontColor #000000
+
+skinparam actor {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam component {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam package {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+    TitleFontColor #000000
+}
+
+skinparam database {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam collections {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam folder {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam arrow {
+    Color #000000
+    FontColor #000000
+}
+
+skinparam legend {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    FontColor #000000
+}
+
+skinparam title {
+    FontColor #000000
+}
+
+title Gaming Gear Matcher - System Architecture
+
+' ===== ACTORS =====
+actor "Guest" as guest
+actor "Member" as member
+actor "Admin" as admin
+
+' ===== BROWSER / CLIENT =====
+package "Client Browser" as client {
+    component [HTML Templates\n(Jinja2/Django)] as templates
+    component [CSS / JS] as static
+}
+
+' ===== DOCKER NETWORK =====
+package "Docker Network: gaming_gear_network" as docker {
+
+    ' ===== WEB SERVICE =====
+    package "Web Container\n(gaming_gear_web)" as web_container {
+
+        package "Django Application" as django {
+
+            package "URL Router" as router {
+                component [APP01/urls.py] as urls
+            }
+
+            package "Views Layer" as views_layer {
+                component [views.py\n(HTML Views)] as views
+                component [api_views.py\n(REST API)] as api_views
+            }
+
+            package "Business Logic / AI Engine" as ai {
+                component [HybridRecommender\n(recommender_hybrid.py)\nRule-based Matching] as hybrid
+                component [AssociationRuleMiner\n(association_rules.py)\nApriori Algorithm\n(mlxtend)] as assoc
+            }
+
+            package "Forms & Validation" as forms_pkg {
+                component [forms.py\n(RegisterForm, LoginForm\nProPlayerForm, GamingGearForm)] as forms
+            }
+
+            package "Data Models (ORM)" as orm {
+                component [models.py] as models
+            }
+
+            package "Management Commands" as mgmt {
+                component [import_real_data.py] as cmd_import
+                component [update_gear_prices.py] as cmd_prices
+                component [gear_prices_data.py] as cmd_data
+            }
+
+            package "Middleware & Auth" as auth_pkg {
+                component [middleware.py] as middleware
+                component [adapter.py\n(allauth adapter)] as adapter
+            }
+        }
+
+        package "Cache Layer" as cache_layer {
+            database "Django Cache\n(In-memory / DB)" as django_cache
+        }
+
+        package "Media & Static Files" as media_pkg {
+            folder "media/\n(user_profiles/\ngaming_gears/\npro_players/\ngame_logos/)" as media
+            folder "staticfiles/" as staticfiles
+        }
+    }
+
+    ' ===== DATABASE SERVICE =====
+    package "DB Container\n(gaming_gear_db)" as db_container {
+        database "PostgreSQL 15\n(postgres_data volume)" as postgres {
+            collections "Role\nUser\nGame\nProPlayer\nGamingGear\nPreset\nPresetGear\nProPlayerGear\nPresetRating\nAlert\nAdminLog\nNotification\nPasswordResetRequest" as tables
+        }
+    }
+}
+
+' ===== EXTERNAL =====
+package "External Services" as external {
+    component [mlxtend\n(Apriori/Assoc. Rules)] as mlxtend_lib
+    component [allauth\n(Authentication)] as allauth_lib
+}
+
+' ===== CONNECTIONS: Users -> Client =====
+guest --> templates : HTTP GET
+member --> templates : HTTP GET/POST
+admin --> templates : HTTP GET/POST
+
+' ===== Client -> Django =====
+templates --> urls : HTTP Request\n(port 8000)
+static --> templates
+
+' ===== Router -> Views =====
+urls --> views : HTML routes
+urls --> api_views : /api/* routes
+
+' ===== Views -> Business Logic =====
+views --> hybrid : get_recommendations()
+views --> assoc : get_gear_recommendations()
+api_views --> assoc : refresh / recommend
+views --> forms : validate input
+
+' ===== AI Engine =====
+hybrid --> orm : ORM queries
+assoc --> orm : ORM queries
+assoc --> django_cache : cache rules\n(24h TTL)
+assoc ..> mlxtend_lib : uses
+
+' ===== Views -> ORM =====
+views --> orm : CRUD operations
+
+' ===== Auth =====
+views --> auth_pkg : login / logout / session
+auth_pkg ..> allauth_lib : uses
+
+' ===== ORM -> DB =====
+orm --> postgres : SQL / psycopg2\n(port 5432)
+
+' ===== Media =====
+views --> media : upload / serve files
+
+' ===== Management Commands =====
+cmd_import --> orm
+cmd_prices --> orm
+cmd_data ..> cmd_prices
+
+' ===== Legend =====
+legend right
+    | Symbol | Meaning |
+    | -->    | HTTP / Function call / ORM |
+    | ..>    | Library dependency |
+    | DB     | Persistent storage |
+endlegend
+
+@enduml

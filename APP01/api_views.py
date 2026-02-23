@@ -1,7 +1,7 @@
 # Association Rules API Views
 from APP01.association_rules import get_gear_recommendations, refresh_association_rules
 from django.views.decorators.http import require_http_methods
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 # from .views import is_admin  <-- Circular import risk
 
@@ -67,13 +67,15 @@ def api_gear_recommendations(request):
 
 @require_http_methods(["POST"])
 @login_required
-@user_passes_test(is_admin)
 def api_refresh_association_rules(request):
     """
     Admin-only endpoint to manually refresh association rules cache.
-    
+
     Triggers recalculation of association rules from current preset data.
     """
+    if not is_admin(request.user):
+        return JsonResponse({'success': False, 'message': 'Permission denied'}, status=403)
+
     try:
         success = refresh_association_rules()
         
