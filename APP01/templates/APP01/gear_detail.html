@@ -1,9 +1,7 @@
 {% extends 'APP01/base.html' %}
-
 {% block title %}{{ gear.name }} - Detail{% endblock %}
-
 {% block content %}
-<style>
+    <style>
     /* === Custom CSS for Gear Detail === */
 
     /* ปุ่ม Back to Preset */
@@ -169,125 +167,283 @@
     .btn-remove-main:hover {
         background-color: #c0392b;
     }
-</style>
-
-<div class="container mt-4 mb-5">
-
-    <div class="row mb-2">
-        <div class="col-12">
-            <a href="{% if next_url %}{{ next_url }}{% else %}{% url 'save_preset' %}{% endif %}"
-                class="btn-back-preset shadow-sm">
-                <i class="fas fa-arrow-left me-2"></i> {% if next_url and 'matching' in next_url %}BACK TO ANALYSIS{%
-                else %}BACK TO PRESET{% endif %}
-            </a>
-        </div>
-    </div>
-
-    <div class="main-gear-card row g-0">
-        <div class="col-md-5 text-center border-end d-flex align-items-center justify-content-center p-3">
-            {% if gear.image_url %}
-            <img src="{{ gear.image_url }}" alt="{{ gear.name }}" class="main-gear-img">
-            {% else %}
-            <img src="https://via.placeholder.com/350" class="main-gear-img">
-            {% endif %}
-        </div>
-
-        <div class="col-md-7 ps-md-5 pt-3 pt-md-0 d-flex flex-column justify-content-center">
-
-            <div class="d-flex justify-content-between align-items-start mb-2">
-                <div>
-                    <small class="text-muted fw-bold text-uppercase">{{ gear.category|default:"GAMING GEAR" }}</small>
-                    <h2 class="fw-bold text-uppercase m-0 text-dark" style="line-height: 1.1;">{{ gear.name }}</h2>
-                </div>
-
-                {% if gear.gear_id in wizard_preset_ids %}
-                <a href="{% url 'wizard_remove_gear' gear.gear_id %}?next={{ request.get_full_path|urlencode }}"
-                    class="btn-add-main btn-remove-main">REMOVE</a>
-                {% else %}
-                <a href="{% url 'wizard_add_gear' gear.gear_id %}?next={{ request.get_full_path|urlencode }}"
-                    class="btn-add-main">ADD</a>
-                {% endif %}
-            </div>
-
-            <div class="text-end mb-2">
-                <a href="https://www.amazon.com/s?k={{ gear.name|urlencode }}" target="_blank"
-                    class="text-decoration-none">
-                    <span class="amazon-logo">amazon</span>
+    </style>
+    <div class="container mt-4 mb-5">
+        <div class="row mb-2">
+            <div class="col-12 d-flex flex-wrap gap-2">
+                <a href="{% url 'matching_result' %}"
+                   class="btn-back-preset shadow-sm"
+                   style="background-color: #0984e3">
+                    <i class="fas fa-chart-pie me-2"></i>BACK TO ANALYSIS
+                </a>
+                <a href="{% if next_url %}{{ next_url }}{% else %}{% url 'save_preset' %}{% endif %}"
+                   class="btn-back-preset shadow-sm">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    BACK TO TEMP PRESET
                 </a>
             </div>
-
-            <div class="gear-price">
-                {% if gear.price %}
-                ${{ gear.price }}
+        </div>
+        <div class="main-gear-card row g-0">
+            <div class="col-md-5 text-center border-end d-flex align-items-center justify-content-center p-3">
+                {% if gear.image_url %}
+                    <img src="{{ gear.image_url }}"
+                         alt="{{ gear.name }}"
+                         class="main-gear-img">
                 {% else %}
-                Price not available
+                    <img src="https://via.placeholder.com/350" class="main-gear-img">
                 {% endif %}
             </div>
-
-            <p class="gear-desc-text">
-                {% if gear.description %}
-                {{ gear.description }}
-                {% else %}
-                Experience the pinnacle of gaming performance with the {{ gear.name }}. Engineered for professional
-                esports athletes, this gear features ultra-low latency technology, a lightweight ergonomic design for
-                marathon sessions, and precision components that give you the competitive edge you need to win.
-                {% endif %}
-            </p>
-
-            <div class="specs-container">
-                {% if gear.specs %}
-                {% for key, value in gear.specs.items %}
-                <div class="spec-row">
-                    <span class="spec-label">{{ key }}</span>
-                    <span class="spec-value">{{ value }}</span>
+            <div class="col-md-7 ps-md-5 pt-3 pt-md-0 d-flex flex-column justify-content-center">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                        <small class="text-muted fw-bold text-uppercase">{{ gear.category|default:"GAMING GEAR" }}</small>
+                        <h2 class="fw-bold text-uppercase m-0 text-dark" style="line-height: 1.1">{{ gear.name }}</h2>
+                    </div>
+                    {% if gear.gear_id in wizard_preset_ids %}
+                        <a href="{% url 'wizard_remove_gear' gear.gear_id %}?next={{ request.get_full_path|urlencode }}"
+                           class="btn-add-main btn-remove-main">REMOVE</a>
+                    {% else %}
+                        <a href="{% url 'wizard_add_gear' gear.gear_id %}?next={{ request.get_full_path|urlencode }}"
+                           class="btn-add-main">ADD</a>
+                    {% endif %}
                 </div>
-                {% endfor %}
-                {% else %}
-                <div class="spec-row">
-                    <span class="spec-label">Brand</span>
-                    <span class="spec-value">{{ gear.brand|default:"Unknown" }}</span>
+                <div class="text-end mb-2">
+                    <a href="https://www.amazon.com/s?k={{ gear.name|urlencode }}"
+                       target="_blank"
+                       class="text-decoration-none">
+                        <span class="amazon-logo">amazon</span>
+                    </a>
                 </div>
-                <div class="spec-row">
-                    <span class="spec-label">Type</span>
-                    <span class="spec-value">{{ gear.type|default:"Gaming Gear" }}</span>
+                <div class="gear-price">
+                    {% if gear.price %}
+                        ${{ gear.price }}
+                    {% else %}
+                        Price not available
+                    {% endif %}
                 </div>
-                {% endif %}
+                <p class="gear-desc-text">
+                    {% if gear.description %}
+                        {{ gear.description }}
+                    {% else %}
+                        Experience the pinnacle of gaming performance with the {{ gear.name }}. Engineered for professional
+                        esports athletes, this gear features ultra-low latency technology, a lightweight ergonomic design for
+                        marathon sessions, and precision components that give you the competitive edge you need to win.
+                    {% endif %}
+                </p>
+                <div class="specs-container">
+                    {% if gear.specs %}
+                        {% for key, value in gear.specs.items %}
+                            <div class="spec-row">
+                                <span class="spec-label">{{ key }}</span>
+                                <span class="spec-value">{{ value }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="spec-row">
+                            <span class="spec-label">Brand</span>
+                            <span class="spec-value">{{ gear.brand|default:"Unknown" }}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Type</span>
+                            <span class="spec-value">{{ gear.type|default:"Gaming Gear" }}</span>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-
-    <h3 class="section-title mt-5">OTHER GEARS IN THE SAME CATEGORY</h3>
+</div>
+<!-- Used by Pros Section -->
+{% if pro_players_using %}
+    <h3 class="section-title mt-5">Used by Pros ({{ pro_players_using|length }})</h3>
     <hr class="mb-4">
-
     <div class="row">
-        {% for r_gear in related_gears %}
+        {% for player in pro_players_using|slice:":4" %}
+            <div class="col-6 col-md-3 mb-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-3">
+                    <a href="{% url 'pro_player_detail' player.player_id %}"
+                       class="text-decoration-none text-dark">
+                        <div class="mb-3 position-relative d-inline-block">
+                            {% if player.image_url %}
+                                <img src="{{ player.image_url }}"
+                                     class="rounded-circle"
+                                     style="width: 100px;
+                                            height: 100px;
+                                            object-fit: cover;
+                                            border: 3px solid #0984e3"
+                                     alt="{{ player.name }}">
+                            {% else %}
+                                <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white"
+                                     style="width: 100px;
+                                            height: 100px;
+                                            border: 3px solid #0984e3">
+                                    <i class="fas fa-user fa-3x"></i>
+                                </div>
+                            {% endif %}
+                            {% if player.game_logo %}
+                                <div class="position-absolute bottom-0 end-0 bg-white rounded-circle p-1 shadow-sm"
+                                     style="width: 30px;
+                                            height: 30px">
+                                    <img src="{{ player.game_logo }}" class="w-100 h-100 object-fit-contain">
+                                </div>
+                            {% endif %}
+                        </div>
+                        <h5 class="fw-bold mb-1 text-truncate">{{ player.name }}</h5>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% if pro_players_using|length > 4 %}
+        <div class="text-center">
+            <button id="btnViewMorePros"
+                    class="btn btn-outline-primary rounded-pill px-4"
+                    type="button"
+                    onclick="toggleMorePros()">
+                View All Pros <i class="fas fa-chevron-down ms-2"></i>
+            </button>
+        </div>
+        <div id="morePros" style="display: none;" class="mt-4">
+            <div class="row">
+                {% for player in pro_players_using|slice:"4:" %}
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-3">
+                            <a href="{% url 'pro_player_detail' player.player_id %}"
+                               class="text-decoration-none text-dark">
+                                <div class="mb-3 position-relative d-inline-block">
+                                    {% if player.image_url %}
+                                        <img src="{{ player.image_url }}"
+                                             class="rounded-circle"
+                                             style="width: 100px;
+                                                    height: 100px;
+                                                    object-fit: cover;
+                                                    border: 3px solid #0984e3"
+                                             alt="{{ player.name }}">
+                                    {% else %}
+                                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white"
+                                             style="width: 100px;
+                                                    height: 100px;
+                                                    border: 3px solid #0984e3">
+                                            <i class="fas fa-user fa-3x"></i>
+                                        </div>
+                                    {% endif %}
+                                    {% if player.game_logo %}
+                                        <div class="position-absolute bottom-0 end-0 bg-white rounded-circle p-1 shadow-sm"
+                                             style="width: 30px;
+                                                    height: 30px">
+                                            <img src="{{ player.game_logo }}" class="w-100 h-100 object-fit-contain">
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <h5 class="fw-bold mb-1 text-truncate">{{ player.name }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+<h3 class="section-title mt-5">OTHER GEARS IN THE SAME CATEGORY</h3>
+<hr class="mb-4">
+<div class="row">
+    {% for r_gear in related_gears|slice:":4" %}
         <div class="col-md-6">
             <div class="related-gear-card position-relative">
                 <div class="me-3" style="min-width: 80px; text-align: center;">
                     <a href="{% url 'gear_detail' r_gear.gear_id %}">
                         {% if r_gear.image_url %}
-                        <img src="{{ r_gear.image_url }}" alt="{{ r_gear.name }}" class="related-gear-img">
+                            <img src="{{ r_gear.image_url }}"
+                                 alt="{{ r_gear.name }}"
+                                 class="related-gear-img">
                         {% else %}
-                        <img src="https://via.placeholder.com/80" class="related-gear-img">
+                            <img src="https://via.placeholder.com/80"
+                                 class="related-gear-img"
+                                 alt="No Image">
                         {% endif %}
                     </a>
                 </div>
-
                 <div class="flex-grow-1">
-                    <a href="{% url 'gear_detail' r_gear.gear_id %}" class="text-decoration-none text-dark">
+                    <a href="{% url 'gear_detail' r_gear.gear_id %}"
+                       class="text-decoration-none text-dark">
                         <h6 class="fw-bold text-uppercase m-0">{{ r_gear.name }}</h6>
                     </a>
-                    <small class="text-muted" style="font-size: 0.8rem;">View Details <i
-                            class="fas fa-arrow-right ms-1"></i></small>
+                    <small class="text-muted" style="font-size: 0.8rem;">View Details <i class="fas fa-arrow-right ms-1"></i></small>
                 </div>
             </div>
         </div>
-        {% empty %}
-        <div class="col-12 text-muted py-4 text-center bg-light rounded">
-            No other gears found in this category.
-        </div>
-        {% endfor %}
-    </div>
-
+    {% empty %}
+        <div class="col-12 text-muted py-4 text-center bg-light rounded">No other gears found in this category.</div>
+    {% endfor %}
 </div>
+{% if related_gears|length > 4 %}
+    <div class="text-center mt-3">
+        <button id="btnViewMoreGears"
+                class="btn btn-outline-secondary rounded-pill px-4"
+                type="button"
+                onclick="toggleMoreGears()">
+            View All Related Gears <i class="fas fa-chevron-down ms-2"></i>
+        </button>
+    </div>
+    <div id="moreGears" style="display: none;" class="mt-4">
+        <div class="row">
+            {% for r_gear in related_gears|slice:"4:" %}
+                <div class="col-md-6">
+                    <div class="related-gear-card position-relative">
+                        <div class="me-3" style="min-width: 80px; text-align: center;">
+                            <a href="{% url 'gear_detail' r_gear.gear_id %}">
+                                {% if r_gear.image_url %}
+                                    <img src="{{ r_gear.image_url }}"
+                                         alt="{{ r_gear.name }}"
+                                         class="related-gear-img">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/80"
+                                         class="related-gear-img"
+                                         alt="No Image">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="flex-grow-1">
+                            <a href="{% url 'gear_detail' r_gear.gear_id %}"
+                               class="text-decoration-none text-dark">
+                                <h6 class="fw-bold text-uppercase m-0">{{ r_gear.name }}</h6>
+                            </a>
+                            <small class="text-muted" style="font-size: 0.8rem;">View Details <i class="fas fa-arrow-right ms-1"></i></small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+</div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+    function toggleMorePros() {
+        var moreProsDiv = document.getElementById('morePros');
+        var btn = document.getElementById('btnViewMorePros');
+        
+        if (moreProsDiv.style.display === 'none') {
+            moreProsDiv.style.display = 'block';
+            btn.innerHTML = 'Show Less <i class="fas fa-chevron-up ms-2"></i>';
+        } else {
+            moreProsDiv.style.display = 'none';
+            btn.innerHTML = 'View All Pros <i class="fas fa-chevron-down ms-2"></i>';
+        }
+    }
+
+    function toggleMoreGears() {
+        var moreGearsDiv = document.getElementById('moreGears');
+        var btn = document.getElementById('btnViewMoreGears');
+        
+        if (moreGearsDiv.style.display === 'none') {
+            moreGearsDiv.style.display = 'block';
+            btn.innerHTML = 'Show Less <i class="fas fa-chevron-up ms-2"></i>';
+        } else {
+            moreGearsDiv.style.display = 'none';
+            btn.innerHTML = 'View All Related Gears <i class="fas fa-chevron-down ms-2"></i>';
+        }
+    }
+    </script>
 {% endblock %}

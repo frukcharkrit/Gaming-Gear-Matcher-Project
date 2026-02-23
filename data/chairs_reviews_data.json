@@ -1,0 +1,167 @@
+[
+    {
+        "name": "Blacklyte Athena Pro Review",
+        "url": "https://prosettings.net/reviews/blacklyte-athena-pro/",
+        "pros": [
+            "Good build quality",
+            "Good price/performance proposition",
+            "Great casters",
+            "Easy to (solo) assemble"
+        ],
+        "cons": [
+            "Limited breathability (on the leatherette version)",
+            "Packaging could use some work",
+            "Some plastic parts feel cheap/flimsy"
+        ],
+        "specs": {
+            "Adjustable Seat Height": "Yes",
+            "Adjustable Seat Depth": "No",
+            "Adjustable Armrests": "Yes",
+            "Adjustable Backrest": "Yes",
+            "Lumbar Support": "Built-in and adjustable",
+            "Material": "Artificial Leather, Fabric",
+            "Max Weight": "150kg"
+        }
+    },
+    {
+        "name": "Blacklyte Kraken Review",
+        "url": "https://prosettings.net/reviews/blacklyte-kraken/",
+        "pros": [
+            "Very comfy and wide seat base",
+            "Easy to assemble solo",
+            "Solid build quality for the core components",
+            "Lots of adjustability options"
+        ],
+        "cons": [
+            "Fixed lumbar support will not work everyone due to how prominent it is",
+            "Packaging could use some work",
+            "Controls can be somewhat inconsistent"
+        ],
+        "specs": {
+            "Adjustable Seat Height": "Yes",
+            "Adjustable Seat Depth": "No",
+            "Adjustable Armrests": "Yes",
+            "Adjustable Backrest": "Yes",
+            "Lumbar Support": "Built-in",
+            "Material": "Artificial Leather",
+            "Max Weight": "150kg"
+        }
+    },
+    {
+        "name": "Razer Iskur V2 Review",
+        "url": "https://prosettings.net/reviews/razer-iskur-v2/",
+        "pros": [
+            "Great lumbar support sections that moves with your body",
+            "A lot of adjustability options",
+            "Good finishing and quality",
+            "Easy to assemble"
+        ],
+        "cons": [
+            "A bit pricey",
+            "Neck pillow is very bulky and oddly shaped"
+        ],
+        "specs": {
+            "Adjustable Seat Height": "Yes",
+            "Adjustable Seat Depth": "No",
+            "Adjustable Armrests": "Yes",
+            "Adjustable Backrest": "Yes",
+            "Lumbar Support": "Built-in and adjustable",
+            "Material": "Artificial Leather, Fabric",
+            "Max Weight": "136kg"
+        }
+    },
+    {
+        "name": "Secretlab Titan Evo 2022 Review",
+        "url": "https://prosettings.net/reviews/secretlab-titan-evo-2022/",
+        "pros": [
+            "Great finishing and attention to detail",
+            "Fantastic packaging and instructions, making assembly a breeze",
+            "Adjustable in all the right ways",
+            "Softweave fabric feels great",
+            "Backrest reclines for the ‘lounging experience’"
+        ],
+        "cons": [
+            "Cushioning is firmer than some other similar options, some might dislike this",
+            "Magnetic neck cushion isn’t as secure as it should be"
+        ],
+        "specs": {
+            "Adjustable Seat Height": "Yes",
+            "Adjustable Seat Depth": "No",
+            "Adjustable Armrests": "Yes",
+            "Adjustable Backrest": "Yes",
+            "Lumbar Support": "Built-in and adjustable",
+            "Material": "Real Leather, Artificial Leather, Fabric",
+            "Max Weight": "180kg"
+        }
+    },
+    {
+        "name": "Herman Miller x Logitech G Embody Gaming Chair Review",
+        "url": "https://prosettings.net/reviews/herman-miller-logitech-embody/",
+        "pros": [
+            "Comes with a 12 year warranty",
+            "Extremely adjustable",
+            "Breathable materials makes it comfy in winter and summer",
+            "Flexible backrest allows for maneuverability",
+            "No sharp or sudden edges anywhere",
+            "Extremely comfortable and ergonomic once dialed in"
+        ],
+        "cons": [
+            "Not suited for ‘leg under butt’ types",
+            "Arm rests can feel a bit flimsy",
+            "Very expensive"
+        ],
+        "specs": {
+            "Adjustable Seat Height": "Yes",
+            "Adjustable Seat Depth": "Yes",
+            "Adjustable Armrests": "Yes",
+            "Adjustable Backrest": "Yes",
+            "Lumbar Support": "Built-in and adjustable",
+            "Material": "Mesh",
+            "Max Weight": "136kg"
+        }
+    },
+    {
+        "name": "Secretlab Titan 2020 Review",
+        "url": "https://prosettings.net/reviews/secretlab-titan-2020/",
+        "pros": [
+            "Memory foam neck pillow is a nice addition",
+            "Great packaging and fantastic assembly instruction",
+            "High quality materials and finishing throughout"
+        ],
+        "cons": [
+            "Firm padding experience; not for people who like a very soft seating area",
+            "Branding could be toned down"
+        ],
+        "specs": {
+            "Adjustable Seat Height": "Yes",
+            "Adjustable Seat Depth": "No",
+            "Adjustable Armrests": "Yes",
+            "Adjustable Backrest": "Yes",
+            "Lumbar Support": "Built-in and adjustable",
+            "Material": "Real Leather, Artificial Leather, Mesh",
+            "Max Weight": "180kg"
+        }
+    },
+    {
+        "name": "Secretlab Titan Softweave Review",
+        "url": "https://prosettings.net/reviews/secretlab-titan-softweave/",
+        "pros": [
+            "Softweave fabric feels amazing",
+            "Great packaging and easy to assemble",
+            "Rather breathable"
+        ],
+        "cons": [
+            "Firm cushioning might not be for everyone",
+            "A bit extreme on the branding"
+        ],
+        "specs": {
+            "Adjustable Seat Height": "Yes",
+            "Adjustable Seat Depth": "No",
+            "Adjustable Armrests": "Yes",
+            "Adjustable Backrest": "Yes",
+            "Lumbar Support": "Built-in and adjustable",
+            "Material": "Fabric",
+            "Max Weight": "180kg"
+        }
+    }
+]

@@ -1,14 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}GamingGearMatcher{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}GamingGearMatcher{% endblock %}
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+              rel="stylesheet">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
         /* Custom Styles */
         body {
             font-family: Arial, sans-serif;
@@ -118,101 +121,134 @@
             background-color: #fff3cd;
             border-color: #ffeeba;
         }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home_guest' %}">GAMING GEAR MATCHER</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{% url 'search_gear' %}">GAMING GEARS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{% url 'search_pro_player' %}">PRO PLAYERS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold text-primary" href="{% url 'save_preset' %}">
-                            <i class="fas fa-history me-1"></i> TEMP PRESET
-                        </a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'manage_presets' %}">MY PRESETS</a>
-                    </li>
-                    {% endif %}
-                    {% if user.is_authenticated and user.role.role_name == 'Admin' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin_dashboard' %}">ADMIN DASHBOARD</a>
-                    </li>
-                    {% endif %}
-                </ul>
-
-                <form class="d-flex me-3" role="search" action="{% url 'global_search' %}">
-                    <div class="input-group search-bar-container">
-                        <input class="form-control" type="search" placeholder="Search Players & Gear"
-                            aria-label="Search" name="q">
-                        <button class="btn" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.085.122l3.081 3.081a1 1 0 0 0 1.414-1.414l-3.081-3.081a1 1 0 0 0-.122-.085zm-5.442 1.099a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
-
-                <div class="ms-3 text-end d-flex align-items-center">
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'user_profile' %}" class="text-decoration-none text-dark d-flex align-items-center">
-                        <div class="me-2 text-end d-none d-md-block">
-                            <small class="text-muted d-block" style="font-size: 0.75rem;">Welcome,</small>
-                            <span class="fw-bold">{{ user.username }}</span>
-                        </div>
-                        {% if user.profile_image %}
-                        <img src="{{ user.profile_image.url }}" alt="{{ user.username }}" class="rounded-circle border"
-                            style="width: 40px; height: 40px; object-fit: cover;">
-                        {% else %}
-                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white"
-                            style="width: 40px; height: 40px;">
-                            <i class="fas fa-user"></i>
-                        </div>
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home_guest' %}">GAMING GEAR MATCHER</a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" href="{% url 'search_gear' %}">GAMING GEARS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" href="{% url 'search_pro_player' %}">PRO PLAYERS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-primary" href="{% url 'save_preset' %}">
+                                <i class="fas fa-history me-1"></i> TEMP PRESET
+                            </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'manage_presets' %}">MY PRESETS</a>
+                            </li>
                         {% endif %}
-                    </a>
-                    <a class="btn btn-outline-danger ms-3" href="{% url 'logout' %}">LOGOUT</a>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="{% url 'register' %}">SIGN UP</a>
-                    </li>
-                    {% endif %}
+                        {% if user.is_authenticated and user.role.role_name == 'Admin' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'admin_dashboard' %}">ADMIN DASHBOARD</a>
+                            </li>
+                        {% endif %}
                     </ul>
+                    <form class="d-flex me-3" role="search" action="{% url 'global_search' %}">
+                        <div class="input-group search-bar-container">
+                            <input class="form-control"
+                                   type="search"
+                                   placeholder="Search Players & Gear"
+                                   aria-label="Search"
+                                   name="q">
+                            <button class="btn" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="16"
+                                     height="16"
+                                     fill="currentColor"
+                                     class="bi bi-search"
+                                     viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.085.122l3.081 3.081a1 1 0 0 0 1.414-1.414l-3.081-3.081a1 1 0 0 0-.122-.085zm-5.442 1.099a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="ms-3 text-end d-flex align-items-center">
+                        {% if user.is_authenticated %}
+                            <div class="dropdown">
+                                <a href="#"
+                                   class="d-flex align-items-center text-decoration-none text-dark dropdown-toggle"
+                                   id="profileDropdown"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <div class="me-2 text-end d-none d-md-block">
+                                        <small class="text-muted d-block" style="font-size: 0.75rem;">Welcome,</small>
+                                        <span class="fw-bold">{{ user.username }}</span>
+                                    </div>
+                                    {% if user.profile_image %}
+                                        <img src="{{ user.profile_image.url }}"
+                                             alt="{{ user.username }}"
+                                             class="rounded-circle border"
+                                             style="width: 40px;
+                                                    height: 40px;
+                                                    object-fit: cover">
+                                    {% else %}
+                                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white"
+                                             style="width: 40px;
+                                                    height: 40px">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow"
+                                    aria-labelledby="profileDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'user_profile' %}"><i class="fas fa-user me-2"></i> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'user_messages' %}"><i class="fas fa-envelope me-2"></i> Messages</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cog me-2"></i> Settings</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'change_password' %}"><i class="fas fa-key me-2"></i> Change Password</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <li class="nav-item list-unstyled">
+                                <a class="btn btn-primary" href="{% url 'register' %}">SIGN UP</a>
+                                <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">LOGIN</a>
+                            </li>
+                        {% endif %}
+                    </div>
                 </div>
+            </nav>
+            <div class="container mt-4">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% block content %}{% endblock %}
             </div>
-    </nav>
-
-    <div class="container mt-4">
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endfor %}
-        </ul>
-        {% endif %}
-        {% block content %}
-        {% endblock %}
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    {% block extra_js %}{% endblock %}
-</body>
-
-</html>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            {% block extra_js %}
+            {% endblock %}
+        </body>
+    </html>

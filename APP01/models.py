@@ -254,3 +254,33 @@ class AdminLog(models.Model):
 
     def __str__(self):
         return f"[{self.timestamp}] {self.user.username}: {self.action} ({self.target})"
+
+# --- Password Reset Request Model ---
+class PasswordResetRequest(models.Model):
+    STATUS_CHOICES = (
+        ('Pending', 'Pending'),
+        ('Approved', 'Approved'),
+        ('Rejected', 'Rejected'),
+    )
+    request_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE) # User asking for reset (found via email)
+    email = models.EmailField() # Copied from form just in case
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
+    created_at = models.DateTimeField(default=timezone.now)
+    approved_at = models.DateTimeField(null=True, blank=True)
+    approved_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='approved_requests')
+
+    def __str__(self):
+        return f"Reset Request from {self.email} ({self.status})"
+
+# --- Notification Model ---
+class Notification(models.Model):
+    notification_id = models.AutoField(primary_key=True)
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"To {self.recipient.username}: {self.subject}"

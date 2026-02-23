@@ -1,9 +1,7 @@
 {% extends 'APP01/base.html' %}
-
 {% block title %}My Saved Presets{% endblock %}
-
 {% block content %}
-<style>
+    <style>
     .preset-header {
         font-weight: 800;
         font-size: 2.5rem;
@@ -59,57 +57,56 @@
     .delete-btn-group {
         margin-left: 20px;
     }
-</style>
-
-<div class="container mt-5 mb-5">
-    <h1 class="preset-header"><i class="fas fa-save me-3 text-primary"></i>MY SAVED PRESETS</h1>
-    
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    {% endif %}
-
-    {% if presets %}
-        <div class="row">
-            {% for preset in presets %}
-                <div class="col-md-6">
-                    <div class="preset-card">
-                        <a href="{% url 'preset_detail' preset_id=preset.preset_id %}" class="preset-info">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="preset-title">{{ preset.name }}</span>
-                                <span class="date-text">Saved: {{ preset.created_at|date:"d M Y" }}</span>
-                            </div>
-                            <div class="gear-count">
-                                {{ preset.presetgear_set.count }} Gears in this Preset
-                            </div>
-                        </a>
-                        
-                        <div class="delete-btn-group">
-                            <button 
-                                class="btn btn-sm btn-outline-danger" 
-                                onclick="confirmDelete('{{ preset.name }}', '{% url 'delete_preset' preset_id=preset.preset_id %}')">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button>
-                        </div>
-                    </div>
+    </style>
+    <div class="container mt-5 mb-5">
+        <h1 class="preset-header">
+            <i class="fas fa-save me-3 text-primary"></i>MY SAVED PRESETS
+        </h1>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                     role="alert">
+                    {{ message }}
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Close"></button>
                 </div>
             {% endfor %}
-        </div>
-    {% else %}
-        <div class="no-presets">
-            <i class="fas fa-box-open fa-3x mb-3"></i>
-            <h3>You haven't saved any presets yet.</h3>
-            <p>Go to the Matching Result page to select gears and save your first preset!</p>
-            <a href="{% url 'matching_result' %}" class="btn btn-primary mt-3">Start Matching</a>
-        </div>
-    {% endif %}
-</div>
-
-<script>
+        {% endif %}
+        {% if presets %}
+            <div class="row">
+                {% for preset in presets %}
+                    <div class="col-md-6">
+                        <div class="preset-card">
+                            <a href="{% url 'preset_detail' preset_id=preset.preset_id %}"
+                               class="preset-info">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="preset-title">{{ preset.name }}</span>
+                                    <span class="date-text">Saved: {{ preset.created_at|date:"d M Y" }}</span>
+                                </div>
+                                <div class="gear-count">{{ preset.presetgear_set.count }} Gears in this Preset</div>
+                            </a>
+                            <div class="delete-btn-group">
+                                <button class="btn btn-sm btn-outline-danger"
+                                        onclick="confirmDelete('{{ preset.name }}', '{% url 'delete_preset' preset_id=preset.preset_id %}')">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-presets">
+                <i class="fas fa-box-open fa-3x mb-3"></i>
+                <h3>You haven't saved any presets yet.</h3>
+                <p>Go to the Matching Result page to select gears and save your first preset!</p>
+                <a href="{% url 'start_matching' %}" class="btn btn-primary mt-3">Start Matching</a>
+            </div>
+        {% endif %}
+    </div>
+    <script>
     function confirmDelete(presetName, deleteUrl) {
         if (confirm(`คุณแน่ใจหรือไม่ที่จะลบ Preset "${presetName}"? การกระทำนี้ไม่สามารถยกเลิกได้`)) {
             // สร้าง Form ชั่วคราวเพื่อส่ง POST Request (จำเป็นสำหรับ Django Security)
@@ -131,5 +128,5 @@
             form.submit();
         }
     }
-</script>
+    </script>
 {% endblock %}

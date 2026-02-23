@@ -1,0 +1,463 @@
+[
+    {
+        "name": "Razer BlackShark V3 Pro Review",
+        "url": "https://prosettings.net/reviews/razer-blackshark-v3-pro/",
+        "pros": [
+            "Great audio quality",
+            "Great gaming performance",
+            "Good ANC performance",
+            "Great mic"
+        ],
+        "cons": [
+            "Very expensive",
+            "Heavier than the predecessor, which might not feel comfy for everyone"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "Yes",
+            "Microphone": "Detachable"
+        }
+    },
+    {
+        "name": "Corsair VOID Wireless V2 Review",
+        "url": "https://prosettings.net/reviews/corsair-void-wireless-v2/",
+        "pros": [
+            "Very comfortable and breathable",
+            "Great battery life",
+            "Fast-charging (around 15 minutes of charging delivers hours of battery life)",
+            "Multi-system connectivity works great",
+            "Good audio for competitive as well as casual gaming"
+        ],
+        "cons": [
+            "Mids and highs can sound a little muffled when listening to music, though this can be fixed somewhat in iCUE",
+            "iCUE is a very heavy and bloaty program"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "300g"
+        }
+    },
+    {
+        "name": "NZXT Relay Headset Review (+ SwitchMix)",
+        "url": "https://prosettings.net/reviews/nzxt-relay/",
+        "pros": [
+            "Clean, sleek aesthetics",
+            "Lightweight and rather comfortable",
+            "Good microphone",
+            "SwitchMix is amazingly convenient, but needs to be purchased separately"
+        ],
+        "cons": [
+            "Bass response is lacking",
+            "Ear cushions aren’t very breathable and can get hot",
+            "Sounds better via jack than via USB"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable"
+        }
+    },
+    {
+        "name": "Razer BlackShark V2 Pro Review",
+        "url": "https://prosettings.net/reviews/razer-blackshark-v2-pro/",
+        "pros": [
+            "Longest range of any wireless headset I’ve tried so far",
+            "Fantastic battery life",
+            "Good sound quality, after tweaking the EQ",
+            "Fantastic mic (on the 2023 model)",
+            "Sturdy build quality",
+            "Good (passive) noise isolation",
+            "Comfy and surprisingly light"
+        ],
+        "cons": [
+            "Price tag is on the higher side",
+            "Ear cushions could be more breathable",
+            "Some bugs when pairing with Razer Synapse"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable",
+            "Weight": "320g"
+        }
+    },
+    {
+        "name": "Logitech G Pro X 2 LIGHTSPEED Headset Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-x-2-lightspeed/",
+        "pros": [
+            "Great sound quality",
+            "Very comfortable",
+            "Choice of two earcup materials",
+            "Flawless wireless connection",
+            "Great build quality",
+            "Good battery life"
+        ],
+        "cons": [
+            "Expensive",
+            "Limited EQ",
+            "Microphone doesn’t live up to the price tag"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable",
+            "Weight": "331g"
+        }
+    },
+    {
+        "name": "Corsair Virtuoso RGB Wireless XT Review",
+        "url": "https://prosettings.net/reviews/corsair-virtuoso-rgb-wireless-xt/",
+        "pros": [
+            "Excellent sound quality",
+            "Great mic",
+            "Good build quality"
+        ],
+        "cons": [
+            "Battery life is on the shorter side",
+            "Price is high",
+            "Headband has a tendency to slip"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable",
+            "Weight": "382g"
+        }
+    },
+    {
+        "name": "SteelSeries Arctis Nova Pro Wireless Review",
+        "url": "https://prosettings.net/reviews/steelseries-arctis-nova-pro-wireless/",
+        "pros": [
+            "Great sound quality",
+            "Interchangeable batteries (two included) means basically unlimited battery life",
+            "Comes with ANC",
+            "Sturdy design",
+            "Bluetooth 5.0 + USB dual connectivity",
+            "Comes with base station",
+            "Lots of ways to customize the audio, ranging from the mic to the overall sound",
+            "Good microphone"
+        ],
+        "cons": [
+            "Expensive"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "Yes",
+            "Microphone": "Non-Detachable",
+            "Weight": "337g"
+        }
+    },
+    {
+        "name": "SteelSeries Arctis Nova 7 Wireless Review",
+        "url": "https://prosettings.net/reviews/steelseries-arctis-nova-7-wireless/",
+        "pros": [
+            "Great sound for gaming",
+            "Comfortable",
+            "Dual connectivity (BT + 2.4 GHz)"
+        ],
+        "cons": [
+            "Microphone isn’t very impressive",
+            "Wireless receiver is too chunky",
+            "Sound output isn’t the best for content consumption"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "325g"
+        }
+    },
+    {
+        "name": "Corsair HS65 Review",
+        "url": "https://prosettings.net/reviews/corsair-hs65/",
+        "pros": [
+            "Lightweight",
+            "Great microphone",
+            "Good sound quality",
+            "Customizable sound profiles"
+        ],
+        "cons": [
+            "SoundID is kind of gimmicky in its current state",
+            "Leatherette material isn’t of the highest quality",
+            "A bit strong on the clamping force",
+            "Cable is short"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "1.5cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "282g"
+        }
+    },
+    {
+        "name": "Corsair HS80 RGB USB Review",
+        "url": "https://prosettings.net/reviews/corsair-hs80-rgb-usb/",
+        "pros": [
+            "Good sound for gaming",
+            "Decently comfortable",
+            "Good microphone"
+        ],
+        "cons": [
+            "Sound lacks bass and treble, making it subpar for content consumption",
+            "Doesn’t really excel at anything"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "180cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "373g"
+        }
+    },
+    {
+        "name": "Logitech G733 Review",
+        "url": "https://prosettings.net/reviews/logitech-g733/",
+        "pros": [
+            "Comfortable and lightweight",
+            "Good sound for gaming",
+            "Blue VO!CE tech works amazingly well to elevate/adjust the microphone sound",
+            "Lag-free and lossless wireless performance",
+            "Good battery life"
+        ],
+        "cons": [
+            "Sounds is lacking for content consumption",
+            "Mic isn’t the best",
+            "Experience suffers on console"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "278g"
+        }
+    },
+    {
+        "name": "JBL Quantum One Review",
+        "url": "https://prosettings.net/reviews/jbl-quantum-one/",
+        "pros": [
+            "Great sound quality",
+            "Comfortable",
+            "Decent ANC",
+            "Expansive software"
+        ],
+        "cons": [
+            "Looks gaudy",
+            "Subpar microphone",
+            "QuantumSPHERE technology feels gimmicky"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "280cm",
+            "Noise Cancelling": "Yes",
+            "Microphone": "Detachable",
+            "Weight": "369g"
+        }
+    },
+    {
+        "name": "HyperX Cloud Alpha S Review",
+        "url": "https://prosettings.net/reviews/hyperx-cloud-alpha-s/",
+        "pros": [
+            "Comfortable",
+            "Portable",
+            "Great build quality",
+            "Great sound for gaming"
+        ],
+        "cons": [
+            "Sound profile is underwhelming for content consumption"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "150cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable",
+            "Weight": "321g"
+        }
+    },
+    {
+        "name": "HyperX Cloud II Wireless Review",
+        "url": "https://prosettings.net/reviews/hyperx-cloud-ii-wireless/",
+        "pros": [
+            "Comfortable",
+            "Great build quality",
+            "Decent battery life",
+            "Great sound for gaming"
+        ],
+        "cons": [
+            "Microphone is subpar",
+            "Only one set of ear cushion (the wired version has two)",
+            "Not very customizable",
+            "Sound isn’t very suited for content consumption or music listening"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable",
+            "Weight": "320g"
+        }
+    },
+    {
+        "name": "Logitech G Pro X Headset Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-x-headset/",
+        "pros": [
+            "Great microphone",
+            "Good audio quality",
+            "Comfortable fit",
+            "Blue VO!CE technology improves mic quality even further",
+            "Good build quality"
+        ],
+        "cons": [
+            "Relies on software for most of its functionality and is therefore not as suited for console use"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "200cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable",
+            "Weight": "338g"
+        }
+    },
+    {
+        "name": "SteelSeries Arctis Pro Review",
+        "url": "https://prosettings.net/reviews/steelseries-arctis-pro/",
+        "pros": [
+            "Great microphone quality",
+            "Good build quality",
+            "Comfortable",
+            "Great sound quality"
+        ],
+        "cons": [
+            "High price",
+            "On-board controls are placed a little awkwardly",
+            "Control dongle on the cable can get annoying"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "300cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "357g"
+        }
+    },
+    {
+        "name": "Fnatic REACT Review",
+        "url": "https://prosettings.net/reviews/fnatic-react/",
+        "pros": [
+            "Great mic",
+            "Sturdy design",
+            "Great sound for gaming"
+        ],
+        "cons": [
+            "Sound isn’t customizable",
+            "Sound profile isn’t ideal for content consumption due to the lack of bass"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "320cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Detachable",
+            "Weight": "350g"
+        }
+    },
+    {
+        "name": "Sennheiser GAME ONE Review",
+        "url": "https://prosettings.net/reviews/sennheiser-game-one/",
+        "pros": [
+            "Lightweight",
+            "Comfortable",
+            "Great sound quality",
+            "Open-backed design makes for a wide soundstage"
+        ],
+        "cons": [
+            "Open-backed headphones have poor isolation and leak sound (by design)"
+        ],
+        "specs": {
+            "Type": "Open-Back",
+            "Connection": "Wired",
+            "Cable Length": "2.9cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "272g"
+        }
+    },
+    {
+        "name": "Sennheiser GSP 550 Review",
+        "url": "https://prosettings.net/reviews/sennheiser-gsp-550/",
+        "pros": [
+            "Fantastic sound",
+            "Great microphone",
+            "Very comfortable"
+        ],
+        "cons": [
+            "Pretty bulky",
+            "Open-backed headphones don’t do well at noise isolation (by design)",
+            "Expensive"
+        ],
+        "specs": {
+            "Type": "Open-Back",
+            "Connection": "Wired",
+            "Cable Length": "167cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "358g"
+        }
+    },
+    {
+        "name": "Razer Nari Review",
+        "url": "https://prosettings.net/reviews/razer-nari/",
+        "pros": [
+            "Comfortable",
+            "Lag-free wireless connection"
+        ],
+        "cons": [
+            "Experience suffers on consoles",
+            "Subpar microphone"
+        ],
+        "specs": {
+            "Type": "Open-Back",
+            "Connection": "Wireless",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "432g"
+        }
+    },
+    {
+        "name": "Razer Kraken Tournament Edition Review",
+        "url": "https://prosettings.net/reviews/razer-kraken-tournament-edition/",
+        "pros": [
+            "Comfortable",
+            "Highly adjustable"
+        ],
+        "cons": [
+            "Subpar microphone",
+            "Looks won’t suit everyone"
+        ],
+        "specs": {
+            "Type": "Closed-Back",
+            "Connection": "Wired",
+            "Cable Length": "2cm",
+            "Noise Cancelling": "No",
+            "Microphone": "Non-Detachable",
+            "Weight": "410g"
+        }
+    }
+]

@@ -1,10 +1,8 @@
 {% extends 'APP01/base.html' %}
 {% load custom_filters %}
-
 {% block title %}Matching Result - GamingGearMatcher{% endblock %}
-
 {% block content %}
-<style>
+    <style>
     /* === Custom CSS สำหรับหน้า Matching Result === */
 
     /* การ์ดแสดงผล Pro Player */
@@ -167,514 +165,723 @@
     .pro-players-scroll-container::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
-</style>
-
-<div class="container mt-5 mb-5">
-    <div class="row">
-
-        <div class="col-md-5">
-
-            <!-- Removed redundant header and checkboxes -->
-            <!-- Use the right column list to see selected gears -->
-
-            {% if selected_gears %}
-            <div class="alert alert-info mb-4">
-                <i class="fas fa-info-circle me-2"></i>
-                <strong>Tip:</strong> You can select 1 gear per category. Selecting a new item will replace the previous
-                one.
-            </div>
-            {% endif %}
-
-            <hr class="my-4">
-
-            <!-- Action Buttons -->
-            <div class="d-grid gap-2">
+    </style>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-5">
+                <!-- Removed redundant header and checkboxes -->
+                <!-- Use the right column list to see selected gears -->
                 {% if selected_gears %}
-                {% if user.is_authenticated %}
-                <a class="btn btn-primary btn-lg" href="{% url 'save_preset' %}">
-                    <i class="fas fa-arrow-right me-2"></i> Next: Review & Save
-                </a>
-                {% else %}
-                <div class="alert alert-warning">
-                    <i class="fas fa-lock me-2"></i>
-                    <a href="{% url 'login' %}?next={% url 'save_preset' %}" class="fw-bold">Login</a> to save your
-                    preset
-                </div>
-                {% endif %}
-                {% endif %}
-                <a class="btn btn-secondary" href="{% url 'home_guest' %}">
-                    <i class="fas fa-redo me-1"></i> Start Over
-                </a>
-                <a class="btn btn-outline-dark" href="{% url 'home_guest' %}">Back to Home</a>
-            </div>
-        </div>
-
-        <div class="col-md-7">
-            <h4 class="mb-4 mt-4 mt-md-0" style="font-weight: 800; font-family: sans-serif; color:#212529;">
-                YOUR GEAR RECOMMENDATIONS
-            </h4>
-
-            {% if hybrid_mode %}
-            <div class="alert alert-success shadow-sm border-0 bg-success bg-opacity-10 mb-4">
-                <h4 class="mb-3 text-success fw-bold"><i class="fas fa-brain me-2"></i>AI Hybrid Analysis Results</h4>
-
-                <div class="d-flex align-items-center mb-3">
-                    <div class="me-4">
-                        <small class="text-uppercase text-muted fw-bold">Compatibility Score</small>
-                        <h2 class="display-6 fw-bold text-success mb-0">{{ ai_score|floatformat:0 }}<small
-                                class="fs-6 text-muted">/100</small></h2>
+                    <div class="alert alert-info mb-4">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Tip:</strong> You can select 1 gear per category. Selecting a new item will replace the previous
+                        one.
                     </div>
-                    {% if ai_sentiment %}
-                    <div>
-                        <small class="text-uppercase text-muted fw-bold">Review Sentiment</small>
-                        <div class="d-flex align-items-center">
-                            <span class="badge bg-info p-2 rounded-pill"><i class="fas fa-thumbs-up me-1"></i> Positive
-                                (+{{ ai_sentiment|floatformat:1 }})</span>
-                        </div>
-                    </div>
+                {% endif %}
+                <hr class="my-4">
+                <!-- Action Buttons -->
+                <div class="d-grid gap-2">
+                    {% if selected_gears %}
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-primary btn-lg" href="{% url 'save_preset' %}">
+                                <i class="fas fa-arrow-right me-2"></i> Next: Review & Save
+                            </a>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-lock me-2"></i>
+                                <a href="{% url 'login' %}?next={% url 'save_preset' %}" class="fw-bold">Login</a> to save your
+                                preset
+                            </div>
+                        {% endif %}
                     {% endif %}
+                    <a class="btn btn-secondary" href="{% url 'wizard_quiz' %}">
+                        <i class="fas fa-redo me-1"></i> Start Over with AI Analysis
+                    </a>
+                    <a class="btn btn-outline-dark" href="{% url 'home_guest' %}">Back to Home</a>
                 </div>
-
-                <h6 class="fw-bold text-dark"><i class="fas fa-check-circle text-success me-2"></i>Why this match?</h6>
-                <ul class="list-unstyled mb-0">
-                    {% for reason in ai_reasons %}
-                    <li class="mb-1"><i class="fas fa-angle-right text-success me-2"></i>{{ reason }}</li>
-                    {% endfor %}
-                </ul>
             </div>
-            {% endif %}
-
-            {% if variants %}
-
-            <!-- === MY SETUP — User's Current Edited Preset === -->
-            {% if my_setup_gears %}
-            <div class="card border-0 shadow mb-4"
-                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                <div class="card-body text-white">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0 fw-bold">
-                            <i class="fas fa-user-cog me-2"></i>My Setup
+            <div class="col-md-7">
+                <h4 class="mb-4 mt-4 mt-md-0"
+                    style="font-weight: 800;
+                           font-family: sans-serif;
+                           color:#212529">YOUR GEAR RECOMMENDATIONS</h4>
+                <!-- === MY SETUP — User's Current Edited Preset === -->
+                {% if my_setup_gears %}
+                    <div class="card border-0 shadow mb-4"
+                         style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+                        <div class="card-body text-white">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <h5 class="mb-0 fw-bold">
+                                    <i class="fas fa-user-cog me-2"></i>My Setup
+                                    {% if my_setup_diff %}
+                                        <span class="badge bg-warning text-dark ms-2" style="font-size: 0.7rem;">Customized</span>
+                                    {% endif %}
+                                </h5>
+                                <span class="badge bg-white text-dark rounded-pill px-3 py-2">{{ my_setup_gears|length }} items</span>
+                            </div>
+                            <div class="row g-2">
+                                {% for cat, gear in my_setup_gears.items %}
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-3 p-2">
+                                            <a href="{% url 'gear_detail' gear.gear_id %}"
+                                               class="text-decoration-none me-2"
+                                               style="width: 40px;
+                                                      height: 40px;
+                                                      display:flex;
+                                                      align-items:center;
+                                                      justify-content:center;
+                                                      background: rgba(255,255,255,0.2);
+                                                      border-radius: 8px">
+                                                {% if gear.image %}
+                                                    <img src="{{ gear.image.url }}" style="max-width:100%; max-height:100%;">
+                                                {% else %}
+                                                    <i class="fas fa-gamepad text-white-50"></i>
+                                                {% endif %}
+                                            </a>
+                                            <div class="flex-grow-1" style="min-width: 0;">
+                                                <small class="d-block text-white-50 text-uppercase fw-bold"
+                                                       style="font-size: 0.65rem">{{ cat }}</small>
+                                                <a href="{% url 'gear_detail' gear.gear_id %}"
+                                                   class="text-white text-decoration-none fw-bold d-block text-truncate"
+                                                   style="font-size: 0.85rem">{{ gear.name }}</a>
+                                            </div>
+                                            <div class="d-flex gap-1 ms-1">
+                                                <a href="{% url 'wizard_select_gear' cat %}?next={% url 'matching_result' %}"
+                                                   class="btn btn-sm btn-outline-light"
+                                                   style="padding: 2px 6px;
+                                                          font-size: 0.7rem"
+                                                   title="Replace">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="{% url 'wizard_remove_gear' gear.gear_id %}"
+                                                   class="btn btn-sm btn-outline-light"
+                                                   style="padding: 2px 6px;
+                                                          font-size: 0.7rem"
+                                                   title="Remove">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                             {% if my_setup_diff %}
-                            <span class="badge bg-warning text-dark ms-2" style="font-size: 0.7rem;">Customized</span>
+                                <div class="mt-3 p-2 rounded" style="background: rgba(255,255,255,0.15);">
+                                    <small><i class="fas fa-info-circle me-1"></i> You've customized your setup from the AI
+                                    recommendations. Click "Next: Review & Save" when ready.</small>
+                                </div>
                             {% endif %}
-                        </h5>
-                        <span class="badge bg-white text-dark rounded-pill px-3 py-2">
-                            {{ my_setup_gears|length }} items
-                        </span>
+                        </div>
                     </div>
-
-                    <div class="row g-2">
-                        {% for cat, gear in my_setup_gears.items %}
-                        <div class="col-md-6 col-lg-4">
-                            <div class="d-flex align-items-center bg-white bg-opacity-10 rounded-3 p-2">
-                                <a href="{% url 'gear_detail' gear.gear_id %}" class="text-decoration-none me-2"
-                                    style="width: 40px; height: 40px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.2); border-radius: 8px;">
-                                    {% if gear.image %}
-                                    <img src="{{ gear.image.url }}" style="max-width:100%; max-height:100%;">
-                                    {% else %}
-                                    <i class="fas fa-gamepad text-white-50"></i>
-                                    {% endif %}
-                                </a>
-                                <div class="flex-grow-1" style="min-width: 0;">
-                                    <small class="d-block text-white-50 text-uppercase fw-bold"
-                                        style="font-size: 0.65rem;">{{ cat }}</small>
-                                    <a href="{% url 'gear_detail' gear.gear_id %}"
-                                        class="text-white text-decoration-none fw-bold d-block text-truncate"
-                                        style="font-size: 0.85rem;">
-                                        {{ gear.name }}
-                                    </a>
-                                </div>
-                                <div class="d-flex gap-1 ms-1">
-                                    <a href="{% url 'wizard_select_gear' cat %}?next={% url 'matching_result' %}"
-                                        class="btn btn-sm btn-outline-light"
-                                        style="padding: 2px 6px; font-size: 0.7rem;" title="Replace">
-                                        <i class="fas fa-exchange-alt"></i>
-                                    </a>
-                                    <a href="{% url 'wizard_remove_gear' gear.gear_id %}"
-                                        class="btn btn-sm btn-outline-light"
-                                        style="padding: 2px 6px; font-size: 0.7rem;" title="Remove">
-                                        <i class="fas fa-times"></i>
-                                    </a>
-                                </div>
+                {% endif %}
+                {% if hybrid_mode %}
+                    <div class="alert alert-success shadow-sm border-0 bg-success bg-opacity-10 mb-4">
+                        <h4 class="mb-3 text-success fw-bold">
+                            <i class="fas fa-brain me-2"></i>AI Hybrid Analysis Results
+                        </h4>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-4">
+                                <small class="text-uppercase text-muted fw-bold">Compatibility Score</small>
+                                <h2 class="display-6 fw-bold text-success mb-0">
+                                    {{ ai_score|floatformat:0 }}<small class="fs-6 text-muted">/100</small>
+                                </h2>
                             </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-
-                    {% if my_setup_diff %}
-                    <div class="mt-3 p-2 rounded" style="background: rgba(255,255,255,0.15);">
-                        <small><i class="fas fa-info-circle me-1"></i> You've customized your setup from the AI
-                            recommendations. Click "Next: Review & Save" when ready.</small>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-
-            <!-- === AI Recommended Presets (Tabs) === -->
-            <h5 class="fw-bold mb-3"><i class="fas fa-robot me-2"></i>AI Recommended Presets</h5>
-
-            <ul class="nav nav-pills nav-fill mb-4 p-2 bg-light rounded" id="presetTabs" role="tablist">
-                {% for v_name, v_data in variants.items %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link {% if v_name == 'Performance' %}active{% endif %} fw-bold"
-                        id="tab-{{ v_name }}" data-bs-toggle="pill" data-bs-target="#content-{{ v_name }}" type="button"
-                        role="tab">
-                        {{ v_name }}
-                        <span class="badge bg-dark rounded-pill ms-2">{{ v_data.badge }}</span>
-                    </button>
-                </li>
-                {% endfor %}
-            </ul>
-
-            <div class="tab-content mb-5" id="presetTabsContent">
-                {% for v_name, v_data in variants.items %}
-                <div class="tab-pane fade {% if v_name == 'Performance' %}show active{% endif %}"
-                    id="content-{{ v_name }}" role="tabpanel">
-
-                    <div class="alert alert-secondary border-0 d-flex align-items-center justify-content-between">
-                        <div>
-                            <i class="fas fa-info-circle me-2"></i> {{ v_data.desc }}
-                        </div>
-                        <a href="{% url 'wizard_load_preset' v_name %}"
-                            class="btn btn-sm btn-primary fw-bold rounded-pill px-3">
-                            <i class="fas fa-check me-2"></i>Select This Preset
-                        </a>
-                    </div>
-
-                    <!-- AI Analysis Card -->
-                    {% if v_data.analysis %}
-                    <div class="card border-0 shadow-sm mb-4"
-                        style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-                        <div class="card-body">
-                            <h6 class="fw-bold text-dark mb-2">
-                                <i class="fas fa-robot text-primary me-2"></i>AI Analysis
-                            </h6>
-                            <p class="text-muted mb-3" style="font-size: 0.95rem;">{{ v_data.analysis }}</p>
-
-                            <div class="row g-3">
-                                {% if v_data.pros %}
-                                <div class="col-md-6">
-                                    <h6 class="fw-bold text-success mb-2" style="font-size: 0.85rem;">
-                                        <i class="fas fa-thumbs-up me-1"></i> Pros
-                                    </h6>
-                                    <ul class="list-unstyled mb-0">
-                                        {% for pro in v_data.pros %}
-                                        <li class="mb-1" style="font-size: 0.85rem;">
-                                            <i class="fas fa-check-circle text-success me-2"
-                                                style="font-size: 0.7rem;"></i>{{ pro }}
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
+                            {% if ai_sentiment %}
+                                <div>
+                                    <small class="text-uppercase text-muted fw-bold">Review Sentiment</small>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-info p-2 rounded-pill"><i class="fas fa-thumbs-up me-1"></i> Positive
+                                        (+{{ ai_sentiment|floatformat:1 }})</span>
+                                    </div>
                                 </div>
-                                {% endif %}
-                                {% if v_data.cons %}
-                                <div class="col-md-6">
-                                    <h6 class="fw-bold text-warning mb-2" style="font-size: 0.85rem;">
-                                        <i class="fas fa-exclamation-triangle me-1"></i> Cons
-                                    </h6>
-                                    <ul class="list-unstyled mb-0">
-                                        {% for con in v_data.cons %}
-                                        <li class="mb-1" style="font-size: 0.85rem;">
-                                            <i class="fas fa-times-circle text-warning me-2"
-                                                style="font-size: 0.7rem;"></i>{{ con }}
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    <div class="gear-list">
-                        {% for cat, gear in v_data.gears.items %}
-                        <div class="gear-item-row shadow-sm position-relative bg-white">
-                            <div class="d-flex align-items-center w-100">
-                                <a href="{% url 'gear_detail' gear.gear_id %}"
-                                    class="me-3 bg-white rounded p-1 border text-decoration-none"
-                                    style="width: 50px; height: 50px; display:flex; align-items:center; justify-content:center;">
-                                    {% if gear.image %}
-                                    <img src="{{ gear.image.url }}" style="max-width:100%; max-height:100%;">
-                                    {% else %}
-                                    <i class="fas fa-gamepad text-muted"></i>
-                                    {% endif %}
-                                </a>
-                                <div class="flex-grow-1">
-                                    <small class="text-muted d-block fw-bold text-uppercase">{{ cat }}</small>
-                                    <span class="fw-bold text-dark">
-                                        {% if gear.brand in gear.name %}{{ gear.name }}{% else %}{{ gear.brand }} {{
-                                        gear.name }}{% endif %}
-                                    </span>
-                                </div>
-                                <a href="{% url 'wizard_select_gear' cat %}?next={% url 'matching_result' %}"
-                                    class="btn btn-sm btn-outline-primary me-1" title="Replace {{ cat }}">
-                                    <i class="fas fa-exchange-alt"></i>
-                                </a>
-                                <a href="{% url 'gear_detail' gear.gear_id %}" class="btn btn-sm btn-outline-secondary"
-                                    title="View Details">
-                                    <i class="fas fa-search"></i>
-                                </a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-
-            <!-- === Comparison Table === -->
-            <h5 class="fw-bold mb-3"><i class="fas fa-balance-scale me-2"></i>Compare Options</h5>
-            <div class="table-responsive mb-5 rounded shadow-sm">
-                <table class="table table-bordered table-hover mb-0 bg-white text-center align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="text-start">Gear</th>
-                            {% if my_setup_gears %}
-                            <th style="background: linear-gradient(135deg, #667eea22, #764ba222);">My Setup <span
-                                    class="badge bg-primary">Current</span></th>
                             {% endif %}
-                            <th>Performance <span class="badge bg-success">Best</span></th>
-                            <th>Balanced <span class="badge bg-secondary">Value</span></th>
-                            <th>Pro Choice <span class="badge bg-dark">Popular</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for cat in "Mouse,Keyboard,Headset,Monitor,Chair"|split:"," %}
-                        <tr>
-                            <td class="fw-bold text-start table-light align-middle">{{ cat }}</td>
-
-                            <!-- My Setup column -->
-                            {% if my_setup_gears %}
-                            <td class="align-middle" style="background: linear-gradient(135deg, #667eea08, #764ba208);">
-                                {% with g=my_setup_gears|get_item:cat %}
-                                {% if g %}
-                                <span class="d-block fw-bold text-dark text-truncate" style="max-width: 150px;"
-                                    title="{{ g.name }}">
-                                    {{ g.name }}
-                                </span>
-                                <small class="d-block text-muted mt-1" style="font-size: 0.75rem;">
-                                    {% if cat == 'Mouse' %}
-                                    {{ g|get_spec:'L (cm)' }}cm • {{ g|get_spec:'W (g)' }}g <br>
-                                    {{ g|get_spec:'Shape' }}
-                                    {% elif cat == 'Keyboard' %}
-                                    {{ g|get_spec:'Form Factor' }} <br>
-                                    {{ g|get_spec:'Switch' }}
-                                    {% elif cat == 'Monitor' %}
-                                    {{ g|get_spec:'Refresh Rate' }} • {{ g|get_spec:'Resolution' }} <br>
-                                    {{ g|get_spec:'Panel Tech' }}
-                                    {% elif cat == 'Headset' %}
-                                    {{ g|get_spec:'Audio Output' }} <br>
-                                    {{ g|get_spec:'Connection' }}
-                                    {% elif cat == 'Chair' %}
-                                    Max: {{ g|get_spec:'Max weight' }}kg <br>
-                                    {{ g|get_spec:'Material' }}
-                                    {% endif %}
-                                </small>
-                                {% else %}
-                                <span class="text-muted">-</span>
-                                {% endif %}
-                                {% endwith %}
-                            </td>
-                            {% endif %}
-
-                            <!-- columns for Performance, Balanced, Pro -->
-                            {% for v_name in "Performance,Balanced,Pro"|split:"," %}
-                            <td class="align-middle">
-                                {% with v_data=variants|get_item:v_name %}
-                                {% with g=v_data.gears|get_item:cat %}
-                                {% if g %}
-                                <span class="d-block fw-bold text-dark text-truncate" style="max-width: 150px;"
-                                    title="{{ g.name }}">
-                                    {{ g.name }}
-                                </span>
-
-                                <small class="d-block text-muted mt-1" style="font-size: 0.75rem;">
-                                    {% if cat == 'Mouse' %}
-                                    {{ g|get_spec:'L (cm)' }}cm • {{ g|get_spec:'W (g)' }}g <br>
-                                    {{ g|get_spec:'Shape' }}
-                                    {% elif cat == 'Keyboard' %}
-                                    {{ g|get_spec:'Form Factor' }} <br>
-                                    {{ g|get_spec:'Switch' }}
-                                    {% elif cat == 'Monitor' %}
-                                    {{ g|get_spec:'Refresh Rate' }} • {{ g|get_spec:'Resolution' }} <br>
-                                    {{ g|get_spec:'Panel Tech' }}
-                                    {% elif cat == 'Headset' %}
-                                    {{ g|get_spec:'Audio Output' }} <br>
-                                    {{ g|get_spec:'Connection' }}
-                                    {% elif cat == 'Chair' %}
-                                    Max: {{ g|get_spec:'Max weight' }}kg <br>
-                                    {{ g|get_spec:'Material' }}
-                                    {% endif %}
-                                </small>
-                                {% else %}
-                                <span class="text-muted">-</span>
-                                {% endif %}
-                                {% endwith %}
-                                {% endwith %}
-                            </td>
+                        </div>
+                        <h6 class="fw-bold text-dark">
+                            <i class="fas fa-check-circle text-success me-2"></i>Why this match?
+                        </h6>
+                        <ul class="list-unstyled mb-0">
+                            {% for reason in ai_reasons %}
+                                <li class="mb-1">
+                                    <i class="fas fa-angle-right text-success me-2"></i>{{ reason }}
+                                </li>
                             {% endfor %}
-                        </tr>
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if variants %}
+                    <!-- === AI Recommended Presets (Tabs) === -->
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-robot me-2"></i>AI Recommended Presets
+                    </h5>
+                    <ul class="nav nav-pills nav-fill mb-4 p-2 bg-light rounded"
+                        id="presetTabs"
+                        role="tablist">
+                        {% for v_name, v_data in variants.items %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {% if v_name == 'Performance' %}active{% endif %} fw-bold"
+                                        id="tab-{{ v_name }}"
+                                        data-bs-toggle="pill"
+                                        data-bs-target="#content-{{ v_name }}"
+                                        type="button"
+                                        role="tab">
+                                    {{ v_name }}
+                                    <span class="badge bg-dark rounded-pill ms-2">{{ v_data.badge }}</span>
+                                </button>
+                            </li>
                         {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
-            {% elif selected_gears %}
-            <!-- Legacy / Normal Display -->
-            <div class="mb-4">
-                <h5 class="text-muted mb-3">Your Selection</h5>
-                <div class="gear-list">
-                    {% for gear in selected_gears %}
-                    <div class="gear-item-row shadow-sm position-relative">
-                        <div class="d-flex align-items-center">
-                            <a href="{% url 'gear_detail' gear.gear_id %}"
-                                class="me-3 bg-white rounded p-1 border text-decoration-none"
-                                style="width: 50px; height: 50px; display:flex; align-items:center; justify-content:center;">
-                                {% if gear.image %}
-                                <img src="{{ gear.image.url }}" style="max-width:100%; max-height:100%;">
-                                {% else %}
-                                <i class="fas fa-gamepad text-muted"></i>
+                    </ul>
+                    <div class="tab-content mb-5" id="presetTabsContent">
+                        {% for v_name, v_data in variants.items %}
+                            <div class="tab-pane fade {% if v_name == 'Performance' %}show active{% endif %}"
+                                 id="content-{{ v_name }}"
+                                 role="tabpanel">
+                                <div class="alert alert-secondary border-0 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="fas fa-info-circle me-2"></i> {{ v_data.desc }}
+                                    </div>
+                                    <a href="{% url 'wizard_load_preset' v_name %}"
+                                       class="btn btn-sm btn-primary fw-bold rounded-pill px-3">
+                                        <i class="fas fa-check me-2"></i>Select This Preset
+                                    </a>
+                                </div>
+                                <!-- AI Analysis Card -->
+                                {% if v_data.analysis %}
+                                    <div class="card border-0 shadow-sm mb-4"
+                                         style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)">
+                                        <div class="card-body">
+                                            <h6 class="fw-bold text-dark mb-2">
+                                                <i class="fas fa-robot text-primary me-2"></i>AI Analysis
+                                            </h6>
+                                            <p class="text-muted mb-3" style="font-size: 0.95rem;">{{ v_data.analysis }}</p>
+                                            <div class="row g-3">
+                                                {% if v_data.pros %}
+                                                    <div class="col-md-6">
+                                                        <h6 class="fw-bold text-success mb-2" style="font-size: 0.85rem;">
+                                                            <i class="fas fa-thumbs-up me-1"></i> Pros
+                                                        </h6>
+                                                        <ul class="list-unstyled mb-0">
+                                                            {% for pro in v_data.pros %}
+                                                                <li class="mb-1" style="font-size: 0.85rem;">
+                                                                    <i class="fas fa-check-circle text-success me-2"
+                                                                       style="font-size: 0.7rem"></i>{{ pro }}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                                {% if v_data.cons %}
+                                                    <div class="col-md-6">
+                                                        <h6 class="fw-bold text-warning mb-2" style="font-size: 0.85rem;">
+                                                            <i class="fas fa-exclamation-triangle me-1"></i> Cons
+                                                        </h6>
+                                                        <ul class="list-unstyled mb-0">
+                                                            {% for con in v_data.cons %}
+                                                                <li class="mb-1" style="font-size: 0.85rem;">
+                                                                    <i class="fas fa-times-circle text-warning me-2"
+                                                                       style="font-size: 0.7rem"></i>{{ con }}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endif %}
-                            </a>
-                            <div class="flex-grow-1">
-                                <small class="text-muted d-block fw-bold text-uppercase">{{ gear.type }}</small>
-                                <a href="{% url 'gear_detail' gear.gear_id %}"
-                                    class="fw-bold text-dark text-decoration-none hover-underline">
-                                    {% if gear.brand in gear.name %}{{ gear.name }}{% else %}{{ gear.brand }} {{
-                                    gear.name }}{% endif %}
+                                <div class="gear-list">
+                                    {% for cat, g_data in v_data.gears.items %}
+                                        <!-- Handle both legacy (obj) and new (dict) -->
+                                        <!-- g_data might be object or dict with 'gear' key -->
+                                        <!-- Check if dict first -->
+                                        {% with gear=g_data.gear|default:g_data %}
+                                            <!-- If g_data is dict, .gear works. If object, .gear is None (usually), so update logic -->
+                                            <!-- Better logic: try to access .gear if no attribute, fallback to self -->
+                                            <div class="gear-item-row shadow-sm position-relative bg-white">
+                                                <div class="d-flex align-items-center w-100">
+                                                    <a href="{% url 'gear_detail' gear.gear_id %}"
+                                                       class="me-3 bg-white rounded p-1 border text-decoration-none"
+                                                       style="width: 50px;
+                                                              height: 50px;
+                                                              display:flex;
+                                                              align-items:center;
+                                                              justify-content:center">
+                                                        {% if gear.image %}
+                                                            <img src="{{ gear.image.url }}" style="max-width:100%; max-height:100%;">
+                                                        {% else %}
+                                                            <i class="fas fa-gamepad text-muted"></i>
+                                                        {% endif %}
+                                                    </a>
+                                                    <div class="flex-grow-1">
+                                                        <small class="text-muted d-block fw-bold text-uppercase">{{ cat }}</small>
+                                                        <span class="fw-bold text-dark">
+                                                            {% if gear.brand in gear.name %}
+                                                                {{ gear.name }}
+                                                            {% else %}
+                                                                {{ gear.brand }} {{
+                                                                gear.name }}
+                                                            {% endif %}
+                                                        </span>
+                                                    </div>
+                                                    <a href="{% url 'wizard_select_gear' cat %}?next={% url 'matching_result' %}"
+                                                       class="btn btn-sm btn-outline-primary me-1"
+                                                       title="Replace {{ cat }}">
+                                                        <i class="fas fa-exchange-alt"></i>
+                                                    </a>
+                                                    <a href="{% url 'gear_detail' gear.gear_id %}"
+                                                       class="btn btn-sm btn-outline-secondary"
+                                                       title="View Details">
+                                                        <i class="fas fa-search"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% endwith %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- === Comparison Table === -->
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-balance-scale me-2"></i>Compare Options
+                    </h5>
+                    <div class="table-responsive mb-5 rounded shadow-sm">
+                        <table class="table table-bordered table-hover mb-0 bg-white text-center align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-start">Gear</th>
+                                    {% if my_setup_gears %}
+                                        <th style="background: linear-gradient(135deg, #667eea22, #764ba222);">
+                                            My Setup <span class="badge bg-primary">Current</span>
+                                        </th>
+                                    {% endif %}
+                                    <th>
+                                        Performance <span class="badge bg-success">Best</span>
+                                    </th>
+                                    <th>
+                                        Balanced <span class="badge bg-secondary">Value</span>
+                                    </th>
+                                    <th>
+                                        Pro Choice <span class="badge bg-dark">Popular</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cat in "Mouse,Keyboard,Headset,Monitor,Chair"|split:"," %}
+                                    <!-- Row is now clickable via data-bs-target -->
+                                    <tr role="button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modal-{{ cat }}"
+                                        title="Click to compare {{ cat }} details">
+                                        <td class="fw-bold text-start table-light align-middle">
+                                            {{ cat }} <i class="fas fa-search-plus text-primary ms-1"
+    style="font-size: 0.8rem"></i>
+                                        </td>
+                                        <!-- My Setup column -->
+                                        {% if my_setup_gears %}
+                                            <td class="align-middle"
+                                                style="background: linear-gradient(135deg, #667eea08, #764ba208)">
+                                                {% with g=my_setup_gears|get_item:cat %}
+                                                    {% if g %}
+                                                        <span class="d-block fw-bold text-dark text-truncate"
+                                                              style="max-width: 150px"
+                                                              title="{{ g.name }}">{{ g.name }}</span>
+                                                        <!-- Show basic spec summary -->
+                                                        <small class="d-block text-muted mt-1" style="font-size: 0.75rem;">
+                                                            {% if cat == 'Mouse' %}
+                                                                {{ g|get_spec:'L (cm)' }}cm • {{ g|get_spec:'W (g)' }}g
+                                                                <br>
+                                                                {{ g|get_spec:'Shape' }}
+                                                            {% elif cat == 'Keyboard' %}
+                                                                {{ g|get_spec:'Form Factor' }}
+                                                                <br>
+                                                                {{ g|get_spec:'Switch' }}
+                                                            {% elif cat == 'Monitor' %}
+                                                                {{ g|get_spec:'Refresh Rate' }} • {{ g|get_spec:'Resolution' }}
+                                                                <br>
+                                                                {{ g|get_spec:'Panel Tech' }}
+                                                            {% elif cat == 'Headset' %}
+                                                                {{ g|get_spec:'Audio Output' }}
+                                                                <br>
+                                                                {{ g|get_spec:'Connection' }}
+                                                            {% elif cat == 'Chair' %}
+                                                                Max: {{ g|get_spec:'Max weight' }}kg
+                                                                <br>
+                                                                {{ g|get_spec:'Material' }}
+                                                            {% endif %}
+                                                        </small>
+                                                    {% else %}
+                                                        <span class="text-muted">-</span>
+                                                    {% endif %}
+                                                {% endwith %}
+                                            </td>
+                                        {% endif %}
+                                        <!-- columns for Performance, Balanced, Pro -->
+                                        {% for v_name in "Performance,Balanced,Pro"|split:"," %}
+                                            <td class="align-middle">
+                                                {% with v_data=variants|get_item:v_name %}
+                                                    {% with g_data=v_data.gears|get_item:cat %}
+                                                        <!-- g_data is dict: {'gear': object, 'score': ..., 'reasons': ...} -->
+                                                        {% if g_data %}
+                                                            <span class="d-block fw-bold text-dark text-truncate"
+                                                                  style="max-width: 150px"
+                                                                  title="{{ g_data.gear.name }}">
+                                                                {{ g_data.gear.name }}
+                                                            </span>
+                                                            <small class="d-block text-muted mt-1" style="font-size: 0.75rem;">
+                                                                {% if cat == 'Mouse' %}
+                                                                    {{ g_data.gear|get_spec:'L (cm)' }}cm • {{ g_data.gear|get_spec:'W (g)' }}g
+                                                                    <br>
+                                                                    {{ g_data.gear|get_spec:'Shape' }}
+                                                                {% elif cat == 'Keyboard' %}
+                                                                    {{ g_data.gear|get_spec:'Form Factor' }}
+                                                                    <br>
+                                                                    {{ g_data.gear|get_spec:'Switch' }}
+                                                                {% elif cat == 'Monitor' %}
+                                                                    {{ g_data.gear|get_spec:'Refresh Rate' }} • {{ g_data.gear|get_spec:'Resolution' }}
+                                                                    <br>
+                                                                    {{ g_data.gear|get_spec:'Panel Tech' }}
+                                                                {% elif cat == 'Headset' %}
+                                                                    {{ g_data.gear|get_spec:'Audio Output' }}
+                                                                    <br>
+                                                                    {{ g_data.gear|get_spec:'Connection' }}
+                                                                {% elif cat == 'Chair' %}
+                                                                    Max: {{ g_data.gear|get_spec:'Max weight' }}kg
+                                                                    <br>
+                                                                    {{ g_data.gear|get_spec:'Material' }}
+                                                                {% endif %}
+                                                            </small>
+                                                        {% else %}
+                                                            <span class="text-muted">-</span>
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endwith %}
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Modals for Detailed Comparison -->
+                    {% for cat in "Mouse,Keyboard,Headset,Monitor,Chair"|split:"," %}
+                        <div class="modal fade"
+                             id="modal-{{ cat }}"
+                             tabindex="-1"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-light">
+                                        <h5 class="modal-title fw-bold">
+                                            <i class="fas fa-search me-2"></i>Comparing {{ cat }}
+                                            Options
+                                        </h5>
+                                        <button type="button"
+                                                class="btn-close"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body bg-light">
+                                        <div class="row g-3">
+                                            <!-- My Setup Card -->
+                                            {% if my_setup_gears and my_setup_gears|get_item:cat %}
+                                                <div class="col-md-3">
+                                                    <div class="card h-100 shadow-sm border-primary">
+                                                        <div class="card-header bg-primary text-white text-center fw-bold">My Setup</div>
+                                                        {% with g=my_setup_gears|get_item:cat %}
+                                                            <div class="card-body text-center">
+                                                                {% if g.image %}
+                                                                    <img src="{{ g.image.url }}"
+                                                                         class="img-fluid mb-3"
+                                                                         style="max-height: 120px">
+                                                                {% else %}
+                                                                    <div class="bg-secondary bg-opacity-10 rounded d-flex align-items-center justify-content-center mx-auto mb-3"
+                                                                         style="width: 100px;
+                                                                                height: 100px">
+                                                                        <i class="fas fa-gamepad fa-2x text-muted"></i>
+                                                                    </div>
+                                                                {% endif %}
+                                                                <h6 class="fw-bold text-primary">{{ g.brand }} {{ g.name }}</h6>
+                                                                <hr>
+                                                                <div class="text-start small">
+                                                                    <p class="mb-1">
+                                                                        <strong>Price:</strong> {{ g.price }}
+                                                                    </p>
+                                                                    <!-- Show ALL available specs -->
+                                                                    {% if g.specs %}
+                                                                        {% if g.specs.items %}
+                                                                            {% for k, v in g.specs.items %}
+                                                                                <div class="d-flex justify-content-between">
+                                                                                    <span class="text-muted">{{ k }}:</span>
+                                                                                    <span class="fw-bold">{{ v }}</span>
+                                                                                </div>
+                                                                            {% endfor %}
+                                                                        {% endif %}
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        {% endwith %}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            <!-- Preset Cards -->
+                                            {% for v_name in "Performance,Balanced,Pro"|split:"," %}
+                                                <div class="col-md-3">
+                                                    <div class="card h-100 shadow-sm border-0">
+                                                        <div class="card-header text-center fw-bold {% if v_name == 'Performance' %}bg-success text-white {% elif v_name == 'Balanced' %}bg-secondary text-white {% else %}bg-dark text-white{% endif %}">
+                                                            {{ v_name }} Option
+                                                        </div>
+                                                        {% with v_data=variants|get_item:v_name %}
+                                                            {% with g_data=v_data.gears|get_item:cat %}
+                                                                <div class="card-body text-center">
+                                                                    {% if g_data and g_data.gear %}
+                                                                        {% if g_data.gear.image %}
+                                                                            <img src="{{ g_data.gear.image.url }}"
+                                                                                 class="img-fluid mb-3"
+                                                                                 style="max-height: 120px">
+                                                                        {% else %}
+                                                                            <div class="bg-secondary bg-opacity-10 rounded d-flex align-items-center justify-content-center mx-auto mb-3"
+                                                                                 style="width: 100px;
+                                                                                        height: 100px">
+                                                                                <i class="fas fa-gamepad fa-2x text-muted"></i>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        <h6 class="fw-bold">{{ g_data.gear.brand }} {{ g_data.gear.name }}</h6>
+                                                                        <!-- Select Button -->
+                                                                        <a href="{% url 'wizard_select_gear' cat %}?next={% url 'matching_result' %}"
+                                                                           class="btn btn-sm btn-outline-primary w-100 mb-3">
+                                                                            Selection This
+                                                                        </a>
+                                                                        <hr>
+                                                                        <!-- AI Reason Badge -->
+                                                                        {% if g_data.reasons %}
+                                                                            <div class="alert alert-success p-2 small text-start mb-3">
+                                                                                <i class="fas fa-check-circle me-1"></i> <strong>Why:</strong>
+                                                                                <ul class="mb-0 ps-3">
+                                                                                    {% for r in g_data.reasons %}<li>{{ r }}</li>{% endfor %}
+                                                                                </ul>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        <div class="text-start small">
+                                                                            <p class="mb-1">
+                                                                                <strong>Price:</strong> {{
+                                                                                g_data.gear.price|floatformat:0 }} THB
+                                                                            </p>
+                                                                            <!-- Show Specs -->
+                                                                            {% if g_data.gear.specs %}
+                                                                                <!-- Need to handle if string or dict in template logic -->
+                                                                                <!-- Simplified loop assuming dict if possible, or we rely on get_spec mostly -->
+                                                                                <!-- Ideally we iterate specs. Since template usage is safer with known keys, let's try direct iteration if dict -->
+                                                                                {% if g_data.gear.specs.items %}
+                                                                                    {% for k, v in g_data.gear.specs.items %}
+                                                                                        {% if k != 'sentiment_score' and k != 'sentiment_analysis' %}
+                                                                                            <div class="d-flex justify-content-between border-bottom py-1">
+                                                                                                <span class="text-muted">{{ k }}:</span>
+                                                                                                <span class="fw-bold text-end">{{ v }}</span>
+                                                                                            </div>
+                                                                                        {% endif %}
+                                                                                    {% endfor %}
+                                                                                {% endif %}
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    {% else %}
+                                                                        <div class="text-muted py-5">No specific recommendation</div>
+                                                                    {% endif %}
+                                                                </div>
+                                                            {% endwith %}
+                                                        {% endwith %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% elif selected_gears %}
+                    <!-- Legacy / Normal Display -->
+                    <div class="mb-4">
+                        <h5 class="text-muted mb-3">Your Selection</h5>
+                        <div class="gear-list">
+                            {% for gear in selected_gears %}
+                                <div class="gear-item-row shadow-sm position-relative">
+                                    <div class="d-flex align-items-center">
+                                        <a href="{% url 'gear_detail' gear.gear_id %}"
+                                           class="me-3 bg-white rounded p-1 border text-decoration-none"
+                                           style="width: 50px;
+                                                  height: 50px;
+                                                  display:flex;
+                                                  align-items:center;
+                                                  justify-content:center">
+                                            {% if gear.image %}
+                                                <img src="{{ gear.image.url }}" style="max-width:100%; max-height:100%;">
+                                            {% else %}
+                                                <i class="fas fa-gamepad text-muted"></i>
+                                            {% endif %}
+                                        </a>
+                                        <div class="flex-grow-1">
+                                            <small class="text-muted d-block fw-bold text-uppercase">{{ gear.type }}</small>
+                                            <a href="{% url 'gear_detail' gear.gear_id %}"
+                                               class="fw-bold text-dark text-decoration-none hover-underline">
+                                                {% if gear.brand in gear.name %}
+                                                    {{ gear.name }}
+                                                {% else %}
+                                                    {{ gear.brand }} {{
+                                                    gear.name }}
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        <a href="{% url 'wizard_select_gear' gear.type %}?next={% url 'matching_result' %}"
+                                           class="btn btn-sm btn-outline-primary ms-2"
+                                           title="Replace">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </a>
+                                        <a href="{% url 'wizard_remove_gear' gear.gear_id %}"
+                                           class="btn btn-sm btn-outline-danger ms-2"
+                                           onclick="return confirm('Remove {{ gear.name }} from preset?');">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <h5 class="text-muted mb-3">Recommended for You (Based on Pro Patterns)</h5>
+                {% if recommendations %}
+                    <div class="pro-players-scroll-container">
+                        {% for item in recommendations %}
+                            <div class="gear-item-row shadow-sm border-start border-4 border-primary mb-3">
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                                       class="me-3 bg-white rounded p-1 border text-decoration-none"
+                                       style="width: 60px;
+                                              height: 60px;
+                                              display:flex;
+                                              align-items:center;
+                                              justify-content:center">
+                                        {% if item.gear.image %}
+                                            <img src="{{ item.gear.image.url }}"
+                                                 style="max-width:100%;
+                                                        max-height:100%">
+                                        {% else %}
+                                            <i class="fas fa-star text-warning fa-lg"></i>
+                                        {% endif %}
+                                    </a>
+                                    <div>
+                                        <small class="text-primary d-block fw-bold text-uppercase">
+                                            {{ item.gear.type }} • CONFIDENCE: {{ item.confidence_percent|floatformat:0 }}%
+                                        </small>
+                                        <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                                           class="fw-bold text-dark d-block text-decoration-none hover-underline"
+                                           style="font-size: 1.1rem">
+                                            {% if item.gear.brand in item.gear.name %}
+                                                {{ item.gear.name }}
+                                            {% else %}
+                                                {{
+                                                item.gear.brand }} {{ item.gear.name }}
+                                            {% endif %}
+                                        </a>
+                                        <small class="text-muted">Often used with your items (Lift: {{ item.lift|floatformat:2 }})</small>
+                                    </div>
+                                </div>
+                                <a href="{% url 'wizard_add_gear' item.gear.gear_id %}"
+                                   class="btn btn-sm btn-outline-primary fw-bold ms-2">
+                                    <i class="fas fa-plus"></i> ADD
                                 </a>
                             </div>
-                            <a href="{% url 'wizard_select_gear' gear.type %}?next={% url 'matching_result' %}"
-                                class="btn btn-sm btn-outline-primary ms-2" title="Replace">
-                                <i class="fas fa-exchange-alt"></i>
-                            </a>
-                            <a href="{% url 'wizard_remove_gear' gear.gear_id %}"
-                                class="btn btn-sm btn-outline-danger ms-2"
-                                onclick="return confirm('Remove {{ gear.name }} from preset?');">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-
-            <h5 class="text-muted mb-3">Recommended for You (Based on Pro Patterns)</h5>
-
-            {% if recommendations %}
-            <div class="pro-players-scroll-container">
-                {% for item in recommendations %}
-                <div class="gear-item-row shadow-sm border-start border-4 border-primary mb-3">
-                    <div class="d-flex align-items-center flex-grow-1">
-                        <a href="{% url 'gear_detail' item.gear.gear_id %}"
-                            class="me-3 bg-white rounded p-1 border text-decoration-none"
-                            style="width: 60px; height: 60px; display:flex; align-items:center; justify-content:center;">
-                            {% if item.gear.image %}
-                            <img src="{{ item.gear.image.url }}" style="max-width:100%; max-height:100%;">
-                            {% else %}
-                            <i class="fas fa-star text-warning fa-lg"></i>
-                            {% endif %}
-                        </a>
-
-                        <div>
-                            <small class="text-primary d-block fw-bold text-uppercase">
-                                {{ item.gear.type }} • CONFIDENCE: {{ item.confidence_percent|floatformat:0 }}%
-                            </small>
-                            <a href="{% url 'gear_detail' item.gear.gear_id %}"
-                                class="fw-bold text-dark d-block text-decoration-none hover-underline"
-                                style="font-size: 1.1rem;">
-                                {% if item.gear.brand in item.gear.name %}{{ item.gear.name }}{% else %}{{
-                                item.gear.brand }} {{ item.gear.name }}{% endif %}
-                            </a>
-                            <small class="text-muted">
-                                Often used with your items (Lift: {{ item.lift|floatformat:2 }})
-                            </small>
+                {% else %}
+                    {% if popular_gears %}
+                        <div class="alert alert-light border-start border-4 border-success shadow-sm mb-3">
+                            <h5 class="alert-heading fw-bold text-success">
+                                <i class="fas fa-lightbulb me-2"></i>Don't know where to
+                                start?
+                            </h5>
+                            <p class="mb-0">Here are the most popular choices used by Pro Players to get you started:</p>
                         </div>
-                    </div>
-
-                    <a href="{% url 'wizard_add_gear' item.gear.gear_id %}"
-                        class="btn btn-sm btn-outline-primary fw-bold ms-2">
-                        <i class="fas fa-plus"></i> ADD
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            {% if popular_gears %}
-            <div class="alert alert-light border-start border-4 border-success shadow-sm mb-3">
-                <h5 class="alert-heading fw-bold text-success"><i class="fas fa-lightbulb me-2"></i>Don't know where to
-                    start?</h5>
-                <p class="mb-0">Here are the most popular choices used by Pro Players to get you started:</p>
-            </div>
-
-            <div class="pro-players-scroll-container">
-                {% for item in popular_gears %}
-                <div class="gear-item-row shadow-sm border-start border-4 border-success mb-3">
-                    <div class="d-flex align-items-center flex-grow-1">
-                        <a href="{% url 'gear_detail' item.gear.gear_id %}"
-                            class="me-3 bg-white rounded p-1 border text-decoration-none"
-                            style="width: 60px; height: 60px; display:flex; align-items:center; justify-content:center;">
-                            {% if item.gear.image %}
-                            <img src="{{ item.gear.image.url }}" style="max-width:100%; max-height:100%;">
-                            {% else %}
-                            <i class="fas fa-fire text-danger fa-lg"></i>
-                            {% endif %}
-                        </a>
-
-                        <div>
-                            <small class="text-success d-block fw-bold text-uppercase">
-                                MOST POPULAR {{ item.type }} • USED BY {{ item.count }} PROS
-                            </small>
-                            <a href="{% url 'gear_detail' item.gear.gear_id %}"
-                                class="fw-bold text-dark d-block text-decoration-none hover-underline"
-                                style="font-size: 1.1rem;">
-                                {% if item.gear.brand in item.gear.name %}{{ item.gear.name }}{% else %}{{
-                                item.gear.brand }} {{ item.gear.name }}{% endif %}
-                            </a>
+                        <div class="pro-players-scroll-container">
+                            {% for item in popular_gears %}
+                                <div class="gear-item-row shadow-sm border-start border-4 border-success mb-3">
+                                    <div class="d-flex align-items-center flex-grow-1">
+                                        <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                                           class="me-3 bg-white rounded p-1 border text-decoration-none"
+                                           style="width: 60px;
+                                                  height: 60px;
+                                                  display:flex;
+                                                  align-items:center;
+                                                  justify-content:center">
+                                            {% if item.gear.image %}
+                                                <img src="{{ item.gear.image.url }}"
+                                                     style="max-width:100%;
+                                                            max-height:100%">
+                                            {% else %}
+                                                <i class="fas fa-fire text-danger fa-lg"></i>
+                                            {% endif %}
+                                        </a>
+                                        <div>
+                                            <small class="text-success d-block fw-bold text-uppercase">
+                                                MOST POPULAR {{ item.type }} • USED BY {{ item.count }} PROS
+                                            </small>
+                                            <a href="{% url 'gear_detail' item.gear.gear_id %}"
+                                               class="fw-bold text-dark d-block text-decoration-none hover-underline"
+                                               style="font-size: 1.1rem">
+                                                {% if item.gear.brand in item.gear.name %}
+                                                    {{ item.gear.name }}
+                                                {% else %}
+                                                    {{
+                                                    item.gear.brand }} {{ item.gear.name }}
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'wizard_add_gear' item.gear.gear_id %}"
+                                       class="btn btn-sm btn-outline-success fw-bold ms-2">
+                                        <i class="fas fa-plus"></i> ADD
+                                    </a>
+                                </div>
+                            {% endfor %}
                         </div>
-                    </div>
-
-                    <a href="{% url 'wizard_add_gear' item.gear.gear_id %}"
-                        class="btn btn-sm btn-outline-success fw-bold ms-2">
-                        <i class="fas fa-plus"></i> ADD
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="alert alert-info">
-                <i class="fas fa-info-circle"></i> Select more gears to see better recommendations!
-            </div>
-            {% endif %}
-            {% endif %}
-
-            <div class="mt-4 text-center">
-                <a href="{% url 'wizard_select_gear' 'Mouse' %}" class="btn btn-outline-secondary btn-sm m-1">Add
+                    {% else %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Select more gears to see better recommendations!
+                        </div>
+                    {% endif %}
+                {% endif %}
+                <div class="mt-4 text-center">
+                    <a href="{% url 'wizard_select_gear' 'Mouse' %}"
+                       class="btn btn-outline-secondary btn-sm m-1">Add
                     Mouse</a>
-                <a href="{% url 'wizard_select_gear' 'Keyboard' %}" class="btn btn-outline-secondary btn-sm m-1">Add
+                    <a href="{% url 'wizard_select_gear' 'Keyboard' %}"
+                       class="btn btn-outline-secondary btn-sm m-1">Add
                     Keyboard</a>
-                <a href="{% url 'wizard_select_gear' 'Headset' %}" class="btn btn-outline-secondary btn-sm m-1">Add
+                    <a href="{% url 'wizard_select_gear' 'Headset' %}"
+                       class="btn btn-outline-secondary btn-sm m-1">Add
                     Headset</a>
-                <a href="{% url 'wizard_select_gear' 'Monitor' %}" class="btn btn-outline-secondary btn-sm m-1">Add
+                    <a href="{% url 'wizard_select_gear' 'Monitor' %}"
+                       class="btn btn-outline-secondary btn-sm m-1">Add
                     Monitor</a>
-                <a href="{% url 'wizard_select_gear' 'Chair' %}" class="btn btn-outline-secondary btn-sm m-1">Add
+                    <a href="{% url 'wizard_select_gear' 'Chair' %}"
+                       class="btn btn-outline-secondary btn-sm m-1">Add
                     Chair</a>
+                </div>
             </div>
-
         </div>
     </div>
-</div>
-
-<!-- Next Button for Manual Equipment Flow -->
-{% if user.is_authenticated and temp_preset_ids %}
-<div style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;">
-    <a href="{% url 'save_preset' %}" class="btn btn-primary btn-lg shadow-lg"
-        style="border-radius: 50px; padding: 15px 30px; font-weight: 700;">
-        Next <i class="fas fa-arrow-right ms-2"></i>
-    </a>
-</div>
-{% endif %}
+    <!-- Next Button for Manual Equipment Flow -->
+    {% if user.is_authenticated and temp_preset_ids %}
+        <div style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;">
+            <a href="{% url 'save_preset' %}"
+               class="btn btn-primary btn-lg shadow-lg"
+               style="border-radius: 50px;
+                      padding: 15px 30px;
+                      font-weight: 700">
+                Next <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}

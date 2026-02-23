@@ -1,9 +1,7 @@
 {% extends 'APP01/admin_base.html' %}
-
 {% block admin_page_title %}Gaming Gears{% endblock %}
-
 {% block admin_content %}
-<style>
+    <style>
     /* Force Light Theme for this page as requested */
     .card {
         background-color: #ffffff !important;
@@ -33,57 +31,86 @@
     .form-control::placeholder {
         color: #6c757d !important;
     }
-</style>
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div class="input-group" style="max-width: 300px;">
-        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" id="gearSearchInput">
-        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+    </style>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group" style="max-width: 300px;">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Search..."
+                   aria-label="Search"
+                   id="gearSearchInput">
+            <button class="btn btn-outline-secondary" type="button">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+        <a href="{% url 'admin_add_gear' %}" class="btn btn-primary">Add Gaming Gear</a>
     </div>
-    <a href="{% url 'admin_add_gear' %}" class="btn btn-primary">Add Gaming Gear</a>
-</div>
-
-<div class="card p-3">
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Brand</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for gear in gaming_gears %}
-                <tr>
-                    <td>{{ gear.gear_id }}</td>
-                    <td>{{ gear.name }}</td>
-                    <td>{{ gear.type }}</td>
-                    <td>{{ gear.brand }}</td>
-                    <td>{% if gear.price %}${{ gear.price }}{% else %}<span class="text-muted">N/A</span>{% endif %}
-                    </td>
-                    <td>
-                        <a href="{% url 'admin_edit_gear' gear.gear_id %}" class="btn btn-sm btn-info me-2">Edit</a>
-                        <form action="{% url 'admin_delete_gear' gear.gear_id %}" method="post" class="d-inline"
-                            onsubmit="return confirm('Are you sure you want to delete {{ gear.name }}?');">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="6" class="text-center">No Gaming Gears found.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="card p-3">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gear in gaming_gears %}
+                        <tr>
+                            <td>{{ gear.gear_id }}</td>
+                            <td>
+                                {% if gear.image %}
+                                    <img src="{{ gear.image.url }}"
+                                         alt="{{ gear.name }}"
+                                         class="rounded"
+                                         style="width: 50px;
+                                                height: 50px;
+                                                object-fit: cover">
+                                {% else %}
+                                    <div class="rounded bg-secondary d-flex justify-content-center align-items-center text-white"
+                                         style="width: 50px;
+                                                height: 50px">
+                                        <i class="bi bi-image"></i>
+                                    </div>
+                                {% endif %}
+                            </td>
+                            <td>{{ gear.name }}</td>
+                            <td>{{ gear.type }}</td>
+                            <td>{{ gear.brand }}</td>
+                            <td>
+                                {% if gear.price %}
+                                    ${{ gear.price }}
+                                {% else %}
+                                    <span class="text-muted">N/A</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'admin_edit_gear' gear.gear_id %}"
+                                   class="btn btn-sm btn-info me-2">Edit</a>
+                                <form action="{% url 'admin_delete_gear' gear.gear_id %}"
+                                      method="post"
+                                      class="d-inline"
+                                      onsubmit="return confirm('Are you sure you want to delete {{ gear.name }}?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">No Gaming Gears found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
-<script>
+    <script>
     // Simple client-side search for Gaming Gears (can be enhanced with AJAX for large datasets)
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('gearSearchInput');
@@ -105,5 +132,5 @@
             });
         });
     });
-</script>
+    </script>
 {% endblock %}

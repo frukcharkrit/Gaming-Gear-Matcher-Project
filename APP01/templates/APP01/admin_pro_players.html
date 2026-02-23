@@ -1,9 +1,7 @@
 {% extends 'APP01/admin_base.html' %}
-
 {% block admin_page_title %}Pro Players{% endblock %}
-
 {% block admin_content %}
-<style>
+    <style>
     /* Force Light Theme for this page as requested */
     .card {
         background-color: #ffffff !important;
@@ -33,64 +31,86 @@
     .form-control::placeholder {
         color: #6c757d !important;
     }
-</style>
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div class="input-group" style="max-width: 300px;">
-        <input type="text" class="form-control" placeholder="Search..." aria-label="Search" id="playerSearchInput">
-        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+    </style>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group" style="max-width: 300px;">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Search..."
+                   aria-label="Search"
+                   id="playerSearchInput">
+            <button class="btn btn-outline-secondary" type="button">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+        <a href="{% url 'admin_add_pro_player' %}" class="btn btn-primary">Add Pro Player</a>
     </div>
-    <a href="{% url 'admin_add_pro_player' %}" class="btn btn-primary">Add Pro Player</a>
-</div>
-
-<div class="card p-3">
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Game</th>
-                    <th>Gear</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for player in pro_players %}
-                <tr>
-                    <td>{{ player.player_id }}</td>
-                    <td>{{ player.name }}</td>
-                    <td>{{ player.game }}</td>
-                    <td>
-                        {% if player.proplayergear_set.all %}
-                        {% for pg in player.proplayergear_set.all %}
-                        <span class="badge bg-info text-dark me-1">{{ pg.gear.name }}</span>
-                        {% endfor %}
-                        {% else %}
-                        -
-                        {% endif %}
-                    </td>
-                    <td>
-                        <a href="{% url 'admin_edit_pro_player' player.player_id %}"
-                            class="btn btn-sm btn-info me-2">Edit</a>
-                        <form action="{% url 'admin_delete_pro_player' player.player_id %}" method="post"
-                            class="d-inline"
-                            onsubmit="return confirm('Are you sure you want to delete {{ player.name }}?');">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="5" class="text-center">No Pro Players found.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="card p-3">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Game</th>
+                        <th>Gear</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in pro_players %}
+                        <tr>
+                            <td>{{ player.player_id }}</td>
+                            <td>
+                                {% if player.image %}
+                                    <img src="{{ player.image.url }}"
+                                         alt="{{ player.name }}"
+                                         class="rounded-circle"
+                                         style="width: 50px;
+                                                height: 50px;
+                                                object-fit: cover">
+                                {% else %}
+                                    <div class="rounded-circle bg-secondary d-flex justify-content-center align-items-center text-white"
+                                         style="width: 50px;
+                                                height: 50px">
+                                        <i class="bi bi-person-fill"></i>
+                                    </div>
+                                {% endif %}
+                            </td>
+                            <td>{{ player.name }}</td>
+                            <td>{{ player.game }}</td>
+                            <td>
+                                {% if player.proplayergear_set.all %}
+                                    {% for pg in player.proplayergear_set.all %}
+                                        <span class="badge bg-info text-dark me-1">{{ pg.gear.name }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'admin_edit_pro_player' player.player_id %}"
+                                   class="btn btn-sm btn-info me-2">Edit</a>
+                                <form action="{% url 'admin_delete_pro_player' player.player_id %}"
+                                      method="post"
+                                      class="d-inline"
+                                      onsubmit="return confirm('Are you sure you want to delete {{ player.name }}?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No Pro Players found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
-<script>
+    <script>
     // Simple client-side search for Pro Players (can be enhanced with AJAX for large datasets)
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('playerSearchInput');
@@ -112,5 +132,5 @@
             });
         });
     });
-</script>
+    </script>
 {% endblock %}

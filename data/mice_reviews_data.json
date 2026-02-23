@@ -1,0 +1,2703 @@
+[
+    {
+        "name": "Razer DeathAdder V4 Pro Review",
+        "url": "https://prosettings.net/reviews/razer-deathadder-v4-pro/",
+        "pros": [
+            "Fantastic gaming performance",
+            "Great build quality",
+            "Great scroll wheel",
+            "Great buttons",
+            "Very impressive battery life"
+        ],
+        "cons": [
+            "Extremely expensive",
+            "Buttons are on the louder side and don’t sound great"
+        ],
+        "specs": {
+            "Sensor": "Razer Focus Pro 45K",
+            "Polling Rate": "125 / 500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Razer Optical Gen-4",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.8cm",
+            "Height": "4.4cm",
+            "Weight": "56g",
+            "Width": "6.8cm"
+        }
+    },
+    {
+        "name": "SONY INZONE Mouse-A Review",
+        "url": "https://prosettings.net/reviews/sony-inzone-mouse-a/",
+        "pros": [
+            "Great build quality",
+            "Interesting shape that isn’t a clone",
+            "Top-tier internals and great gaming performance",
+            "Buttons are well-implemented (but the switches aren’t as crispy as they should be)"
+        ],
+        "cons": [
+            "Scroll wheel is too light to press, leading to accidental presses while scrolling",
+            "Scroll wheel isn’t very grippy",
+            "Expensive (at MSRP)",
+            "Coating is prone to showing fingerprints"
+        ],
+        "specs": {
+            "Sensor": "3950IZ",
+            "Polling Rate": "500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Optical Switches",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.9cm",
+            "Height": "40.8cm",
+            "Weight": "48g",
+            "Width": "6.4cm"
+        }
+    },
+    {
+        "name": "Logitech G Pro X Superlight 2c Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-x-superlight-2c/",
+        "pros": [
+            "Great build quality",
+            "Great gaming performances",
+            "Refined compact design with a safe shape",
+            "Great battery life",
+            "Nice (but heavy) clicks"
+        ],
+        "cons": [
+            "Very expensive",
+            "G HUB software is quite confusing"
+        ],
+        "specs": {
+            "Sensor": "HERO 2",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "LIGHTFORCE Hybrid",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.8cm",
+            "Height": "3.9cm",
+            "Weight": "51g",
+            "Width": "6.2cm"
+        }
+    },
+    {
+        "name": "ZOWIE EC2-DW Glossy White Review",
+        "url": "https://prosettings.net/reviews/zowie-ec2-dw-white/",
+        "pros": [
+            "Great build quality",
+            "Amazing shape",
+            "Enhanced receiver that doubles as a charging dock is a great feature to have",
+            "Great set of clicks"
+        ],
+        "cons": [
+            "Some people might not like the fact that it uses mechanical switches instead of opticals",
+            "Coating can look dirty quite easily (but performs well)"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1000, 1200, 1600, 3200",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.3cm",
+            "Height": "4.2cm",
+            "Weight": "60g",
+            "Width": "6.5cm"
+        }
+    },
+    {
+        "name": "Corsair Sabre v2 Pro Review",
+        "url": "https://prosettings.net/reviews/corsair-sabre-v2-pro/",
+        "pros": [
+            "Extremely lightweight",
+            "Includes grip tape and additional mouse feet",
+            "Affordable for a flagship mouse from a big brand",
+            "Uses a web-based driver program"
+        ],
+        "cons": [
+            "The switches are mechanical, but don’t feel amazing",
+            "Side buttons aren’t great",
+            "Pre-applied feet are a bit too scratchy"
+        ],
+        "specs": {
+            "Sensor": "Marksman S 33K",
+            "Polling Rate": "1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Corsair Mechanical Switches",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.9cm",
+            "Height": "3.8cm",
+            "Weight": "36g",
+            "Width": "6.2cm"
+        }
+    },
+    {
+        "name": "VAXEE NP-01S Ergo Review",
+        "url": "https://prosettings.net/reviews/vaxee-np-01s-ergo/",
+        "pros": [
+            "Great build quality",
+            "Great gaming performance",
+            "Web-based driver is clean and easy to use",
+            "Great mouse feet",
+            "Fantastic and very unique shape",
+            "Good scroll wheel"
+        ],
+        "cons": [
+            "Expensive",
+            "Battery life could be better",
+            "No extras (like grip tape or additional feet) in the box",
+            "Side buttons could sit a bit higher"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "3200, 400, 800, 1600",
+            "Polling Rate": "250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "11.8cm",
+            "Height": "3.8cm",
+            "Weight": "59g",
+            "Width": "6.3cm"
+        }
+    },
+    {
+        "name": "ZOWIE EC2-DW Review",
+        "url": "https://prosettings.net/reviews/zowie-ec2-dw/",
+        "pros": [
+            "Great build quality",
+            "Amazing shape",
+            "Enhanced receiver that doubles as a charging dock is a great feature to have",
+            "Great set of clicks"
+        ],
+        "cons": [
+            "Some people might not like the fact that it uses mechanical switches instead of opticals",
+            "Coating can look dirty quite easily (but performs well)"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1000, 1200, 1600, 3200",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.3cm",
+            "Height": "4.2cm",
+            "Weight": "60g",
+            "Width": "6.5cm"
+        }
+    },
+    {
+        "name": "Pulsar Xlite V4 eS Review",
+        "url": "https://prosettings.net/reviews/pulsar-xlite-v4-es/",
+        "pros": [
+            "Great main clicks",
+            "Great side buttons",
+            "Good build quality",
+            "Good scroll wheel"
+        ],
+        "cons": [
+            "Sensor performs inconsistently, which is a big deal for an esports mouse",
+            "I had some accidental scrolls even when not touching the scroll wheel",
+            "Coating is a fingerprint magnet"
+        ],
+        "specs": {
+            "Sensor": "XS-1 Sensor",
+            "Polling Rate": "500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Optical Switches",
+            "Button Force": "86g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.2cm",
+            "Height": "4.3cm",
+            "Weight": "65g",
+            "Width": "6.6cm"
+        }
+    },
+    {
+        "name": "VAXEE XE V2 Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-xe-v2-wireless/",
+        "pros": [
+            "Great build quality",
+            "Great gaming performances",
+            "Nice shape",
+            "Web-based driver is clean, easy to use, and much better than software",
+            "New mouse feet feel great"
+        ],
+        "cons": [
+            "Very expensive in some parts of the world (like the EU)",
+            "Battery life isn’t great",
+            "Replacement feet should be included in the box at this price"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "Polling Rate": "250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "76.5g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.2cm",
+            "Height": "3.8cm",
+            "Weight": "59g",
+            "Width": "6.1cm"
+        }
+    },
+    {
+        "name": "ZOWIE S2-DW Review",
+        "url": "https://prosettings.net/reviews/zowie-s2-dw/",
+        "pros": [
+            "Great build quality",
+            "Very versatile shape",
+            "Comes with extra skates as well as a set of alternative skates",
+            "Good coating",
+            "Excellent click implementation",
+            "Enhanced receiver can also be used as a charging dock"
+        ],
+        "cons": [
+            "Battery life isn’t the best (this is offset by the charging dock though)",
+            "Lack of optical switches might not sit well with everyone"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1000, 1200, 1600, 3200",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.0cm",
+            "Height": "3.8cm",
+            "Weight": "65g",
+            "Width": "6.4cm"
+        }
+    },
+    {
+        "name": "Corsair Scimitar Elite Wireless SE Review",
+        "url": "https://prosettings.net/reviews/corsair-scimitar-elite-wireless-se/",
+        "pros": [
+            "Stream Deck integration makes this into a productivity/streaming powerhouse",
+            "Great battery life",
+            "Dual connectivity (Bluetooth and 2.4GHz) adds further productivity powerhouse points",
+            "Tons of extra input options that are quite easy to tell apart",
+            "Customizable side panel is a good idea"
+        ],
+        "cons": [
+            "Main buttons feel a tad mushy",
+            "Shape isn’t safe at all"
+        ],
+        "specs": {
+            "Sensor": "Marksman S 33K",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Optical Switches",
+            "Button Force": "72.5g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "11.8cm",
+            "Height": "4.1cm",
+            "Weight": "113g",
+            "Width": "7.2cm"
+        }
+    },
+    {
+        "name": "ZOWIE U2-DW Review",
+        "url": "https://prosettings.net/reviews/zowie-u2-dw/",
+        "pros": [
+            "Great, interesting shape",
+            "Great build quality",
+            "Comes with a charging dock and an extra (1000Hz receiver)",
+            "Good coating",
+            "Tons of extras in the box"
+        ],
+        "cons": [
+            "Battery life isn’t good (this gets negated by the included charging dock though)",
+            "Lack of optical switches might be a dealbreaker to some"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1000, 1200, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.3cm",
+            "Height": "3.8cm",
+            "Weight": "60g",
+            "Width": "5.8cm"
+        }
+    },
+    {
+        "name": "ZOWIE FK2-DW Review",
+        "url": "https://prosettings.net/reviews/zowie-fk2-dw/",
+        "pros": [
+            "Great, safe shape",
+            "Great build quality",
+            "Lots of extras in the box",
+            "Comes with a charging dock, which is handy for high polling rate mice",
+            "Coating performs well"
+        ],
+        "cons": [
+            "Battery life is subpar (though this is offset by the charging dock)",
+            "Lack of optical switches might be a dealbreaker to some",
+            "Side buttons can feel difficult to tell apart at times"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1000, 1200, 1600, 3200",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "82.5g",
+            "Connection": "Wireless",
+            "Length": "12.5cm",
+            "Height": "3.6cm",
+            "Weight": "65g",
+            "Width": "6.5cm"
+        }
+    },
+    {
+        "name": "Endgame Gear OP1w 4K Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-op1w-4k/",
+        "pros": [
+            "Fantastic build quality",
+            "Easy to open the mouse and mod/change switches",
+            "Fantastic set of clicks",
+            "Great coating",
+            "Lots of extras in the packaging",
+            "Unique shape"
+        ],
+        "cons": [
+            "Coating is prone to showing fingerprints and smudges",
+            "Scroll wheel is a bit too easy to press",
+            "Grip on the scroll wheel can be better"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Kailh GX",
+            "Button Force": "76g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.8cm",
+            "Height": "3.7cm",
+            "Weight": "58.5g",
+            "Width": "6.0cm"
+        }
+    },
+    {
+        "name": "VAXEE NP-01S V2 Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-np-01s-v2/",
+        "pros": [
+            "Great clicks",
+            "Good build quality",
+            "Great gaming performances",
+            "Amazing and unique shape"
+        ],
+        "cons": [
+            "Battery life could be better",
+            "I’d love to see replacement feet in the box"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "65.7g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.8cm",
+            "Height": "3.7cm",
+            "Weight": "56g",
+            "Width": "5.7cm"
+        }
+    },
+    {
+        "name": "NZXT Lift Elite Review",
+        "url": "https://prosettings.net/reviews/nzxt-lift-elite/",
+        "pros": [
+            "Good build quality",
+            "Good scroll wheel",
+            "Nice coating"
+        ],
+        "cons": [
+            "Feet feel a bit scratchy on some pads",
+            "Main buttons feel a bit mushy due to a combination of post travel and post-click wobble",
+            "Back side button feels spongy and travels inside the shell when pressed at the edges"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "Polling Rate": "250 / 500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Optical Switches",
+            "Button Force": "75.6g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.8cm",
+            "Height": "3.8cm",
+            "Weight": "57g",
+            "Width": "6.0cm"
+        }
+    },
+    {
+        "name": "ZOWIE ZA13-DW Review",
+        "url": "https://prosettings.net/reviews/zowie-za13-dw/",
+        "pros": [
+            "Great build quality",
+            "Unique and interesting shape",
+            "Comes with extra skates and alternative skates",
+            "Included enhanced receiver doubles as a charging dock, which is nice",
+            "Good coating"
+        ],
+        "cons": [
+            "Battery life isn’t great",
+            "Use of mechanical switches might disappoint some"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1000, 1200, 1600, 3200",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "80.7g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.2cm",
+            "Height": "4.0cm",
+            "Weight": "65g",
+            "Width": "6.3cm"
+        }
+    },
+    {
+        "name": "VAXEE E1 Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-e1-wireless/",
+        "pros": [
+            "Amazing shape",
+            "Great build quality",
+            "Great gaming performance"
+        ],
+        "cons": [
+            "Clicks might be too light for some",
+            "Expensive",
+            "Battery life isn’t great"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "56.8g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.0cm",
+            "Height": "4.2cm",
+            "Weight": "60g",
+            "Width": "5.7cm"
+        }
+    },
+    {
+        "name": "Lamzu Maya X Review",
+        "url": "https://prosettings.net/reviews/lamzu-maya-x/",
+        "pros": [
+            "Good stock skates",
+            "Fantastic build quality",
+            "Great clicks",
+            "Great gaming performance",
+            "Amazing unboxing experience",
+            "Good coating"
+        ],
+        "cons": [
+            "Bottom of the mouse could be solid (or at least could be made to protect the scroll wheel from debris a bit better)",
+            "Side buttons can be crispier"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "Polling Rate": "500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Optical Switches",
+            "Button Force": "65.3g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.4cm",
+            "Height": "4.0cm",
+            "Weight": "47g",
+            "Width": "5.7cm"
+        }
+    },
+    {
+        "name": "Fnatic x Lamzu Maya 8K Review",
+        "url": "https://prosettings.net/reviews/fnatic-lamzu-maya-8k/",
+        "pros": [
+            "Great clicks",
+            "Fantastic coating",
+            "Good build quality",
+            "Good stock skates",
+            "Great unboxing experience"
+        ],
+        "cons": [
+            "Software feels and looks a little cheap",
+            "I would prefer a mouse with a solid bottom, even if it’s a bit heavier"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 4000 / 2000 / 8000 Hz",
+            "Button Switches": "Optical Switches",
+            "Button Force": "71g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.9cm",
+            "Height": "3.8cm",
+            "Weight": "45g",
+            "Width": "6.2cm"
+        }
+    },
+    {
+        "name": "Razer DeathAdder V3 HyperSpeed Review",
+        "url": "https://prosettings.net/reviews/razer-deathadder-v3-hyperspeed/",
+        "pros": [
+            "Great gaming performance",
+            "Great build quality",
+            "Great main buttons"
+        ],
+        "cons": [
+            "Coating could be better at handling sweat",
+            "Only 1000Hz out of the box, needs a separate dongle for higher polling rates"
+        ],
+        "specs": {
+            "Sensor": "Razer Focus X 26K",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Razer Optical",
+            "Button Force": "66g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.2cm",
+            "Height": "4.1cm",
+            "Weight": "55g",
+            "Width": "6.4cm"
+        }
+    },
+    {
+        "name": "VAXEE XE-S Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-xe-s-wireless/",
+        "pros": [
+            "Main buttons feel great",
+            "Great build quality",
+            "Good shape",
+            "Great gaming performances"
+        ],
+        "cons": [
+            "Battery life could be better",
+            "Expensive"
+        ],
+        "specs": {
+            "Sensor": "PAW3950",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "73.5g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.8cm",
+            "Height": "3.6cm",
+            "Weight": "60g",
+            "Width": "5.9cm"
+        }
+    },
+    {
+        "name": "NZXT Lift 2 Ergo Review",
+        "url": "https://prosettings.net/reviews/nzxt-lift-2-ergo/",
+        "pros": [
+            "Pro-level specs for a budget price",
+            "Good build quality",
+            "Nicely implemented (optical) switches"
+        ],
+        "cons": [
+            "Large shape might not suit everyone",
+            "Exterior parts of the shell can grind on softer mousepads or when applying a lot of pressure on the mouse"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Optical Switches",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.84cm",
+            "Height": "4.14cm",
+            "Weight": "61g",
+            "Width": "6.51cm"
+        }
+    },
+    {
+        "name": "Razer Viper V3 Pro Review",
+        "url": "https://prosettings.net/reviews/viper-v3-pro/",
+        "pros": [
+            "Fantastic gaming performance",
+            "8KHz wireless polling rate out of the box",
+            "New shape is a lot safer",
+            "Good coating",
+            "Razer optical switches feel great"
+        ],
+        "cons": [
+            "Expensive",
+            "Side buttons feel a bit mushy"
+        ],
+        "specs": {
+            "Sensor": "Focus Pro 35K Optical Gen-2",
+            "Polling Rate": "8000 Hz",
+            "Button Switches": "Razer Optical",
+            "Button Force": "67.6g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.71cm",
+            "Height": "3.99cm",
+            "Weight": "54g",
+            "Width": "6.39cm"
+        }
+    },
+    {
+        "name": "VAXEE ZYGEN NP-01 Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-zygen-np-01-wireless/",
+        "pros": [
+            "4K compatible",
+            "Great gaming performance",
+            "Fantastic and unique shape",
+            "Good build quality"
+        ],
+        "cons": [
+            "Side travel on pressed-down buttons can get annoying"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "1000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "66g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.8cm",
+            "Height": "3.9cm",
+            "Weight": "72g",
+            "Width": "6.6cm"
+        }
+    },
+    {
+        "name": "ZOWIE U2 Review",
+        "url": "https://prosettings.net/reviews/zowie-u2/",
+        "pros": [
+            "Unique and well thought-out shape",
+            "Fantastic build quality",
+            "Great wireless/gaming performance",
+            "Included charging dock",
+            "Great side buttons"
+        ],
+        "cons": [
+            "Coating is a fingerprint and hand oil magnet",
+            "Lack of optical switches might come as a disappointment to some",
+            "Lacking higher polling rate options is a bit of a bummer in today’s market",
+            "Very expensive in certain parts of the world (such as the EU)"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "DPI": "400, 800, 1000, 1200, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "79.5g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.16cm",
+            "Height": "3.81cm",
+            "Weight": "60g",
+            "Width": "5.81cm"
+        }
+    },
+    {
+        "name": "VAXEE OUTSET AX Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-outset-ax-wireless/",
+        "pros": [
+            "Great ergonomic shape",
+            "Flawless wireless and gaming performance",
+            "Great build quality",
+            "4KHz compatible since March 2024"
+        ],
+        "cons": [
+            "Slight wobble on mouse 2 when holding the button",
+            "Mouse button 5 has too much post travel"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "1000 / 125 / 500 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "64g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "11.63cm",
+            "Height": "4.27cm",
+            "Weight": "73g",
+            "Width": "5.94cm"
+        }
+    },
+    {
+        "name": "Fnatic x Lamzu Thorn Review",
+        "url": "https://prosettings.net/reviews/fnatic-lamzu-thorn/",
+        "pros": [
+            "Nice, unique ergo shape",
+            "Fantastic coating",
+            "Comes with 4KHz dongle included",
+            "Premium packaging and unboxing experience",
+            "Comes with tons of extras",
+            "Fantastic stock feet",
+            "Pleasant clicks",
+            "Lightweight"
+        ],
+        "cons": [
+            "Software downloading process is a bit finnicky",
+            "Some creaking when applying pressure"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 Hz",
+            "Button Switches": "Optical Switches",
+            "Button Force": "78g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "11.9cm",
+            "Height": "4.2cm",
+            "Weight": "52g",
+            "Width": "6.5cm"
+        }
+    },
+    {
+        "name": "Pulsar X2H Review",
+        "url": "https://prosettings.net/reviews/pulsar-x2h/",
+        "pros": [
+            "Top gaming performance",
+            "Interesting shape for claw grippers",
+            "Good build quality"
+        ],
+        "cons": [
+            "Main buttons feel grindy and inconsistent",
+            "Scroll wheel can feel inconsistent when clicking",
+            "Coating feels like a step back from previous (limited edition) models",
+            "QC issues with the side buttons"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "Polling Rate": "1000 Hz",
+            "Button Switches": "Optical Switches",
+            "Button Force": "83.4g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12cm",
+            "Height": "3.9cm",
+            "Weight": "54g",
+            "Width": "6.5cm"
+        }
+    },
+    {
+        "name": "Logitech G Pro X Superlight 2 Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-x-2-superlight/",
+        "pros": [
+            "Super safe shape that’ll fit anyone",
+            "Nice coating",
+            "Extremely reliable wireless and sensor performance",
+            "Addition of USB-C charging and optical switches addresses the two most commonly heard complaints about the GPX",
+            "Sensor calibration tool in G HUB is really handy",
+            "Good battery life"
+        ],
+        "cons": [
+            "Clicks feel heavier than on earlier versions, which might not sit well with everyone",
+            "Bottom skate has a different shape, which feels like an unneeded change"
+        ],
+        "specs": {
+            "Sensor": "HERO 25K",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "LIGHTFORCE Hybrid",
+            "Button Force": "98.4g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.42cm",
+            "Height": "3.96cm",
+            "Weight": "59g",
+            "Width": "6.06cm"
+        }
+    },
+    {
+        "name": "VAXEE ZYGEN NP-01S Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-zygen-np-01s-wireless/",
+        "pros": [
+            "Great, unique shape",
+            "Fantastic build quality",
+            "Flawless gaming and wireless performance",
+            "4KHz compatible since March 2024"
+        ],
+        "cons": [
+            "Coating feels a little subpar",
+            "Main buttons have some side travel"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "1000 / 250 / 500 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "82.1g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.8cm",
+            "Height": "3.7cm",
+            "Weight": "68g",
+            "Width": "5.7cm"
+        }
+    },
+    {
+        "name": "ZOWIE EC3-CW Review",
+        "url": "https://prosettings.net/reviews/zowie-ec3-cw/",
+        "pros": [
+            "Great build quality",
+            "Fantastic shape",
+            "Comes with enhanced receiver that doubles as a charging dock"
+        ],
+        "cons": [
+            "Loud scroll wheel",
+            "Stock feet could be better",
+            "High price, especially in the EU",
+            "The usage of an older (flawless) sensor might not sit well with everyone"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "250 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "107g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "11.93cm",
+            "Height": "4.11cm",
+            "Weight": "76g",
+            "Width": "6.09cm"
+        }
+    },
+    {
+        "name": "VAXEE XE Wireless Review",
+        "url": "https://prosettings.net/reviews/vaxee-xe-wireless/",
+        "pros": [
+            "Flawless wireless connection and performance",
+            "Extreme focus on competitive gamers with features like competitive mode",
+            "Fantastic build quality",
+            "Multi-device functionality (you need two receivers for this though)",
+            "Fast charging battery",
+            "4KHz compatible since March 2024"
+        ],
+        "cons": [
+            "Coating can get sticky",
+            "Some rubbing on the main buttons",
+            "Might be too heavy for some",
+            "Mouse feet are slightly scratchy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "1000 / 250 / 500 / 2000 / 4000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "94.5g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.24cm",
+            "Height": "3.83cm",
+            "Weight": "76g",
+            "Width": "6.12cm"
+        }
+    },
+    {
+        "name": "Xtrfy M8 Review",
+        "url": "https://prosettings.net/reviews/xtrfy-m8/",
+        "pros": [
+            "Rather safe shape",
+            "Fantastic buttons",
+            "Great scroll wheel",
+            "Decent feet",
+            "Flawless wireless performance"
+        ],
+        "cons": [
+            "Low button height doesn’t really translate to a different feeling in the hands with this mouse",
+            "Coating could use some work"
+        ],
+        "specs": {
+            "Sensor": "PMW 3395",
+            "DPI": "400, 800, 1200, 1600, 3200, 4000, 7200, 26000",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Button Force": "82g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.7cm",
+            "Height": "3.7cm",
+            "Weight": "55g",
+            "Width": "5.7cm"
+        }
+    },
+    {
+        "name": "Zaunkoenig M2K Review",
+        "url": "https://prosettings.net/reviews/zaunkoenig-m2k/",
+        "pros": [
+            "Extremely lightweight",
+            "Very responsive feeling",
+            "Flawless sensor performance",
+            "Great coating"
+        ],
+        "cons": [
+            "Buttons feel a little mushy",
+            "Only comes as a wired mouse",
+            "Very expensive"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "12000",
+            "Polling Rate": "1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "74g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "784cm",
+            "Height": "2.7cm",
+            "Weight": "24g",
+            "Width": "5.8cm"
+        }
+    },
+    {
+        "name": "SteelSeries Prime Wireless Review",
+        "url": "https://prosettings.net/reviews/steelseries-prime-wireless/",
+        "pros": [
+            "Original shape",
+            "Great coating",
+            "Great build quality",
+            "Flawless wireless performance"
+        ],
+        "cons": [
+            "Very heavy clicks",
+            "Wheel is too heavy to click",
+            "Budget (though flawless) sensor used in a flagship mouse"
+        ],
+        "specs": {
+            "Sensor": "TrueMove Air",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "150g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.43cm",
+            "Height": "4.24cm",
+            "Weight": "80g",
+            "Width": "6.79cm"
+        }
+    },
+    {
+        "name": "ZOWIE ZA12-C Review",
+        "url": "https://prosettings.net/reviews/zowie-za12-c/",
+        "pros": [
+            "Great shape that’s not often copied",
+            "Very solid build quality",
+            "Good cable"
+        ],
+        "cons": [
+            "Scroll wheel (even though it has been improved) is still very loud",
+            "Coating is a fingerprint and oils magnet"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "86.2g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.22cm",
+            "Height": "4cm",
+            "Weight": "70g",
+            "Width": "5.75cm"
+        }
+    },
+    {
+        "name": "VAXEE XE Review",
+        "url": "https://prosettings.net/reviews/vaxee-xe/",
+        "pros": [
+            "Pleasant scroll wheel",
+            "Available in many colors",
+            "Very sturdy build quality",
+            "Great shape"
+        ],
+        "cons": [
+            "‘Productivity’ features feel gimmicky and out of place"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1200, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano 70G",
+            "Button Force": "69.2g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.14cm",
+            "Height": "3.78cm",
+            "Weight": "68g",
+            "Width": "6.11cm"
+        }
+    },
+    {
+        "name": "Razer DeathAdder V3 Pro Review",
+        "url": "https://prosettings.net/reviews/razer-deathadder-v3-pro/",
+        "pros": [
+            "Great build quality",
+            "Flawless wireless connection",
+            "Great battery life (90 hours)",
+            "Capable of 4KHz polling rate in wireless mode (with separate dongle)",
+            "Gen 3 optical switches feel great"
+        ],
+        "cons": [
+            "Price is high",
+            "Side buttons have too much post travel",
+            "Shape change might not sit well with everyone",
+            "4KHz polling rate not achievable out of the box (you need a separate dongle)"
+        ],
+        "specs": {
+            "Sensor": "Focus Pro 30K",
+            "Polling Rate": "125 / 500 / 1000 / 4000 / 8000 Hz",
+            "Button Switches": "Razer Optical",
+            "Button Force": "81g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.95cm",
+            "Height": "4.21cm",
+            "Weight": "63g",
+            "Width": "6.13cm"
+        }
+    },
+    {
+        "name": "Xtrfy MZ1 Wireless",
+        "url": "https://prosettings.net/reviews/xtrfy-mz1-wireless/",
+        "pros": [
+            "Choice of two included back shells to maximize comfort and grip",
+            "Unique shape",
+            "Flawless wireless performance",
+            "Fast and smooth stock feet"
+        ],
+        "cons": [
+            "Customizable battery location feels a bit gimmicky",
+            "Looks a bit goofy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "DPI": "400, 800, 1200, 1600, 3200, 4000, 7200, 16000",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Button Force": "68g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.12cm",
+            "Height": "3.65cm",
+            "Weight": "62g",
+            "Width": "5.25cm"
+        }
+    },
+    {
+        "name": "Pulsar Xlite Wireless V2 Mini Review",
+        "url": "https://prosettings.net/reviews/pulsar-xlite-wireless-v2-mini/",
+        "pros": [
+            "Well built",
+            "Top tier wireless performance on a budget",
+            "Great shape"
+        ],
+        "cons": [
+            "Side buttons could use some improvement",
+            "Holes in the shell are starting to become outdated and might annoy some",
+            "Coating isn’t the best"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Button Force": "71g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "11.81cm",
+            "Height": "4.04cm",
+            "Weight": "55g",
+            "Width": "5.71cm"
+        }
+    },
+    {
+        "name": "Razer Viper V2 Pro Review",
+        "url": "https://prosettings.net/reviews/razer-viper-v2-pro/",
+        "pros": [
+            "Grip tape included",
+            "Lightweight",
+            "Gen 3 optical switches feel and perform great",
+            "Flawless wireless performance",
+            "Removed right side buttons make for a more consistent grip, but makes the mouse unusable for lefties",
+            "Capable of 4KHz polling rate in wireless mode (with separate dongle)"
+        ],
+        "cons": [
+            "A bit too much post travel on the main buttons",
+            "High price",
+            "Loses the dock functionality that the V1 had",
+            "4KHz polling rate not achievable out of the box (you need a separate dongle)"
+        ],
+        "specs": {
+            "Sensor": "Focus Pro 30K",
+            "Polling Rate": "125 / 250 / 500 / 1000 / 4000 Hz",
+            "Button Switches": "Razer Optical",
+            "Button Force": "75g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.57cm",
+            "Height": "3.77cm",
+            "Weight": "59g",
+            "Width": "6.14cm"
+        }
+    },
+    {
+        "name": "Glorious Model I",
+        "url": "https://prosettings.net/reviews/glorious-model-i/",
+        "pros": [
+            "Swappable back side button and ‘sniper button’ near the thumb",
+            "Good build quality",
+            "Extra input options when compared to most other lightweight gaming mice",
+            "Comfortable shape"
+        ],
+        "cons": [
+            "Buttons are difficult to swap out",
+            "Glorious’ software feels cheap",
+            "Cable isn’t the best",
+            "Subpar side buttons",
+            "Not everyone will love the holes in the shell"
+        ],
+        "specs": {
+            "Sensor": "BAMF",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Glorious Switches",
+            "Button Force": "76.3g",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.56cm",
+            "Height": "4.15cm",
+            "Weight": "70g",
+            "Width": "6.11cm"
+        }
+    },
+    {
+        "name": "Xtrfy M42 Wireless Review",
+        "url": "https://prosettings.net/reviews/xtrfy-m42-wireless/",
+        "pros": [
+            "Great clicks",
+            "Great scroll wheel",
+            "Good stock feet",
+            "Solid build quality",
+            "Flawless gaming performance"
+        ],
+        "cons": [
+            "Button customization feels janky and unreliable",
+            "Movable battery balance feature feels like a gimmick",
+            "Holes will annoy some users"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "DPI": "400, 800, 1200, 1600, 3200, 7200, 19000",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Button Force": "78.6g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.17cm",
+            "Height": "3.75cm",
+            "Weight": "68g",
+            "Width": "5.59cm"
+        }
+    },
+    {
+        "name": "Pulsar Xlite V2 Wireless Review",
+        "url": "https://prosettings.net/reviews/pulsar-xlite-v2-wireless/",
+        "pros": [
+            "Good build quality",
+            "Flawless gaming and wireless performance",
+            "Good clicks",
+            "Great performance for the price"
+        ],
+        "cons": [
+            "Coating could be grippier",
+            "Not everyone will like the holes in the shell",
+            "Side buttons are a tad mushy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Button Force": "71.4g",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.24cm",
+            "Height": "4.26cm",
+            "Weight": "59g",
+            "Width": "5.92cm"
+        }
+    },
+    {
+        "name": "Fnatic BOLT Review",
+        "url": "https://prosettings.net/reviews/fnatic-bolt/",
+        "pros": [
+            "Flawless wireless and gaming performance",
+            "Great shape",
+            "Decent build quality"
+        ],
+        "cons": [
+            "Making changes to the mouse’s settings requires plugging it in",
+            "Buttons (both main buttons and the side buttons) feel bad",
+            "Coating feels cheap and slippery",
+            "Accompanying software is buggy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.70cm",
+            "Height": "3.79cm",
+            "Weight": "67g",
+            "Width": "5.65cm"
+        }
+    },
+    {
+        "name": "Xtrfy M4 Wireless Review",
+        "url": "https://prosettings.net/reviews/xtrfy-m4-wireless/",
+        "pros": [
+            "Flawless wireless and gaming performance",
+            "Great clicks",
+            "Customizable shape (comes with two choices of back shell)",
+            "Great stock feet"
+        ],
+        "cons": [
+            "Swapping the customizable buttons is a nightmare and can permanently damage the mouse/buttons",
+            "Battery movement mechanism feels like a gimmick",
+            "Holes will annoy some users"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "DPI": "400, 800, 1200, 1600, 3200, 4000, 7200, 19000",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.03cm",
+            "Height": "3.84cm",
+            "Weight": "71g",
+            "Width": "5.79cm"
+        }
+    },
+    {
+        "name": "Logitech G303 Shroud Edition Review",
+        "url": "https://prosettings.net/reviews/logitech-g303-shroud-edition/",
+        "pros": [
+            "Great build quality",
+            "Flawless wireless performance",
+            "Great battery life",
+            "Specialized shape makes it ideal for claw grippers…"
+        ],
+        "cons": [
+            "… but the specialized shape makes it unsuitable for any other grip type",
+            "Omron switches might be considered outdated by some"
+        ],
+        "specs": {
+            "Sensor": "HERO",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "78g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.46cm",
+            "Height": "3.96cm",
+            "Weight": "75g",
+            "Width": "6.85cm"
+        }
+    },
+    {
+        "name": "Zowie S2-C Review",
+        "url": "https://prosettings.net/reviews/zowie-s2-c/",
+        "pros": [
+            "Great shape",
+            "Reliable build quality",
+            "Good cable"
+        ],
+        "cons": [
+            "Coating gets sticky and dirty easily",
+            "Scroll wheel is very loud",
+            "LOD is a touch over 1.2mm and can’t be lowered"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "76.5g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.21cm",
+            "Height": "3.79cm",
+            "Weight": "69g",
+            "Width": "6.12cm"
+        }
+    },
+    {
+        "name": "Zowie EC3-C Review",
+        "url": "https://prosettings.net/reviews/zowie-ec3-c/",
+        "pros": [
+            "Nice addition to the EC lineup (the EC3 is shorter and lower-humped, so not just a shrunken down EC2)",
+            "Great build quality",
+            "Good cable",
+            "Fantastic shape"
+        ],
+        "cons": [
+            "LOD of 1.2mm isn’t annoying for most, but can’t be changed",
+            "Feet are a tad slow",
+            "Scroll wheel is very loud"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "101.5g",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "11.92cm",
+            "Height": "4.03cm",
+            "Weight": "70g",
+            "Width": "5.96cm"
+        }
+    },
+    {
+        "name": "Glorious Model D Wireless Review",
+        "url": "https://prosettings.net/reviews/glorious-model-d-wireless/",
+        "pros": [
+            "Friendly price",
+            "Solid build quality",
+            "Great wireless and gaming performance",
+            "Great shape",
+            "Decent stock feet"
+        ],
+        "cons": [
+            "Some people might be ‘over’ holes in mice",
+            "Design won’t suit everyone"
+        ],
+        "specs": {
+            "Sensor": "BAMF",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Glorious Switches",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.19cm",
+            "Height": "4.32cm",
+            "Weight": "69g",
+            "Width": "5.99cm"
+        }
+    },
+    {
+        "name": "Logitech G604 Review",
+        "url": "https://prosettings.net/reviews/logitech-g640/",
+        "pros": [
+            "A lot of extra functions and features",
+            "Flawless wireless and gaming performance"
+        ],
+        "cons": [
+            "Heavy",
+            "Fields a little too unwieldy for FPS (and other fast-paced) games"
+        ],
+        "specs": {
+            "Sensor": "HERO",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.82cm",
+            "Height": "4.39cm",
+            "Weight": "137g",
+            "Width": "6.01cm"
+        }
+    },
+    {
+        "name": "VAXEE ZYGEN NP-01S Review",
+        "url": "https://prosettings.net/reviews/vaxee-zygen-npo1-s/",
+        "pros": [
+            "Interesting shape",
+            "Great build quality",
+            "Great gaming performance"
+        ],
+        "cons": [
+            "Scroll wheel is loud and a bit too stiff",
+            "Cable isn’t very flexible",
+            "Coating feels subpar"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "73.7cm",
+            "Height": "3.65cm",
+            "Weight": "71g",
+            "Width": "5.69cm"
+        }
+    },
+    {
+        "name": "Xtrfy MZ1 Review",
+        "url": "https://prosettings.net/reviews/xtrfy-mz1/",
+        "pros": [
+            "Very interesting and unique shape",
+            "Good cable",
+            "Good clicks"
+        ],
+        "cons": [
+            "Shape won’t be for everyone, and the deep grooves make it even more unsafe",
+            "Looks goofy (though beauty is in the eye of the beholder)",
+            "RGB seems kind of pointless on a mouse that’s completely focused on performance"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1200, 1600, 3200, 4000, 7200, 16000",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Button Force": "67.8g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "11.12cm",
+            "Height": "3.65cm",
+            "Weight": "58g",
+            "Width": "5.25cm"
+        }
+    },
+    {
+        "name": "Ducky Feather Review",
+        "url": "https://prosettings.net/reviews/ducky-feather/",
+        "pros": [
+            "Good build quality",
+            "Decent clicks",
+            "Decent cable"
+        ],
+        "cons": [
+            "Scroll wheel feel loose and flimsy",
+            "Cable feels a bit stiff",
+            "There are already a ton of FK clones out there, so this mouse doesn’t feel very innovative"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1600, 3200, 6400, 12000, 16000",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.30cm",
+            "Height": "3.60cm",
+            "Weight": "66g",
+            "Width": "5.68cm"
+        }
+    },
+    {
+        "name": "Glorious Model O Wireless Review",
+        "url": "https://prosettings.net/reviews/glorious-model-o-wireless/",
+        "pros": [
+            "Flawless wireless and gaming performance",
+            "Good build quality; notable improvements over the Model O wired",
+            "Great shape",
+            "Good buttons",
+            "Smooth feet"
+        ],
+        "cons": [
+            "Holes in the design are starting to get outdated",
+            "Design won’t be for everyone",
+            "Software is buggy"
+        ],
+        "specs": {
+            "Sensor": "BAMF",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.84cm",
+            "Height": "3.74cm",
+            "Weight": "69g",
+            "Width": "6.1cm"
+        }
+    },
+    {
+        "name": "Corsair Sabre Pro Review",
+        "url": "https://prosettings.net/reviews/corsair-sabre-pro/",
+        "pros": [
+            "Great gaming performance",
+            "Nice clicks",
+            "8000Hz polling rate",
+            "Good build quality"
+        ],
+        "cons": [
+            "Feet are subpar",
+            "Thick cable"
+        ],
+        "specs": {
+            "Sensor": "PMW 3392",
+            "Polling Rate": "125 / 500 / 1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.23cm",
+            "Height": "4.20cm",
+            "Weight": "69g",
+            "Width": "6.23cm"
+        }
+    },
+    {
+        "name": "Razer Viper 8KHz Review",
+        "url": "https://prosettings.net/reviews/razer-viper-8khz/",
+        "pros": [
+            "Great gaming performance",
+            "Good build quality",
+            "8000Hz polling rate"
+        ],
+        "cons": [
+            "Cable is rather thick and rigid"
+        ],
+        "specs": {
+            "Sensor": "Focus+",
+            "Polling Rate": "1000 / 2000 / 4000 / 8000 Hz",
+            "Button Switches": "Razer Optical",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.7cm",
+            "Height": "3.8cm",
+            "Weight": "71g",
+            "Width": "5.8cm"
+        }
+    },
+    {
+        "name": "VAXEE OUTSET AX Review",
+        "url": "https://prosettings.net/reviews/vaxee-outset-ax/",
+        "pros": [
+            "Great, robust click feeling",
+            "Interesting new ergonomic shape",
+            "Great build quality"
+        ],
+        "cons": [
+            "Cable isn’t very flexible",
+            "Scroll wheel is loud and rattly",
+            "Coating tends to attract fingerprints and finger oils"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "73.5g",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "11.63cm",
+            "Height": "4.27cm",
+            "Weight": "76g",
+            "Width": "5.94cm"
+        }
+    },
+    {
+        "name": "Endgame Gear XM1r Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-xm1r/",
+        "pros": [
+            "Great shape",
+            "Fantastic build quality",
+            "Great gaming performance"
+        ],
+        "cons": [
+            "Feet aren’t the best"
+        ],
+        "specs": {
+            "Sensor": "PMW 3370",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 8.0",
+            "Button Force": "71g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.1cm",
+            "Height": "3.8cm",
+            "Weight": "70g",
+            "Width": "5.9cm"
+        }
+    },
+    {
+        "name": "Xtrfy M42 Review",
+        "url": "https://prosettings.net/reviews/xtrfy-m42/",
+        "pros": [
+            "Great buttons",
+            "Two included backplates offer different experiences",
+            "Great scroll wheel",
+            "Great feet"
+        ],
+        "cons": [
+            "Holes won’t be for everyone",
+            "Cable is ‘just’ average"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1200, 1600, 3200, 4000, 7200, 16000",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "11.60cm",
+            "Height": "3.78cm",
+            "Weight": "60g",
+            "Width": "5.52cm"
+        }
+    },
+    {
+        "name": "Logitech G Pro X Superlight Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-x-superlight/",
+        "pros": [
+            "Fits most hands and grip styles",
+            "Good battery life",
+            "Flawless wireless performance",
+            "Lightweight"
+        ],
+        "cons": [
+            "Micro USB charging port",
+            "High price"
+        ],
+        "specs": {
+            "Sensor": "HERO",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "65g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.42cm",
+            "Height": "3.96cm",
+            "Weight": "62g",
+            "Width": "6.06cm"
+        }
+    },
+    {
+        "name": "HyperX Pulsefire Haste Review",
+        "url": "https://prosettings.net/reviews/hyperx-pulsefire-haste/",
+        "pros": [
+            "Good coating",
+            "Good clicks and buttons",
+            "Smooth skates",
+            "Great stock cable",
+            "Included grip tape"
+        ],
+        "cons": [
+            "Design with holes is perhaps getting a bit outdated"
+        ],
+        "specs": {
+            "Sensor": "PMW 3335",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "TTC Golden",
+            "Button Force": "77.6g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.25cm",
+            "Height": "3.75cm",
+            "Weight": "59g",
+            "Width": "5.99cm"
+        }
+    },
+    {
+        "name": "Corsair Katar Pro Wireless Review",
+        "url": "https://prosettings.net/reviews/corsair-katar-pro-wireless/",
+        "pros": [
+            "Decent build quality"
+        ],
+        "cons": [
+            "Main buttons are a letdown",
+            "Stock feet are a bit scratchy",
+            "Long wakeup time",
+            "High LOD that can’t be changed",
+            "Feels a bit cheap"
+        ],
+        "specs": {
+            "Sensor": "PMW 3325",
+            "Polling Rate": "1000 Hz",
+            "Button Switches": "Kailh",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "10.76cm",
+            "Height": "3.75cm",
+            "Weight": "97g",
+            "Width": "5.63cm"
+        }
+    },
+    {
+        "name": "VAXEE ZYGEN NP-01 Review",
+        "url": "https://prosettings.net/reviews/vaxee-zygen-np01/",
+        "pros": [
+            "Amazing, original shape",
+            "Impressive build quality"
+        ],
+        "cons": [
+            "Coating can feel sticky",
+            "Cable is rather stiff",
+            "Loud scroll wheel"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "86g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "11.85cm",
+            "Height": "3.87cm",
+            "Weight": "76g",
+            "Width": "5.87cm"
+        }
+    },
+    {
+        "name": "Razer DeathAdder V2 Pro Review",
+        "url": "https://prosettings.net/reviews/razer-deathadder-v2-pro/",
+        "pros": [
+            "Flawless wireless connection",
+            "Good build quality"
+        ],
+        "cons": [
+            "Optical switches don’t feel as satisfying as mechanical ones",
+            "Scroll wheel feels inconsistent when clicking"
+        ],
+        "specs": {
+            "Sensor": "Focus+",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Razer Optical",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.3cm",
+            "Height": "4.04cm",
+            "Weight": "87g",
+            "Width": "6.26cm"
+        }
+    },
+    {
+        "name": "Zowie FK2-B Review",
+        "url": "https://prosettings.net/reviews/zowie-fk2-b/",
+        "pros": [
+            "Great ambidextrous shape",
+            "Good build quality"
+        ],
+        "cons": [
+            "Cable is subpar",
+            "Coating attracts fingerprints and oils",
+            "16-step scroll wheel isn’t good for browsing and is rather loud",
+            "Feet could be faster"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.52cm",
+            "Height": "3.6cm",
+            "Weight": "80g",
+            "Width": "6.4cm"
+        }
+    },
+    {
+        "name": "Zowie ZA13-B Review",
+        "url": "https://prosettings.net/reviews/zowie-za13-b/",
+        "pros": [
+            "Great shape that’s not often copied",
+            "Great build quality"
+        ],
+        "cons": [
+            "Side buttons feel mushy",
+            "Cable isn’t up to today’s standards",
+            "Coating tends to attract fingerprints and oils",
+            "A bit of a disappointing update in light of recent development in mouse technology"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.04cm",
+            "Height": "4.01cm",
+            "Weight": "76g",
+            "Width": "5.53cm"
+        }
+    },
+    {
+        "name": "Razer Naga Pro Review",
+        "url": "https://prosettings.net/reviews/razer-naga-pro/",
+        "pros": [
+            "Choice of three different side panels to fit your game of choice",
+            "Flawless wireless performance",
+            "Tons of buttons to customize and program",
+            "Good build quality",
+            "Bluetooth or USB connection, making it suitable as a work and play mouse"
+        ],
+        "cons": [
+            "On the heavier side"
+        ],
+        "specs": {
+            "Sensor": "Focus+",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Razer Optical",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "11.63cm",
+            "Height": "4.09cm",
+            "Weight": "117g",
+            "Width": "7.09cm"
+        }
+    },
+    {
+        "name": "Endgame Gear XM1 RGB Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-xm1-rgb/",
+        "pros": [
+            "Great clicks",
+            "Great mouse feet",
+            "Nice shape",
+            "Great cable"
+        ],
+        "cons": [
+            "RGB adds a lot of weight",
+            "Making a ton of different versions of the same mouse in a short timeframe makes things confusing for consumers"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Kailh GM 4.0",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.14cm",
+            "Height": "3.80cm",
+            "Weight": "82g",
+            "Width": "5.71cm"
+        }
+    },
+    {
+        "name": "Razer Viper Mini Review",
+        "url": "https://prosettings.net/reviews/razer-viper-mini/",
+        "pros": [
+            "Great cable",
+            "Great clicks",
+            "Great build quality",
+            "Good budget option"
+        ],
+        "cons": [
+            "LOD is on the high side",
+            "Most people who wanted a Viper Mini weren’t looking for a budget mouse, so the usage of a budget sensor is disappointing"
+        ],
+        "specs": {
+            "Sensor": "PMW 3359",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Razer Optical",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "11.83cm",
+            "Height": "3.83cm",
+            "Weight": "61g",
+            "Width": "5.38cm"
+        }
+    },
+    {
+        "name": "Endgame Gear XM1 v2 White Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-xm1-v2-white/",
+        "pros": [
+            "Solid build quality",
+            "Great clicks",
+            "Great feet",
+            "Nice shape",
+            "Fantastic cable"
+        ],
+        "cons": [
+            "Scroll wheel could be a bit larger"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "81.9g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.14cm",
+            "Height": "3.80cm",
+            "Weight": "69g",
+            "Width": "5.71cm"
+        }
+    },
+    {
+        "name": "Razer DeathAdder V2 Review",
+        "url": "https://prosettings.net/reviews/razer-deathadder-v2/",
+        "pros": [
+            "Good stock cable",
+            "Good stock feet",
+            "Great build quality"
+        ],
+        "cons": [
+            "Optical switches can use some finetuning"
+        ],
+        "specs": {
+            "Sensor": "Focus+",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Razer Optical",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.76cm",
+            "Height": "4.10cm",
+            "Weight": "80g",
+            "Width": "6.27cm"
+        }
+    },
+    {
+        "name": "Zowie EC2 Tyloo Review",
+        "url": "https://prosettings.net/reviews/zowie-ec2-tyloo/",
+        "pros": [
+            "Great shape",
+            "Nice clicks"
+        ],
+        "cons": [
+            "Side buttons feel a bit mushy",
+            "Rigid cable"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Button Force": "75g",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.18cm",
+            "Height": "4.24cm",
+            "Weight": "87g",
+            "Width": "6.00cm"
+        }
+    },
+    {
+        "name": "Glorious Model D Review",
+        "url": "https://prosettings.net/reviews/glorious-model-d/",
+        "pros": [
+            "Great shape",
+            "Fantastic clicks",
+            "Great feet",
+            "Nice coating",
+            "QC improvements"
+        ],
+        "cons": [
+            "Holes in the design won’t be for everyone"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "13.1cm",
+            "Height": "4.17cm",
+            "Weight": "67g",
+            "Width": "5.98cm"
+        }
+    },
+    {
+        "name": "Zowie FK2-B Divina Review",
+        "url": "https://prosettings.net/reviews/zowie-fk2-b-divina/",
+        "pros": [
+            "Flawless sensor",
+            "Removal of right side buttons is a good call",
+            "Great shape"
+        ],
+        "cons": [
+            "Cable could be better",
+            "Loud and rigid scroll wheel isn’t for everyone and is annoying to use for browsing"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.43cm",
+            "Height": "3.58cm",
+            "Weight": "81g"
+        }
+    },
+    {
+        "name": "Corsair M55 RGB Pro Review",
+        "url": "https://prosettings.net/reviews/corsair-m55-rgb-pro/",
+        "pros": [
+            "Decent clicks, scroll wheel, and skates",
+            "Nice coating"
+        ],
+        "cons": [
+            "High LOD that can’t be changed",
+            "Rigid cable",
+            "Wonky DPI steps out of the box"
+        ],
+        "specs": {
+            "Sensor": "PMW 3327",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.2cm",
+            "Height": "3.9cm",
+            "Weight": "87g",
+            "Width": "5.6cm"
+        }
+    },
+    {
+        "name": "Endgame Gear XM1 Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-xm1/",
+        "pros": [
+            "Great, original shape",
+            "Lightweight design without holes",
+            "Great scroll wheel",
+            "Great mouse feet"
+        ],
+        "cons": [
+            "Cable could be more flexible",
+            "Side buttons feel mushy",
+            "Coating picks up fingerprints and oils easily"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "61.7g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.14cm",
+            "Height": "3.8cm",
+            "Weight": "69g",
+            "Width": "5.71cm"
+        }
+    },
+    {
+        "name": "Razer Viper Ultimate Review",
+        "url": "https://prosettings.net/reviews/razer-viper-ultimate/",
+        "pros": [
+            "Great wireless performance",
+            "Lightweight design",
+            "Optical switches are more reliable than mechanical ones",
+            "Great stock feet",
+            "Charging dock is an amazing addition"
+        ],
+        "cons": [
+            "Optical switches aren’t as snappy as mechanical switches",
+            "Scroll wheel feels ‘buried’ between the buttons",
+            "Scroll wheel feels inconsistent"
+        ],
+        "specs": {
+            "Sensor": "Focus+",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Razer Optical",
+            "Button Force": "82g",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.93cm",
+            "Height": "3.75cm",
+            "Weight": "74g",
+            "Width": "5.85cm"
+        }
+    },
+    {
+        "name": "Zowie EC2 Review",
+        "url": "https://prosettings.net/reviews/zowie-ec2/",
+        "pros": [
+            "Fantastic shape"
+        ],
+        "cons": [
+            "Cable can use improvement",
+            "Side buttons have too much travel",
+            "Coating gets dirty quickly"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.18cm",
+            "Height": "4.24cm",
+            "Weight": "87g",
+            "Width": "6.00cm"
+        }
+    },
+    {
+        "name": "Roccat Kone Pure Ultra Review",
+        "url": "https://prosettings.net/reviews/roccat-kone-pure-ultra/",
+        "pros": [
+            "Great build quality",
+            "Lightweight without having to resort to holes",
+            "Interesting ergonomic shape",
+            "Scroll wheel is one of the best in the business"
+        ],
+        "cons": [
+            "Cable is an improvement over previous versions, but is subpar when compared to other products",
+            "Shape won’t be for everyone"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "11.75cm",
+            "Height": "3.81cm",
+            "Weight": "64g",
+            "Width": "6.21cm"
+        }
+    },
+    {
+        "name": "Xtrfy M4 Review",
+        "url": "https://prosettings.net/reviews/xtrfy-m4/",
+        "pros": [
+            "Fantastic feet",
+            "Unique, new shape",
+            "Lightweight"
+        ],
+        "cons": [
+            "Main buttons feel a bit loose (they do feel good when actuating them though)",
+            "Cable is a bit too rigid"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1200, 1600, 3200, 4000, 7200, 16000",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.07cm",
+            "Height": "3.94cm",
+            "Weight": "67g",
+            "Width": "5.76cm"
+        }
+    },
+    {
+        "name": "G-Wolves Hati Review",
+        "url": "https://prosettings.net/reviews/g-wolves-hati/",
+        "pros": [
+            "Great cable",
+            "Flawless gaming performance"
+        ],
+        "cons": [
+            "Main buttons feel a bit loose",
+            "Feet feel somewhat scratchy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.42cm",
+            "Height": "3.96cm",
+            "Weight": "63g",
+            "Width": "6.14cm"
+        }
+    },
+    {
+        "name": "G-Wolves Skoll Review",
+        "url": "https://prosettings.net/reviews/g-wolves-skoll/",
+        "pros": [
+            "Fantastic cable",
+            "Great shape",
+            "Great scroll wheel"
+        ],
+        "cons": [
+            "Coating feels too gritty",
+            "Feet are scratchy",
+            "Buttons are ‘just decent’ and could be better"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "76.6g",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.46cm",
+            "Height": "4.23cm",
+            "Weight": "66g",
+            "Width": "6.31cm"
+        }
+    },
+    {
+        "name": "Glorious Model O Review",
+        "url": "https://prosettings.net/reviews/glorious-model-o/",
+        "pros": [
+            "Very lightweight",
+            "Great cable",
+            "Good clicks",
+            "Good feet"
+        ],
+        "cons": [
+            "Some build quality issues"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Button Force": "86.2g",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.8cm",
+            "Height": "3.8cm",
+            "Weight": "67g",
+            "Width": "6.3cm"
+        }
+    },
+    {
+        "name": "Logitech G903 Review",
+        "url": "https://prosettings.net/reviews/logitech-g903/",
+        "pros": [
+            "Tons of extra buttons and options to configure",
+            "Flawless wireless performance"
+        ],
+        "cons": [
+            "Heavy",
+            "Can feel bulky due to the size and weight"
+        ],
+        "specs": {
+            "Sensor": "PMW 3366",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "13cm",
+            "Height": "3.9cm",
+            "Weight": "110g",
+            "Width": "6.6cm"
+        }
+    },
+    {
+        "name": "Zowie S2 Review",
+        "url": "https://prosettings.net/reviews/zowie-s2/",
+        "pros": [
+            "Interesting new shape",
+            "Built like a tank",
+            "Decent cable"
+        ],
+        "cons": [
+            "Coating tends to show fingerprints and oils",
+            "Scroll wheel is loud and rigid"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.2cm",
+            "Height": "3.8cm",
+            "Weight": "82g",
+            "Width": "6cm"
+        }
+    },
+    {
+        "name": "Zowie EC2-B Divina Review",
+        "url": "https://prosettings.net/reviews/zowie-ec2-b-divina/",
+        "pros": [
+            "Great build quality",
+            "Move back towards larger feet is an improvement over the regular EC2-B’s smaller feet"
+        ],
+        "cons": [
+            "Loud and rigid scroll wheel",
+            "Side buttons feel a little mushy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12cm",
+            "Height": "4cm",
+            "Weight": "89g",
+            "Width": "6.1cm"
+        }
+    },
+    {
+        "name": "Logitech G703 Review",
+        "url": "https://prosettings.net/reviews/logitech-g703/",
+        "pros": [
+            "Flawless wireless performance",
+            "Unique ergonomic shape"
+        ],
+        "cons": [
+            "A bit heavy/unwieldy",
+            "Stock feet could be smoother",
+            "Micro USB connection is outdated"
+        ],
+        "specs": {
+            "Sensor": "HERO",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.5cm",
+            "Height": "4.3cm",
+            "Weight": "105g",
+            "Width": "6.7cm"
+        }
+    },
+    {
+        "name": "Razer Lancehead Tournament Edition Review",
+        "url": "https://prosettings.net/reviews/razer-lancehead-tournament-edition/",
+        "pros": [
+            "Flawless gaming performance",
+            "Good clicks",
+            "Decent cable"
+        ],
+        "cons": [
+            "Shape feels off",
+            "Side buttons are subpar",
+            "Heavy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.4cm",
+            "Height": "3.7cm",
+            "Weight": "103g",
+            "Width": "7cm"
+        }
+    },
+    {
+        "name": "Razer Mamba Wireless Review",
+        "url": "https://prosettings.net/reviews/razer-mamba-wireless/",
+        "pros": [
+            "Flawless wireless and gaming performance"
+        ],
+        "cons": [
+            "On the heavier side",
+            "Main mouse buttons feel very loose"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wireless",
+            "Shape": "Ergonomic",
+            "Length": "12.5cm",
+            "Height": "4.3cm",
+            "Weight": "104g",
+            "Width": "7cm"
+        }
+    },
+    {
+        "name": "Razer Basilisk Quartz Review",
+        "url": "https://prosettings.net/reviews/razer-basilisk-quartz/",
+        "pros": [
+            "Great cable",
+            "Nice feeling clicks",
+            "A lot of extra features and buttons",
+            "Good build quality"
+        ],
+        "cons": [
+            "Heavy",
+            "Can feel unwieldy with the thumb rest"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.5cm",
+            "Height": "4.2cm",
+            "Weight": "105g",
+            "Width": "6.3cm"
+        }
+    },
+    {
+        "name": "Zowie S2 Divina Review",
+        "url": "https://prosettings.net/reviews/zowie-s2-divina/",
+        "pros": [
+            "Decent cable",
+            "Angled cable exit is a great way to reduce drag",
+            "Fantastic new ZOWIE shape",
+            "Great build quality"
+        ],
+        "cons": [
+            "Scroll wheel is loud and rigid",
+            "Glossy coating feels sticky extremely fast"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.2cm",
+            "Height": "3.8cm",
+            "Weight": "82g",
+            "Width": "6cm"
+        }
+    },
+    {
+        "name": "Logitech G Pro Wireless Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-wireless/",
+        "pros": [
+            "Fits most hands and grip styles",
+            "Flawless wireless performance",
+            "Great battery life"
+        ],
+        "cons": [
+            "High price",
+            "Micro USB charging port is getting outdated"
+        ],
+        "specs": {
+            "Sensor": "HERO",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "12.5cm",
+            "Height": "6.3cm",
+            "Weight": "81g",
+            "Width": "6.3cm"
+        }
+    },
+    {
+        "name": "Microsoft Intellimouse Pro Review",
+        "url": "https://prosettings.net/reviews/microsoft-intellimouse-pro/",
+        "pros": [
+            "Perfect gaming performance",
+            "Amazing ergonomic shape"
+        ],
+        "cons": [
+            "A bit heavy",
+            "Cable is too rigid"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "13.2cm",
+            "Height": "4.3cm",
+            "Weight": "102g",
+            "Width": "6.9cm"
+        }
+    },
+    {
+        "name": "Zowie ZA12 Review",
+        "url": "https://prosettings.net/reviews/zowie-za12/",
+        "pros": [
+            "Great shape that’s not often copied by other brands",
+            "Extremely solid build quality"
+        ],
+        "cons": [
+            "Scroll wheel feels flimsy and is loud",
+            "Coating isn’t very fingerprint-resistant"
+        ],
+        "specs": {
+            "Sensor": "PMW 3310",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.4cm",
+            "Height": "4cm",
+            "Weight": "84g",
+            "Width": "6.2cm"
+        }
+    },
+    {
+        "name": "Razer Deathadder Elite Review",
+        "url": "https://prosettings.net/reviews/razer-deathadder-elite/",
+        "pros": [
+            "Flawless gaming performance"
+        ],
+        "cons": [
+            "On the heavier side"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Razer Optical",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12.7cm",
+            "Height": "4.5cm",
+            "Weight": "96g",
+            "Width": "7cm"
+        }
+    },
+    {
+        "name": "Roccat Kone Pure Owl-Eye Review",
+        "url": "https://prosettings.net/reviews/roccat-kone-pure-owl-eye/",
+        "pros": [
+            "Great scroll wheel",
+            "Great build quality",
+            "Satisfying clicks",
+            "Unique shape"
+        ],
+        "cons": [
+            "Rigid and stiff cable",
+            "Coating doesn’t feel great",
+            "Shape isn’t the safest"
+        ],
+        "specs": {
+            "Sensor": "PMW 3361",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "11.5cm",
+            "Height": "4cm",
+            "Weight": "88g",
+            "Width": "6.8cm"
+        }
+    },
+    {
+        "name": "Dream Machines DM1 FPS Review",
+        "url": "https://prosettings.net/reviews/dream-machines-dm1-fps/",
+        "pros": [
+            "Great cable",
+            "Nice shape",
+            "Satisfying buttons"
+        ],
+        "cons": [
+            "Scroll wheel feels subpar",
+            "Side buttons could be improved"
+        ],
+        "specs": {
+            "Sensor": "PMW 3389",
+            "DPI": "400, 800, 1600, 2400, 4800, 12000",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.6cm",
+            "Height": "4cm",
+            "Weight": "81g",
+            "Width": "7cm"
+        }
+    },
+    {
+        "name": "Logitech G305 Review",
+        "url": "https://prosettings.net/reviews/logitech-g305/",
+        "pros": [
+            "Flawless wireless performance on a budget",
+            "Sturdy build quality",
+            "Extremely long battery life"
+        ],
+        "cons": [
+            "A little heavy",
+            "Requires an AA battery",
+            "‘Egg shaped’ shell design isn’t the safest out there"
+        ],
+        "specs": {
+            "Sensor": "HERO",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wireless",
+            "Shape": "Ambidextrous",
+            "Length": "11.5cm",
+            "Height": "4cm",
+            "Weight": "96g",
+            "Width": "6.2cm"
+        }
+    },
+    {
+        "name": "Zowie EC2-B – Review",
+        "url": "https://prosettings.net/reviews/zowie-ec2-b/",
+        "pros": [
+            "Improved sensor over the EC2-A",
+            "Great shape"
+        ],
+        "cons": [
+            "Coating doesn’t feel good",
+            "Tiny mouse feet feel like a step down from the larger feet",
+            "Scroll wheel could be quieter"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12cm",
+            "Height": "4cm",
+            "Weight": "90g"
+        }
+    },
+    {
+        "name": "Fnatic Flick 2 Review",
+        "url": "https://prosettings.net/reviews/fnatic-flick-2/",
+        "pros": [
+            "Good build quality"
+        ],
+        "cons": [
+            "On the heavier side"
+        ],
+        "specs": {
+            "Sensor": "PMW 3360",
+            "Polling Rate": "125 / 250 / 500 / 1000 Hz",
+            "Button Switches": "Omron",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "13cm",
+            "Height": "4cm",
+            "Weight": "98g",
+            "Width": "7cm"
+        }
+    },
+    {
+        "name": "Zowie FK1 Review",
+        "url": "https://prosettings.net/reviews/zowie-fk1/",
+        "pros": [
+            "Nice shape",
+            "Can be used by left-handed as well as right-handed gamers"
+        ],
+        "cons": [],
+        "specs": {
+            "Sensor": "PMW 3310",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ambidextrous",
+            "Length": "12.8cm",
+            "Height": "3.7cm",
+            "Weight": "88g",
+            "Width": "6cm"
+        }
+    },
+    {
+        "name": "Zowie EC2-A Review",
+        "url": "https://prosettings.net/reviews/zowie-ec2-a/",
+        "pros": [
+            "Fantastic shape"
+        ],
+        "cons": [
+            "Loud scroll wheel",
+            "Side buttons feel mushy"
+        ],
+        "specs": {
+            "Sensor": "PMW 3310",
+            "DPI": "400, 800, 1600, 3200",
+            "Polling Rate": "125 / 500 / 1000 Hz",
+            "Button Switches": "Huano",
+            "Connection": "Wired",
+            "Shape": "Ergonomic",
+            "Length": "12cm",
+            "Height": "4cm",
+            "Weight": "92g",
+            "Width": "6.6cm"
+        }
+    }
+]

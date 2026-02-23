@@ -1,0 +1,1217 @@
+[
+    {
+        "name": "SONY INZONE KBD-H75 Review",
+        "url": "https://prosettings.net/reviews/sony-inzone-kbd-h75/",
+        "pros": [
+            "Good build quality with an aluminum (top) case",
+            "Great typing sound and feel",
+            "Sleek and classy looks"
+        ],
+        "cons": [
+            "HE functionality isn’t as expansive as it is on some rival boards",
+            "High price"
+        ],
+        "specs": {
+            "Form Factor": "75%",
+            "Switches": "Unspecified Magnetic Switches",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.8cm",
+            "Width": "31.8cm",
+            "Length": "13.2cm",
+            "Weight": "810g"
+        }
+    },
+    {
+        "name": "Razer Huntsman V3 Pro TKL 8KHz Review",
+        "url": "https://prosettings.net/reviews/razer-huntsman-v3-pro-tkl-8khz/",
+        "pros": [
+            "Comes with a wrist rest",
+            "Great gaming performance",
+            "Comes with multifunctional controls that are actually useful",
+            "Good typing sound"
+        ],
+        "cons": [
+            "Expensive",
+            "Wrist rest isn’t great quality",
+            "Razer has no web drivers available yet, which is kind of becoming the norm"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Razer Analog Optical",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.9cm",
+            "Width": "36.4cm",
+            "Length": "14.0cm",
+            "Weight": "720g"
+        }
+    },
+    {
+        "name": "Corsair Vanguard Pro 96 Review",
+        "url": "https://prosettings.net/reviews/corsair-vanguard-pro-96/",
+        "pros": [
+            "Beautiful LCD screen displays keyboard info and can display custom gifs or images",
+            "Great typing experience",
+            "Virtual Stream Deck integration is a powerful tool for keyboards",
+            "Web-based driver is amazing",
+            "Good gaming performances thanks to the HE switches",
+            "Side buttons are perfectly integrated into the design"
+        ],
+        "cons": [
+            "USB port on the bottom is located in a very strange position",
+            "Wrist rest feels uncomfortable to use",
+            "Case feels a bit less premium than it should at this price point"
+        ],
+        "specs": {
+            "Form Factor": "96%",
+            "Switches": "MGX Hyperdrive Switches",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.3cm",
+            "Width": "38.8cm",
+            "Length": "14.1cm",
+            "Weight": "1090g"
+        }
+    },
+    {
+        "name": "Pulsar eS HE 70 Review",
+        "url": "https://prosettings.net/reviews/pulsar-es-he-70/",
+        "pros": [
+            "Great typing sound and typing experience",
+            "Looks unique and interesting",
+            "Keycaps are nice",
+            "Good gaming performances"
+        ],
+        "cons": [
+            "Screen section feels underutilized",
+            "Pretty expensive",
+            "Raesha magnetic switches don’t allow for much switch customization"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Raesha Magnetic Switches",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.5cm",
+            "Width": "12.4cm",
+            "Length": "31.1cm",
+            "Weight": "970g"
+        }
+    },
+    {
+        "name": "Corsair K70 Pro TKL Review",
+        "url": "https://prosettings.net/reviews/corsair-k70-pro-tkl/",
+        "pros": [
+            "Comes with a very decent included wrist rest",
+            "Switches feel good",
+            "Good sound",
+            "Good build quality"
+        ],
+        "cons": [
+            "Only the main ‘60%’ cluster of keys are HE and hotswappable, others are not",
+            "Software is bloaty and clunky"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "MGX Hyperdrive Switches",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.0cm",
+            "Width": "44.4cm",
+            "Length": "16.6cm"
+        }
+    },
+    {
+        "name": "Ducky One X Review",
+        "url": "https://prosettings.net/reviews/ducky-one-x/",
+        "pros": [
+            "Great typing sound",
+            "Inductive switches feel and sound nice",
+            "Sturdy build quality",
+            "Good keycaps"
+        ],
+        "cons": [
+            "Functionality of the inductive switches is subpar compared to top HE keyboards",
+            "Coil whine sound when RGB lighting is on",
+            "No profiles, which makes switching between productivity and gaming settings a pain",
+            "Web-based software is buggy and feels incomplete",
+            "Battery life (~12 hours with RGB on) isn’t anything to write home about"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.1cm",
+            "Width": "45.2cm",
+            "Length": "15.0cm",
+            "Weight": "1585g"
+        }
+    },
+    {
+        "name": "NZXT Function Elite MiniTKL Review",
+        "url": "https://prosettings.net/reviews/nzxt-function-elite-minitkl/",
+        "pros": [
+            "Very good build quality",
+            "Top case section looks and feels premium",
+            "Perimeter RGB looks gorgeous",
+            "Great typing sound",
+            "Good stabilizers",
+            "Magnetic switches with rapid trigger and other gaming-centric features"
+        ],
+        "cons": [
+            "Switches are a bit less sensitive than on some competitors",
+            "Plastic bottom plate looks out of place on the white version"
+        ],
+        "specs": {
+            "Form Factor": "75%",
+            "Switches": "NZXT Magnetic Switches",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.8cm",
+            "Width": "34.8cm",
+            "Length": "12.3cm",
+            "Weight": "1091g"
+        }
+    },
+    {
+        "name": "Wooting 80HE Review",
+        "url": "https://prosettings.net/reviews/wooting-80he/",
+        "pros": [
+            "Wootility is still amazing and is constantly being updated",
+            "Nice sound improvement over the 60HE",
+            "Tons of customization options, both for performance as well as aesthetics",
+            "Smooth switches straight out of the box",
+            "Best-in-class gaming performance",
+            "Good stock keycaps",
+            "No rattling on any stabilizers"
+        ],
+        "cons": [
+            "Case feels a bit less premium than it should at this price",
+            "Fewer modding options compared to the 60HE"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Lekker",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "2.84cm",
+            "Width": "34.6cm",
+            "Length": "14.2cm",
+            "Weight": "790g"
+        }
+    },
+    {
+        "name": "NZXT Function 2 MiniTKL Review",
+        "url": "https://prosettings.net/reviews/nzxt-function-2-minitkl/",
+        "pros": [
+            "Switches feel good",
+            "Decent typing sound and experience",
+            "Sturdy build quality"
+        ],
+        "cons": [
+            "Top plate scratches very easily",
+            "Limited customization options for the switches’ behavior",
+            "Buttons on the left side are awkwardly placed"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "NZXT Swift Optical",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.0cm",
+            "Width": "33.8cm",
+            "Length": "12.3cm"
+        }
+    },
+    {
+        "name": "Razer Huntsman V3 Pro TKL Review",
+        "url": "https://prosettings.net/reviews/razer-huntsman-v3-pro-tkl/",
+        "pros": [
+            "Comes with a wrist rest",
+            "Good gaming performance",
+            "Customizable switches + Rapid Trigger",
+            "Comes with a multifuctional dial"
+        ],
+        "cons": [
+            "Expensive",
+            "Typing sound is loud and not pleasing",
+            "Wrist rest is of lower quality than on older Razer keyboards"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Razer Analog Optical",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.9cm",
+            "Width": "36.4cm",
+            "Length": "14.0cm",
+            "Weight": "720g"
+        }
+    },
+    {
+        "name": "Meletrix BOOG75 Review",
+        "url": "https://prosettings.net/reviews/meletrix-boog75/",
+        "pros": [
+            "Best typing feel and sound I’ve ever had on a gaming keyboard",
+            "Robust, well-built case",
+            "Beautiful backplate design",
+            "Configuration is done via a browser window; this is extremely user-friendly",
+            "Great keycaps"
+        ],
+        "cons": [
+            "Design won’t suit everyone, and there are no ‘bland’ replacements for the novelty keycaps",
+            "Gaming performance isn’t as good on some competitor HE boards (but still miles better than regular mechanical boards)",
+            "More expensive than other HE boards out there"
+        ],
+        "specs": {
+            "Form Factor": "75%",
+            "Switches": "Gateron KS-37B",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.8cm",
+            "Width": "32.6cm",
+            "Length": "14.5cm",
+            "Weight": "1961g"
+        }
+    },
+    {
+        "name": "Lamzu Atlantis Pro Keyboard Review",
+        "url": "https://prosettings.net/reviews/lamzu-atlantis-pro-keyboard/",
+        "pros": [
+            "Fantastic build quality",
+            "Unique design",
+            "Backplate design is a great extra",
+            "Switches and stabilizers feel nice to use",
+            "Hall Effect switches are great for gaming"
+        ],
+        "cons": [
+            "Rubber keycaps are more difficult to keep clean and looking pristine",
+            "Software can be clunky and feels unfinished at times",
+            "Not all custom cables fit on this keyboard"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Raesha Magnetic Switches",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.6cm",
+            "Width": "31.8cm",
+            "Length": "10.9cm",
+            "Weight": "1250g"
+        }
+    },
+    {
+        "name": "Wooting 60HE Review",
+        "url": "https://prosettings.net/reviews/wooting-60-he/",
+        "pros": [
+            "Very precise and responsive customizable switches",
+            "Best-in-class gaming performance",
+            "Customization can be done in browser and is incredibly easy to use",
+            "Made to be modded, so easy to customize to your liking"
+        ],
+        "cons": [
+            "Typing sound out of the box isn’t the best, but this is a nitpicky complaint"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "Lekker",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.8cm",
+            "Width": "30.2cm",
+            "Length": "11.6cm",
+            "Weight": "605g"
+        }
+    },
+    {
+        "name": "Fnatic STREAK80 LP Review",
+        "url": "https://prosettings.net/reviews/fnatic-streak80-lp/",
+        "pros": [
+            "Sounds nice",
+            "Good stabilizers",
+            "Great keycaps",
+            "Comes with coiled cable",
+            "Fantastic looking RGB"
+        ],
+        "cons": [
+            "Not very customizable",
+            "Lack of analog switch compatibility hurts its gaming performance somewhat",
+            "Spacebar stabilizer sometimes rattles (depending on where you’re pressing it)"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Fnatic Low Profile",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "2.5cm",
+            "Width": "35.3cm",
+            "Length": "13.0cm",
+            "Weight": "587g"
+        }
+    },
+    {
+        "name": "ProjectD Tinker 65 Review",
+        "url": "https://prosettings.net/reviews/ducky-tinker-65/",
+        "pros": [
+            "Affordable",
+            "Very decent (lubed) stabilizers",
+            "Hotswappable PCB",
+            "Acoustic foams included in the case",
+            "Good quality stock keycaps"
+        ],
+        "cons": [
+            "Plastic case feels a little cheap",
+            "No real way to completely open up the board, which is strange for a keyboard called ‘Tinker’",
+            "Gasket mount isn’t very noticeable when typing"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Cherry MX Blue, Cherry MX Brown, Cherry MX Red, None (Barebones)",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.0cm",
+            "Width": "32.0cm",
+            "Length": "12.5cm",
+            "Weight": "590g"
+        }
+    },
+    {
+        "name": "Logitech G Pro X TKL Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-x-tkl/",
+        "pros": [
+            "Good build quality",
+            "Comes with an amazing carrying case",
+            "Flawless and lossless wireless connection",
+            "Stock PBT keycaps feel good"
+        ],
+        "cons": [
+            "Stabilizers are a little rattly (especially the spacebar)",
+            "Expensive",
+            "No hotswap functionality",
+            "Not having switches where the actuation point etc. can be customized is a miss in a board aimed at competitive gamers",
+            "Volume wheel feels flimsy and can’t be programmed"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "GX Brown Tactile, GX Red Linear, GX Blue Clicky",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.4cm",
+            "Width": "35.2cm",
+            "Length": "15.0cm",
+            "Weight": "950g"
+        }
+    },
+    {
+        "name": "Ducky ProjectD 65 Outlaw Review",
+        "url": "https://prosettings.net/reviews/ducky-projectd-65-outlaw/",
+        "pros": [
+            "‘Build your own keyboard from scratch’ idea is interesting and fun",
+            "Comes with a lot of extras that let you finetune your experience",
+            "Clear assembly instructions",
+            "Very nice keyboard once finished",
+            "Comes with robust and luxurious carrying case",
+            "Building your own keyboard from scratch entirely feels very rewarding",
+            "Comes with all the necessary tools"
+        ],
+        "cons": [
+            "Not for completely inexperienced people",
+            "No explanation in the manual on what different materials do for the sound/feel",
+            "Comes without switches or keycaps so the final price makes it an expensive product",
+            "Some screws got stripped after disassembling the board once",
+            "No hall effect switch functionality, making it less ideal as a gaming keyboard"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "None (Barebones)",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.8cm",
+            "Width": "33.3cm",
+            "Length": "12.8cm",
+            "Weight": "1119g"
+        }
+    },
+    {
+        "name": "Ducky One 3 SF Aura Review",
+        "url": "https://prosettings.net/reviews/ducky-one-3-sf-aura/",
+        "pros": [
+            "Transparent case and keycaps make for an impressive lightshow",
+            "Fantastic typing experience",
+            "Comes with sound-dampening foam",
+            "Hot-swappable"
+        ],
+        "cons": [
+            "Some optional software would be nice to have for people who want to configure in-depth lighting profiles and macros"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Cherry MX Black, Cherry MX Brown, Cherry MX Blue, Cherry MX Red, Cherry MX Silent",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.12cm",
+            "Width": "33.5cm",
+            "Length": "11.1cm",
+            "Weight": "627g"
+        }
+    },
+    {
+        "name": "SteelSeries Apex Pro Mini Review",
+        "url": "https://prosettings.net/reviews/steelseries-apex-pro-mini/",
+        "pros": [
+            "Customizable switches",
+            "Nice keycaps",
+            "Good stabilizers",
+            "OmniPoint 2.0 switches feel very smooth and pleasant to use"
+        ],
+        "cons": [
+            "Can’t save lighting profiles to the onboard memory",
+            "High price"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "OmniPoint 2.0",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.04cm",
+            "Width": "29.3cm",
+            "Length": "10.3cm",
+            "Weight": "610g"
+        }
+    },
+    {
+        "name": "Corsair K100 Air Wireless Review",
+        "url": "https://prosettings.net/reviews/corsair-k100-air-wireless/",
+        "pros": [
+            "Tons of customization options on the software side",
+            "Very thin"
+        ],
+        "cons": [
+            "Stabilizers are rattly and distracting",
+            "Keycaps aren’t great",
+            "Edges of the aluminum case feel sharp/unpleasant",
+            "Expensive"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Cherry MX Ultra Low Profile",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "1.8cm",
+            "Width": "43.6cm",
+            "Length": "15.5cm",
+            "Weight": "780g"
+        }
+    },
+    {
+        "name": "Corsair K70 Pro Mini Wireless Review",
+        "url": "https://prosettings.net/reviews/corsair-k70-pro-mini-wireless/",
+        "pros": [
+            "Hotswappable",
+            "Flawless wireless connection",
+            "Possibility to use 8000Hz polling rate (wired mode only)",
+            "Very decent PBT keycaps",
+            "Receiver storage on the keyboard itself"
+        ],
+        "cons": [
+            "Stabilizers are rather rattly",
+            "Slight case ping",
+            "Extra keycaps are of noticeably lower quality than the standard ones"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "Cherry MX Blue, Cherry MX Brown, Cherry MX Red, Cherry MX Speed",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.1cm",
+            "Width": "29.6cm",
+            "Length": "10.9cm",
+            "Weight": "645g"
+        }
+    },
+    {
+        "name": "Xtrfy K5 RGB Compact Review",
+        "url": "https://prosettings.net/reviews/xtrfy-k5-rgb-compact/",
+        "pros": [
+            "Vivid RGB",
+            "Customizable hardware (top plate, switches, keycaps) allows user to make the board their own"
+        ],
+        "cons": [
+            "Included case foam is too thin",
+            "Pre-lubed stabilizers are overlubed",
+            "Lots of good ideas that are poorly executed",
+            "Keycaps feel subpar"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Kailh Red",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.5cm",
+            "Width": "32.5cm",
+            "Length": "11.0cm",
+            "Weight": "841g"
+        }
+    },
+    {
+        "name": "Corsair K70 RGB Pro Review",
+        "url": "https://prosettings.net/reviews/corsair-k70-rgb-pro/",
+        "pros": [
+            "Good build quality",
+            "Lots of extra buttons + a volume rocker",
+            "Nice PBT keycaps"
+        ],
+        "cons": [
+            "Expensive",
+            "Case sounds hollow",
+            "Stabilizers are rattly",
+            "Makes a high pitched sound at higher brightness levels"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Cherry MX Red, Cherry MX Brown, Cherry MX Blue, Cherry MX Speed, Cherry MX Silent",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.90cm",
+            "Width": "44.3cm",
+            "Length": "16.4cm",
+            "Weight": "1115g"
+        }
+    },
+    {
+        "name": "Glorious GMMK 2 Review",
+        "url": "https://prosettings.net/reviews/glorious-gmmk-2/",
+        "pros": [
+            "Extremely customizable, with tons of in-stock Glorious accessories (switches, keycaps, cables, …) to choose from",
+            "Very decent lubed stabilizers",
+            "Included case and PCB foam",
+            "Satisfying typing/gaming experience",
+            "Side glow LED strip is a nice touch"
+        ],
+        "cons": [
+            "Glorious’ software feels cheap",
+            "ABS keycaps instead of PBT",
+            "Opening up the keyboard is a hassle (which is a shame with such a customization-focused board)",
+            "Glorious Fox Linear switches cannot be bought separately and can only be bought as part of a prebuilt GMMK 2"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Glorious Fox Linear",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.74cm",
+            "Width": "31.4cm",
+            "Length": "10.4cm",
+            "Weight": "880g"
+        }
+    },
+    {
+        "name": "Ducky One 3 Mini Review",
+        "url": "https://prosettings.net/reviews/ducky-one-3-mini/",
+        "pros": [
+            "Nicely lubed stabilizers",
+            "Noise dampening foam included",
+            "Great PBT keycaps",
+            "Brings hotswap to 60% Ducky keyboard",
+            "Great typing experience",
+            "Easy to mod and open up"
+        ],
+        "cons": [
+            "No software for people who want to configure in-depth lighting profiles or macros",
+            "Key registering/latency issues on certain firmware versions"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "Cherry MX Black, Cherry MX Brown, Cherry MX Blue, Cherry MX Red, Cherry MX Silver, Cherry MX Clear, Cherry MX Silent Red",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.9cm",
+            "Width": "30.7cm",
+            "Length": "10.6cm",
+            "Weight": "639g"
+        }
+    },
+    {
+        "name": "Fnatic STREAK65 LP Review",
+        "url": "https://prosettings.net/reviews/fnatic-streak65-lp/",
+        "pros": [
+            "Nice stock keycaps",
+            "Sturdy build quality",
+            "Great pre-lubed stabilizers",
+            "Switches feel nice and smooth and provide a great typing experience",
+            "Coiled cable that it comes with is a nice extra touch"
+        ],
+        "cons": [
+            "Low profile design isn’t for everyone and makes it less customizable than regular keyboards"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Fnatic Low Profile",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "2.7cm",
+            "Width": "31.5cm",
+            "Length": "10.6cm",
+            "Weight": "421g"
+        }
+    },
+    {
+        "name": "Glorious GMMK Pro Review",
+        "url": "https://prosettings.net/reviews/glorious-gmmk-pro/",
+        "pros": [
+            "Made for customization, with a ton of options to consider",
+            "Very premium-feeling and looking aluminum frame",
+            "Comes with pre-lubed stabilizers",
+            "RGB strip on the side adds a stylish extra effect",
+            "Unbeatable build quality"
+        ],
+        "cons": [
+            "Gasket mounting system adds very little to the overall experience",
+            "Software is unpolished and seems unfinished"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "None (Barebones)",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.1cm",
+            "Width": "33.1cm",
+            "Length": "13.4cm",
+            "Weight": "1695g"
+        }
+    },
+    {
+        "name": "Logitech G915 TKL Review",
+        "url": "https://prosettings.net/reviews/logitech-g915-tkl/",
+        "pros": [
+            "Flawless wireless connection",
+            "Sturdy build quality",
+            "Looks sleek and modern",
+            "Included media keys and volume rocker",
+            "Multi-device connectivity thanks to BT and USB connection options"
+        ],
+        "cons": [
+            "Expensive",
+            "Keycaps aren’t the best"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "GL Clicky, GL Tactile, GL Linear",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "1.9cm",
+            "Width": "36.7cm",
+            "Length": "15.1cm",
+            "Weight": "814g"
+        }
+    },
+    {
+        "name": "Ducky Mecha SF Review",
+        "url": "https://prosettings.net/reviews/ducky-mecha-sf/",
+        "pros": [
+            "Beautifully finished case",
+            "Rock solid build quality",
+            "Great PBT keycaps",
+            "Unique aesthetics",
+            "Great typing experience"
+        ],
+        "cons": [
+            "Would’ve been nice to see a hotswappable PCB",
+            "Cable isn’t as high quality as the rest of the board"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Cherry MX Brown, Cherry MX Black, Cherry MX Blue, Cherry MX Red, Cherry MX Silver, Cherry MX Silent Red",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.9cm",
+            "Width": "32.5cm",
+            "Length": "10.5cm",
+            "Weight": "870g"
+        }
+    },
+    {
+        "name": "Corsair K70 RGB TKL Review",
+        "url": "https://prosettings.net/reviews/corsair-k70-rgb-tkl/",
+        "pros": [
+            "Solid PBT keycaps",
+            "Detachable cable makes it a lot more portable",
+            "Nice marriage between portability and features such as media buttons and a volume rocker"
+        ],
+        "cons": [
+            "Loud",
+            "Rattly stabilizers"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Cherry MX Speed, Cherry MX Red",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.9cm",
+            "Width": "36.0cm",
+            "Length": "16.5cm",
+            "Weight": "931g"
+        }
+    },
+    {
+        "name": "HyperX Alloy Origins 60 Review",
+        "url": "https://prosettings.net/reviews/hyperx-alloy-origins-60/",
+        "pros": [
+            "Nice PBT keycaps",
+            "Sturdy case",
+            "Smooth switches"
+        ],
+        "cons": [
+            "Noisy stabilizers",
+            "Typing sound is subpar"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "HyperX Red, HyperX Aqua",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.7cm",
+            "Width": "29.6cm",
+            "Length": "10.5cm",
+            "Weight": "781g"
+        }
+    },
+    {
+        "name": "Corsair K65 RGB Mini Review",
+        "url": "https://prosettings.net/reviews/corsair-k65-rgb-mini/",
+        "pros": [
+            "Decent stabilizers",
+            "Nice looking RGB",
+            "Decent keycaps"
+        ],
+        "cons": [
+            "Feels and sounds a little hollow"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "Cherry MX Red, Cherry MX Speed, Cherry MX Brown, Cherry MX Blue, Cherry MX Silent",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.4cm",
+            "Width": "29cm",
+            "Length": "10.2cm",
+            "Weight": "573g"
+        }
+    },
+    {
+        "name": "Ducky Year of the Rat Review",
+        "url": "https://prosettings.net/reviews/ducky-year-of-the-rat/",
+        "pros": [
+            "Hotswappable PCB",
+            "Unique artstyle",
+            "Interesting packaging with lots of extras",
+            "Pleasant typing and gaming experience",
+            "Great keycaps"
+        ],
+        "cons": [
+            "As much about the art as it is about the performance – if you’re only after performance you could just buy a regular Ducky"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "Cherry MX Brown",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.4cm",
+            "Width": "30.3cm",
+            "Length": "10.3cm",
+            "Weight": "592g"
+        }
+    },
+    {
+        "name": "Corsair K60 RGB Pro Review",
+        "url": "https://prosettings.net/reviews/corsair-k60-rgb-pro/",
+        "pros": [
+            "RGB looks great",
+            "Well built"
+        ],
+        "cons": [
+            "Viola switches don’t feel very good",
+            "Keycaps feel cheap and underwhelming",
+            "Typing experience isn’t great: the board is loud and rattly"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Cherry MX Viola",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.4cm",
+            "Width": "44cm",
+            "Length": "13.4cm",
+            "Weight": "880g"
+        }
+    },
+    {
+        "name": "Fnatic STREAK65 Review",
+        "url": "https://prosettings.net/reviews/fnatic-streak65/",
+        "pros": [
+            "Lightweight and portable",
+            "Good build quality",
+            "Nice switches",
+            "Great (pre-lubed) stabilizers"
+        ],
+        "cons": [
+            "Feet are uneven in thickness",
+            "ABS keycaps are a letdown"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Fnatic Low Profile",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "2.7cm",
+            "Width": "31.5cm",
+            "Length": "10.6cm",
+            "Weight": "390g"
+        }
+    },
+    {
+        "name": "HyperX Alloy Origins Core Review",
+        "url": "https://prosettings.net/reviews/hyperx-alloy-origins-core/",
+        "pros": [
+            "Nice switches",
+            "Built like a tank"
+        ],
+        "cons": [
+            "Keycaps are subpar"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "HyperX Aqua, HyperX Red",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.4cm",
+            "Width": "36.1cm",
+            "Length": "13.2cm",
+            "Weight": "845g"
+        }
+    },
+    {
+        "name": "Corsair K100 RGB Review",
+        "url": "https://prosettings.net/reviews/corsair-k100-rgb/",
+        "pros": [
+            "Lots of extra dials and features for the full ‘battlestation’ experience",
+            "PBT keycaps feel good",
+            "Included padded wrist rest",
+            "Fast OPX switches are good for gaming",
+            "Extra row of macro keys"
+        ],
+        "cons": [
+            "Expensive",
+            "Not very portable",
+            "Macro keys might take some getting used to for some"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Corsair OPX, Cherry MX Speed",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "4.6cm",
+            "Width": "47.0cm",
+            "Length": "16.5cm",
+            "Weight": "1300g"
+        }
+    },
+    {
+        "name": "Fnatic miniSTREAK Review",
+        "url": "https://prosettings.net/reviews/fnatic-ministreak/",
+        "pros": [
+            "Included wrist rest feels nice",
+            "Sturdy build quality"
+        ],
+        "cons": [
+            "Subpar keycaps"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Cherry MX Brown, Cherry MX Red, Cherry MX Silent, Cherry MX Blue",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.5cm",
+            "Width": "36.5cm",
+            "Length": "14cm",
+            "Weight": "702g"
+        }
+    },
+    {
+        "name": "Logitech G Pro X Mechanical Keyboard Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-x-keyboard/",
+        "pros": [
+            "Hot-swappable PCB means changing switches is very easy",
+            "Sturdy build quality"
+        ],
+        "cons": [
+            "Keycaps don’t feel very premium",
+            "Non-standard bottom row means that switching out keycaps can be a hassle"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "GX Blue Clicky, GX Brown Tactile, GX Red Linear",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.5cm",
+            "Width": "36cm",
+            "Length": "15.5cm",
+            "Weight": "980g"
+        }
+    },
+    {
+        "name": "SteelSeries Apex Pro TKL Review",
+        "url": "https://prosettings.net/reviews/steelseries-apex-pro-tkl/",
+        "pros": [
+            "Customizable actuation point for the switches",
+            "Included wrist rest",
+            "USB passthrough",
+            "Sturdy build quality",
+            "Cable routing options on the bottom",
+            "Volume wheel feels nice to use"
+        ],
+        "cons": [
+            "Subpar keycaps",
+            "OLED screen feels a bit gimmicky",
+            "Navigation cluster and function keys don’t have OmniPoint switches"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "OmniPoint",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.9cm",
+            "Width": "35.5cm",
+            "Length": "13.6cm",
+            "Weight": "772g"
+        }
+    },
+    {
+        "name": "Ducky Mecha Mini Review",
+        "url": "https://prosettings.net/reviews/ducky-mecha-mini/",
+        "pros": [
+            "Fantastic typing and gaming experience",
+            "Nice RGB lighting",
+            "Great build quality",
+            "Great keycaps",
+            "Comes with a lot of extras in the box"
+        ],
+        "cons": [
+            "Cable could look/feel more premium",
+            "Optional software would be nice"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "Cherry MX Brown, Cherry MX Black, Cherry MX Blue, Cherry MX Silver, Cherry MX Red, Cherry MX Silent Red",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "4cm",
+            "Width": "29.5cm",
+            "Length": "10.8cm",
+            "Weight": "827g"
+        }
+    },
+    {
+        "name": "Zowie Celeritas II Review",
+        "url": "https://prosettings.net/reviews/zowie-celeritas-ii/",
+        "pros": [
+            "Switches feel nice"
+        ],
+        "cons": [
+            "Bulky",
+            "Case picks up fingerprints rather easily",
+            "Only red lighting (no RGB)"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Adomax Flaretech Optical",
+            "PCB": "Non-Hotswappable",
+            "RGB": "No",
+            "Height": "3.9cm",
+            "Width": "44cm",
+            "Length": "17cm",
+            "Weight": "1273g"
+        }
+    },
+    {
+        "name": "Ducky One 2 SF Review",
+        "url": "https://prosettings.net/reviews/ducky-one-2-sf/",
+        "pros": [
+            "Fantastic gaming and typing experience",
+            "65% form factor is a perfect marriage between functionality and compactness",
+            "Great keycaps"
+        ],
+        "cons": [
+            "Cable is noticeably less premium than the rest of the overall package"
+        ],
+        "specs": {
+            "Form Factor": "65%",
+            "Switches": "Cherry MX Brown, Cherry MX Black, Cherry MX Blue, Cherry MX Silver, Cherry MX Red, Cherry MX Silent Red",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "4cm",
+            "Width": "32.4cm",
+            "Length": "10.6cm",
+            "Weight": "633g"
+        }
+    },
+    {
+        "name": "Corsair K70 RGB Mk.2 Review",
+        "url": "https://prosettings.net/reviews/corsair-k70-rgb-mk-2/",
+        "pros": [
+            "USB passthrough",
+            "Media keys and volume wheel feel good to use",
+            "Sturdy build quality"
+        ],
+        "cons": [
+            "Plasticky and cheap feeling wrist rest",
+            "Thick and non-detachable cable can be bothersome with no routing options on the bottom",
+            "ABS keycaps feel subpar"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Cherry MX Red, Cherry MX Brown, Cherry MX Blue, Cherry MX Silent, Cherry MX Speed, Cherry MX Low Profile Red, Cherry MX Low Profile Speed",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.9cm",
+            "Width": "43.8cm",
+            "Length": "16.2cm",
+            "Weight": "1250g"
+        }
+    },
+    {
+        "name": "Xtrfy K2-RGB Review",
+        "url": "https://prosettings.net/reviews/xtrfy-k2-rgb/",
+        "pros": [
+            "Responsive, fast-feeling keyboard",
+            "Keycaps could be better"
+        ],
+        "cons": [
+            "No software to customize lighting",
+            "Cable routing channels on the bottom"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Kailh Red",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.7cm",
+            "Width": "44cm",
+            "Length": "14cm",
+            "Weight": "1211g"
+        }
+    },
+    {
+        "name": "Logitech G Pro Mechanical Keyboard Review",
+        "url": "https://prosettings.net/reviews/logitech-g-pro-mechanical-keyboard/",
+        "pros": [
+            "Good gaming performance",
+            "Pleasant typing experience",
+            "Nice looking RGB"
+        ],
+        "cons": [
+            "Keycaps can’t be swapped out due to proprietary Romer-G switches"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Romer-G Tactile",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.5cm",
+            "Width": "36cm",
+            "Length": "15.5cm",
+            "Weight": "980g"
+        }
+    },
+    {
+        "name": "Razer Blackwidow Tournament Edition Chroma v2 Review",
+        "url": "https://prosettings.net/reviews/razer-blackwidow-tournament-edition-chroma-v2/",
+        "pros": [
+            "Comes with wrist rest",
+            "Sturdy build quality",
+            "Razer switches feel good"
+        ],
+        "cons": [
+            "Subpar keycaps",
+            "Stabilizers aren’t very good"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Razer Green, Razer Yellow, Razer Orange",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.3cm",
+            "Width": "36.5cm",
+            "Length": "16cm",
+            "Weight": "980g"
+        }
+    },
+    {
+        "name": "Razer Blackwidow Elite Review",
+        "url": "https://prosettings.net/reviews/razer-blackwidow-elite/",
+        "pros": [
+            "Lots of extra features",
+            "Included wrist rest feels great"
+        ],
+        "cons": [
+            "Subpar keycaps",
+            "Not very portable"
+        ],
+        "specs": {
+            "Form Factor": "Full Size",
+            "Switches": "Razer Green, Razer Orange, Razer Yellow",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.6cm",
+            "Width": "44.5cm",
+            "Length": "16.5cm",
+            "Weight": "1327g"
+        }
+    },
+    {
+        "name": "Ducky One 2 Mini RGB Review",
+        "url": "https://prosettings.net/reviews/ducky-one-2-mini-rgb/",
+        "pros": [
+            "RGB looks great",
+            "High quality PBT keycaps",
+            "Great typing experience",
+            "Very portable"
+        ],
+        "cons": [
+            "Plasticky build can feel a bit flimsy at times"
+        ],
+        "specs": {
+            "Form Factor": "60%",
+            "Switches": "Cherry MX Red, Cherry MX Brown, Cherry MX Blue",
+            "PCB": "Non-Hotswappable",
+            "RGB": "Yes",
+            "Height": "4cm",
+            "Width": "30.2cm",
+            "Length": "10.8cm",
+            "Weight": "593g"
+        }
+    },
+    {
+        "name": "Glorious GMMK TKL Review",
+        "url": "https://prosettings.net/reviews/glorious-gmmk-tkl/",
+        "pros": [
+            "Hotswappable PCB",
+            "Decent typing experience",
+            "Good keycaps"
+        ],
+        "cons": [
+            "RGB lighting is unimpressive"
+        ],
+        "specs": {
+            "Form Factor": "TKL",
+            "Switches": "Gateron Brown",
+            "PCB": "Hotswappable",
+            "RGB": "Yes",
+            "Height": "3.6cm",
+            "Width": "33.5cm",
+            "Length": "12.9cm",
+            "Weight": "695g"
+        }
+    }
+]

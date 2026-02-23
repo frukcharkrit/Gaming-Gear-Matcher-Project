@@ -1,0 +1,1016 @@
+[
+    {
+        "name": "SONY INZONE Mat-F Review",
+        "url": "https://prosettings.net/reviews/sony-inzone-mat-f/",
+        "pros": [
+            "Interesting glide",
+            "Consistent and reliable base and foam"
+        ],
+        "cons": [
+            "Not very crease-resistant",
+            "Very expensive (at MSRP)",
+            "Doesn’t lay flat immediately"
+        ],
+        "specs": {
+            "Height": "48cm",
+            "Length": "40cm",
+            "Thickness": "6mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Speed",
+            "Static Friction": "39.5",
+            "Static Friction Angle": "6.79",
+            "Glide Difference X/Y": "14.4",
+            "Dynamic Friction": "1.67"
+        }
+    },
+    {
+        "name": "SONY INZONE Mat-D Review",
+        "url": "https://prosettings.net/reviews/sony-inzone-mat-d/",
+        "pros": [
+            "Fade design looks cool",
+            "Stitching is well-done and doesn’t irritate"
+        ],
+        "cons": [
+            "Very strong rubbery smell for the first day or two",
+            "Base could be stickier"
+        ],
+        "specs": {
+            "Height": "48cm",
+            "Length": "40cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium",
+            "Static Friction": "42.3",
+            "Static Friction Angle": "7.32",
+            "Glide Difference X/Y": "7",
+            "Dynamic Friction": "1.79"
+        }
+    },
+    {
+        "name": "ZOWIE G-SR-SE II Review",
+        "url": "https://prosettings.net/reviews/zowie-g-sr-se-ii-review/",
+        "pros": [
+            "Smooth surface (for a control pad)",
+            "Large degree of crease resistance",
+            "Extremely consistent foam and sticky base make for a reliable pad"
+        ],
+        "cons": [
+            "Not available as a single-color pad (though this is a small complaint)"
+        ],
+        "specs": {
+            "Height": "47cm",
+            "Length": "39cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "No",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "47",
+            "Static Friction Angle": "8.8",
+            "Glide Difference X/Y": "8.12",
+            "Dynamic Friction": "1.86"
+        }
+    },
+    {
+        "name": "VAXEE PE-K Review",
+        "url": "https://prosettings.net/reviews/vaxee-pe-k/",
+        "pros": [
+            "Moisture-resistant surface is a nice extra and handles humidity and sweat well",
+            "Extremely firm foam leads to a consistent experience"
+        ],
+        "cons": [
+            "Stitched edges can feel uncomfortable at times",
+            "X/Y difference is just like on normal cloth pads (not technically a con, but VAXEE advertise this specifically; don’t expect any drastic differences here)"
+        ],
+        "specs": {
+            "Height": "50cm",
+            "Length": "51cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "44.9",
+            "Static Friction Angle": "8.2",
+            "Glide Difference X/Y": "5.9",
+            "Dynamic Friction": "1.89"
+        }
+    },
+    {
+        "name": "Artisan Zero Review",
+        "url": "https://prosettings.net/reviews/artisan-zero/",
+        "pros": [
+            "Great finishing",
+            "Premium stitching",
+            "Available with different foam firmnesses",
+            "Very safe, ‘logical’ glide that works for a ton of aiming styles"
+        ],
+        "cons": [
+            "Rough surface can get annoying",
+            "Traps hairs and skin cells rather easily"
+        ],
+        "specs": {
+            "Height": "42cm",
+            "Length": "49cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control-Oriented",
+            "Static Friction": "41.3",
+            "Static Friction Angle": "8.05",
+            "Glide Difference X/Y": "11.2",
+            "Dynamic Friction": "2.51"
+        }
+    },
+    {
+        "name": "Artisan Type-99 Review",
+        "url": "https://prosettings.net/reviews/artisan-type-99/",
+        "pros": [
+            "Smooth surface for such a controlling pad",
+            "Comes flat-packed",
+            "Great finishing and overall quality",
+            "Available in multiple hardness levels"
+        ],
+        "cons": [
+            "Extremely slow glide is an acquired taste",
+            "Dust and hairs need to be wiped off a bit more frequently than on some other control pads"
+        ],
+        "specs": {
+            "Height": "49cm",
+            "Length": "42cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "49.65",
+            "Static Friction Angle": "9.56",
+            "Glide Difference X/Y": "10.3",
+            "Dynamic Friction": "4.42"
+        }
+    },
+    {
+        "name": "ZOWIE G-SR III Review",
+        "url": "https://prosettings.net/reviews/zowie-g-sr-iii/",
+        "pros": [
+            "New base is an improvement over previous versions",
+            "Foam is very consistent and uniform",
+            "Good quality stitching"
+        ],
+        "cons": [
+            "Not very crease-resistant and takes a while to lay flat",
+            "Doesn’t come in flat packaging like the TR which has the same surface"
+        ],
+        "specs": {
+            "Height": "47cm",
+            "Length": "39cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "45.5",
+            "Static Friction Angle": "7.46",
+            "Glide Difference X/Y": "15.4",
+            "Dynamic Friction": "2.05"
+        }
+    },
+    {
+        "name": "ZOWIE G-TR Review",
+        "url": "https://prosettings.net/reviews/zowie-g-tr/",
+        "pros": [
+            "Good quality subsurface stitching",
+            "Comes flat-packed",
+            "Sticky base",
+            "Soft foam G-SR is what many have been waiting for",
+            "Decently soft texture for such a controlling pad"
+        ],
+        "cons": [
+            "Doesn’t work for all skates (dot skates sink in too much)"
+        ],
+        "specs": {
+            "Height": "47cm",
+            "Length": "39cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "47.5",
+            "Static Friction Angle": "8.05",
+            "Glide Difference X/Y": "15.8",
+            "Dynamic Friction": "2.61"
+        }
+    },
+    {
+        "name": "NZXT Zone Review",
+        "url": "https://prosettings.net/reviews/nzxt-zone/",
+        "pros": [
+            "Very affordable",
+            "Liquid-resistance surface is a nice extra",
+            "Consistent foam"
+        ],
+        "cons": [
+            "Takes a day or two to lay flat",
+            "Some minor inconsistencies with the stitching"
+        ],
+        "specs": {
+            "Height": "49cm",
+            "Length": "40cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed",
+            "Static Friction": "39.4",
+            "Static Friction Angle": "6.49",
+            "Glide Difference X/Y": "30",
+            "Dynamic Friction": "1.15"
+        }
+    },
+    {
+        "name": "NZXT Zone Elite Review",
+        "url": "https://prosettings.net/reviews/nzxt-zone-elite/",
+        "pros": [
+            "Very affordable",
+            "Quality finishing",
+            "Liquid-resistant surface works great to help combat spills",
+            "Very smooth and comfortable surface"
+        ],
+        "cons": [
+            "Base could be stickier",
+            "Only one base softness option; with the one option not allowing for a lot of digging in"
+        ],
+        "specs": {
+            "Height": "40cm",
+            "Length": "40cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed-Oriented",
+            "Static Friction": "37.9",
+            "Static Friction Angle": "7.01",
+            "Glide Difference X/Y": "12",
+            "Dynamic Friction": "1.64"
+        }
+    },
+    {
+        "name": "X-raypad Heavy Bee Review",
+        "url": "https://prosettings.net/reviews/xraypad-heavy-bee/",
+        "pros": [
+            "Very unique gliding experience",
+            "High quality finishing",
+            "Stable base material that doesn’t glide around"
+        ],
+        "cons": [
+            "Moisture resistance isn’t great"
+        ],
+        "specs": {
+            "Height": "50cm",
+            "Length": "50cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control-Oriented",
+            "Static Friction": "42.3",
+            "Static Friction Angle": "8.83",
+            "Glide Difference X/Y": "2",
+            "Dynamic Friction": "4.34"
+        }
+    },
+    {
+        "name": "NZXT MMP400 Review",
+        "url": "https://prosettings.net/reviews/nzxt-mmp400/",
+        "pros": [
+            "Very affordable",
+            "Good quality stitching",
+            "Good humidity resistance"
+        ],
+        "cons": [
+            "Smaller size makes it unsuitable for low sens players",
+            "Doesn’t lay flat immediately"
+        ],
+        "specs": {
+            "Height": "41cm",
+            "Length": "35cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Speed-Oriented",
+            "Static Friction": "42.5",
+            "Static Friction Angle": "6.9",
+            "Glide Difference X/Y": "7",
+            "Dynamic Friction": "1.72"
+        }
+    },
+    {
+        "name": "X-raypad Origin Pro Cerberus Review (Xsoft Version)",
+        "url": "https://prosettings.net/reviews/xraypad-origin-pro-cerberus/",
+        "pros": [
+            "Extremely smooth surface",
+            "High quality finishing",
+            "Good moisture resistance for a control pad"
+        ],
+        "cons": [
+            "Takes some time to break in"
+        ],
+        "specs": {
+            "Height": "50cm",
+            "Length": "45cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "47",
+            "Static Friction Angle": "8.7",
+            "Glide Difference X/Y": "6",
+            "Dynamic Friction": "2.23"
+        }
+    },
+    {
+        "name": "X-raypad Aqua Control Pro Neon Review",
+        "url": "https://prosettings.net/reviews/xraypad-aqua-control-pro/",
+        "pros": [
+            "High quality stitching",
+            "Very consistent surface and glide"
+        ],
+        "cons": [
+            "Expensive",
+            "Rougher surface can get annoying after a while"
+        ],
+        "specs": {
+            "Height": "50cm",
+            "Length": "50cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Speed-Oriented",
+            "Static Friction": "38",
+            "Static Friction Angle": "7.2",
+            "Glide Difference X/Y": "4.8",
+            "Dynamic Friction": "1.72"
+        }
+    },
+    {
+        "name": "Fnatic FOCUS3 MAX Review",
+        "url": "https://prosettings.net/reviews/fnatic-focus3-max/",
+        "pros": [
+            "Premium stitching",
+            "Good humidity resistance",
+            "Soft and smooth surface",
+            "Interesting glide properties"
+        ],
+        "cons": [
+            "Very strong smell for the first day or two",
+            "Base might be slippery on some surfaces"
+        ],
+        "specs": {
+            "Height": "48cm",
+            "Length": "40cm",
+            "Thickness": "6mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control-Oriented",
+            "Static Friction": "38.7",
+            "Static Friction Angle": "8.3",
+            "Glide Difference X/Y": "4.7",
+            "Dynamic Friction": "1.86"
+        }
+    },
+    {
+        "name": "WALLHACK SP-004 Review",
+        "url": "https://prosettings.net/reviews/wallhack-sp-004/",
+        "pros": [
+            "Fantastic silicone base",
+            "Very smooth surface finish",
+            "Rather quiet for a glass pad"
+        ],
+        "cons": [
+            "Glass surfaces don’t handle imperfections well",
+            "Sweatier gamers need to use a sleeve",
+            "Expensive"
+        ],
+        "specs": {
+            "Height": "43cm",
+            "Length": "49cm",
+            "Thickness": "3.6mm",
+            "Stitched edges": "No",
+            "Material": "Glass",
+            "Glide": "Speed",
+            "Static Friction": "30.2",
+            "Static Friction Angle": "5.95",
+            "Glide Difference X/Y": "-3.5",
+            "Dynamic Friction": "1.03"
+        }
+    },
+    {
+        "name": "VAXEE PB Review",
+        "url": "https://prosettings.net/reviews/vaxee-pb/",
+        "pros": [
+            "Comes flat-packed in a nice pouch",
+            "Very consistent finishing and surface",
+            "Very rigid foam makes for an interesting user experience"
+        ],
+        "cons": [
+            "Rather expensive"
+        ],
+        "specs": {
+            "Height": "39cm",
+            "Length": "47cm",
+            "Thickness": "4.8mm",
+            "Stitched edges": "No",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "42.7",
+            "Static Friction Angle": "7",
+            "Glide Difference X/Y": "11.11",
+            "Dynamic Friction": "1.53"
+        }
+    },
+    {
+        "name": "ZOWIE G-SR II Review",
+        "url": "https://prosettings.net/reviews/zowie-g-sr-ii/",
+        "pros": [
+            "Nice stitching",
+            "Very uniform foam",
+            "Greatly improved moisture resistance over the first G-SR generation"
+        ],
+        "cons": [
+            "Tends to slide around somewhat on some surfaces",
+            "Still somewhat affected by moisture"
+        ],
+        "specs": {
+            "Height": "47cm",
+            "Length": "39cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "42.9",
+            "Static Friction Angle": "7.76",
+            "Glide Difference X/Y": "14.99",
+            "Dynamic Friction": "1.82"
+        }
+    },
+    {
+        "name": "Endgame Gear EM-C Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-em-c/",
+        "pros": [
+            "Comes flat-packed",
+            "Great stitching quality",
+            "Sticky base keeps the pad in place at all times"
+        ],
+        "cons": [
+            "Texture can feel a little rough at times",
+            "Humidity/moisture influences the glide somewhat, though not to an extreme degree"
+        ],
+        "specs": {
+            "Height": "49cm",
+            "Length": "41cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "46.95",
+            "Static Friction Angle": "6.47",
+            "Glide Difference X/Y": "12",
+            "Dynamic Friction": "1.8"
+        }
+    },
+    {
+        "name": "Fnatic JET Review",
+        "url": "https://prosettings.net/reviews/fnatic-jet/",
+        "pros": [
+            "Amazingly smooth and consistent glide",
+            "High quality stitching",
+            "Has glass pad properties without the drawbacks of glass pads"
+        ],
+        "cons": [
+            "Looks dull in low light; the holographic effect only really shines with a lot of light nearby",
+            "Surface is a fingerprint magnet",
+            "Sweaty gamers can have comfort issues due to the non-porous surface"
+        ],
+        "specs": {
+            "Height": "47cm",
+            "Length": "47cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed",
+            "Static Friction": "38.35",
+            "Static Friction Angle": "5.5",
+            "Glide Difference X/Y": "1.8",
+            "Dynamic Friction": "1.08"
+        }
+    },
+    {
+        "name": "Pulsar Superglide Mousepad Review",
+        "url": "https://prosettings.net/reviews/pulsar-superglide/",
+        "pros": [
+            "Very smooth glide",
+            "Extremely stable rubber base",
+            "Pad feels solid and doesn’t flex",
+            "Nicely rounded edges"
+        ],
+        "cons": [
+            "Very expensive",
+            "Moving your mouse around on a glass pad is noticeably louder than on a cloth pad"
+        ],
+        "specs": {
+            "Height": "42cm",
+            "Length": "49cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Glass",
+            "Glide": "Speed",
+            "Static Friction": "35",
+            "Static Friction Angle": "6.02",
+            "Glide Difference X/Y": "2",
+            "Dynamic Friction": "1.42"
+        }
+    },
+    {
+        "name": "Lethal Gaming Gear Saturn Pro Review",
+        "url": "https://prosettings.net/reviews/lethal-gaming-gear-saturn-pro-review/",
+        "pros": [
+            "Very high quality stitched edges",
+            "Comes in flat packaging, meaning no bubbling or surface inconsistencies",
+            "Good humidity resistance",
+            "Softness of the foam feels like a perfect balance between firmness and give",
+            "Smooth and consistent surface that performs consistently"
+        ],
+        "cons": [
+            "Expensive for a gaming mousepad"
+        ],
+        "specs": {
+            "Height": "41cm",
+            "Length": "49cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "44.55",
+            "Static Friction Angle": "8.75",
+            "Glide Difference X/Y": "6.72",
+            "Dynamic Friction": "2.43"
+        }
+    },
+    {
+        "name": "Logitech G740 Review",
+        "url": "https://prosettings.net/reviews/logitech-g740/",
+        "pros": [
+            "Thick pad covers up most desk inconsistencies"
+        ],
+        "cons": [
+            "Takes a while to lay flat completely"
+        ],
+        "specs": {
+            "Height": "37.5cm",
+            "Length": "46cm",
+            "Thickness": "5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control-Oriented",
+            "Static Friction": "43.7",
+            "Static Friction Angle": "8.62",
+            "Glide Difference X/Y": "-4.90",
+            "Dynamic Friction": "1.75"
+        }
+    },
+    {
+        "name": "SkyPAD 3.0 Review",
+        "url": "https://prosettings.net/reviews/skypad-3/",
+        "pros": [
+            "Extremely fast and smooth glide",
+            "Sturdy, for a glass pad",
+            "Will last forever if properly cared for"
+        ],
+        "cons": [
+            "Very expensive",
+            "Noisy surface",
+            "Doesn’t handle sweat and imperfections (hairs, dust, …) very well due to the smooth surface"
+        ],
+        "specs": {
+            "Height": "40cm",
+            "Length": "50cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Glass",
+            "Glide": "Speed",
+            "Static Friction": "22.3",
+            "Static Friction Angle": "5.52",
+            "Glide Difference X/Y": "7.44",
+            "Dynamic Friction": "0.98"
+        }
+    },
+    {
+        "name": "ZOWIE G-SR-SE Rouge Review",
+        "url": "https://prosettings.net/reviews/zowie-g-sr-se-rouge/",
+        "pros": [
+            "Smooth surface",
+            "Increased humidity resistance when compared to earlier versions, though it’s still not flawless at handling oils and sweat",
+            "Firm, uniform gliding feeling thanks to the dense foam"
+        ],
+        "cons": [
+            "Design won’t be for everyone"
+        ],
+        "specs": {
+            "Height": "39cm",
+            "Length": "47cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control-Oriented",
+            "Static Friction": "43.85",
+            "Static Friction Angle": "8.51",
+            "Glide Difference X/Y": "10.30",
+            "Dynamic Friction": "1.63"
+        }
+    },
+    {
+        "name": "X-raypad Aqua Control Plus Review",
+        "url": "https://prosettings.net/reviews/xraypad-aqua-control-plus/",
+        "pros": [
+            "Very interesting and unique gliding sensation",
+            "High finishing standards",
+            "Budget friendly",
+            "Available in multiple designs and colors"
+        ],
+        "cons": [
+            "Surface isn’t the smoothest (but this is very nitpicky)"
+        ],
+        "specs": {
+            "Height": "39.5cm",
+            "Length": "89cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium",
+            "Static Friction": "41.35",
+            "Static Friction Angle": "7.98",
+            "Glide Difference X/Y": "1.60",
+            "Dynamic Friction": "1.83"
+        }
+    },
+    {
+        "name": "VAXEE PA Review",
+        "url": "https://prosettings.net/reviews/vaxee-pa/",
+        "pros": [
+            "Smooth surface",
+            "Tight rubber base makes the surface feel very consistent",
+            "Lots of designs available"
+        ],
+        "cons": [
+            "No stitched edges version",
+            "Humidity resistance isn’t the best"
+        ],
+        "specs": {
+            "Height": "39cm",
+            "Length": "47cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control",
+            "Static Friction": "44.9",
+            "Static Friction Angle": "7.64",
+            "Glide Difference X/Y": "14.8",
+            "Dynamic Friction": "1.45"
+        }
+    },
+    {
+        "name": "Glorious Air Review",
+        "url": "https://prosettings.net/reviews/glorious-air/",
+        "pros": [
+            "Very smooth glide",
+            "Adhesive base works great to help keep the pad in place"
+        ],
+        "cons": [
+            "Doesn’t handle moisture well at all"
+        ],
+        "specs": {
+            "Height": "38.1cm",
+            "Length": "43cm",
+            "Thickness": "0.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Plastic",
+            "Glide": "Speed"
+        }
+    },
+    {
+        "name": "Glorious Fire Review",
+        "url": "https://prosettings.net/reviews/glorious-fire/",
+        "pros": [
+            "Interesting glide that’s just a tad slower than your standard speed pad",
+            "Decent stitched edges"
+        ],
+        "cons": [
+            "Feels exactly the same as the Fnatic DASH (which isn’t really a con, but interesting to note regardless)"
+        ],
+        "specs": {
+            "Height": "38.1cm",
+            "Length": "43cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed"
+        }
+    },
+    {
+        "name": "Glorious Ice Review",
+        "url": "https://prosettings.net/reviews/glorious-ice/",
+        "pros": [
+            "Very fast and smooth glide with almost no initial friction",
+            "Decent stitched edges"
+        ],
+        "cons": [
+            "Glide wears off extremely quickly",
+            "Has a hard time handling moisture"
+        ],
+        "specs": {
+            "Height": "38.1cm",
+            "Length": "43cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Plastic",
+            "Glide": "Speed",
+            "Static Friction": "36.15",
+            "Static Friction Angle": "5.54",
+            "Glide Difference X/Y": "4.80",
+            "Dynamic Friction": "0.93"
+        }
+    },
+    {
+        "name": "Endgame Gear MPX390 Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-mpx390/",
+        "pros": [
+            "Great finishing",
+            "Smooth glide and surface"
+        ],
+        "cons": [
+            "Expensive",
+            "Intrusively sized logo"
+        ],
+        "specs": {
+            "Height": "39cm",
+            "Length": "39cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed"
+        }
+    },
+    {
+        "name": "Endgame Gear MPC450 Review",
+        "url": "https://prosettings.net/reviews/endgame-gear-mpc450/",
+        "pros": [
+            "Durable",
+            "Water repellent surface",
+            "Good stitching",
+            "Surprising amount of micro-control for a speed pad"
+        ],
+        "cons": [
+            "Could tone down on the branding"
+        ],
+        "specs": {
+            "Height": "40cm",
+            "Length": "45cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed",
+            "Static Friction": "40.7",
+            "Static Friction Angle": "4.25",
+            "Glide Difference X/Y": "24",
+            "Dynamic Friction": "0.96"
+        }
+    },
+    {
+        "name": "Razer Gigantus V2 Review",
+        "url": "https://prosettings.net/reviews/razer-gigantus-v2/",
+        "pros": [
+            "Decent humidity resistance",
+            "Decently thick and consistent foam"
+        ],
+        "cons": [
+            "Can move around (a bit) during particularly intense matches",
+            "Stitched edges have been removed when compared to the V1"
+        ],
+        "specs": {
+            "Height": "40cm",
+            "Length": "45cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium"
+        }
+    },
+    {
+        "name": "Corsair MM350 Champion Series Review",
+        "url": "https://prosettings.net/reviews/corsair-mm350-champion-series/",
+        "pros": [
+            "Smooth, stitched edges",
+            "Dense foam material"
+        ],
+        "cons": [
+            "Stitching isn’t perfect everywhere"
+        ],
+        "specs": {
+            "Height": "40cm",
+            "Length": "45cm",
+            "Thickness": "5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium"
+        }
+    },
+    {
+        "name": "Fnatic DASH Review",
+        "url": "https://prosettings.net/reviews/fnatic-dash/",
+        "pros": [
+            "Great finishing",
+            "Interesting glide properties"
+        ],
+        "cons": [
+            "Awkward size",
+            "Isn’t completely water resistant (which is claimed in the marketing)"
+        ],
+        "specs": {
+            "Height": "37cm",
+            "Length": "49cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed"
+        }
+    },
+    {
+        "name": "Zowie GTF-X Review",
+        "url": "https://prosettings.net/reviews/zowie-gtf-x/",
+        "pros": [
+            "Good stitching quality"
+        ],
+        "cons": [
+            "Pad can move around at times"
+        ],
+        "specs": {
+            "Height": "39cm",
+            "Length": "47cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Hybrid",
+            "Glide": "Speed"
+        }
+    },
+    {
+        "name": "Glorious Helios Mousepad Review",
+        "url": "https://prosettings.net/reviews/glorious-helios-mousepad/",
+        "pros": [
+            "Extremely thin",
+            "Super fast glide",
+            "Stays in place perfectly"
+        ],
+        "cons": [
+            "Hard pads aren’t good at handling humidity and sweat",
+            "Not very portable",
+            "Can creak or dent, after which it’s hard/impossible to get the creak out"
+        ],
+        "specs": {
+            "Height": "40.5cm",
+            "Length": "45.5cm",
+            "Thickness": "0.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Plastic",
+            "Glide": "Speed"
+        }
+    },
+    {
+        "name": "ZOWIE G-SR-SE Divina Review",
+        "url": "https://prosettings.net/reviews/zowie-g-sr-se-divina/",
+        "pros": [
+            "Smooth surface",
+            "Interesting glide"
+        ],
+        "cons": [
+            "Humidity resistance isn’t the best"
+        ],
+        "specs": {
+            "Height": "39cm",
+            "Length": "47cm",
+            "Thickness": "3.5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium"
+        }
+    },
+    {
+        "name": "Logitech G640 Review",
+        "url": "https://prosettings.net/reviews/logitech-g640-2/",
+        "pros": [
+            "Excellent ‘middle of the road’ option when it comes to glide and thickness"
+        ],
+        "cons": [
+            "Edges start fraying after a while"
+        ],
+        "specs": {
+            "Height": "40cm",
+            "Length": "45.5cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium"
+        }
+    },
+    {
+        "name": "Razer Gigantus Review",
+        "url": "https://prosettings.net/reviews/razer-gigantus/",
+        "pros": [
+            "Decent stitched edges"
+        ],
+        "cons": [
+            "Raised logo can interfere with glide",
+            "Thickness won’t suit everyone"
+        ],
+        "specs": {
+            "Height": "44.5cm",
+            "Length": "44.5cm",
+            "Thickness": "5mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control-Oriented"
+        }
+    },
+    {
+        "name": "Glorious 3XL Review",
+        "url": "https://prosettings.net/reviews/glorious-3xl/",
+        "pros": [
+            "Desk-sized pad means that you won’t even run out of mouse space",
+            "Decent stitched edges",
+            "Smooth surface"
+        ],
+        "cons": [
+            "Unwieldy and not very portable at all"
+        ],
+        "specs": {
+            "Height": "61cm",
+            "Length": "122cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium"
+        }
+    },
+    {
+        "name": "HyperX Fury S Pro XL Review",
+        "url": "https://prosettings.net/reviews/hyperx-fury-s-pro-xl/",
+        "pros": [
+            "Decent stitching",
+            "Decently smooth surface"
+        ],
+        "cons": [
+            "Wears down rather quickly",
+            "Doesn’t lay flat immediately"
+        ],
+        "specs": {
+            "Height": "42cm",
+            "Length": "90cm",
+            "Thickness": "4mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Medium"
+        }
+    },
+    {
+        "name": "SteelSeries QcK Heavy Review",
+        "url": "https://prosettings.net/reviews/steelseries-qck-heavy/",
+        "pros": [
+            "Thickness covers up uneven desk surfaces"
+        ],
+        "cons": [
+            "Thick pad can get irritating on the skin for some",
+            "Very strong rubbery smell initially"
+        ],
+        "specs": {
+            "Height": "39.7cm",
+            "Length": "44.5cm",
+            "Thickness": "6mm",
+            "Stitched edges": "No",
+            "Material": "Cloth",
+            "Glide": "Medium"
+        }
+    },
+    {
+        "name": "Zowie G-SR Review",
+        "url": "https://prosettings.net/reviews/zowie-g-sr/",
+        "pros": [
+            "Stitched edges",
+            "Very consistent surface and foam"
+        ],
+        "cons": [
+            "Sensitive to dust, sweat, and oils"
+        ],
+        "specs": {
+            "Height": "39cm",
+            "Length": "47cm",
+            "Thickness": "3mm",
+            "Stitched edges": "Yes",
+            "Material": "Cloth",
+            "Glide": "Control"
+        }
+    }
+]

@@ -42,6 +42,7 @@ urlpatterns = [
     path('member/home/', views.home_member, name='home_member'),
     path('profile/', views.user_profile, name='user_profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('profile/change-password/', views.change_password, name='change_password'),
     
     # Presets Management (Database)
     path('presets/', views.manage_presets, name='manage_presets'),
@@ -86,6 +87,18 @@ urlpatterns = [
 
     # Admin: Alerts
     path('admin-dashboard/alerts/<int:alert_id>/mark-read/', views.mark_alert_read, name='mark_alert_read'),
+    
+    # Admin: Password Requests
+    path('admin-dashboard/password-requests/', views.admin_password_requests, name='admin_password_requests'),
+    path('admin-dashboard/password-requests/<int:request_id>/approve/', views.approve_password_request, name='approve_password_request'),
+
+    # User Messages (Notifications)
+    path('profile/messages/', views.user_messages, name='user_messages'),
+    path('message/read/<int:notification_id>/', views.mark_message_read, name='mark_message_read'),
+    
+    # Admin Delete User
+    # Admin Delete User
+    path('admin-dashboard/users/delete/<int:user_id>/', views.admin_delete_user, name='admin_delete_user'),
     
     # --- API Endpoints ---
     # Association Rules API

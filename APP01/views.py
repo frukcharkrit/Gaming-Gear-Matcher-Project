@@ -12,7 +12,7 @@ from django.core.files.storage import FileSystemStorage # สำหรับอ�
 from django.conf import settings # สำหรับเข้าถึง MEDIA_ROOT
 from django.utils import timezone
 from datetime import timedelta
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.db.models.functions import TruncDate # เพิ่ม import นี้
 
 import json # เพิ่ม import นี้สำหรับ json.loads
@@ -138,23 +138,164 @@ def user_login(request):
         context['next'] = next_url
     return render(request, 'APP01/login.html', context)
 
+# Helper function to generate random password
+def generate_random_password(length=10):
+    import random
+    import string
+    chars = string.ascii_letters + string.digits + '!@#$%^&*'
+    return ''.join(random.choice(chars) for i in range(length))
+
 def forgot_password(request):
+    from .models import PasswordResetRequest
+    
     if request.method == 'POST':
-        form = PasswordResetForm(request.POST)
-        if form.is_valid():
-            form.save(
-                request=request,
-                from_email=settings.EMAIL_HOST_USER, # ต้องตั้งค่าใน settings.py
-                email_template_name='APP01/password_reset_email.html',
-                subject_template_name='APP01/password_reset_subject.txt',
-            )
-            messages.success(request, 'Password reset email has been sent.')
-            return redirect('login') # หรือหน้าแจ้งเตือนว่าส่งอีเมลแล้ว
+        email = request.POST.get('email')
+        if email:
+            try:
+                user = User.objects.get(email=email)
+                # Check for existing pending request
+                existing_req = PasswordResetRequest.objects.filter(user=user, status='Pending').first()
+                if existing_req:
+                    messages.warning(request, 'You already have a pending password reset request.')
+                else:
+                    PasswordResetRequest.objects.create(user=user, email=email)
+                    messages.success(request, 'Your password reset has been requested to Admin.')
+            except User.DoesNotExist:
+                # For security, don't reveal if user exists, but here we might want to be helpful or just pretend success
+                messages.success(request, 'Your password reset has been requested to Admin.') 
+                # (Or handle effectively if we want to be strict)
         else:
-            messages.error(request, 'Failed to send password reset email.')
-    else:
-        form = PasswordResetForm()
-    return render(request, 'APP01/forgot_password.html', {'form': form})
+            messages.error(request, 'Please enter your email.')
+        return redirect('login')
+    
+    return render(request, 'APP01/forgot_password.html')
+
+@login_required(login_url='login')
+def admin_password_requests(request):
+    if not is_admin(request.user):
+        messages.error(request, 'Access denied.')
+        return redirect('home_member')
+        
+    from .models import PasswordResetRequest
+    requests = PasswordResetRequest.objects.filter(status='Pending').order_by('-created_at')
+    return render(request, 'APP01/admin_password_requests.html', {'requests': requests})
+
+@login_required(login_url='login')
+def approve_password_request(request, request_id):
+    if not is_admin(request.user):
+        messages.error(request, 'Access denied.')
+        return redirect('home_member')
+        
+    from .models import PasswordResetRequest
+    
+    req = get_object_or_404(PasswordResetRequest, request_id=request_id)
+    
+    if req.status != 'Pending':
+        messages.error(request, 'This request has already been processed.')
+        return redirect('admin_password_requests')
+        
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        from .models import Notification, AdminLog
+        
+        if action == 'approve':
+            # 1. Update Request Status
+            req.status = 'Approved'
+            req.approved_at = timezone.now()
+            req.approved_by = request.user
+            req.save()
+            
+            # 2. Generate Random Password
+            import secrets
+            import string
+            alphabet = string.ascii_letters + string.digits
+            new_password = ''.join(secrets.choice(alphabet) for i in range(10))
+            
+            # 3. Update User Password
+            user = req.user
+            user.set_password(new_password)
+            user.save()
+            
+            # 4. Create Notification
+            Notification.objects.create(
+                recipient=user,
+                subject='Password Reset Approved',
+                message=f'Your password reset request has been approved. Your new password is: {new_password}'
+            )
+            
+            # 5. Log Action
+            AdminLog.objects.create(
+                user=request.user,
+                action=f'Reset Password (New: {new_password})',
+                target=user.username
+            )
+
+            messages.success(request, f'Request approved. New password sent to {user.username}.')
+            
+        elif action == 'reject':
+            req.status = 'Rejected'
+            req.save()
+            
+            # Notification only
+            Notification.objects.create(
+                recipient=req.user,
+                subject='Password Reset Rejected',
+                message='Your password reset request has been rejected by Admin.'
+            )
+             
+            AdminLog.objects.create(
+                user=request.user,
+                action='Reject Password Reset',
+                target=req.user.username
+            )
+            
+            messages.info(request, 'Request rejected.')
+            
+    return redirect('admin_password_requests')
+
+@login_required(login_url='login')
+def user_messages(request):
+    from .models import Notification
+    from django.db.utils import OperationalError, ProgrammingError
+    
+    # Get all notifications for user
+    try:
+        notifications = Notification.objects.filter(recipient=request.user).order_by('-created_at')
+        # Check if table relies on migration by forcing evaluation
+        list(notifications) 
+    except (OperationalError, ProgrammingError):
+        # Table doesn't exist yet (migration not run)
+        notifications = []
+        
+    # Mark as read (optional logic, maybe do it when viewing detail)
+    # For now, let's just list them.
+    return render(request, 'APP01/user_messages.html', {'notifications': notifications})
+
+@login_required(login_url='login')
+def admin_delete_user(request, user_id):
+    if not is_admin(request.user):
+        messages.error(request, 'Access denied.')
+        return redirect('home_member')
+        
+    if request.method == 'POST':
+        user = get_object_or_404(User, pk=user_id)
+        # Prevent deleting yourself
+        if user == request.user:
+            messages.error(request, 'You cannot delete your own account.')
+        else:
+            username = user.username
+            user.delete()
+            messages.success(request, f'User {username} has been deleted.')
+            
+    return redirect('admin_users')
+
+@login_required(login_url='login')
+def mark_message_read(request, notification_id):
+    from .models import Notification
+    notification = get_object_or_404(Notification, notification_id=notification_id, recipient=request.user)
+    notification.is_read = True
+    notification.save()
+    return redirect('user_messages')
 
 # APP01/views.py (แก้ไขทับฟังก์ชันเดิม)
 
@@ -204,11 +345,16 @@ def process_quiz(request):
         categories = ['Mouse', 'Keyboard', 'Headset', 'Monitor', 'Chair']
         for cat in categories:
             gear_entry = best_setup.get(cat)
-            if gear_entry:
+            if gear_entry: 
                 best_gears.append(gear_entry['gear'])
-                # For reasons, we'd need to re-run or extract them. 
-                # For now, let's keep it simple or maybe we don't need explicit single-line reasons if we have full comparison.
-                ai_reasons.append(f"{cat}: Spec Match")
+                # Extract specific AI reasons for this gear
+                # Convert list of reasons to single string or just take top reason
+                reasons_list = gear_entry.get('reasons', [])
+                if reasons_list:
+                    reason_str = ", ".join(reasons_list)
+                    ai_reasons.append(f"{cat}: {reason_str}")
+                else:
+                    ai_reasons.append(f"{cat}: Best spec match for your preferences")
 
         if best_gears:
             # Setup session for matching_result
@@ -233,14 +379,23 @@ def process_quiz(request):
                 for cat in categories:
                     g_entry = v_data.get(cat)
                     if g_entry:
-                        variants_data[v_name]['gears'][cat] = g_entry['gear'].gear_id
+                        # Store detailed info for reconstruction in result page
+                        variants_data[v_name]['gears'][cat] = {
+                            'id': g_entry['gear'].gear_id,
+                            'reasons': g_entry.get('reasons', []),
+                            'score': g_entry.get('score', 0)
+                        }
             
             match_result['variants'] = variants_data
 
             # Store AI Context
             match_result['mode'] = 'hybrid_ai'
             match_result['ai_reasons'] = ai_reasons
-            match_result['ai_score'] = 95 # Placeholder high confidence
+            
+            # Use calculated score from Performance variant (or 0 if missing)
+            perf_variant = variants.get('Performance', {})
+            match_result['ai_score'] = perf_variant.get('score', 0)
+            
             match_result['uploaded_image_url'] = None 
             
             request.session['match_result'] = match_result
@@ -253,13 +408,66 @@ def process_quiz(request):
 def wizard_select_gear(request, category):
     """
     Step 2: User selects a specific gear from a category.
+    Supports Filtering (Brand) and Sorting (Price, Popularity).
     """
+    # 1. Base Query
     gears = GamingGear.objects.filter(type=category)
+    
+    # 2. Get Filter Options (All Brands for this category)
+    all_brands = GamingGear.objects.filter(type=category).values_list('brand', flat=True).distinct().order_by('brand')
+    
+    # 3. Handle Filtering
+    selected_brands = request.GET.getlist('brand') # Can select multiple
+    if selected_brands:
+        gears = gears.filter(brand__in=selected_brands)
+        
+    # 4. Handle Sorting
+    # Annotate with Pro Count for popularity sorting
+    gears = gears.annotate(pro_count=Count('proplayergear'))
+    
+    sort_price = request.GET.get('sort_price') # 'asc', 'desc'
+    sort_pros = request.GET.get('sort_pros')   # 'asc', 'desc'
+    
+    ordering = []
+    
+    if sort_pros == 'desc':
+        ordering.append('-pro_count')
+    elif sort_pros == 'asc':
+        ordering.append('pro_count')
+        
+    if sort_price == 'asc':
+        ordering.append('price')
+    elif sort_price == 'desc':
+        ordering.append('-price')
+        
+    # Default sorting if nothing selected (Popularity then Name)
+    if not ordering:
+        ordering = ['-pro_count', 'name']
+        
+    gears = gears.order_by(*ordering)
+    
+    gears = gears.order_by(*ordering)
+    
+    # 5. Handle Search
+    search_query = request.GET.get('q', '')
+    if search_query:
+        from django.db.models import Q
+        gears = gears.filter(
+            Q(name__icontains=search_query) | 
+            Q(brand__icontains=search_query)
+        )
+    
     next_url = request.GET.get('next', '')
+    
     return render(request, 'APP01/wizard_select_gear.html', {
         'gears': gears,
         'category': category,
         'next_url': next_url,
+        'all_brands': all_brands,
+        'selected_brands': selected_brands,
+        'sort_price': sort_price,
+        'sort_pros': sort_pros,
+        'search_query': search_query,
     })
 
 def wizard_add_gear(request, gear_id):
@@ -275,18 +483,40 @@ def wizard_add_gear(request, gear_id):
     
     wizard_preset = request.session['wizard_preset']
     
+    # helper: get list of IDs for query
+    current_ids = []
+    for item in wizard_preset:
+        if isinstance(item, dict) and 'id' in item:
+            current_ids.append(item['id'])
+        elif isinstance(item, (int, str)) and str(item).isdigit():
+            current_ids.append(int(item))
+
     # Remove any existing gear of the same type
-    existing_gears = GamingGear.objects.filter(gear_id__in=wizard_preset)
+    existing_gears = GamingGear.objects.filter(gear_id__in=current_ids)
     replaced = False
     for existing in existing_gears:
         if existing.type == gear.type:
-            wizard_preset.remove(existing.gear_id)
-            replaced = True
-            messages.info(request, f'Replaced {existing.type}: {existing.name} → {gear.name}')
+            # Find and remove the specific item from the list
+            found = False
+            for item in wizard_preset:
+                if isinstance(item, dict) and item.get('id') == existing.gear_id:
+                    wizard_preset.remove(item)
+                    found = True
+                    break
+                elif item == existing.gear_id:
+                    wizard_preset.remove(item)
+                    found = True
+                    break
+            
+            if found:
+                replaced = True
+                messages.info(request, f'Replaced {existing.type}: {existing.name} → {gear.name}')
+            # We break after finding the one gear of that type to replace
             break
     
     # Add the new gear
-    if gear_id not in wizard_preset:
+    # Re-calculate current_ids to be safe, or just check against what we know
+    if gear_id not in current_ids: # Logic holds because we effectively removed the conflict above
         wizard_preset.append(gear_id)
         if not replaced:
             messages.success(request, f'Added {gear.type}: {gear.name}')
@@ -303,8 +533,19 @@ def wizard_remove_gear(request, gear_id):
     """Remove a gear from wizard preset"""
     if 'wizard_preset' in request.session:
         wizard_preset = request.session['wizard_preset']
-        if gear_id in wizard_preset:
-            wizard_preset.remove(gear_id)
+        
+        # Handle mixed types (int vs dict)
+        found_item = None
+        for item in wizard_preset:
+            if isinstance(item, dict) and item.get('id') == gear_id:
+                found_item = item
+                break
+            elif item == gear_id:
+                found_item = item
+                break
+        
+        if found_item:
+            wizard_preset.remove(found_item)
             request.session['wizard_preset'] = wizard_preset
             request.session.modified = True
             
@@ -347,6 +588,18 @@ def matching_result(request):
         # Or show empty state?
         pass
 
+    # selected_gear_ids can be [1, 2] OR [{'id': 1, ...}, {'id': 2, ...}]
+    # We must sanitize it to be a list of IDs for the query
+    sanitized_ids = []
+    for item in selected_gear_ids:
+        if isinstance(item, dict):
+            if 'id' in item:
+                sanitized_ids.append(item['id'])
+        elif isinstance(item, (int, str)) and str(item).isdigit():
+            sanitized_ids.append(int(item))
+            
+    selected_gear_ids = sanitized_ids # Update variable for downstream use
+
     selected_gears = GamingGear.objects.filter(gear_id__in=selected_gear_ids)
     
     # === Get Recommendations via Association Rules ===
@@ -366,7 +619,12 @@ def matching_result(request):
         # 1. Collect all IDs to fetch in one go
         all_variant_ids = set()
         for v_data in variants_data.values():
-            for gid in v_data.get('gears', {}).values():
+            for g_info in v_data.get('gears', {}).values():
+                if isinstance(g_info, dict):
+                    gid = g_info.get('id')
+                else:
+                    gid = g_info
+                
                 if gid:
                     all_variant_ids.add(gid)
         
@@ -375,6 +633,12 @@ def matching_result(request):
         gear_map = {g.gear_id: g for g in variant_gears}
         
         # 3. Reconstruct Structure with Objects
+        for v_name in variants_data:
+             # Reconstruct
+             # Careful: all_variant_ids was built from variants_data
+             pass
+        
+        # 3. Reconstruct Structure with Objects & Metadata
         for v_name, v_data in variants_data.items():
             variants_context[v_name] = {
                 'desc': v_data.get('desc'),
@@ -384,9 +648,23 @@ def matching_result(request):
                 'cons': v_data.get('cons', []),
                 'gears': {}
             }
-            for cat, gid in v_data.get('gears', {}).items():
+            for cat, g_info in v_data.get('gears', {}).items():
+                # Handle both legacy (int ID) and new (dict) formats
+                if isinstance(g_info, dict):
+                    gid = g_info.get('id')
+                    reasons = g_info.get('reasons', [])
+                    score = g_info.get('score', 0)
+                else:
+                    gid = g_info
+                    reasons = [] # No reasons for legacy data
+                    score = 0
+                
                 if gid in gear_map:
-                    variants_context[v_name]['gears'][cat] = gear_map[gid]
+                    variants_context[v_name]['gears'][cat] = {
+                        'gear': gear_map[gid],
+                        'reasons': reasons,
+                        'score': score
+                    }
     
     # === Build "My Setup" from user's current wizard_preset ===
     my_setup_gears = {}
@@ -397,7 +675,12 @@ def matching_result(request):
         # Check if my_setup differs from any variant (i.e., user has customized)
         if variants_context:
             perf_gears = variants_context.get('Performance', {}).get('gears', {})
-            perf_ids = {g.gear_id for g in perf_gears.values() if g}
+            # perf_gears.values() are now dicts {'gear': obj, ...}
+            perf_ids = set()
+            for g_data in perf_gears.values():
+                if g_data and 'gear' in g_data:
+                    perf_ids.add(g_data['gear'].gear_id)
+            
             my_ids = {g.gear_id for g in my_setup_gears.values() if g}
             my_setup_diff = (my_ids != perf_ids)
     
@@ -410,6 +693,7 @@ def matching_result(request):
         # AI hybrid features
         'ai_reasons': match_result_session.get('ai_reasons'),
         'ai_sentiment': match_result_session.get('ai_sentiment'),
+        'ai_score': match_result_session.get('ai_score', 0),
         'hybrid_mode': match_result_session.get('mode') == 'hybrid_ai',
     }
     return render(request, 'APP01/matching_result.html', context)
@@ -503,8 +787,20 @@ def gear_detail(request, gear_id):
             'specs': specs_dict,  # เก็บเป็น dict
         }
 
+        # หา Pro Players ที่ใช้อุปกรณ์นี้ from database
+        pro_players_using = []
+        pro_gear_links = ProPlayerGear.objects.filter(gear=gear_obj).select_related('player')
+        for link in pro_gear_links:
+            p = link.player
+            pro_players_using.append({
+                'player_id': p.player_id,
+                'name': p.name,
+                'image_url': p.image.url if p.image else None,
+                'game_logo': p.game_logo_url
+            })
+
         # หาอุปกรณ์อื่นๆ ในประเภทเดียวกัน (ไม่รวมตัวเอง)
-        related_qs = GamingGear.objects.filter(type=gear_obj.type).exclude(gear_id=gear_id)[:4]
+        related_qs = GamingGear.objects.filter(type=gear_obj.type).exclude(gear_id=gear_id)[:16] # Increase limit to 16 for "View All"
         for r in related_qs:
             related_gears.append({
                 'gear_id': r.gear_id,
@@ -538,6 +834,14 @@ def gear_detail(request, gear_id):
             # หา Related Gears ใน Demo List
             related_gears = [g for g in all_demo_gears if g['category'] == gear['category'] and g['gear_id'] != gear_id]
 
+        # Demo Pro Players (ถ้าไม่เจอใน DB)
+        pro_players_using = []
+        if not pro_players_using:
+             pro_players_using = [
+                {'player_id': 1, 'name': 'Faker', 'image_url': 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/f75586c584d20160299944d3d61e8bc715253c9d-1232x1232.jpg', 'game_logo': 'https://upload.wikimedia.org/wikipedia/commons/2/2a/LoL_Icon.svg'},
+                {'player_id': 2, 'name': 'TenZ', 'image_url': 'https://liquipedia.net/commons/images/thumb/6/62/Sentinels_TenZ_at_Champions_Madrid_2024.jpg/600px-Sentinels_TenZ_at_Champions_Madrid_2024.jpg', 'game_logo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Valorant_logo_-_pink_color_version.svg/1200px-Valorant_logo_-_pink_color_version.svg.png'},
+             ]
+
     # ถ้าหาไม่เจอเลยทั้ง DB และ Demo
     if not gear:
         # สร้าง Dummy ขึ้นมากัน Error หรือ Redirect ออก
@@ -551,6 +855,7 @@ def gear_detail(request, gear_id):
 
     context = {
         'gear': gear,
+        'pro_players_using': pro_players_using,
         'related_gears': related_gears,
         'wizard_preset_ids': wizard_preset_ids,
         'next_url': next_url,
@@ -665,20 +970,53 @@ def search_gear(request):
     selected_type = request.GET.get('type')
     
     gears = GamingGear.objects.all()
-    # Get all unique types for filter buttons
-    types = GamingGear.objects.values_list('type', flat=True).distinct().order_by('type')
     
+    # 1. Get Options for Filters
+    types = GamingGear.objects.values_list('type', flat=True).distinct().order_by('type')
+    all_brands = GamingGear.objects.values_list('brand', flat=True).distinct().order_by('brand')
+
+    # 2. Filtering
     if query:
         gears = gears.filter(name__icontains=query)
     
     if selected_type:
         gears = gears.filter(type=selected_type)
+
+    selected_brands = request.GET.getlist('brand')
+    if selected_brands:
+        gears = gears.filter(brand__in=selected_brands)
+
+    # 3. Handling Sorting
+    gears = gears.annotate(pro_count=Count('proplayergear'))
+    
+    sort_price = request.GET.get('sort_price')
+    sort_pros = request.GET.get('sort_pros')
+    
+    ordering = []
+    if sort_pros == 'desc':
+        ordering.append('-pro_count')
+    elif sort_pros == 'asc':
+        ordering.append('pro_count')
+        
+    if sort_price == 'asc':
+        ordering.append('price')
+    elif sort_price == 'desc':
+        ordering.append('-price')
+        
+    if not ordering:
+        ordering = ['-pro_count', 'name']
+        
+    gears = gears.order_by(*ordering)
         
     context = {
         'gears': gears,
         'query': query,
         'types': types,
-        'selected_type': selected_type
+        'selected_type': selected_type,
+        'all_brands': all_brands,
+        'selected_brands': selected_brands,
+        'sort_price': sort_price,
+        'sort_pros': sort_pros,
     }
     return render(request, 'APP01/search_gear.html', context)
 
@@ -825,6 +1163,24 @@ def edit_profile(request):
     
     return render(request, 'APP01/edit_profile.html')
 
+@login_required(login_url='login')
+def change_password(request):
+    from django.contrib.auth.forms import PasswordChangeForm
+    from django.contrib.auth import update_session_auth_hash
+
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('user_profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'APP01/change_password.html', {'form': form})
+
 from django.utils import timezone # Added this import for timezone.now()
 
 # @login_required(login_url='login')  # TEMPORARY DISABLE FOR DEBUG
@@ -843,6 +1199,11 @@ def save_preset(request):
     logger.warning("🔥 ENTERED save_preset function!")
     logger.warning(f"User authenticated: {request.user.is_authenticated}")
     
+    # 0. Check Authentication
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please login to save your preset.")
+        return redirect(f"{reverse('login')}?next={reverse('save_preset')}")
+
     """
     แสดงหน้าบันทึก Preset โดยดึงอุปกรณ์จาก Session
     - ดึง wizard_preset จาก Session (ใหม่)
@@ -863,6 +1224,15 @@ def save_preset(request):
     # Get from wizard flow first, fallback to old match_result
     wizard_gear_ids = request.session.get('wizard_preset', [])
     
+    # Sanitize IDs (handle dicts from new flow)
+    sanitized_ids = []
+    for item in wizard_gear_ids:
+        if isinstance(item, dict) and 'id' in item:
+            sanitized_ids.append(item['id'])
+        elif isinstance(item, (int, str)) and str(item).isdigit():
+            sanitized_ids.append(int(item))
+    wizard_gear_ids = sanitized_ids
+
     if not wizard_gear_ids:
         # Fallback to old flow
         match_result = request.session.get('match_result', {})

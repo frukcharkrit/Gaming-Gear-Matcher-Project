@@ -1,62 +1,132 @@
 {% extends 'APP01/base.html' %}
 {% load static %}
-
 {% block content %}
-<div class="container mt-4">
-    <h1 class="text-center mb-4 display-5 fw-bold text-uppercase" style="letter-spacing: 2px;">Gaming Gears</h1>
-
-    <!-- Filter Buttons -->
-    <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
-        <a href="{% url 'search_gear' %}"
-            class="btn {% if not selected_type %}btn-dark{% else %}btn-outline-dark{% endif %} rounded-pill px-4">
-            SELECT ALL
-        </a>
-        {% for type in types %}
-        <a href="{% url 'search_gear' %}?type={{ type }}"
-            class="btn {% if selected_type == type %}btn-primary{% else %}btn-outline-primary{% endif %} rounded-pill px-4">
-            {{ type }}
-        </a>
-        {% endfor %}
-    </div>
-
-    <!-- Gears Grid -->
-    {% if gears %}
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-        {% for gear in gears %}
-        <div class="col">
-            <div class="card h-100 shadow-sm border-0 hover-lift">
-                <div class="position-relative overflow-hidden" style="height: 200px;">
-                    {% if gear.image %}
-                    <img src="{{ gear.image.url }}"
-                        class="card-img-top w-100 h-100 object-fit-contain p-3 transition-transform"
-                        alt="{{ gear.name }}">
-                    {% else %}
-                    <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-light text-muted">
-                        <i class="fas fa-microchip fa-3x"></i>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4 display-5 fw-bold text-uppercase"
+            style="letter-spacing: 2px">Gaming Gears</h1>
+        <div class="row">
+            <!-- Filter Sidebar -->
+            <div class="col-md-3">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-filter me-2"></i>Filter & Sort
+                        </h5>
                     </div>
-                    {% endif %}
-                    <span class="position-absolute top-0 end-0 badge bg-primary m-2">{{ gear.type }}</span>
-                </div>
-
-                <div class="card-body text-center d-flex flex-column">
-                    <h5 class="card-title fw-bold text-truncate" title="{{ gear.name }}">{{ gear.name }}</h5>
-                    <p class="card-text text-muted small mb-3">{{ gear.brand }}</p>
-                    <a href="{% url 'gear_detail' gear.gear_id %}"
-                        class="btn btn-outline-dark mt-auto w-100 stretched-link">View Details</a>
+                    <div class="card-body">
+                        <form method="get" action="{% url 'search_gear' %}">
+                            {% if query %}<input type="hidden" name="q" value="{{ query }}">{% endif %}
+                            <!-- Search Input (Mobile/Sidebar convenient) -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Search</label>
+                                <input type="text"
+                                       name="q"
+                                       class="form-control"
+                                       placeholder="Search gear name..."
+                                       value="{{ query }}">
+                            </div>
+                            <!-- Filter by Type -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Category</label>
+                                <select name="type" class="form-select">
+                                    <option value="">All Categories</option>
+                                    {% for t in types %}
+                                        <option value="{{ t }}" {% if selected_type == t %}selected{% endif %}>{{ t }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <hr>
+                            <!-- Sort by Price -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Price</label>
+                                <select name="sort_price" class="form-select">
+                                    <option value="">Default</option>
+                                    <option value="asc" {% if sort_price == 'asc' %}selected{% endif %}>Low to High</option>
+                                    <option value="desc" {% if sort_price == 'desc' %}selected{% endif %}>High to Low</option>
+                                </select>
+                            </div>
+                            <!-- Sort by Pro Usage -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Used by Pros</label>
+                                <select name="sort_pros" class="form-select">
+                                    <option value="">Default</option>
+                                    <option value="desc" {% if sort_pros == 'desc' %}selected{% endif %}>Most Popular</option>
+                                    <option value="asc" {% if sort_pros == 'asc' %}selected{% endif %}>Least Popular</option>
+                                </select>
+                            </div>
+                            <hr>
+                            <!-- Filter by Brand -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Brand</label>
+                                <div class="overflow-auto" style="max-height: 200px;">
+                                    {% for brand in all_brands %}
+                                        <div class="form-check">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   name="brand"
+                                                   value="{{ brand }}"
+                                                   id="brand_{{ forloop.counter }}"
+                                                   {% if brand in selected_brands %}checked{% endif %}>
+                                            <label class="form-check-label" for="brand_{{ forloop.counter }}">{{ brand }}</label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-dark">Apply Filters</button>
+                                <a href="{% url 'search_gear' %}" class="btn btn-outline-secondary">Clear All</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <!-- Gears Grid -->
+            <div class="col-md-9">
+                {% if gears %}
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {% for gear in gears %}
+                            <div class="col">
+                                <div class="card h-100 shadow-sm border-0 hover-lift">
+                                    <div class="position-relative overflow-hidden" style="height: 200px;">
+                                        {% if gear.image %}
+                                            <img src="{{ gear.image.url }}"
+                                                 class="card-img-top w-100 h-100 object-fit-contain p-3 transition-transform"
+                                                 alt="{{ gear.name }}">
+                                        {% else %}
+                                            <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-light text-muted">
+                                                <i class="fas fa-microchip fa-3x"></i>
+                                            </div>
+                                        {% endif %}
+                                        <span class="position-absolute top-0 end-0 badge bg-primary m-2">{{ gear.type }}</span>
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column">
+                                        <h5 class="card-title fw-bold text-truncate" title="{{ gear.name }}">{{ gear.name }}</h5>
+                                        <p class="card-text text-muted small mb-3">{{ gear.brand }}</p>
+                                        <!-- Pro Count Badge -->
+                                        {% if gear.pro_count > 0 %}
+                                            <div class="mb-2">
+                                                <span class="badge bg-success rounded-pill">
+                                                    <i class="fas fa-users me-1"></i> Used by {{ gear.pro_count }} Pro{{ gear.pro_count|pluralize }}
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                        <a href="{% url 'gear_detail' gear.gear_id %}"
+                                           class="btn btn-outline-dark mt-auto w-100 stretched-link">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <p class="h5 text-muted">No gaming gear found for this criteria.</p>
+                        <a href="{% url 'search_gear' %}" class="btn btn-primary mt-3">Clear Filters</a>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="text-center py-5">
-        <i class="fas fa-search fa-3x text-muted mb-3"></i>
-        <p class="h5 text-muted">No gaming gear found for this category.</p>
-    </div>
-    {% endif %}
-</div>
-
-<style>
+        <style>
     .hover-lift {
         transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -77,5 +147,5 @@
     .card:hover .transition-transform {
         transform: scale(1.05);
     }
-</style>
-{% endblock %}
+        </style>
+    {% endblock %}

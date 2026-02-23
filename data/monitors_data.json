@@ -1,0 +1,1032 @@
+[
+    {
+        "Name": "ZOWIE XL2566K",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2546K",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2546",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2566X+",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "400",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2586X+",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "600",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2540",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2518H",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2540K",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2523HF",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ZOWIE XL2586X",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "540",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2521H",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS ROG SWIFT PG259QN",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "SONY INZONE M10S",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "480",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2521HF",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ASUS ROG SWIFT PG258Q",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS TUF VG259QM",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "HP OMEN 24.5″",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "AOC AG251FZ",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "LG 25GR75FG",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Omen X25F",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "AlienWare AW2518HF",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ASUS TUF VG258QM",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "280",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "AOC AG251FZ2E",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Lenovo Legion Y25-30",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "280",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS PG248QP",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "540",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Acer Predator XB252Q",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS VG248QE",
+        "Size": "23",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2546S",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS TUF VG279QM",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "280",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS ROG STRIX XG248Q",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ZOWIE XL2746S",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Acer Nitro XV252QF",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "MSI MAG 255XFV",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2546X+",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "280",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2720HF",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ASUS ROG PG27AQDM",
+        "Size": "26.5",
+        "Resolution": "2560×1440",
+        "Panel Tech": "OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Acer Predator XB241H",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "180",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "LG ULTRAGEAR 27GN750-B",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2546 Divina Blue",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS ROG XG258Q",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2724HF",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "Fast IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "AOC 24G2Z",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2524H",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "500",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ZOWIE XL2411K",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "AOC G2460PF",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ASUS ROG Swift PG27AQN",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Samsung Odyssey G7",
+        "Size": "32",
+        "Resolution": "3840×2160",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "165",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ASUS ROG SWIFT PG279QM",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Acer Predator XB272",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "GIGABYTE AORUS KD25F",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ZOWIE XL2546X",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW2723DF",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "280",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "AOC C27G2ZE",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Alienware AW2725DF",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "QD OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Samsung Odyssey G4",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Acer Predator X25",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "AOC C24G1",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ZOWIE XL2740",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ViewSonic XG2560",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ZOWIE XL2411T",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS ROG PG27AQDP",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "480",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "AOC AG246FK",
+        "Size": "24.1",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "540",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Samsung Odyssey G6",
+        "Size": "32",
+        "Resolution": "2560×1440",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ASUS ROG Strix XG259QN",
+        "Size": "25",
+        "Resolution": "1920×1080",
+        "Panel Tech": "Fast IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "LG UltraGear 27GR95QE-B",
+        "Size": "26.5",
+        "Resolution": "2560×1440",
+        "Panel Tech": "OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "GIGABYTE AORUS FI25F",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "LG ULTRAGEAR 27GN950-B",
+        "Size": "27",
+        "Resolution": "3840×2160",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ViewSonic VX2458 MHD",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Dell S2522HG",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "AOC AG254FG",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "LG ULTRAGEAR 32GQ950-B",
+        "Size": "31.5",
+        "Resolution": "3840×2160",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "MSI Optix G271",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Lenovo Legion Y25-25",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Acer Predator XN3",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "MSI MPG 271QRX",
+        "Size": "26.5",
+        "Resolution": "2560×1440",
+        "Panel Tech": "QD OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Philips Evnia 25M2N3200W/00",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "TCL 24G645",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "QD OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "280",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Samsung C24RG54FQU",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS VG249QM1A",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "Fast IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Alienware AW3225QF",
+        "Size": "32",
+        "Resolution": "3840×2160",
+        "Panel Tech": "QD OLED",
+        "Aspect Ratio": "21:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Acer ED270X",
+        "Size": "31.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "165",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "GIGABYTE M27Q X",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Acer XF240Q",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ASUS ROG SWIFT XG27AQM",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Acer Predator XB273U",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "165",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Samsung Odyssey Neo G9",
+        "Size": "49",
+        "Resolution": "5120×1440",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "32:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "LG 27GK750F-B",
+        "Size": "27",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "LG ULTRAGEAR 48GQ900-B",
+        "Size": "47.6",
+        "Resolution": "3840×2160",
+        "Panel Tech": "OLED",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "HP OMEN X 27",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "MSI OPTIX MAG251RX",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Alienware AW2721D",
+        "Size": "27",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "MSI NXG253R",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "360",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "ASUS MG248QR",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Samsung CRG5",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Acer XF250Q",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "Acer GN246HL",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "AOC 25G3ZM",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "VA",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "HyperX Armada 25",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "Alienware AW3423DW",
+        "Size": "34",
+        "Resolution": "3440×1040",
+        "Panel Tech": "",
+        "Aspect Ratio": "21:9",
+        "Refresh Rate": "175",
+        "G-Sync": "Yes",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "LG UltraGear 32GQ850-B",
+        "Size": "31.5",
+        "Resolution": "2560×1440",
+        "Panel Tech": "IPS",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "Yes",
+        "FreeSync": "Yes"
+    },
+    {
+        "Name": "ZOWIE XL2546 Divina Pink",
+        "Size": "24.5",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "240",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    },
+    {
+        "Name": "LG 24GM79G-B",
+        "Size": "24",
+        "Resolution": "1920×1080",
+        "Panel Tech": "TN",
+        "Aspect Ratio": "16:9",
+        "Refresh Rate": "144",
+        "G-Sync": "No",
+        "FreeSync": "No"
+    }
+]

@@ -1,0 +1,2026 @@
+[
+    {
+        "Name": "Razer Huntsman V3 Pro TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 36.4 / 14.0"
+    },
+    {
+        "Name": "Wooting 60HE+",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 30.2 / 11.6"
+    },
+    {
+        "Name": "Wooting 80HE",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.84 / 34.6 / 14.2"
+    },
+    {
+        "Name": "Razer Huntsman V3 Pro Mini Black",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 29.8 / 11.4"
+    },
+    {
+        "Name": "Logitech G Pro X Keyboard",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 36 / 15.5"
+    },
+    {
+        "Name": "Logitech G Pro X TKL Keyboard",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 35.2 / 15.0"
+    },
+    {
+        "Name": "Razer Huntsman V3 Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 49.8 / 13.9"
+    },
+    {
+        "Name": "SteelSeries Apex Pro TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 35.5 / 13.6"
+    },
+    {
+        "Name": "Logitech G Pro X TKL RAPID",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 35.7 / 15.0"
+    },
+    {
+        "Name": "Logitech G715",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 37 / 15.7"
+    },
+    {
+        "Name": "SteelSeries Apex Pro Mini",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.04 / 29.3 / 10.3"
+    },
+    {
+        "Name": "Logitech G Pro Keyboard",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 36 / 15.5"
+    },
+    {
+        "Name": "SteelSeries Apex Pro TKL (2023)",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 35.5 / 13.6"
+    },
+    {
+        "Name": "HyperX Alloy Origins",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 44.2 / 13.3"
+    },
+    {
+        "Name": "SteelSeries Apex Pro TKL Gen 3 Black",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 35.5 / 12.9"
+    },
+    {
+        "Name": "Razer Huntsman V2 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.3 / 33.5 / 14.2"
+    },
+    {
+        "Name": "Logitech G915 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "1.9 / 36.7 / 15.1"
+    },
+    {
+        "Name": "ASUS ROG Falchion Ace HFX",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 31.5 / 11.5"
+    },
+    {
+        "Name": "Wooting 60HE V2",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.8 / 30.5 / 11.5"
+    },
+    {
+        "Name": "Razer Huntsman V2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.5 / 44.6 / 14.2"
+    },
+    {
+        "Name": "HyperX Alloy FPS Pro",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.5 / 36.0 / 13.0"
+    },
+    {
+        "Name": "Razer Huntsman TE",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 36 / 14"
+    },
+    {
+        "Name": "Razer Huntsman Mini",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 29.5 / 10.4"
+    },
+    {
+        "Name": "Ducky One 2 Mini",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4 / 30.2 / 10.8"
+    },
+    {
+        "Name": "HyperX Alloy Origins Core",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 36.1 / 13.2"
+    },
+    {
+        "Name": "Corsair K70 PRO TKL Black",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 44.4 / 16.6"
+    },
+    {
+        "Name": "Wooting Two HE",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 46.0 / 15.0"
+    },
+    {
+        "Name": "Logitech G512",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 44.5 / 13.3"
+    },
+    {
+        "Name": "SteelSeries Apex Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.36 / 43.7 / 13.9"
+    },
+    {
+        "Name": "HyperX Alloy FPS",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.5 / 44.2 / 13.0"
+    },
+    {
+        "Name": "Logitech G513",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 44.5 / 35.5"
+    },
+    {
+        "Name": "Pulsar PCMK 2 HE TKL White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 12.7 / 35.5"
+    },
+    {
+        "Name": "Logitech G713",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 37.0 / 15.7"
+    },
+    {
+        "Name": "Ducky One 2 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 36.5 / 13.5"
+    },
+    {
+        "Name": "Logitech G915",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.3 / 47.5 / 15.0"
+    },
+    {
+        "Name": "Corsair K70 RGB",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 44.4 / 16.5"
+    },
+    {
+        "Name": "Razer Blackwidow V3",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 45.2 / 15.4"
+    },
+    {
+        "Name": "Xtrfy K2 RGB",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 44 / 14"
+    },
+    {
+        "Name": "Corsair K70 RGB MK.2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 43.8 / 16.2"
+    },
+    {
+        "Name": "Xtrfy K4 TKL RGB",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 35.6 / 14.1"
+    },
+    {
+        "Name": "Razer Huntsman V3 Pro Mini White",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 29.8 / 11.4"
+    },
+    {
+        "Name": "Logitech G Pro X 60 Black",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 29.0 / 10.3"
+    },
+    {
+        "Name": "Razer Huntsman Elite",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 44.8 / 14.0"
+    },
+    {
+        "Name": "Corsair K65 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 35.6 / 16.6"
+    },
+    {
+        "Name": "Custom Keyboard",
+        "Form Factor": "",
+        "Switches": "",
+        "PCB": "",
+        "RGB": "",
+        "H / W / L (cm)": ""
+    },
+    {
+        "Name": "Razer BlackWidow V3 Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.3 / 45 / 24.8"
+    },
+    {
+        "Name": "Razer BlackWidow V3 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4 / 36 / 15.5"
+    },
+    {
+        "Name": "ZOWIE Celeritas II",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.9 / 44 / 17"
+    },
+    {
+        "Name": "Razer Blackwidow Chroma TE V2",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.3 / 36.5 / 16"
+    },
+    {
+        "Name": "Corsair K65 Rapidfire",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 35.6 / 16.5"
+    },
+    {
+        "Name": "SteelSeries Apex Pro TKL Gen 3 White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 35.5 / 12.9"
+    },
+    {
+        "Name": "SteelSeries Apex Pro Mini Gen 3",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 29.3 / 10.3"
+    },
+    {
+        "Name": "Razer Blackwidow V4 75%",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 32.1 / 15.5"
+    },
+    {
+        "Name": "HyperX Alloy FPS RGB",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 44.2 / 12.9"
+    },
+    {
+        "Name": "Xtrfy K4 RGB",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 44.3 / 14.0"
+    },
+    {
+        "Name": "Ducky One 2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 44.0 / 13.5"
+    },
+    {
+        "Name": "Varmilo VA87M Summit",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "Corsair K70 RGB TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 36.0 / 16.5"
+    },
+    {
+        "Name": "Anne Pro 2",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 28.4 / 9.7"
+    },
+    {
+        "Name": "Logitech G413",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.4 / 13.2 / 44.5"
+    },
+    {
+        "Name": "Corsair Vanguard Pro 96",
+        "Form Factor": "96%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.3 / 38.8 / 14.1"
+    },
+    {
+        "Name": "WLMouse Ying75",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.5 / 31.1 / 12.3"
+    },
+    {
+        "Name": "NZXT Function Elite MiniTKL",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 34.8 / 12.3"
+    },
+    {
+        "Name": "Dark Project KD83 g3ms Magnetite",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.3 / 32.4 / 13.3"
+    },
+    {
+        "Name": "Razer Blackwidow V4 Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.4 / 46.6 / 15.3"
+    },
+    {
+        "Name": "ZENAIM Keyboard",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "2.4 / 38.0 / 13.9"
+    },
+    {
+        "Name": "Higround Basecamp 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 31.0 / 10.2"
+    },
+    {
+        "Name": "Razer Huntsman Mini Mercury",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 29.3 / 10.3"
+    },
+    {
+        "Name": "Fnatic STREAK65 LP",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.7 / 31.5 / 10.6"
+    },
+    {
+        "Name": "Corsair K95 RGB PLATINUM",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 46.5 / 17.1"
+    },
+    {
+        "Name": "Ducky One 2 Mini Pure White",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4 / 30.2 / 10.8"
+    },
+    {
+        "Name": "Logitech G810",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 44.4 / 15.3"
+    },
+    {
+        "Name": "HyperX Alloy Elite",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 44.5 / 17.0"
+    },
+    {
+        "Name": "Xtrfy K5 Compact RGB",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 32.5 / 11.0"
+    },
+    {
+        "Name": "Corsair K63",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 36.5 / 17.1"
+    },
+    {
+        "Name": "Razer BlackWidow Chroma V2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 47.5 / 17.1"
+    },
+    {
+        "Name": "SteelSeries Apex 7 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 35.5 / 13.9"
+    },
+    {
+        "Name": "Fnatic miniSTREAK",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 36.5 / 14"
+    },
+    {
+        "Name": "Razer Blackwidow TE",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4 / 36.5 / 16"
+    },
+    {
+        "Name": "ASUS ROG Falchion Ace HFX ZywOo Edition",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 31.5 / 11.5"
+    },
+    {
+        "Name": "ASUS ROG Falcata",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 32.7 / 12.7"
+    },
+    {
+        "Name": "MelGeek MADE68 Ultra",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4 / 32 / 12"
+    },
+    {
+        "Name": "ATK RS6 Ultra Aspas Edition",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 31.8 / 13.2"
+    },
+    {
+        "Name": "ASUS ROG Falchion RX Low Profile",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.65 / 30.6 / 26.5"
+    },
+    {
+        "Name": "Yuki Aim 65% Keyboard",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 31.5 / 10.9"
+    },
+    {
+        "Name": "DrunkDeer A75",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.9 / 33.5 / 14.0"
+    },
+    {
+        "Name": "Xtrfy K5 Compact RGB Black",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 32.5 / 11.0"
+    },
+    {
+        "Name": "Alienware AW420K",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 32.2 / 11.2"
+    },
+    {
+        "Name": "Razer DeathStalker V2 Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.8 / 43.7 / 13.9"
+    },
+    {
+        "Name": "Razer DeathStalker V2 Pro TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.6 / 35.7 / 13.9"
+    },
+    {
+        "Name": "Varmilo VA87M Sea Melody",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "SteelSeries Apex 9 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 35.5 / 12.8"
+    },
+    {
+        "Name": "Logitech G Pro K/DA Keyboard",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 36 / 15.5"
+    },
+    {
+        "Name": "Corsair K65 RGB MINI 60%",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 29 / 10.2"
+    },
+    {
+        "Name": "Matrix x sinatraa Keyboard",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.5 / 42.5 / 16.5"
+    },
+    {
+        "Name": "Ducky One 2 SF",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4 / 32.4 / 10.6"
+    },
+    {
+        "Name": "HyperX Alloy Origins 60",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 29.6 / 10.5"
+    },
+    {
+        "Name": "Ducky Miya Pro Sakura",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.8 / 34.1 / 10.5"
+    },
+    {
+        "Name": "Corsair STRAFE",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 44.8 / 17.0"
+    },
+    {
+        "Name": "SteelSeries Apex M750",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.6 / 45.4 / 15.3"
+    },
+    {
+        "Name": "Razer BlackWidow V3 Mini",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 31.9 / 13.1"
+    },
+    {
+        "Name": "ROCCAT Vulcan TKL Pro",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "",
+        "H / W / L (cm)": "3.4 / 36.0 / 13.3"
+    },
+    {
+        "Name": "Fallen Gear Falcão-Peregrino V3",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 44 / 19"
+    },
+    {
+        "Name": "SteelSeries Apex 7 TKL Ghost",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 35.5 / 13.9"
+    },
+    {
+        "Name": "Razer Blackwidow Lite",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.5 / 36.1 / 13.3"
+    },
+    {
+        "Name": "SteelSeries 6Gv2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.8 / 53 / 25.5"
+    },
+    {
+        "Name": "MelGeek Mojo68",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.2 / 32.6 / 12.5"
+    },
+    {
+        "Name": "Corsair K70 PRO TKL White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 44.4 / 16.6"
+    },
+    {
+        "Name": "Akko MOD 007 V3 HE Year of Dragon",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 33.3 / 14.1"
+    },
+    {
+        "Name": "Sony INZONE KBD-H75",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 31.8 / 13.2"
+    },
+    {
+        "Name": "ATK RS6 Ultra Night Hunter",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 31.8 / 13.2"
+    },
+    {
+        "Name": "Corsair K70 Pro Mini Wireless White",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 29.6 / 10.9"
+    },
+    {
+        "Name": "Rampage Zenith Pro 8K",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "14.3 / 33.3 / 14.3"
+    },
+    {
+        "Name": "Logitech G Pro X 60 White",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 29.0 / 10.3"
+    },
+    {
+        "Name": "MelGeek Made68 Pro",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 31.0 / 11.0"
+    },
+    {
+        "Name": "Corsair K70 MAX",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 44.2 / 16.6"
+    },
+    {
+        "Name": "LAMZU Jet75 White",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 34.0 / 13.4"
+    },
+    {
+        "Name": "Logitech G515",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.2 / 36.8 / 15.0"
+    },
+    {
+        "Name": "Glorious GMMK 3 PRO HE 65%",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 33.5 / 12.5"
+    },
+    {
+        "Name": "EPOMAKER CIDOO V87",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 40.0 / 14.5"
+    },
+    {
+        "Name": "Higround Snowstone Summit 2.0 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 35 / 10"
+    },
+    {
+        "Name": "Higround Performance Base 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 31.0 / 11.0"
+    },
+    {
+        "Name": "Varmilo MA Series V2 Yakumo White TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.6 / 35.8 / 13.4"
+    },
+    {
+        "Name": "Meletrix BOOG75",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.8 / 32.6 / 14.5"
+    },
+    {
+        "Name": "CHERRY XTRFY K5V2 RGB Compact",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.4 / 36.0 / 17.2"
+    },
+    {
+        "Name": "Lamzu Atlantis Pro Keyboard",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 31.8 / 10.9"
+    },
+    {
+        "Name": "Roccat Magma",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 45.1 / 15.5"
+    },
+    {
+        "Name": "HyperX Alloy Origins 60 Pink",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 29.6 / 10.5"
+    },
+    {
+        "Name": "Dark Project KD87A",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.3 / 35.7 / 13.0"
+    },
+    {
+        "Name": "Hator Skyfall TKL PRO Wireless",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 36.5 / 13.3"
+    },
+    {
+        "Name": "Redragon K552 Kumara",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 35.6 / 12.4"
+    },
+    {
+        "Name": "ASUS ROG Falchion Ace",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 30.5 / 10.1"
+    },
+    {
+        "Name": "REALFORCE R2",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.0 / 36.9 / 14.2"
+    },
+    {
+        "Name": "SteelSeries Apex Pro TKL Wireless (2023)",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 3.55 / 12.8"
+    },
+    {
+        "Name": "Logitech G910",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.55 / 50.5 / 24.3"
+    },
+    {
+        "Name": "Vortex Pok3r RGB",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 29.0 / 10.0"
+    },
+    {
+        "Name": "Ducky One 3 Mini Pure White",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 30.7 / 10.6"
+    },
+    {
+        "Name": "Higround Summit 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.0 / 35.3 / 10.0"
+    },
+    {
+        "Name": "ROCCAT Vulcan II Mini",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.1 / 32.4 / 11.6"
+    },
+    {
+        "Name": "Corsair K70 Pro Mini Wireless Black",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 29.6 / 10.9"
+    },
+    {
+        "Name": "Keychron K4",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 37.6 / 12.9"
+    },
+    {
+        "Name": "Glorious GMMK TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 33.5 / 12.9"
+    },
+    {
+        "Name": "Fnatic STREAK",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 44.0 / 14.1"
+    },
+    {
+        "Name": "Varmilo VA87M Beijing Opera",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "Gamesense Clutch",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 33.0 / 15.0"
+    },
+    {
+        "Name": "Varmilo VA87M Vintage Days",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "Corsair K68",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.9 / 45.5 / 17.0"
+    },
+    {
+        "Name": "Razer Huntsman Essential",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.6 / 44.5 / 14.0"
+    },
+    {
+        "Name": "Cooler Master Masterkeys Pro S",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 35.9 / 13.0"
+    },
+    {
+        "Name": "ASUS ROG Claymore",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.4 / 45.0 / 14.0"
+    },
+    {
+        "Name": "Cooler Master Storm Rapid-I",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.9 / 35.9 / 13.8"
+    },
+    {
+        "Name": "Ducky One 3 Mini",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 30.7 / 10.6"
+    },
+    {
+        "Name": "SteelSeries Apex M750 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 37.0 / 16.0"
+    },
+    {
+        "Name": "Corsair K100 RGB",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.6 / 47.0 / 16.5"
+    },
+    {
+        "Name": "Cooler Master CK550 V2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 46.0 / 13.5"
+    },
+    {
+        "Name": "Corsair K65 RGB MINI 60% White",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 29 / 10.2"
+    },
+    {
+        "Name": "Glorious GMMK Pro",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 33.1 / 13.4"
+    },
+    {
+        "Name": "Matrix x Symfuhny Keyboard",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.1 / 29.1 / 10.5"
+    },
+    {
+        "Name": "Ducky One 2 TKL White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 36.5 / 13.5"
+    },
+    {
+        "Name": "Razer BlackWidow Elite",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 44.5 / 16.5"
+    },
+    {
+        "Name": "Razer BlackWidow X Chroma Mercury",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 45.9 / 15.6"
+    },
+    {
+        "Name": "Fnatic STREAK65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.7 / 31.5 / 10.6"
+    },
+    {
+        "Name": "CHERRY XTRFY MX 8.2 PRO TMR",
+        "Form Factor": "",
+        "Switches": "",
+        "PCB": "",
+        "RGB": "",
+        "H / W / L (cm)": ""
+    },
+    {
+        "Name": "Pulsar eS HE 70",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.5 / 12.4 / 31.1"
+    },
+    {
+        "Name": "ATK EDGE 60HE",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 29.1 / 10.2"
+    },
+    {
+        "Name": "Endgame Gear KB65HE",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 31.5 / 10.9"
+    },
+    {
+        "Name": "Logitech G213",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": ""
+    },
+    {
+        "Name": "Ducky One X",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 45.2 / 15.0"
+    },
+    {
+        "Name": "Ducky One 3 TKL White",
+        "Form Factor": "",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 37.0 / 14.0"
+    },
+    {
+        "Name": "Wraith W75",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 30.1 / 14.7"
+    },
+    {
+        "Name": "DrunkDeer G60",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.0 / 29.0 / 10.2"
+    },
+    {
+        "Name": "Vortex Tab 75",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.9 / 29.2 / 10.9"
+    },
+    {
+        "Name": "Varmilo VA87M Sakura",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "Akko 7th Anniversary MOD 007 PC",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "4.1 / 33.3 / 14.7"
+    },
+    {
+        "Name": "SteelSeries Apex Pro TKL Wireless Gen 3",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 35.5 / 12.9"
+    },
+    {
+        "Name": "Corsair K65 Plus Wireless",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 32.0 / 13.6"
+    },
+    {
+        "Name": "NZXT Function 2 MiniTKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 33.8 / 12.3"
+    },
+    {
+        "Name": "Lootcifer Ikigai Keyboard",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.5 / 32.0 / 11.9"
+    },
+    {
+        "Name": "MonsGeek M7W Silver",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 34.5 / 12.1"
+    },
+    {
+        "Name": "Varmilo Minilo VXT81 Bluebell",
+        "Form Factor": "75%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 18.0 / 14.3"
+    },
+    {
+        "Name": "SteelSeries Apex Pro Mini Wireless",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.04 / 29.3 / 10.3"
+    },
+    {
+        "Name": "Higround Snowstone Base 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 35 / 10"
+    },
+    {
+        "Name": "Varmilo VPM87 Sakura Chang’e EC V2",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "2.5 / 31.8 / 13.4"
+    },
+    {
+        "Name": "Higround OPAL Base 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.7 / 35.3 / 15.3"
+    },
+    {
+        "Name": "Fallen Gear Pantera TKL Keyboard",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 41.2 / 18.2"
+    },
+    {
+        "Name": "Fallen Gear Pantera Keyboard",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 48.7 / 18.2"
+    },
+    {
+        "Name": "Alienware Pro Wireless Keyboard",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 40.6 / 12.7"
+    },
+    {
+        "Name": "Arbiter Studio Polar 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 31.5 / 10.9"
+    },
+    {
+        "Name": "SteelSeries Apex Pro Mini White Gold",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.04 / 29.3 / 10.3"
+    },
+    {
+        "Name": "Ducky One 3 Mini Yellow",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 30.7 / 10.6"
+    },
+    {
+        "Name": "Ducky One 3 Classic Pure White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 37.0 / 14.0"
+    },
+    {
+        "Name": "Fnatic STREAK80 LP",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.5 / 35.3 / 13.0"
+    },
+    {
+        "Name": "Endorfy Thock Wireless White",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.3 / 44.5 / 14.0"
+    },
+    {
+        "Name": "Endorfy Thock Wireless Black",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.3 / 44.5 / 14.0"
+    },
+    {
+        "Name": "Corsair K55 RGB PRO XT",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 4.81 / 1.67"
+    },
+    {
+        "Name": "Ducky Tinker 65",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 32.0 / 12.5"
+    },
+    {
+        "Name": "Varmilo VEM87 Yakumo",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.9 / 35.6 / 13.4"
+    },
+    {
+        "Name": "REALFORCE 87U",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.8 / 36.6 / 16.9"
+    },
+    {
+        "Name": "Ducky ProjectD 65 Outlaw",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.8 / 33.3 / 12.8"
+    },
+    {
+        "Name": "Dark Project KD87A Optical Pudding White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "2.3 / 35.7 / 13.0"
+    },
+    {
+        "Name": "NIZ Mini 84 PRO V2",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "2.5 / 31.8 / 13.4"
+    },
+    {
+        "Name": "Matrix x Clix Keyboard Black",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.1 / 29.2 / 10.2"
+    },
+    {
+        "Name": "KBDfans Tiger 80",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.2 / 35.8 / 13.4"
+    },
+    {
+        "Name": "Ducky One 3 TKL Daybreak",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 37.0 / 14.0"
+    },
+    {
+        "Name": "Mistel BAROCCO MD770",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.4 / 32.0 / 14.0"
+    },
+    {
+        "Name": "Ducky Mecha SF",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 32.5 / 10.5"
+    },
+    {
+        "Name": "Ducky Year of the Rat",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 30.3 / 10.3"
+    },
+    {
+        "Name": "Corsair K60 RGB Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 44 / 13.4"
+    },
+    {
+        "Name": "Ducky Mecha Mini",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4 / 29.5 / 10.8"
+    },
+    {
+        "Name": "Glorious GMMK 2 65%",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.74 / 31.4 / 10.4"
+    },
+    {
+        "Name": "Varmilo VA87M Koi",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "Varmilo VA108M Summit R2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 35.6 / 13.4"
+    },
+    {
+        "Name": "Ducky ONE 3 VAXEE Winter21 Version",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "4.0 / 17.0 / 14.0"
+    },
+    {
+        "Name": "Ducky ONE 3 VAXEE Zygen Version",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 17.0 / 14.0"
+    },
+    {
+        "Name": "SteelSeries Apex 3 TKL",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 36.4 / 15.0"
+    },
+    {
+        "Name": "KBDfans KBD75 V3.1",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 31.8 / 13.0"
+    },
+    {
+        "Name": "Higround Gundam",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.0 / 35.4 / 10.0"
+    },
+    {
+        "Name": "Razer BlackWidow TE Chroma V2 Quartz",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 36.6 / 15.4"
+    },
+    {
+        "Name": "Varmilo Minilo Eucalyptus 67",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "40 / 31.5 / 11.0"
+    },
+    {
+        "Name": "Ducky One 3 SF Aura",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.12 / 33.5 / 11.1"
+    },
+    {
+        "Name": "Corsair K100 Air Wireless",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "1.8 / 43.6 / 15.5"
+    },
+    {
+        "Name": "Ducky One 3 TKL Matcha",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 37.0 / 14.0"
+    },
+    {
+        "Name": "Fnatic RUSH G1",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 44.8 / 14.8"
+    },
+    {
+        "Name": "SteelSeries Apex M500",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "4.1 / 44.1 / 13.7"
+    },
+    {
+        "Name": "Ozone Gaming Strike Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.4 / 44.1 / 13.5"
+    },
+    {
+        "Name": "Sharkoon Skiller SGK3",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.5 / 44.6 / 17.0"
+    },
+    {
+        "Name": "Lenovo Legion K500",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 44.3 / 16.1"
+    },
+    {
+        "Name": "Womier K66",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.8 / 32.8 / 11.5"
+    },
+    {
+        "Name": "Razer BlackWidow V3 Quartz",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 45.1 / 15.4"
+    },
+    {
+        "Name": "QPAD MK-80",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.5 / 44.8 / 14.9"
+    },
+    {
+        "Name": "Ozone Gaming Strike Battle",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 35.1 / 12.3"
+    },
+    {
+        "Name": "Xtrfy K2 RGB White",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 44 / 14"
+    },
+    {
+        "Name": "Xtrfy K4 TKL RGB White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 35.6 / 14.1"
+    },
+    {
+        "Name": "Corsair K70 RGB Pro",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.90 / 44.3 / 16.4"
+    },
+    {
+        "Name": "Logitech G Pro X Keyboard Shroud Edition",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.5 / 36.0 / 15.5"
+    },
+    {
+        "Name": "iKBC CD87",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "4.1 / 35.8 / 13.6"
+    },
+    {
+        "Name": "Xtrfy K4 TKL RGB Retro",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 35.6 / 14.1"
+    },
+    {
+        "Name": "Leopold FC900R",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.3 / 44.1 / 13.9"
+    },
+    {
+        "Name": "Drop ALT Keyboard",
+        "Form Factor": "65%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.3 / 36.8 / 13.9"
+    },
+    {
+        "Name": "SteelSeries Apex 5",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 40.5 / 14.0"
+    },
+    {
+        "Name": "Leopold FC750R",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.1 / 36.2 / 14.0"
+    },
+    {
+        "Name": "Kraken Pro 60",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.3 / 29.2 / 10.2"
+    },
+    {
+        "Name": "Wooting One",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.1 / 36.9 / 16.1"
+    },
+    {
+        "Name": "HK Gaming GK61",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.0 / 29.1 / 10.1"
+    },
+    {
+        "Name": "Matrix x Clix Cotton Candy",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.1 / 29.2 / 10.2"
+    },
+    {
+        "Name": "Logitech G613",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "No",
+        "H / W / L (cm)": "3.4 / 47.8 / 21.6"
+    },
+    {
+        "Name": "HyperX Alloy Elite 2",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 44.4 / 17.4"
+    },
+    {
+        "Name": "Fallen Gear Ace",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.9 / 44 / 13.4"
+    },
+    {
+        "Name": "Redragon K522 TKL White",
+        "Form Factor": "TKL",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.7 / 35.4 / 12.4"
+    },
+    {
+        "Name": "Cooler Master MasterKeys MK750",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.2 / 43.8 / 13.3"
+    },
+    {
+        "Name": "Razer Huntsman Quartz",
+        "Form Factor": "Full Size",
+        "Switches": "",
+        "PCB": "Non-Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "3.6 / 44.4 / 14.0"
+    },
+    {
+        "Name": "EPOMAKER SKYLOONG SK61",
+        "Form Factor": "60%",
+        "Switches": "",
+        "PCB": "Hotswappable",
+        "RGB": "Yes",
+        "H / W / L (cm)": "4.5 / 29.5 / 10.5"
+    }
+]

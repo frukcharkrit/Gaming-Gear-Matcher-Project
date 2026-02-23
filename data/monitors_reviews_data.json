@@ -1,0 +1,192 @@
+[
+    {
+        "name": "Sony INZONE M10S Review",
+        "url": "https://prosettings.net/reviews/sony-inzone-m10s/",
+        "pros": [
+            "Great gaming performances",
+            "24.5″ mode is handy for people who want the best of both worlds",
+            "Great image quality and color representation",
+            "Best-in-class stand",
+            "Looks and feels premium"
+        ],
+        "cons": [
+            "Extremely expensive",
+            "Anti-glare coating can sometimes make text etc. look a bit hazy"
+        ],
+        "specs": {
+            "Size": "27″",
+            "Resolution": "2560×1440",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "480",
+            "G-Sync": "Yes",
+            "FreeSync": "No",
+            "Panel Tech": "OLED"
+        }
+    },
+    {
+        "name": "ZOWIE XL2586X+ Review",
+        "url": "https://prosettings.net/reviews/zowie-xl2586x/",
+        "pros": [
+            "Gaming performance is best-in-class",
+            "Adjustable in all the right ways",
+            "DyAc 2 feels great on this monitor",
+            "Small, but very reliable stand"
+        ],
+        "cons": [
+            "Viewing angles aren’t good",
+            "Thick bezels",
+            "600Hz 1080p panel is overkill for all but the most hardcore of gamers"
+        ],
+        "specs": {
+            "Size": "24″",
+            "Resolution": "1920×1080",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "600",
+            "G-Sync": "No",
+            "FreeSync": "No",
+            "Panel Tech": "TN"
+        }
+    },
+    {
+        "name": "ZOWIE XL2566X+ Review",
+        "url": "https://prosettings.net/reviews/zowie-xl2566x/",
+        "pros": [
+            "Great picture quality for a TN monitor",
+            "Fantastic gaming performances",
+            "Great stand with a small footprint",
+            "Best and most complete ZOWIE monitor yet"
+        ],
+        "cons": [
+            "Expensive for a 1080p TN monitor",
+            "Some coil whine at higher refresh rates"
+        ],
+        "specs": {
+            "Size": "24″",
+            "Resolution": "1920×1080",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "400",
+            "G-Sync": "No",
+            "FreeSync": "No",
+            "Panel Tech": "TN"
+        }
+    },
+    {
+        "name": "ASUS ROG SWIFT PG27AQN Review",
+        "url": "https://prosettings.net/reviews/asus-rog-swift-pg27aqn/",
+        "pros": [
+            "Great response times thanks to Ultrafast IPS Technology",
+            "Great picture quality",
+            "1440p + 360Hz makes for a ultra high tier gaming display",
+            "Basically has a 25″ 1080p monitor built into it in the form of the Esports 25″ mode"
+        ],
+        "cons": [
+            "No motion blur reduction technology present",
+            "Stand has a rather large footprint",
+            "Very expensive"
+        ],
+        "specs": {
+            "Size": "27″",
+            "Resolution": "2560×1440",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "360",
+            "G-Sync": "Yes",
+            "FreeSync": "No",
+            "Panel Tech": "IPS"
+        }
+    },
+    {
+        "name": "ZOWIE XL2566K Review",
+        "url": "https://prosettings.net/reviews/zowie-xl-2566k/",
+        "pros": [
+            "360Hz refresh rate along with fast TN panel makes it one of the smoothest monitors out there",
+            "Subtle design",
+            "Small footprint of the base",
+            "Lots of QoL features such as the stand markings, the S switch, the included (and detachable) glare panels, …",
+            "Picture quality is great for a TN panel…"
+        ],
+        "cons": [
+            "… but it doesn’t match IPS panels when it comes to quality",
+            "Expensive for a 1080p monitor",
+            "Low viewing angles"
+        ],
+        "specs": {
+            "Size": "24.5″",
+            "Resolution": "1920×1080",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "360",
+            "G-Sync": "No",
+            "FreeSync": "No",
+            "Panel Tech": "TN"
+        }
+    },
+    {
+        "name": "MSI Oculux NXG253R Review",
+        "url": "https://prosettings.net/reviews/msi-oculux-nxg253r/",
+        "pros": [
+            "Fantastic gaming performance",
+            "Great response times and motion clarity"
+        ],
+        "cons": [
+            "Very expensive (especially for a 1080p TN panel)",
+            "Reserved for serious competitive gamers only"
+        ],
+        "specs": {
+            "Size": "24.5″",
+            "Resolution": "1920×1080",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "360",
+            "G-Sync": "Yes",
+            "FreeSync": "No",
+            "Panel Tech": "IPS"
+        }
+    },
+    {
+        "name": "Zowie XL2546K Review",
+        "url": "https://prosettings.net/reviews/zowie-xl2546k/",
+        "pros": [
+            "Stand has a small footprint",
+            "Subtle design",
+            "Markings on all adjustable points to help with achieving the perfect panel position",
+            "S-Switch and joystick make navigating the OSD a breeze",
+            "Lightning fast response times",
+            "Myriad of gaming-focused options to configure and use"
+        ],
+        "cons": [
+            "Viewing angles aren’t great",
+            "Picture quality isn’t the best due to the usage of a TN panel"
+        ],
+        "specs": {
+            "Size": "24.5″",
+            "Resolution": "1920×1080",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "240",
+            "G-Sync": "No",
+            "FreeSync": "No",
+            "Panel Tech": "TN"
+        }
+    },
+    {
+        "name": "Zowie XL2546 Review",
+        "url": "https://prosettings.net/reviews/zowie-xl2546/",
+        "pros": [
+            "Very fast response times",
+            "240Hz is a noticeable improvement over 144Hz, though the jump is smaller than when going from 60Hz to 144Hz",
+            "Subtle design",
+            "S-Switch makes controlling the OSD extremely easy",
+            "DyAc works as advertised"
+        ],
+        "cons": [
+            "TN panel doesn’t make for the best picture quality",
+            "Viewing angles aren’t good"
+        ],
+        "specs": {
+            "Size": "24.5″",
+            "Resolution": "1920×1080",
+            "Aspect Ratio": "16:9",
+            "Refresh Rate": "240",
+            "G-Sync": "No",
+            "FreeSync": "No",
+            "Panel Tech": "TN"
+        }
+    }
+]
